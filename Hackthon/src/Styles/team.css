@@ -36,12 +36,10 @@
 
 /* Grid Layout for Team Cards */
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 40px;
-    width: 100%;
-    max-width: 1400px;
-    justify-items: center;
 }
 
 /* Team Card Styles */
@@ -56,12 +54,80 @@
     align-items: center;
     text-align: center;
     transition: all 0.3s ease;
+    width: 300px;
+    /* Fixed width for better flex behavior */
+    position: relative;
+}
+
+/* ... existing hover styles ... */
+
+.member-img {
+    width: 220px;
+    height: 260px;
+    border-radius: 12px !important;
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+.member-img::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 16px !important;
+    border: 2px solid transparent;
+    animation: border-pulse 2s infinite alternate;
+    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
+    transition: all 0.4s ease;
+}
+
+/* Inner Image */
+.member-img img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    border-radius: 12px !important;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+.member-info {
+    position: relative;
+    /* For overlay context */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mentor Overlay - Adjusted to cover info or card */
+.mentor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transform: translateY(10px);
+    z-index: 10;
 }
 
 .team-card:hover .member-img {
-    transform: scale(1.1);
+    transform: scale(1.15) translateY(-10px);
     box-shadow: 0 0 30px rgba(143, 139, 255, 0.6), 0 0 60px rgba(143, 139, 255, 0.3);
     border-color: #d142f5;
 }
@@ -76,73 +142,54 @@
     transform: translateY(-5px);
 }
 
-.member-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    position: relative;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: transparent;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-    /* Subtle static ring */
-    transition: transform 0.4s ease;
-}
-
-/* Rotating Tech Ring */
-.member-img::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    /* Floating ring outside */
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top-color: #00f3ff;
-    /* Cyan Neon */
-    border-bottom-color: #bc13fe;
-    /* Purple Neon */
-    animation: tech-spin 6s linear infinite;
-    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
-    transition: all 0.4s ease;
-}
-
-/* Hover Effects */
-.team-card:hover .member-img {
-    transform: scale(1.05);
-    /* Slight pop */
-}
-
-.team-card:hover .member-img::before {
-    inset: -12px;
-    /* Ring expands outwards */
-    border-width: 3px;
-    filter: drop-shadow(0 0 15px rgba(188, 19, 254, 0.8));
-    /* Stronger glow */
-    animation: tech-spin 2s linear infinite;
-    /* Spin faster */
-}
-
-@keyframes tech-spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 /* Inner Image */
 .member-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 12px !important;
     border: 2px solid rgba(255, 255, 255, 0.1);
     /* Inner clean border */
     z-index: 2;
+}
+
+/* Mentor Overlay */
+.mentor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 40, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transform: translateY(10px);
+    z-index: 10;
+}
+
+.team-card:hover .mentor-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mentor-description {
+    color: #e9ecff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Specific Helper for Mentors Grid Centering if needed */
+.team-grid {
+    justify-content: center;
+    /* Ensure this is active */
 }
 
 .member-info h3 {
@@ -152,6 +199,79 @@
     font-weight: 700;
     font-family: 'Orbitron', sans-serif;
 }
+
+/* ========================================= */
+/* MENTOR CARD SPECIFIC STYLES (Polaroid/Card Look) */
+/* ========================================= */
+.mentor-card {
+    background: #f0faff;
+    /* Light cyan/white background */
+    border-radius: 12px;
+    padding: 10px 10px 20px 10px;
+    /* Padding for the frame effect */
+    width: 260px;
+    /* Adjust width as needed */
+    height: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    /* Contain children */
+}
+
+/* Override member-img for mentors */
+.mentor-card .member-img {
+    width: 100%;
+    height: 280px;
+    /* Taller height for image area */
+    border-radius: 8px 8px 0 0 !important;
+    /* Rounded top */
+    margin-bottom: 10px;
+    box-shadow: none;
+    border: none;
+}
+
+/* Remove the tech ring for mentors */
+.mentor-card .member-img::before {
+    display: none;
+}
+
+/* Image inside mentor card */
+.mentor-card .member-img img {
+    border-radius: 8px;
+    /* Slight radius for image */
+    border: none;
+}
+
+/* Mentor Text Styles */
+.mentor-card h3 {
+    color: #002D62;
+    /* Dark Blue for Name */
+    font-family: 'Inter', sans-serif;
+    /* Cleaner font */
+    font-weight: 700;
+    text-shadow: none;
+    margin-top: 5px;
+}
+
+.mentor-card .member-role {
+    color: #000;
+    /* Black for Role */
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-shadow: none;
+}
+
+.mentor-card .mentor-overlay {
+    border-radius: 8px 8px 0 0;
+    /* Match image radius */
+}
+
+/* Hover Effect for Mentor Card (Pop Up) */
+.mentor-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 243, 255, 0.2);
+}
+
+/* ========================================= */
 
 .member-role {
     font-size: 0.9rem;

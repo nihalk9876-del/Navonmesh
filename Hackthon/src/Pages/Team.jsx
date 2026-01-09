@@ -4,7 +4,43 @@ import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import teamPlaceholder from "../assets/team_placeholder.jpg";
 import nihalImg from "../assets/nihal.jpg";
+import sanchitImg from "../assets/sanchit.png";
+import tanmayImg from "../assets/tanmay.png";
+import krushnaImg from "../assets/krushna.png";
+import omImg from "../assets/om_konde_new.jpg";
+import principalImg from "../assets/principal.png";
+import jadhaoImg from "../assets/jadhao.png";
+import wahileImg from "../assets/ganesh_wahile.png";
+import shrinitImg from "../assets/shrinit.png";
 import EcellLogo from "../assets/ecell-logo.png";
+import shripadImg from "../assets/shripad.png";
+import vedantImg from "../assets/vedant.png";
+import abhishekImg from "../assets/abhishek.png";
+import prarthnaImg from "../assets/prarthna.png";
+
+const mentors = [
+    {
+        id: 1,
+        name: "Dr. S. B. Somani",
+        role: "Principal",
+        image: principalImg,
+        description: "Visionary leader guiding the institute towards academic excellence and innovation."
+    },
+    {
+        id: 2,
+        name: "Dr. S. S. Jadhao",
+        role: "Event Incharge",
+        image: jadhaoImg,
+        description: "Dedicated mentor fostering technical growth and student development."
+    },
+    {
+        id: 3,
+        name: "Mr. Ganesh Wahile",
+        role: "E-Cell Faculty Advisor",
+        image: wahileImg,
+        description: "Expert coordinator facilitating seamless execution of technical events."
+    }
+];
 
 const teamMembers = [
     {
@@ -32,7 +68,7 @@ const teamMembers = [
         subRole: "Overall Coordinator",
         phone: "+91 98765 43210",
         email: "sanchit@example.com",
-        image: teamPlaceholder,
+        image: sanchitImg,
     },
     {
         id: 4,
@@ -41,7 +77,7 @@ const teamMembers = [
         subRole: "Overall Coordinator",
         phone: "+91 98765 43210",
         email: "shripad@example.com",
-        image: teamPlaceholder,
+        image: shripadImg,
     },
     {
         id: 14,
@@ -50,7 +86,7 @@ const teamMembers = [
         subRole: "Event Head",
         phone: "+91 98765 43210",
         email: "prarthna@example.com",
-        image: teamPlaceholder,
+        image: prarthnaImg,
     },
     {
         id: 5,
@@ -72,21 +108,39 @@ const teamMembers = [
     },
     {
         id: 7,
-        name: "Om Konde",
-        role: "Core Team Member",
-        subRole: "Discipline Head",
-        phone: "+91 98765 43210",
-        email: "om@example.com",
-        image: teamPlaceholder,
-    },
-    {
-        id: 8,
         name: "Abhishek Kanherkar",
         role: "Core Team Member",
         subRole: "Management Head",
-        phone: "+91 80103 24551",
+        phone: "+91 8010324551",
+        email: "om@example.com",
+        image: abhishekImg,
+    },
+    {
+        id: 8,
+        name: "Atharva Sonone",
+        role: "Core Team Member",
+        subRole: "Volunteer Head ",
+        phone: "+91 9999999999 ",
         email: "abhishek@example.com",
         image: teamPlaceholder,
+    },
+    {
+        id: 18,
+        name: "Om Konde",
+        role: "Core Team Member",
+        subRole: "Discipline Head",
+        phone: "+91 8669873156",
+        email: "omkonde@gmail.com",
+        image: omImg,
+    },
+    {
+        id: 19,
+        name: "Shrinit Chavan",
+        role: "Core Team Member",
+        subRole: "Discipline Co-head",
+        phone: "+91 7774900204",
+        email: "chavanshrinit@gmail.com",
+        image: shrinitImg,
     },
     {
         id: 13,
@@ -95,7 +149,7 @@ const teamMembers = [
         subRole: "NSS - President",
         phone: "+91 98765 43210",
         email: "krushna@example.com",
-        image: teamPlaceholder,
+        image: tanmayImg,
     },
     {
         id: 15,
@@ -104,7 +158,7 @@ const teamMembers = [
         subRole: "Design Head",
         phone: "+91 98765 43210",
         email: "vedant@example.com",
-        image: teamPlaceholder,
+        image: vedantImg,
     },
     {
         id: 16,
@@ -122,7 +176,7 @@ const teamMembers = [
         subRole: "Publicity Head",
         phone: "+91 98765 43210",
         email: "tanmay@example.com",
-        image: teamPlaceholder,
+        image: krushnaImg,
     },
     {
         id: 9,
@@ -161,8 +215,28 @@ const teamMembers = [
 const Team = () => {
     return (
         <div className="team-container">
-            {/* Coordinating Team Section moved to top */}
-            <div className="coordinating-section">
+
+
+            <h1 className="team-title" style={{ marginTop: "40px" }}>MENTORS</h1>
+            <div className="team-grid" style={{ marginBottom: "60px" }}>
+                {mentors.map((mentor) => (
+                    <div key={mentor.id} className="team-card mentor-card">
+                        <div className="member-img">
+                            <img src={mentor.image} alt={mentor.name} />
+                            <div className="mentor-overlay">
+                                <p className="mentor-description">{mentor.description}</p>
+                            </div>
+                        </div>
+                        <div className="member-info">
+                            <h3>{mentor.name}</h3>
+                            <p className="member-role">{mentor.role}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Coordinating Team Section */}
+            <div className="coordinating-section" style={{ marginBottom: "60px" }}>
                 <h2 className="section-title">Coordinating Team</h2>
                 <div className="logo-container">
                     <img src={EcellLogo} alt="E-Cell SSGMCE" className="ecell-logo" />
@@ -182,7 +256,7 @@ const Team = () => {
                         </div>
                         <div className="member-info">
                             <h3>{member.name}</h3>
-                            <p className="member-role">{member.role}</p>
+
                             {member.subRole && (
                                 <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "-5px", marginBottom: "10px", fontWeight: "bold" }}>
                                     {member.subRole}
