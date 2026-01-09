@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/hero.css";
+import "../Styles/hero.css";
 import PursuitName from "../assets/namonvesh-logo.png";
 import RocketImg from "../assets/rocket.png";
 import StatsStrip from "../Components/StatsStrip";

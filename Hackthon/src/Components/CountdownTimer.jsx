@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/hero.css"; // We'll add specific styles to hero.css
+import "../Styles/hero.css"; // We'll add specific styles to hero.css
 
 const CountdownTimer = () => {
     const calculateTimeLeft = () => {

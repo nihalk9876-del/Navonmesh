@@ -1,7 +1,7 @@
-import "../styles/stats.css";
+import "../Styles/stats.css";
 
 import React, { useEffect, useState, useRef } from "react";
-import "../styles/stats.css";
+import "../Styles/stats.css";
 
 const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
   const [count, setCount] = useState(0);

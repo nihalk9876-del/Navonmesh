@@ -1,4 +1,4 @@
-import "../styles/navbar.css";
+import "../Styles/navbar.css";
 import namonveshfont from "../assets/namonvesh-logo.png";
 import { NavLink } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa"; // Import Icon

@@ -1,4 +1,4 @@
-import "../styles/gallery.css";
+import "../Styles/gallery.css";
 
 const VideoLayerCard = () => {
   return (

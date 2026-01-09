@@ -6,7 +6,7 @@ import {
   FaFacebook,
   FaWhatsapp,
 } from "react-icons/fa6";
-import "../styles/sidebar.css";
+import "../Styles/sidebar.css";
 
 const SocialBar = () => {
   return (
