@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./Layout/MainLayout";
 
@@ -25,7 +25,7 @@ import Accommodation from "./Pages/Accommodation";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Pages WITH Navbar, Sidebar, Footer */}
         <Route element={<MainLayout />}>
@@ -53,7 +53,7 @@ function App() {
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/register" element={<Register />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
