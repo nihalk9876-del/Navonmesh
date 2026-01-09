@@ -1,0 +1,104 @@
+/* FAQs Page Container */
+.faqs-container {
+    min-height: 100vh;
+    padding: 120px 10% 40px;
+    /* Adjusted padding */
+    background: transparent;
+    /* Allow global video background to show */
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    /* Match body font */
+}
+
+.faqs-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #8f8bff;
+    text-shadow: 0 0 20px rgba(143, 139, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+/* FAQ List */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Individual FAQ Item */
+.faq-item {
+    background: rgba(20, 20, 40, 0.6);
+    border: 1px solid rgba(143, 139, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.faq-item:hover {
+    background: rgba(30, 30, 60, 0.8);
+    border-color: rgba(143, 139, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.faq-item.active {
+    background: rgba(30, 30, 60, 0.9);
+    border-color: #8f8bff;
+}
+
+/* Question Section */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #e9ecff;
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: #8f8bff;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+/* Answer Section */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease;
+    opacity: 0;
+    margin-top: 0;
+    color: #b0bfdc;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    /* Adjust as needed */
+    opacity: 1;
+    margin-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .faqs-container {
+        padding: 80px 5%;
+    }
+
+    .faqs-title {
+        font-size: 2.2rem;
+    }
+}

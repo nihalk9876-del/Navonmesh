@@ -1,0 +1,75 @@
+.decoration-circles-container {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+    /* Let clicks pass through */
+    z-index: 0;
+    /* Behind content */
+    opacity: 0.3;
+    /* Subtle */
+}
+
+.decoration-circle {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Thin white lines */
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+}
+
+/* Create concentric rings sizes */
+.circle-1 {
+    width: 100%;
+    height: 100%;
+}
+
+.circle-2 {
+    width: 90%;
+    height: 90%;
+}
+
+.circle-3 {
+    width: 80%;
+    height: 80%;
+}
+
+.circle-4 {
+    width: 70%;
+    height: 70%;
+}
+
+.circle-5 {
+    width: 60%;
+    height: 60%;
+}
+
+.circle-6 {
+    width: 50%;
+    height: 50%;
+}
+
+.circle-7 {
+    width: 40%;
+    height: 40%;
+}
+
+.circle-8 {
+    width: 30%;
+    height: 30%;
+}
+
+/* Positioning variants */
+.decoration-right {
+    top: 20%;
+    right: -300px;
+    /* Half off-screen */
+}
+
+.decoration-left {
+    bottom: 10%;
+    left: -300px;
+}

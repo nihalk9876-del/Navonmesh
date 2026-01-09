@@ -1,0 +1,243 @@
+/* Team Page Container */
+.team-container {
+    min-height: 100vh;
+    padding: 120px 5% 40px;
+    background: transparent;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    /* Reduced from 3rem */
+    text-align: center;
+    margin-bottom: 10px;
+    color: #8f8bff;
+    text-shadow: 0 0 20px rgba(143, 139, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+.team-subtitle {
+    text-align: center;
+    color: #b0bfdc;
+    margin-bottom: 60px;
+    max-width: 600px;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    /* User requested "simple Time roman" */
+    font-style: italic;
+    /* Usually looks better for quotes/subtitles in Serif */
+    letter-spacing: 1px;
+}
+
+/* Grid Layout for Team Cards */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+    justify-items: center;
+}
+
+/* Team Card Styles */
+.team-card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+}
+
+.team-card:hover .member-img {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(143, 139, 255, 0.6), 0 0 60px rgba(143, 139, 255, 0.3);
+    border-color: #d142f5;
+}
+
+.team-card:hover .team-title,
+.team-card:hover h3 {
+    color: #d142f5;
+    text-shadow: 0 0 15px rgba(209, 66, 245, 0.5);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.member-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    /* Subtle static ring */
+    transition: transform 0.4s ease;
+}
+
+/* Rotating Tech Ring */
+.member-img::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    /* Floating ring outside */
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #00f3ff;
+    /* Cyan Neon */
+    border-bottom-color: #bc13fe;
+    /* Purple Neon */
+    animation: tech-spin 6s linear infinite;
+    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
+    transition: all 0.4s ease;
+}
+
+/* Hover Effects */
+.team-card:hover .member-img {
+    transform: scale(1.05);
+    /* Slight pop */
+}
+
+.team-card:hover .member-img::before {
+    inset: -12px;
+    /* Ring expands outwards */
+    border-width: 3px;
+    filter: drop-shadow(0 0 15px rgba(188, 19, 254, 0.8));
+    /* Stronger glow */
+    animation: tech-spin 2s linear infinite;
+    /* Spin faster */
+}
+
+@keyframes tech-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Inner Image */
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    /* Inner clean border */
+    z-index: 2;
+}
+
+.member-info h3 {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.member-role {
+    font-size: 0.9rem;
+    color: #8f8bff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.contact-details p {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.contact-details .icon {
+    color: #4488ff;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #d142f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .team-container {
+        padding: 100px 5% 40px;
+    }
+
+    .team-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Coordinating Section */
+.coordinating-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #4488ff;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(68, 136, 255, 0.4);
+}
+
+.logo-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+}
+
+.ecell-logo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}

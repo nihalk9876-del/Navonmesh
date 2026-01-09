@@ -1,0 +1,212 @@
+.campus-map-section {
+    padding: 80px 5%;
+    background: transparent;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.map-sidebar {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.map-sidebar h3 {
+    font-size: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #00f3ff;
+    margin-bottom: 10px;
+}
+
+.map-sidebar p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.location-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.map-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px 25px;
+    text-align: left;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.map-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #00f3ff;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.map-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 243, 255, 0.3);
+    padding-left: 35px;
+    /* Shift text slightly */
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}
+
+.map-btn:hover::before {
+    transform: scaleY(1);
+}
+
+.map-btn.active {
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.15), rgba(68, 136, 255, 0.15));
+    border: 1px solid #00f3ff;
+    color: #00f3ff;
+    font-weight: bold;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.25);
+    padding-left: 35px;
+}
+
+.map-btn.active::before {
+    transform: scaleY(1);
+    background: #00f3ff;
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+.map-display {
+    flex: 2;
+    min-width: 300px;
+    position: relative;
+}
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.map-image {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Markers */
+.map-marker {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    /* Center bottom tip on point */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.map-marker.active {
+    opacity: 1;
+    transform: translate(-50%, -110%) scale(1.1);
+    /* Pop up slightly */
+}
+
+.marker-pin {
+    width: 40px;
+    height: 40px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    /* Pin shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.5);
+    position: relative;
+}
+
+.marker-pin svg {
+    transform: rotate(45deg);
+    /* Un-rotate icon */
+    font-size: 1.2rem;
+}
+
+.marker-label {
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Ripple Effect for active marker */
+.map-marker.active::after {
+    content: '';
+    position: absolute;
+    top: 35px;
+    /* Adjust to pin bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    background: rgba(255, 71, 87, 0.5);
+    border-radius: 50%;
+    animation: ripple 1.5s infinite;
+    z-index: -1;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 60px;
+        height: 30px;
+        opacity: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .map-content {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,217 @@
+/* Gallery Page Layout */
+.gallery-page {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    gap: 0px;
+    /* Reduced gap */
+}
+
+.gallery-title {
+    font-size: 2rem;
+    /* Decreased from 3rem */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Gallery Row */
+.gallery-row {
+    width: 100%;
+    height: 300px;
+    /* Reduced height to fit viewport better */
+    position: relative;
+    /* overflow: hidden; Removed to allow video overlap if needed, but page handles x-overflow */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+/* Marquee Layer (Background) */
+.marquee-layer {
+    position: absolute;
+    top: 45%;
+    /* Moved up from 50% */
+    transform: translateY(-50%);
+    width: 100%;
+    height: 180px;
+    /* Reduced height */
+    z-index: 1;
+    opacity: 0.6;
+    /* Dim background slightly so video pops */
+}
+
+.marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scrollLeftToRight 50s linear infinite;
+}
+
+/* Use slower animation as requested */
+@keyframes scrollLeftToRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.marquee-item {
+    width: 280px;
+    /* Decreased width */
+    height: 180px;
+    /* Decreased height */
+    background-color: white;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    /* Smooth transition */
+    cursor: pointer;
+}
+
+.marquee-item:hover {
+    transform: scale(1.1);
+    /* Pop up */
+    box-shadow: 0 0 20px rgba(68, 136, 255, 0.8);
+    /* Blue glow */
+    z-index: 5;
+    /* Bring to front */
+}
+
+.marquee-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease;
+    /* Smooth filter transition */
+}
+
+/* ----------------------------------------------------
+   Alternating Grayscale Logic
+   ---------------------------------------------------- */
+
+/* Odd Items: Start Colorful -> Become B&W on Hover */
+.marquee-item:nth-child(odd) img {
+    filter: grayscale(0%);
+}
+
+.marquee-item:nth-child(odd):hover img {
+    filter: grayscale(100%);
+}
+
+/* Even Items: Start B&W -> Become Colorful on Hover */
+.marquee-item:nth-child(even) img {
+    filter: grayscale(100%);
+}
+
+.marquee-item:nth-child(even):hover img {
+    filter: grayscale(0%);
+}
+
+/* Overlay Layer (Stable Video) */
+.video-overlay {
+    position: absolute;
+    top: 45%;
+    /* Moved up from 50% */
+    transform: translateY(-50%);
+    z-index: 10;
+    /* Above marquee */
+    width: 480px;
+    /* Decreased size */
+    /* Add styling to make it look like a featured card */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #4488ff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+    /* Smooth transition */
+}
+
+.video-overlay:hover {
+    transform: translateY(-50%) scale(1.05);
+    /* Pop up (maintain vertical center) */
+    box-shadow: 0 0 40px rgba(68, 136, 255, 0.6), 0 0 10px #4488ff;
+    /* Stronger glow */
+    border-color: #88caff;
+    z-index: 20;
+}
+
+/* Positioning Modifiers */
+.overlay-left {
+    left: 5%;
+}
+
+.overlay-center {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay-center:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.overlay-right {
+    right: 5%;
+}
+
+/* Video inside overlay */
+.overlay-video-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+    background: black;
+}
+
+.overlay-video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .gallery-row {
+        height: auto;
+        padding: 40px 0;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .marquee-layer {
+        position: relative;
+        transform: none;
+        margin-bottom: 20px;
+    }
+
+    .video-overlay {
+        position: relative;
+        top: auto;
+        transform: none;
+        left: auto;
+        right: auto;
+        width: 90%;
+        max-width: 500px;
+    }
+}

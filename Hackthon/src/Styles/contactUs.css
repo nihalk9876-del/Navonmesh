@@ -1,0 +1,248 @@
+/* Contact Us Page Container */
+.contact-container {
+    min-height: 100vh;
+    padding: 120px 5% 40px;
+    /* Reduced side padding for more space */
+    background: transparent;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #8f8bff;
+    text-shadow: 0 0 20px rgba(143, 139, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+.contact-subtitle {
+    text-align: center;
+    color: #b0bfdc;
+    margin-bottom: 40px;
+    max-width: 600px;
+    font-size: 1.1rem;
+}
+
+/* Unified Grid Layout */
+.contact-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1600px;
+    align-items: start;
+}
+
+/* Form Wrapper - Spans larger area */
+.contact-form-wrapper {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.contact-form {
+    width: 100%;
+    background: rgba(20, 20, 40, 0.6);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(143, 139, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    /* Not sticky anymore, flows with grid */
+    height: 100%;
+    /* Fill the grid area */
+}
+
+.contact-form h2 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+    color: #d142f5;
+    font-size: 1.5rem;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e9ecff;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(143, 139, 255, 0.3);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #8f8bff;
+    box-shadow: 0 0 10px rgba(143, 139, 255, 0.3);
+    background: rgba(20, 20, 40, 0.8);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #8f8bff, #d142f5);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(143, 139, 255, 0.6);
+    filter: brightness(1.1);
+}
+
+/* Right Side: Core Team */
+.contact-right h2 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+    color: #4488ff;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Team Card */
+.team-card {
+    background: transparent;
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    /* Match grid row height */
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    /* Removed background/border change on hover to keep it clean */
+}
+
+.member-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #8f8bff;
+    margin-bottom: 15px;
+    background: #000;
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.member-role {
+    font-size: 0.8rem;
+    color: #8f8bff;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-details p {
+    font-size: 0.75rem;
+    color: #ccc;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.contact-details .icon {
+    color: #4488ff;
+}
+
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #d142f5;
+    /* Hover Purple */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        position: static;
+        /* Unstick on mobile */
+    }
+
+    .team-grid {
+        max-height: none;
+        overflow-y: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 100px 5% 40px;
+    }
+
+    .contact-title {
+        font-size: 2.2rem;
+    }
+}

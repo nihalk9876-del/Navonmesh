@@ -1,0 +1,387 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Background video */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dark overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Spline Animation Container */
+.spline-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Enable interaction for the 3D ball */
+  pointer-events: auto;
+  /* Let clicks pass through if needed, or remove if interactive */
+
+  /* Mask out the left side (0% to 50%) to hide the unwanted 'Effortless' text completely */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 50%, black 80%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 50%, black 80%);
+
+  /* Move 3D object up to align with the new logo position */
+  /* Also slightly scale up to ensure it covers nicely */
+  transform: translateY(-100px) scale(1.1);
+  transform-origin: center center;
+}
+
+/* Gradient Overlay to tint the Spline Object (Purple/Blue) */
+/* Gradient Overlay Removed */
+
+/* Hide Spline Watermark / Branding - Aggressive */
+.spline-watermark,
+#spline-watermark,
+.spline-container a[href*="spline.design"],
+.spline-container a[href^="https://spline"],
+div[style*="position: absolute; bottom: 16px; right: 16px"],
+div[style*="z-index: 1000"]>a[href*="spline.design"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Ensure content is above Spline */
+/* Ensure content is above Spline */
+.hero-center,
+.hero-tagline,
+.rocket,
+.rocket-smoke {
+  z-index: 10;
+  /* Boost z-index to be securely above Spline */
+}
+
+/* Content */
+.hero-center,
+.hero-tagline {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  /* Allow clicks to pass through to the Spline animation */
+}
+
+.hero-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 100%;  <-- Removed to allow margin-top to work better */
+  margin-top: -80px;
+  /* Shift entire block upward as requested */
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  /* Bold to match tagline */
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  /* Ensure "Presents" looks right */
+}
+
+.pursuit-name {
+  max-width: 700px;
+  /* Increased from 520px */
+  width: 90%;
+  transform: translateY(-20px);
+  /* Move upward */
+}
+
+.hero-tagline {
+  margin-top: -10px;
+  /* Pull closer to the logo */
+  font-size: 22px;
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+  max-width: 700px;
+  /* Match logo width */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Blackhole behind text & logo */
+.blackhole-bg {
+  position: absolute;
+  padding-top: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  /* adjust if needed */
+  opacity: 1;
+  z-index: -1;
+  /* 🔥 behind hero-center content only */
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blackhole-bg {
+    width: 300px;
+  }
+}
+
+.hero {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  text-align: center;
+  color: #fff;
+
+  /* 🔥 BACKGROUND IMAGE
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; */
+}
+
+/* Rocket Animation */
+.rocket {
+  position: absolute;
+  bottom: 80px;
+  /* Moved up to avoid footer overlap */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  z-index: 10;
+  pointer-events: none;
+  animation: float 3s ease-in-out infinite;
+  /* Idle Float */
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+.rocket.fly-away {
+  animation: launch-sequence 1.5s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+}
+
+@keyframes launch-sequence {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  5% {
+    transform: translateX(-51%) translateY(1px);
+  }
+
+  10% {
+    transform: translateX(-49%) translateY(-1px);
+  }
+
+  15% {
+    transform: translateX(-52%) translateY(2px);
+  }
+
+  20% {
+    transform: translateX(-48%) translateY(-2px);
+  }
+
+  25% {
+    transform: translateX(-52%) translateY(2px);
+  }
+
+  30% {
+    /* Return to center before dip */
+    transform: translateX(-50%) translateY(0);
+  }
+
+  40% {
+    /* Deep dip for anticipation */
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  45% {
+    /* Start moving up */
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  100% {
+    /* Takeoff Phase */
+    transform: translateX(-50%) translateY(-150vh);
+    opacity: 0;
+  }
+}
+
+/* Exhaust Trail */
+.rocket::after {
+  content: '';
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 0;
+  background: linear-gradient(180deg, #ff4500 20%, #ff8c00 60%, transparent 100%);
+  border-radius: 10px;
+  filter: blur(4px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rocket.fly-away::after {
+  height: 300px;
+  opacity: 1;
+  transition: height 0.5s ease-out 0.2s, opacity 0.3s;
+}
+
+/* Smoke Effect */
+.rocket-smoke {
+  position: absolute;
+  bottom: 30px;
+  /* Adjusted for new rocket height */
+  left: 50%;
+  transform: translateX(-50%) scale(0.5);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(220, 220, 220, 0.9) 10%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0;
+}
+
+.rocket-smoke.active {
+  animation: massive-smoke 2s ease-out forwards;
+}
+
+@keyframes massive-smoke {
+  0% {
+    transform: translateX(-50%) scale(0.5);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateX(-50%) scale(2);
+  }
+
+  100% {
+    /* Follows rocket up slightly while dissipating */
+    transform: translate(-50%, -200px) scale(8);
+    opacity: 0;
+  }
+}
+
+/* ⏳ Countdown Timer Styles */
+.countdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  /* Space between tagline and timer */
+  margin-bottom: 20px;
+  /* Space between timer and rocket */
+  position: relative;
+  z-index: 10;
+  /* Ensure it's above the blackhole */
+  pointer-events: none;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 70px;
+}
+
+.count {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #00e5ff;
+  /* Cyan glow */
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+.label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.separator {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+  /* Align with numbers */
+}
+
+/* Hero Tagline - Simple Times Roman */
+.particle-text {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 3rem;
+  font-weight: 700;
+  font-style: normal;
+  /* "Simple" usually implies regular, but bold is good for visibility. Removing Italic unless preferred. Let's start with normal/bold. */
+  color: #ffffff;
+  text-align: center;
+
+  /* Subtle shadow for readability against background but no glowing/particles */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+  margin-top: 15px;
+  letter-spacing: 2px;
+  position: relative;
+}

@@ -1,0 +1,55 @@
+.footer {
+  /* position: fixed; REMOVED to let it scroll to bottom */
+  position: relative;
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #feffff;
+  padding: 18px 12px 20px;
+  background: rgba(5, 5, 15, 0.9);
+  /* Dark background */
+  backdrop-filter: blur(8px);
+  /* Blur effect */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  /* Ensure it stays on top */
+  pointer-events: none;
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer p {
+  pointer-events: auto;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
+  margin-bottom: 5px;
+}
+
+.developer-credit {
+  pointer-events: auto;
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+
+.dev-name {
+  background: linear-gradient(90deg, #e066ff, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  text-shadow: 0 0 15px rgba(224, 102, 255, 0.5);
+  /* Matching purple glow */
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-decoration: none;
+}
+
+.dev-name:hover {
+  transform: scale(1.2) translateY(-2px);
+  text-shadow: 0 0 15px rgba(143, 139, 255, 0.8);
+}

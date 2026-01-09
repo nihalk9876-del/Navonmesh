@@ -1,0 +1,202 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.nav-actions button {
+  margin-left: 12px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* Futuristic angled button */
+/* Futuristic Pill button */
+/* Cyber-Leaf Modern Button */
+.neo-btn {
+  padding: 10px 30px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  /* Unique Shape: Diagonal Rounding */
+  border-radius: 24px 4px 24px 4px;
+
+  /* Glassy Gradient Base */
+  background: linear-gradient(135deg, rgba(68, 136, 255, 0.1), rgba(123, 76, 255, 0.1));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.neo-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #4488ff, #7b4cff);
+  z-index: -1;
+  transition: width 0.4s ease;
+  border-radius: 24px 4px 24px 4px;
+}
+
+.neo-btn:hover::before {
+  width: 100%;
+}
+
+.neo-btn:hover {
+  border-color: transparent;
+  box-shadow: 0 0 25px rgba(68, 136, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Click effect */
+.neo-btn:active {
+  transform: scale(0.96);
+}
+
+.nav-logo img {
+  height: 80px;
+  /* perfect navbar height */
+  width: auto;
+  /* keeps aspect ratio */
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  /* vertical alignment */
+  gap: 12px;
+  /* space between logo & text */
+}
+
+/* Logo */
+.nav-logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Title text */
+.nav-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #ffffff;
+  margin: 0;
+  /* remove default h1 margin */
+  line-height: 1;
+  /* aligns text with logo */
+}
+
+/* Dropdown Styles */
+.dropdown-container {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Consistent link styles */
+.nav-links a,
+.nav-links span,
+/* Added span targeting */
+.dropdown-trigger {
+  padding: 10px 0;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translateY(-2px);
+  /* User requested "move this little upward" */
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  /* Small arrow */
+  transition: transform 0.3s ease;
+}
+
+.dropdown-container:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(13, 13, 25, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px;
+  min-width: 180px;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-container:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 5px 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 12px;
+  color: #ccc;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
