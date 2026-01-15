@@ -1,4 +1,4 @@
-.footer {
+.footer-container {
   /* position: fixed; REMOVED to let it scroll to bottom */
   position: relative;
   /* left: 0; */
@@ -20,9 +20,13 @@
   font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.footer p {
+.footer-container p {
   pointer-events: auto;
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.45);
   margin-bottom: 5px;

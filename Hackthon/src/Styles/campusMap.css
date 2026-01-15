@@ -205,8 +205,67 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .map-content {
+        gap: 30px;
+    }
+
+    .map-sidebar {
+        min-width: 250px;
+    }
+}
+
 @media (max-width: 900px) {
     .map-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
+        /* Sidebar moves to bottom */
+    }
+
+    .map-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .location-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .map-display {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+@media (max-width: 600px) {
+    .campus-map-section {
+        padding: 60px 5%;
+    }
+
+    .golden-title {
+        font-size: 1.8rem;
+        /* Scale down title */
+        letter-spacing: 1px;
+    }
+
+    .golden-header-container {
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .golden-line-left,
+    .golden-line-right {
+        max-width: 60px;
+        /* Shorten lines */
+    }
+
+    .map-sidebar h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .map-instruction {
+        text-align: center;
     }
 }

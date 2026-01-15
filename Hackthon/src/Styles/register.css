@@ -1,157 +1,36 @@
-.register-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0b0c15;
-    /* Deep dark background */
-    font-family: 'Orbitron', 'Inter', sans-serif;
-    /* assuming you have a techy font, or fallback to sans-serif */
-    color: white;
-    padding: 20px;
-}
-
-.register-content {
-    background: rgba(20, 20, 35, 0.6);
-    padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(138, 43, 226, 0.3);
-    /* Purple border tint */
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.1);
-    backdrop-filter: blur(10px);
-    width: 100%;
-    max-width: 450px;
-}
-
-.register-header p {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 0.9rem;
-    color: #ccc;
-}
-
-.register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.register-form label {
-    font-size: 0.8rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #a0a0ff;
-    /* Light purple tint */
-    text-transform: uppercase;
-}
-
-.register-form input {
-    background: rgba(10, 10, 20, 0.8);
-    border: 1px solid #333;
-    padding: 12px 15px;
-    border-radius: 10px;
-    color: white;
-    font-size: 1rem;
-    outline: none;
-    transition: 0.3s;
-}
-
-.register-form input:focus {
-    border-color: #8a2be2;
-    box-shadow: 0 0 8px rgba(138, 43, 226, 0.5);
-}
-
-.register-btn {
-    background: linear-gradient(90deg, #3a3a80, #8a2be2);
-    border: none;
-    padding: 12px;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.register-btn:hover {
-    filter: brightness(1.2);
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
-}
-
-.google-btn {
-    background: transparent;
-    border: 1px solid #ccc;
-    padding: 12px;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
-}
-
-.google-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: white;
-}
-
-.login-link {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #bbb;
-}
-
-.login-link a {
-    color: #fce205;
-    /* Yellow/Gold accent from screenshot */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Existing Login Link Styles... */
-.login-link a:hover {
-    text-decoration: underline;
-}
-
-/* --------------------------------------------------------
-   MODAL STYLES
-   -------------------------------------------------------- */
-
+/* Registration Modal Styles */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
     animation: fadeIn 0.3s ease;
 }
 
 .modal-content-wrapper {
     position: relative;
     width: 90%;
-    max-width: 500px;
-    /* Medium Size */
-    animation: slideUp 0.3s ease;
+    max-width: 480px;
+    animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .register-content-modal {
-    background: rgba(20, 20, 35, 0.9);
+    background: #050510;
+    /* Deep dark background */
     padding: 40px;
     border-radius: 20px;
-    border: 1px solid rgba(138, 43, 226, 0.5);
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(168, 85, 247, 0.5);
+    /* Purple border */
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-close-btn {
@@ -161,21 +40,130 @@
     background: #ff4757;
     color: white;
     border: none;
-    width: 35px;
-    height: 35px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    font-size: 1.2rem;
+    font-size: 1rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s ease;
     z-index: 10;
 }
 
 .modal-close-btn:hover {
-    transform: scale(1.1) rotate(90deg);
+    transform: scale(1.1);
+    background: #ff6b81;
+}
+
+.register-header p {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-form label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #a78bfa;
+    /* Light purple text for labels */
+    text-transform: uppercase;
+    margin-bottom: -5px;
+}
+
+.register-form input {
+    background: #0f1016;
+    border: 1px solid #2d2d3a;
+    padding: 14px 15px;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.3s;
+    font-family: 'Inter', sans-serif;
+}
+
+.register-form input:focus {
+    border-color: #a78bfa;
+    background: #151620;
+}
+
+.register-form input::placeholder {
+    color: #555;
+}
+
+.register-btn {
+    background: linear-gradient(90deg, #7c3aed, #c026d3);
+    /* Purple to Pink gradient */
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.register-btn:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+
+.google-btn {
+    background: transparent;
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+}
+
+.google-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #666;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.login-link a {
+    color: #facc15;
+    /* Yellow/Gold */
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
 }
 
 /* Success Message */
@@ -185,16 +173,14 @@
 }
 
 .success-message h2 {
-    color: #00f3ff;
+    color: #a78bfa;
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 10px;
-    font-size: 2rem;
 }
 
 .success-message p {
-    font-size: 1.2rem;
-    color: #e0e0e0;
-    margin-bottom: 30px;
+    color: #ccc;
+    margin-bottom: 20px;
 }
 
 @keyframes fadeIn {
@@ -207,14 +193,36 @@
     }
 }
 
-@keyframes slideUp {
+@keyframes scaleUp {
     from {
-        transform: translateY(20px);
+        transform: scale(0.9);
         opacity: 0;
     }
 
     to {
-        transform: translateY(0);
+        transform: scale(1);
         opacity: 1;
+    }
+}
+
+/* Responsive Modal */
+@media (max-width: 480px) {
+    .register-content-modal {
+        padding: 30px 20px;
+    }
+
+    .modal-close-btn {
+        top: -10px;
+        /* Pull tighter */
+        right: -10px;
+    }
+
+    .register-header p {
+        font-size: 1rem;
+    }
+
+    .register-btn {
+        font-size: 0.9rem;
+        padding: 12px;
     }
 }
