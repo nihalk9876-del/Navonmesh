@@ -368,6 +368,37 @@
         width: 60px;
         height: 2px;
     }
+
+    /* Responsive Text Sizing for Rules & Schedule */
+    .rules-card h2,
+    .schedule-card h2 {
+        font-size: 1.6rem;
+    }
+
+    .rules-list {
+        font-size: 0.95rem;
+        /* Reduced from 1.3rem */
+    }
+
+    .timeline-top h3 {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .rules-card h2,
+    .schedule-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .rules-list {
+        font-size: 0.85rem;
+    }
+
+    .hackathon-card {
+        padding: 20px;
+    }
 }
 
 /* Show More Button */

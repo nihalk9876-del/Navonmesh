@@ -39,7 +39,11 @@ const CampusMap = () => {
 
     return (
         <section className="campus-map-section">
-            <h2 className="section-title">Campus Map</h2>
+            <div className="golden-header-container">
+                <div className="golden-line-left"></div>
+                <h2 className="golden-title">CAMPUS MAP</h2>
+                <div className="golden-line-right"></div>
+            </div>
 
             <div className="map-content">
                 <div className="map-sidebar">

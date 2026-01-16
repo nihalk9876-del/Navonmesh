@@ -44,19 +44,10 @@ const mentors = [
 
 const teamMembers = [
     {
-        id: 1,
-        name: "Rutuja Deshmukh",
-        role: "Core Team Member",
-        subRole: "Overall Coordinator",
-        phone: "+91 9022886503",
-        email: "rutuja@example.com",
-        image: teamPlaceholder,
-    },
-    {
         id: 2,
         name: "Nihal Kankal",
         role: "Core Team Member",
-        subRole: "Overall Coordinator",
+        subRole: "Overall Head",
         phone: "+91 8766417815",
         email: "nihalk9876@gmail.com",
         image: nihalImg,
@@ -65,10 +56,20 @@ const teamMembers = [
         id: 3,
         name: "Sanchit Dangra",
         role: "Core Team Member",
-        subRole: "Overall Coordinator",
+        subRole: "Overall Head",
         phone: "+91 98765 43210",
         email: "sanchit@example.com",
         image: sanchitImg,
+    },
+    {
+        id: 1,
+        name: "Rutuja Deshmukh",
+        role: "Core Team Member",
+        subRole: "Overall Head",
+        subRole2: "E-Cell Chairperson",
+        phone: "+91 9022886503",
+        email: "rutuja@example.com",
+        image: teamPlaceholder,
     },
     {
         id: 4,
@@ -248,8 +249,54 @@ const Team = () => {
                 The dedicated minds behind Navonvesh 2026.
             </p>
 
+            <div className="team-grid" style={{ marginBottom: "40px" }}>
+                {teamMembers.slice(0, 3).map((member) => (
+                    <div key={member.id} className="team-card overall-head-card">
+                        <div className="member-img">
+                            <img src={member.image} alt={member.name} />
+                        </div>
+                        <div className="member-info">
+                            <h3>{member.name}</h3>
+
+                            {member.subRole && (
+                                <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "-5px", marginBottom: "5px", fontWeight: "bold" }}>
+                                    {member.subRole}
+                                </p>
+                            )}
+
+                            {member.subRole2 && (
+                                <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "0px", marginBottom: "10px", fontWeight: "bold" }}>
+                                    {member.subRole2}
+                                </p>
+                            )}
+
+                            <div className="contact-details">
+                                <p>
+                                    <FaPhone className="icon" /> {member.phone}
+                                </p>
+                                <p>
+                                    <FaEnvelope className="icon" /> {member.email}
+                                </p>
+                            </div>
+
+                            <div className="social-links">
+                                <a href="#" className="social-icon">
+                                    <FaInstagram />
+                                </a>
+                                <a href="#" className="social-icon">
+                                    <FaLinkedin />
+                                </a>
+                                <a href="#" className="social-icon">
+                                    <FaXTwitter />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
             <div className="team-grid">
-                {teamMembers.map((member) => (
+                {teamMembers.slice(3).map((member) => (
                     <div key={member.id} className="team-card">
                         <div className="member-img">
                             <img src={member.image} alt={member.name} />
