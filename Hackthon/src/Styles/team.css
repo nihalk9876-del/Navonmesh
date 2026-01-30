@@ -142,6 +142,128 @@
     transform: translateY(-5px);
 }
 
+/* ========================================= */
+/* PREMIUM "STANDARD" STYLE FOR HEADS        */
+/* ========================================= */
+.overall-head-card {
+    background: rgba(255, 255, 255, 0.03);
+    /* Extremely subtle glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    /* Light source top */
+    border-radius: 24px;
+    /* Softer, more modern radius */
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Soft shadow, no neon glow */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.overall-head-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Elegant Image Styling */
+.overall-head-card .member-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50% !important;
+    /* Circle looks more "Standard/Corporate" for Heads */
+    border: 4px solid rgba(255, 255, 255, 0.05);
+    /* Subtle ring */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    transform: none;
+    /* Reset unnecessary transforms */
+    background: transparent;
+}
+
+.overall-head-card .member-img img {
+    border-radius: 50% !important;
+    border: none;
+}
+
+/* Hover State - Professional Lift */
+.overall-head-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.overall-head-card:hover .member-img {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Title Styling - Clean & Modern */
+.overall-head-card h3 {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    /* Cleaner font preference if available */
+    font-weight: 600;
+    font-size: 1.4rem;
+    background: linear-gradient(to right, #ffffff, #e0e7ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    text-shadow: none;
+    /* Remove "glow" for standard look */
+    letter-spacing: 0.5px;
+}
+
+/* Role Badges */
+.head-role {
+    background: rgba(68, 136, 255, 0.15);
+    /* Professional Blue tint */
+    color: #a5c9ff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(68, 136, 255, 0.2);
+    display: inline-block;
+}
+
+.head-role.secondary {
+    background: rgba(168, 85, 247, 0.15);
+    /* Purple tint for secondary role */
+    color: #e9d5ff;
+    border-color: rgba(168, 85, 247, 0.2);
+    margin-top: 5px;
+}
+
+/* Hide Icons initially for cleaner look? Or keep them minimal */
+.overall-head-card .social-links {
+    margin-top: 15px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.overall-head-card:hover .social-links {
+    opacity: 1;
+}
+
+/* ========================================= */
+
 /* Inner Image */
 .member-img img {
     width: 100%;

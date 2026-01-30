@@ -66,25 +66,7 @@ const Navbar = ({ onRegisterClick }) => {
           <span onClick={() => scrollToSection("contact")}>Contact</span>
         </li>
         {/* Mobile-only action buttons (optional, or keep them separate) */}
-        <div className="mobile-nav-actions">
-          <button className="neo-btn">
-            <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>Login</NavLink>
-          </button>
-          <button className="neo-btn" onClick={(e) => { e.preventDefault(); onRegisterClick(); setIsMenuOpen(false); }}>
-            Register
-          </button>
-        </div>
       </ul>
-
-      {/* Desktop Actions (Hidden on mobile via CSS) */}
-      <div className="nav-actions desktop-actions">
-        <button className="neo-btn">
-          <NavLink to="/login">Login</NavLink>
-        </button>
-        <button className="neo-btn" onClick={(e) => { e.preventDefault(); onRegisterClick(); }}>
-          Register
-        </button>
-      </div>
     </nav>
   );
 };
