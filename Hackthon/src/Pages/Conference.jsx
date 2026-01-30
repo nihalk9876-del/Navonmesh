@@ -49,7 +49,7 @@ const Conference = () => {
         <div className="projectexpo-page">
             {/* Header Section */}
             <div className="projectexpo-header">
-                <h1 className="main-title">Conference</h1>
+                <h1 className="main-title">उद्भव</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
                     Join us for an enlightening conference featuring thought-provoking talks,
@@ -94,7 +94,7 @@ const Conference = () => {
                             Entry Fee: ₹250
                         </div>
                         <h2 className="cta-title">Register now and Secure your Seat.</h2>
-                        <Link to="/register">
+                        <Link to="/register?event=uddhav">
                             <img src={registerBtnImg} alt="Register Now" className="register-btn-img" />
                         </Link>
                     </div>

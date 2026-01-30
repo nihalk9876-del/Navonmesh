@@ -321,30 +321,121 @@
     }
 }
 
+/* Hide Mobile Scroll by default on Desktop */
+.mobile-mentor-scroll {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .team-container {
-        padding: 100px 5% 40px;
+        padding: 80px 5% 40px;
     }
 
     .team-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
-    .team-card,
-    .overall-head-card {
+    /* Hide Desktop Grid on Mobile */
+    .desktop-mentors {
+        display: none !important;
+    }
+
+    /* Make Core Team Grids Normal Again */
+    .team-grid {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        overflow-x: visible !important;
+    }
+
+    /* Show and Style Mobile Scroll Container */
+    .mobile-mentor-scroll {
+        display: block;
+        /* Show only on mobile */
+        width: 100vw;
+        /* Full width */
+        margin-left: -5%;
+        /* Counteract container padding to go full width */
+        margin-right: -5%;
+        overflow: hidden;
+        /* Hide overflow */
+        margin-bottom: 40px;
+        position: relative;
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .mentor-track {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        animation: scroll 20s linear infinite;
+        /* Continuous scroll */
+        padding-left: 20px;
+    }
+
+    /* Pause on hover for readability */
+    .mentor-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+            /* Move half if we doubled. If 4x, maybe -25%? Since we did 4x in JS, -25% might be one full cycle of original set. Let's try to estimate visually or use large safely. Actually if we have 4 sets: [A B C] [A B C] [A B C] [A B C]. One cycle is moving past 1 set [A B C]. That is 25% of the total width. */
+            transform: translateX(-25%);
+        }
+    }
+
+    /* Small Mentor Card Styles for Mobile Loop */
+    .mobile-mentor-scroll .mentor-card {
+        min-width: 180px;
+        width: 180px;
+        height: 280px;
+        /* Fixed Height for uniformity */
+        padding: 10px;
+        flex: 0 0 auto;
+        background: rgba(13, 13, 25, 0.8);
+        /* Dark Glass */
+        border: 1px solid rgba(68, 136, 255, 0.3);
+        /* Subtle Blue Border */
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 12px;
+    }
+
+    .mobile-mentor-scroll .member-img {
+        height: 180px;
         width: 100%;
-        max-width: 340px;
-        /* Allow full width up to max */
+        margin-bottom: 12px;
+        border-radius: 8px !important;
+        object-fit: cover;
     }
 
-    .overall-head-card {
-        padding: 20px;
-        /* Reduce padding */
+    .mobile-mentor-scroll h3 {
+        font-size: 0.95rem;
+        color: #fff;
+        /* White Text */
+        margin-bottom: 4px;
+        text-align: center;
     }
 
-    .overall-head-card .member-img {
-        width: 160px;
-        height: 160px;
+    .mobile-mentor-scroll .member-role {
+        font-size: 0.8rem;
+        color: #00f3ff;
+        /* Cyan Role */
+        text-align: center;
+    }
+
+    /* Core Team Cards Restore */
+    .team-card:not(.mentor-card) {
+        width: 100%;
+        max-width: 320px;
     }
 }
 
@@ -366,13 +457,110 @@
         font-size: 1.5rem;
     }
 
-    /* Adjust Overall Head for Mobile */
+    /* Overall Head Card Adjustment - Matching Mentor Cards */
+    /* Overall Head Card Adjustment - Scrollable for 6 items */
     .overall-head-card {
-        width: 100%;
-        max-width: 300px;
+        min-width: 32vw !important;
+        /* Always show ~3 per view */
+        width: 32vw !important;
+        height: auto !important;
+        padding: 5px !important;
+        background: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+        flex: 0 0 auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .overall-head-card .member-img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1/1.2;
+        margin-bottom: 5px !important;
+        border-radius: 8px !important;
+        object-fit: cover;
     }
 
     .overall-head-card h3 {
-        font-size: 1.3rem;
+        font-size: 0.75rem !important;
+        color: #fff !important;
+        margin-bottom: 2px;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.1;
+    }
+
+    .overall-head-card p {
+        font-size: 0.65rem !important;
+        text-align: center;
+        margin-bottom: 0 !important;
+        line-height: 1.1;
+    }
+
+    /* Keep details hidden for compact view */
+    .overall-head-card .contact-details,
+    .overall-head-card .social-links {
+        display: none !important;
+    }
+}
+
+/* Hide Mobile Core Scroll helper class (removed from JSX) */
+.mobile-core-scroll {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .core-team-top-grid {
+        display: grid !important;
+        /* Grid Layout */
+        grid-template-columns: repeat(3, 1fr) !important;
+        /* 3 Columns */
+        gap: 10px !important;
+        width: 100% !important;
+        padding-bottom: 0;
+        overflow-x: hidden !important;
+        /* No scroll */
+        justify-content: center;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Adjust sizing for the grid items so they fit the cell */
+    .overall-head-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+
+    .core-team-top-grid::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Specific Desktop Styles for Top 6 Core Team */
+@media (min-width: 769px) {
+    .core-team-top-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        /* Force single line */
+        justify-content: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+        max-width: 1400px;
+        margin: 0 auto 40px auto !important;
+        padding: 0 20px;
+    }
+
+    .core-team-top-grid .overall-head-card {
+        flex: 1 1 0px !important;
+        /* Distribute space equally */
+        width: auto !important;
+        min-width: 160px !important;
+        /* Minimum readable width */
+        max-width: 250px !important;
     }
 }

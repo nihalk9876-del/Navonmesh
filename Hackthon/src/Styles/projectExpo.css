@@ -369,25 +369,46 @@
     .projectexpo-header {
         flex-direction: column;
         text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .projectexpo-header h2 {
+        font-size: 1.8rem;
     }
 
     .vertical-divider {
         width: 60px;
         height: 2px;
+        margin: 20px 0;
     }
 
     /* Responsive Text Sizing for Rules & Schedule */
     .rules-card h2,
     .schedule-card h2 {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
+        /* Small comfortable header */
+        margin-bottom: 15px;
     }
 
     .rules-list {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        /* Small readable text */
+        line-height: 1.5;
     }
 
     .timeline-top h3 {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+
+    .projectexpo-card {
+        padding: 20px;
+        /* Reduced padding */
+        width: 90% !important;
+        /* Force scale down */
+        max-width: 320px !important;
+        /* Strict limit for mobile */
+        margin: 0 auto;
+        /* Center it */
     }
 }
 
@@ -395,15 +416,11 @@
 
     .rules-card h2,
     .schedule-card h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 
     .rules-list {
-        font-size: 0.85rem;
-    }
-
-    .projectexpo-card {
-        padding: 20px;
+        font-size: 0.8rem;
     }
 }
 
@@ -472,4 +489,39 @@
     font-size: 0.85rem;
     backdrop-filter: blur(4px);
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .hostels-showcase {
+        gap: 20px;
+    }
+
+    .hostel-category {
+        min-width: 0;
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .hostel-category h3 {
+        font-size: 1.4rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    .hostel-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Force 2 columns side-by-side */
+        gap: 10px;
+        /* Tighter gap */
+    }
+
+    .hostel-card {
+        border-width: 2px;
+        /* Thinner border for small scale */
+    }
+
+    .hostel-card p {
+        display: none !important;
+        /* Hide names on mobile */
+    }
 }

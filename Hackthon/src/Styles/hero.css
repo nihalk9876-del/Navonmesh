@@ -149,12 +149,7 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   pointer-events: none;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .blackhole-bg {
-    width: 300px;
-  }
-}
+
 
 .hero {
   min-height: 100vh;
@@ -384,4 +379,87 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   margin-top: 15px;
   letter-spacing: 2px;
   position: relative;
+}
+
+/* Responsive Styles - Appended to end for specificity */
+@media (max-width: 768px) {
+  .blackhole-bg {
+    width: 280px;
+    /* Reduced from 600px */
+  }
+
+  /* Flatten the layout slightly */
+  .hero-center {
+    margin-top: -60px;
+  }
+
+  /* LOGO: Make it much smaller */
+  .pursuit-name {
+    width: 70% !important;
+    max-width: 280px;
+    transform: translateY(-10px);
+  }
+
+  /* SUBTITLE: "SSGMCE Presents" */
+  .hero-subtitle {
+    font-size: 14px;
+    /* Reduced from 20px */
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  /* TAGLINE: "Ideate..." */
+  .hero-tagline {
+    font-size: 16px;
+    /* Reduced from 22px */
+    max-width: 95%;
+    margin-top: -5px;
+  }
+
+  /* PARTICLE TEXT (Main Title if used) */
+  .particle-text {
+    font-size: 1.8rem !important;
+    /* Reduced from 3rem */
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* ⏳ COUNTDOWN TIMER MOBILE */
+  .countdown-container {
+    gap: 8px;
+    /* Reduced gap */
+    margin-top: 20px;
+  }
+
+  .countdown-item {
+    min-width: 50px;
+    /* Reduced from 70px */
+    padding: 6px 10px;
+    /* Reduced padding */
+  }
+
+  .count {
+    font-size: 18px;
+    /* Reduced from 28px */
+  }
+
+  .label {
+    font-size: 8px;
+    /* Reduced from 11px */
+    margin-top: 2px;
+  }
+
+  .separator {
+    font-size: 16px;
+    /* Reduced from 24px */
+    margin-bottom: 15px;
+    /* Adjust alignment */
+  }
+
+  /* Rocket adjustments */
+  .rocket {
+    width: 60px;
+    /* Smaller rocket */
+    bottom: 60px;
+  }
 }

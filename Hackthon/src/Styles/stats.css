@@ -103,18 +103,41 @@
 }
 
 /* Mobile */
+/* Mobile */
 @media (max-width: 900px) {
   .stats-strip {
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px 5%;
+    flex-wrap: nowrap;
+    /* Force single line */
+    justify-content: space-between;
+    /* Spread out */
+    gap: 5px;
+    padding: 15px 5px;
+    overflow-x: auto;
+    /* Safe scroll if screen extremely narrow */
   }
 
   .stat-item {
-    min-width: 40%;
+    min-width: auto;
+    flex: 1;
+    /* Equal width */
+    padding: 0;
   }
 
   .stat-value {
-    font-size: 2rem;
+    font-size: 1.1rem;
+    /* Significantly reduced */
+  }
+
+  .currency-symbol {
+    font-size: 1rem;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+    /* Tiny labels */
+    letter-spacing: 0px;
+    margin-top: 2px;
+    white-space: nowrap;
+    /* Prevent wrapping */
   }
 }

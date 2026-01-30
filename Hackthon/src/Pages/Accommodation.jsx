@@ -10,9 +10,71 @@ import boysHostel4 from "../assets/boys_hostel_4.png";
 
 const Accommodation = () => {
     const [showModal, setShowModal] = useState(false);
+    const [status, setStatus] = useState("idle"); // idle, submitting, success, error
+    const [formData, setFormData] = useState({
+        event: "",
+        teamName: "",
+        lName: "", lPhone: "", lEmail: "", lGender: "",
+        m2Name: "", m2Phone: "", m2Email: "", m2Gender: "",
+        m3Name: "", m3Phone: "", m3Email: "", m3Gender: "",
+        m4Name: "", m4Phone: "", m4Gender: ""
+    });
 
     const toggleModal = () => {
         setShowModal(!showModal);
+        if (!showModal) setStatus("idle");
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("submitting");
+
+        const formBody = new FormData();
+        // Event
+        formBody.append("entry.437555754", formData.event);
+        // Team Name
+        formBody.append("entry.628190576", formData.teamName);
+
+        // Leader
+        formBody.append("entry.1785895541", formData.lName);
+        formBody.append("entry.267325415", formData.lPhone);
+        formBody.append("entry.212550817", formData.lEmail);
+        formBody.append("entry.1875083212", formData.lGender);
+
+        // Mem 2
+        formBody.append("entry.1488013474", formData.m2Name);
+        formBody.append("entry.47243977", formData.m2Phone);
+        formBody.append("entry.1688814770", formData.m2Email);
+        formBody.append("entry.133775330", formData.m2Gender);
+
+        // Mem 3
+        formBody.append("entry.390616939", formData.m3Name);
+        formBody.append("entry.672976952", formData.m3Phone);
+        formBody.append("entry.585274052", formData.m3Email);
+        formBody.append("entry.159855008", formData.m3Gender);
+
+        // Mem 4 (No Email in pre-fill)
+        formBody.append("entry.1946311722", formData.m4Name);
+        formBody.append("entry.1857373829", formData.m4Phone);
+        formBody.append("entry.1783657060", formData.m4Gender);
+
+        try {
+            await fetch("https://docs.google.com/forms/d/e/1FAIpQLSe7iMwg7gvgYuJMsMMlrpPyvfMsVoK1-KKw_Iiq3xoO2pMkWQ/formResponse", {
+                method: "POST",
+                mode: "no-cors",
+                body: formBody
+            });
+            setStatus("success");
+        } catch (err) {
+            console.error(err);
+            alert("Submission failed. Please try again.");
+            setStatus("error");
+        }
     };
 
     return (
@@ -61,7 +123,6 @@ const Accommodation = () => {
                     Register for Accommodation
                 </button>
 
-                {/* Hostels Showcase */}
                 {/* Hostels Showcase */}
                 <div className="hostels-showcase">
 
@@ -146,6 +207,7 @@ const Accommodation = () => {
                         {/* Close Button (X) */}
                         <button
                             onClick={toggleModal}
+                            type="button"
                             style={{
                                 position: "absolute",
                                 top: "15px",
@@ -165,50 +227,94 @@ const Accommodation = () => {
                             Accommodation Form
                         </h2>
 
-                        <form style={{ display: "flex", flexDirection: "column", gap: "15px", maxHeight: "60vh", overflowY: "auto", paddingRight: "5px" }}>
-                            {/* Team Name */}
-                            <div>
-                                <label style={labelStyle}>Team Name</label>
-                                <input type="text" style={inputStyle} placeholder="Enter Team Name" />
+                        {status === "success" ? (
+                            <div style={{ textAlign: "center", padding: "20px" }}>
+                                <h3 style={{ color: "#44ff88", fontSize: "1.5rem", marginBottom: "15px" }}>Request Submitted!</h3>
+                                <p style={{ color: "#ccc", marginBottom: "20px" }}>
+                                    Your accommodation request has been received.
+                                </p>
+                                <button className="download-btn" onClick={toggleModal}>
+                                    Close
+                                </button>
                             </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "15px", maxHeight: "60vh", overflowY: "auto", paddingRight: "5px" }}>
 
-                            {/* Team Leader */}
-                            <div style={sectionStyle}>
-                                <h3 style={subHeaderStyle}>Team Leader</h3>
-                                <input type="text" style={inputStyle} placeholder="Name" />
-                                <input type="tel" style={inputStyle} placeholder="Phone No." />
-                                <input type="email" style={inputStyle} placeholder="Email ID" />
-                            </div>
+                                {/* Event */}
+                                <div>
+                                    <label style={labelStyle}>Select Event <span style={{ color: 'red' }}>*</span></label>
+                                    <select name="event" value={formData.event} onChange={handleChange} required style={inputStyle}>
+                                        <option value="">Choose Event</option>
+                                        <option value="SRUJAN">Srujan (Hackathon)</option>
+                                        <option value="ANKUR">Ankur (Project Expo)</option>
+                                        <option value="UDBHAV">Uddhav (Conference)</option>
+                                    </select>
+                                </div>
 
-                            {/* Member 2 */}
-                            <div style={sectionStyle}>
-                                <h3 style={subHeaderStyle}>Member 2</h3>
-                                <input type="text" style={inputStyle} placeholder="Name" />
-                                <input type="tel" style={inputStyle} placeholder="Phone No." />
-                                <input type="email" style={inputStyle} placeholder="Email ID" />
-                            </div>
+                                {/* Team Name */}
+                                <div>
+                                    <label style={labelStyle}>Team Name <span style={{ color: 'red' }}>*</span></label>
+                                    <input type="text" name="teamName" value={formData.teamName} onChange={handleChange} required style={inputStyle} placeholder="Enter Team Name" />
+                                </div>
 
-                            {/* Member 3 */}
-                            <div style={sectionStyle}>
-                                <h3 style={subHeaderStyle}>Member 3</h3>
-                                <input type="text" style={inputStyle} placeholder="Name" />
-                                <input type="tel" style={inputStyle} placeholder="Phone No." />
-                                <input type="email" style={inputStyle} placeholder="Email ID" />
-                            </div>
+                                {/* Team Leader */}
+                                <div style={sectionStyle}>
+                                    <h3 style={subHeaderStyle}>Team Leader <span style={{ fontSize: '0.8rem', color: '#aaa' }}>(Member 1)</span></h3>
+                                    <input type="text" name="lName" value={formData.lName} onChange={handleChange} required style={inputStyle} placeholder="Name *" />
+                                    <input type="tel" name="lPhone" value={formData.lPhone} onChange={handleChange} required style={inputStyle} placeholder="Phone No. *" />
+                                    <input type="email" name="lEmail" value={formData.lEmail} onChange={handleChange} required style={inputStyle} placeholder="Email ID *" />
+                                    <select name="lGender" value={formData.lGender} onChange={handleChange} required style={inputStyle}>
+                                        <option value="">Select Gender *</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
 
-                            {/* Member 4 */}
-                            <div style={sectionStyle}>
-                                <h3 style={subHeaderStyle}>Member 4</h3>
-                                <input type="text" style={inputStyle} placeholder="Name" />
-                                <input type="tel" style={inputStyle} placeholder="Phone No." />
-                                <input type="email" style={inputStyle} placeholder="Email ID" />
-                            </div>
+                                {/* Member 2 */}
+                                <div style={sectionStyle}>
+                                    <h3 style={subHeaderStyle}>Member 2</h3>
+                                    <input type="text" name="m2Name" value={formData.m2Name} onChange={handleChange} style={inputStyle} placeholder="Name" />
+                                    <input type="tel" name="m2Phone" value={formData.m2Phone} onChange={handleChange} style={inputStyle} placeholder="Phone No." />
+                                    <input type="email" name="m2Email" value={formData.m2Email} onChange={handleChange} style={inputStyle} placeholder="Email ID" />
+                                    <select name="m2Gender" value={formData.m2Gender} onChange={handleChange} style={inputStyle}>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
 
-                            {/* Submit Button */}
-                            <button type="submit" className="download-btn" style={{ marginTop: "10px" }}>
-                                Submit Request
-                            </button>
-                        </form>
+                                {/* Member 3 */}
+                                <div style={sectionStyle}>
+                                    <h3 style={subHeaderStyle}>Member 3</h3>
+                                    <input type="text" name="m3Name" value={formData.m3Name} onChange={handleChange} style={inputStyle} placeholder="Name" />
+                                    <input type="tel" name="m3Phone" value={formData.m3Phone} onChange={handleChange} style={inputStyle} placeholder="Phone No." />
+                                    <input type="email" name="m3Email" value={formData.m3Email} onChange={handleChange} style={inputStyle} placeholder="Email ID" />
+                                    <select name="m3Gender" value={formData.m3Gender} onChange={handleChange} style={inputStyle}>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+
+                                {/* Member 4 */}
+                                <div style={sectionStyle}>
+                                    <h3 style={subHeaderStyle}>Member 4</h3>
+                                    <input type="text" name="m4Name" value={formData.m4Name} onChange={handleChange} style={inputStyle} placeholder="Name" />
+                                    <input type="tel" name="m4Phone" value={formData.m4Phone} onChange={handleChange} style={inputStyle} placeholder="Phone No." />
+                                    {/* Email Removed as per form */}
+                                    <select name="m4Gender" value={formData.m4Gender} onChange={handleChange} style={inputStyle}>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+
+                                {/* Submit Button */}
+                                <button type="submit" className="download-btn" disabled={status === "submitting"} style={{ marginTop: "10px", opacity: status === "submitting" ? 0.7 : 1 }}>
+                                    {status === "submitting" ? "Submitting..." : "Submit Request"}
+                                </button>
+                            </form>
+                        )}
                     </div>
                 </div>
             )}
