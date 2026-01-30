@@ -369,19 +369,60 @@
         height: 2px;
     }
 
+    /* Compact Rules & Schedule Cards */
+    .hackathon-card {
+        padding: 15px !important;
+        /* Reduced padding */
+        width: 90% !important;
+        /* Force scale down */
+        max-width: 320px !important;
+        /* Strict limit for mobile */
+        margin: 0 auto;
+        /* Center it */
+    }
+
     /* Responsive Text Sizing for Rules & Schedule */
     .rules-card h2,
     .schedule-card h2 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        /* Smaller Headers */
+        margin-bottom: 15px;
     }
 
     .rules-list {
-        font-size: 0.95rem;
-        /* Reduced from 1.3rem */
+        font-size: 0.85rem;
+        /* Smaller text */
+        line-height: 1.4;
+    }
+
+    .rules-list li {
+        margin-bottom: 8px;
+    }
+
+    /* Compact Timeline/Schedule Items */
+    .timeline-item {
+        gap: 10px;
+    }
+
+    .timeline-content {
+        /* Override potential leaky styles from eventShowcase if conflict exists, or just compact it */
+        padding: 10px 12px !important;
+        margin: 0 0 10px 0 !important;
+        /* Remove side margins */
+        width: 100%;
+        max-width: 100% !important;
     }
 
     .timeline-top h3 {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+    }
+
+    .timeline-desc {
+        font-size: 0.8rem;
+    }
+
+    .timeline-link {
+        font-size: 0.75rem;
     }
 }
 

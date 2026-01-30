@@ -1,18 +1,24 @@
+import { useState } from "react";
 import "../Styles/navbar.css";
 import namonveshfont from "../assets/namonvesh-logo.png";
 import { NavLink } from "react-router-dom";
-import { FaChevronDown } from "react-icons/fa"; // Import Icon
+import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa"; // Import Icon
 
 const Navbar = ({ onRegisterClick }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Mobile menu state
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     } else {
-      // If we are not on the home page (e.g. login/register), navigate home first then scroll?
-      // For now, assuming Single Page Application structure where Home is main.
       window.location.href = `/#${id}`;
     }
+    setIsMenuOpen(false); // Close menu on click
   };
 
   return (
@@ -21,7 +27,12 @@ const Navbar = ({ onRegisterClick }) => {
         <img src={namonveshfont} alt="Pursuit Logo" />
       </div>
 
-      <ul className="nav-links">
+      {/* Hamburger Icon */}
+      <div className="menu-icon" onClick={toggleMenu}>
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      <ul className={isMenuOpen ? "nav-links active" : "nav-links"}>
         <li>
           <span onClick={() => scrollToSection("home")}>Home</span>
         </li>
@@ -54,8 +65,19 @@ const Navbar = ({ onRegisterClick }) => {
         <li>
           <span onClick={() => scrollToSection("contact")}>Contact</span>
         </li>
+        {/* Mobile-only action buttons (optional, or keep them separate) */}
+        <div className="mobile-nav-actions">
+          <button className="neo-btn">
+            <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>Login</NavLink>
+          </button>
+          <button className="neo-btn" onClick={(e) => { e.preventDefault(); onRegisterClick(); setIsMenuOpen(false); }}>
+            Register
+          </button>
+        </div>
       </ul>
-      <div className="nav-actions">
+
+      {/* Desktop Actions (Hidden on mobile via CSS) */}
+      <div className="nav-actions desktop-actions">
         <button className="neo-btn">
           <NavLink to="/login">Login</NavLink>
         </button>

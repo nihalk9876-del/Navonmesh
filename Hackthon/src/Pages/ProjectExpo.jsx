@@ -52,8 +52,8 @@ const ProjectExpo = () => {
                 <h1 className="main-title">अंकुर</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
-                    Build the RC cars, and race them to the finish line. Don't miss out on the action,
-                    join us for RC Car Racing Event and experience the miniature mayhem!
+                    A National Level Project Expo Competition. Showcase your innovative ideas,
+                    present your working models, and compete with the best minds across the nation.
                 </p>
             </div>
 
@@ -94,7 +94,7 @@ const ProjectExpo = () => {
                             Entry Fee: ₹0
                         </div>
                         <h2 className="cta-title">Register now and Win Prizes.</h2>
-                        <Link to="/register">
+                        <Link to="/register?event=ankur">
                             <img src={registerBtnImg} alt="Register Now" className="register-btn-img" />
                         </Link>
                     </div>

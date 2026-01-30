@@ -12,6 +12,7 @@ const events = [
     image: e1,
     side: "left",
     id: "hackathon", // Use ID for scrolling
+    registerParam: "srujan"
   },
   {
     title: "अंकुर",
@@ -19,13 +20,15 @@ const events = [
     image: e2,
     side: "right",
     id: "projectexpo",
+    registerParam: "ankur"
   },
   {
-    title: "अंकुर",
+    title: "उद्भव",
     text: "An electrifying cultural night where talent meets celebration. Experience unforgettable moments.",
     image: e3,
     side: "left",
     id: "conference",
+    registerParam: "uddhav"
   },
 ];
 
@@ -33,11 +36,11 @@ const EventShowcase = () => {
   const navigate = useNavigate();
   const [launchingId, setLaunchingId] = useState(null);
 
-  const handleLaunch = (index, path) => {
+  const handleLaunch = (index, param) => {
     setLaunchingId(index);
     // Wait for animation to finish before navigating
     setTimeout(() => {
-      navigate(path);
+      navigate(`/register?event=${param}`);
       setLaunchingId(null); // Reset if they come back
     }, 800);
   };
@@ -68,7 +71,7 @@ const EventShowcase = () => {
               {/* Rocket Register Button */}
               <div
                 className={`register-rocket-btn ${launchingId === i ? "launching" : ""}`}
-                onClick={() => handleLaunch(i, "/register")}
+                onClick={() => handleLaunch(i, ev.registerParam)}
               >
                 <span>Register Now</span>
                 <div className="rocket-exhaust"></div>

@@ -10,7 +10,7 @@ const Hackathon = () => {
     const scheduleItems = [
         {
             title: "Registration Process",
-            time: "March 16, 9:00 AM - 11:00 AM",
+            time: "March 23, 9:00 AM - 11:00 AM",
             desc: "Participants register, providing essential team details and project ideas.",
             tag: "Mandatory",
             tagColor: "purple",
@@ -19,7 +19,7 @@ const Hackathon = () => {
         },
         {
             title: "Inauguration Ceremony",
-            time: "March 16, 11:00 AM - 11:30 AM",
+            time: "March 23, 11:00 AM - 11:30 AM",
             desc: "Kickstart the hackathon with engaging speeches and a formal opening.",
             tag: "Mandatory",
             tagColor: "purple",
@@ -28,7 +28,7 @@ const Hackathon = () => {
         },
         {
             title: "Hackathon Phase 1",
-            time: "March 16, 11:30 AM - 6:00 PM",
+            time: "March 23, 11:30 AM - 6:00 PM",
             desc: "Teams brainstorm and start working on their projects.",
             tag: "In Progress",
             tagColor: "blue",
@@ -37,7 +37,7 @@ const Hackathon = () => {
         },
         {
             title: "Jury Round 1",
-            time: " 16, 4:00 PM - 6:00 PM",
+            time: "March 23, 4:00 PM - 6:00 PM",
             desc: "Showcase your progress and receive feedback from the judges.",
             tag: "In Progress",
             tagColor: "blue",
@@ -46,7 +46,7 @@ const Hackathon = () => {
         },
         {
             title: "Cultural Event",
-            time: "March , 6:00 PM - 7:00 PM",
+            time: "March 23, 6:00 PM - 7:00 PM",
             desc: "Take a break and enjoy exciting performances or showcase your talent.",
             tag: "Optional",
             tagColor: "blue",
@@ -55,7 +55,7 @@ const Hackathon = () => {
         },
         {
             title: "Jamming Session",
-            time: "March 16, 9:00 PM - 9:15 PM",
+            time: "March 23, 9:00 PM - 9:15 PM",
             desc: "Sing along and enjoy the music in this creative session.",
             tag: "Optional",
             tagColor: "blue",
@@ -64,7 +64,7 @@ const Hackathon = () => {
         },
         {
             title: "Jury Round 2",
-            time: "March, 10:00 PM - 12:00 AM",
+            time: "March 23, 10:00 PM - 12:00 AM",
             desc: "Showcase your progress and receive feedback from the judges.",
             tag: "In Progress",
             tagColor: "blue",
@@ -73,7 +73,7 @@ const Hackathon = () => {
         },
         {
             title: "Hackathon Phase 2",
-            time: "March 17, 12:00 AM - 6:00 AM",
+            time: "March 24, 12:00 AM - 6:00 AM",
             desc: "The overnight coding marathon continues with focused energy.",
             tag: "In Progress",
             tagColor: "blue",
@@ -82,7 +82,7 @@ const Hackathon = () => {
         },
         {
             title: "Fun Games",
-            time: "March 17, 6:00 AM - 7:00 AM",
+            time: "March 24, 6:00 AM - 7:00 AM",
             desc: "Relax and recharge with entertaining games.",
             tag: "Optional",
             tagColor: "blue",
@@ -91,7 +91,7 @@ const Hackathon = () => {
         },
         {
             title: "Jury Round 3",
-            time: "March , 8:00 AM",
+            time: "March 24, 8:00 AM",
             desc: "Present Phase 2 progress and gather final inputs from judges.",
             tag: "In Progress",
             tagColor: "blue",
@@ -100,7 +100,7 @@ const Hackathon = () => {
         },
         {
             title: "Hackathon Phase 3",
-            time: "March 17, 8:00 AM - 12:00 PM",
+            time: "March 24, 8:00 AM - 12:00 PM",
             desc: "Finalize and perfect your projects for the grand presentation.",
             tag: "In Progress",
             tagColor: "blue",
@@ -109,7 +109,7 @@ const Hackathon = () => {
         },
         {
             title: "Jury Round 4",
-            time: ", 2:00 PM",
+            time: "March 24, 2:00 PM",
             desc: "Final project presentation and evaluation to decide the winners.",
             tag: "Mandatory",
             tagColor: "purple",
@@ -180,7 +180,7 @@ const Hackathon = () => {
                             <FaCode color="#d46836ff" /> Entry Fee: ₹0
                         </div>
                         <h2 className="cta-title">Register now and start building.</h2>
-                        <Link to="/register">
+                        <Link to="/register?event=srujan">
                             <img src={registerBtnImg} alt="Register Now" className="register-btn-img" />
                         </Link>
                     </div>
@@ -193,8 +193,8 @@ const Hackathon = () => {
 
                         <ul className="rules-list">
                             <li>Participants must treat all other team members, competitors, judges, coaches, volunteers, etc., with respect and courtesy.</li>
-                            <li>The complete team must be present at the venue on the first day (14/02/2025) of the event without fail or any reasons.</li>
-                            <li>The complete team must be present at the venue on the second day (15/02/2025) of the event without fail or any reasons.</li>
+                            <li>The complete team must be present at the venue on the first day (23/03/2026) of the event without fail or any reasons.</li>
+                            <li>The complete team must be present at the venue on the second day (24/03/2026) of the event without fail or any reasons.</li>
                             <li>Team size must be a maximum of 2-4 participants.</li>
                             <li>Problem statements will be provided by INNOVO SSGMCE'25, and the description of all problem statements will be given on time.</li>
                             <li>Each team must carry a laptop and a power extension.</li>

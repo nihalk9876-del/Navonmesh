@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/team.css";
 import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -75,10 +75,28 @@ const teamMembers = [
         id: 4,
         name: "Shripad Ingle",
         role: "Core Team Member",
-        subRole: "Overall Coordinator",
+        subRole: "Final Year Advisor",
         phone: "+91 98765 43210",
         email: "shripad@example.com",
         image: shripadImg,
+    },
+    {
+        id: 20,
+        name: "Vikas Gawade",
+        role: "Core Team Member",
+        subRole: "Final Year Advisor",
+        phone: "+91 8010324551",
+        email: "vikas@example.com",
+        image: teamPlaceholder,
+    },
+    {
+        id: 21,
+        name: "Om Deshmukh",
+        role: "Core Team Member",
+        subRole: "Final Year Advisor",
+        phone: "+91 98765 43210",
+        email: "om@example.com",
+        image: teamPlaceholder,
     },
     {
         id: 14,
@@ -214,12 +232,31 @@ const teamMembers = [
 ];
 
 const Team = () => {
+    const [shuffledTopMembers, setShuffledTopMembers] = useState([]);
+
+    useEffect(() => {
+        // Shuffle function
+        const shuffleArray = (array) => {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        };
+
+        // Shuffle only the top 6 members (Heads & Advisors)
+        const top6 = teamMembers.slice(0, 6);
+        setShuffledTopMembers(shuffleArray(top6));
+    }, []);
+
     return (
         <div className="team-container">
 
 
             <h1 className="team-title" style={{ marginTop: "40px" }}>MENTORS</h1>
-            <div className="team-grid" style={{ marginBottom: "60px" }}>
+            {/* Desktop Mentors Grid */}
+            <div className="team-grid desktop-mentors" style={{ marginBottom: "60px" }}>
                 {mentors.map((mentor) => (
                     <div key={mentor.id} className="team-card mentor-card">
                         <div className="member-img">
@@ -236,6 +273,24 @@ const Team = () => {
                 ))}
             </div>
 
+            {/* Mobile Mentors Continuous Scroll */}
+            <div className="mobile-mentor-scroll">
+                <div className="mentor-track">
+                    {/* Concatenate large list for seamless loop */}
+                    {[...mentors, ...mentors, ...mentors, ...mentors].map((mentor, index) => (
+                        <div key={`${mentor.id}-${index}`} className="team-card mentor-card">
+                            <div className="member-img">
+                                <img src={mentor.image} alt={mentor.name} />
+                            </div>
+                            <div className="member-info">
+                                <h3>{mentor.name}</h3>
+                                <p className="member-role">{mentor.role}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             {/* Coordinating Team Section */}
             <div className="coordinating-section" style={{ marginBottom: "60px" }}>
                 <h2 className="section-title">Coordinating Team</h2>
@@ -249,8 +304,9 @@ const Team = () => {
                 The dedicated minds behind Navonvesh 2026.
             </p>
 
-            <div className="team-grid" style={{ marginBottom: "40px" }}>
-                {teamMembers.slice(0, 3).map((member) => (
+            {/* Core Team Grid - Top 6 Shuffled */}
+            <div className="team-grid core-team-top-grid" style={{ marginBottom: "40px" }}>
+                {shuffledTopMembers.map((member) => (
                     <div key={member.id} className="team-card overall-head-card">
                         <div className="member-img">
                             <img src={member.image} alt={member.name} />
@@ -296,7 +352,7 @@ const Team = () => {
             </div>
 
             <div className="team-grid">
-                {teamMembers.slice(3).map((member) => (
+                {teamMembers.slice(6).map((member) => (
                     <div key={member.id} className="team-card">
                         <div className="member-img">
                             <img src={member.image} alt={member.name} />

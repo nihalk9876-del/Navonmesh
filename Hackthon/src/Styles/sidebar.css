@@ -38,45 +38,54 @@
 /* Sidebar menu icons */
 .sidebar-item {
   color: #ffffff;
-  font-size: 24px; /* ⬅ increase size */
+  font-size: 24px;
+  /* ⬅ increase size */
   cursor: pointer;
 }
 
 /* Social media icons */
 .social-bar svg {
-  font-size: 26px; /* ⬅ increase size */
+  font-size: 26px;
+  /* ⬅ increase size */
 }
 
 @media (max-width: 768px) {
-  .sidebar,
-  .social-bar {
-    top: auto;
-    bottom: 80px;
-    transform: none;
-    width: auto;
-    padding: 10px 14px;
-    border-radius: 999px;
-    flex-direction: row;
-    gap: 16px;
+  .sidebar {
+    display: none;
+    /* Hide sidebar if unused on mobile */
   }
 
-  .sidebar {
+  .social-bar {
+    top: auto;
+    bottom: 20px;
+    /* Floating at bottom */
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-  }
-
-  .social-bar {
-    right: 50%;
-    left: auto;
-    transform: translateX(50%);
+    width: auto;
+    padding: 12px 25px;
+    border-radius: 50px;
+    flex-direction: row;
+    gap: 20px;
+    background: rgba(20, 20, 35, 0.95);
+    /* Solid dark capsule */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
   }
 
   .sidebar-item {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .social-bar svg {
-    font-size: 22px;
+    font-size: 20px;
+    /* Comfortable icon size */
+    color: #ccc;
+    transition: 0.3s;
+  }
+
+  .social-bar svg:hover {
+    color: #fff;
+    transform: translateY(-3px);
   }
 }
