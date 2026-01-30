@@ -3,7 +3,7 @@ import "../Styles/team.css";
 import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import teamPlaceholder from "../assets/team_placeholder.jpg";
-import nihalImg from "../assets/nihal.jpg";
+import nihalImg from "../assets/nihal_latest.png";
 import sanchitImg from "../assets/sanchit.png";
 import tanmayImg from "../assets/tanmay.png";
 import krushnaImg from "../assets/krushna.png";
@@ -17,6 +17,7 @@ import shripadImg from "../assets/shripad.png";
 import vedantImg from "../assets/vedant.png";
 import abhishekImg from "../assets/abhishek.png";
 import prarthnaImg from "../assets/prarthna.png";
+import rutujaImg from "../assets/rutuja.png";
 
 const mentors = [
     {
@@ -69,7 +70,7 @@ const teamMembers = [
         subRole2: "E-Cell Chairperson",
         phone: "+91 9022886503",
         email: "rutuja@example.com",
-        image: teamPlaceholder,
+        image: rutujaImg,
     },
     {
         id: 4,
@@ -129,9 +130,9 @@ const teamMembers = [
         id: 7,
         name: "Abhishek Kanherkar",
         role: "Core Team Member",
-        subRole: "Management Head",
+        subRole: "Publicity Head",
         phone: "+91 8010324551",
-        email: "om@example.com",
+        email: "abhishek@example.com",
         image: abhishekImg,
     },
     {
@@ -156,7 +157,7 @@ const teamMembers = [
         id: 19,
         name: "Shrinit Chavan",
         role: "Core Team Member",
-        subRole: "Discipline Co-head",
+        subRole: "Management Head",
         phone: "+91 7774900204",
         email: "chavanshrinit@gmail.com",
         image: shrinitImg,
@@ -165,7 +166,7 @@ const teamMembers = [
         id: 13,
         name: "Krushna Kokate",
         role: "Core Team Member",
-        subRole: "NSS - President",
+        subRole: "Registration Team Head",
         phone: "+91 98765 43210",
         email: "krushna@example.com",
         image: tanmayImg,
@@ -183,7 +184,7 @@ const teamMembers = [
         id: 16,
         name: "Ajinkya Surange",
         role: "Core Team Member",
-        subRole: "Social Media Head",
+        subRole: "Accommodation and Logistics Head",
         phone: "+91 98765 43210",
         email: "ajinkya@example.com",
         image: teamPlaceholder,
@@ -192,41 +193,50 @@ const teamMembers = [
         id: 17,
         name: "Tanmay Kurekar",
         role: "Core Team Member",
-        subRole: "Publicity Head",
+        subRole: "Registration Team Head",
         phone: "+91 98765 43210",
         email: "tanmay@example.com",
         image: krushnaImg,
     },
+
+
+
+
+
     {
-        id: 9,
-        name: "Aditya Patil",
+        id: 23,
+        name: "Sushant Akhare",
         role: "Core Team Member",
+        subRole: "Cultural Head",
         phone: "+91 98765 43210",
-        email: "aditya@example.com",
+        email: "sushant@example.com",
         image: teamPlaceholder,
     },
     {
-        id: 10,
-        name: "Snehal Shinde",
+        id: 24,
+        name: "Manjiri Thakare",
         role: "Core Team Member",
+        subRole: "Cultural Co-head",
         phone: "+91 98765 43210",
-        email: "snehal@example.com",
+        email: "manjiri@example.com",
         image: teamPlaceholder,
     },
     {
-        id: 11,
-        name: "Rohan Deshmukh",
+        id: 25,
+        name: "Siddhi Kulkarni",
         role: "Core Team Member",
+        subRole: "Accommodation and Logistics Co-head",
         phone: "+91 98765 43210",
-        email: "rohan@example.com",
+        email: "siddhi@example.com",
         image: teamPlaceholder,
     },
     {
-        id: 12,
-        name: "Pooja Kulkarni",
+        id: 26,
+        name: "Atharva Tayade",
         role: "Core Team Member",
+        subRole: "Report Writing Head",
         phone: "+91 98765 43210",
-        email: "pooja@example.com",
+        email: "atharva@example.com",
         image: teamPlaceholder,
     },
 ];
@@ -315,13 +325,13 @@ const Team = () => {
                             <h3>{member.name}</h3>
 
                             {member.subRole && (
-                                <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "-5px", marginBottom: "5px", fontWeight: "bold" }}>
+                                <p className="head-role">
                                     {member.subRole}
                                 </p>
                             )}
 
                             {member.subRole2 && (
-                                <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "0px", marginBottom: "10px", fontWeight: "bold" }}>
+                                <p className="head-role secondary">
                                     {member.subRole2}
                                 </p>
                             )}

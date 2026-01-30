@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/register.css';
-import { FaGoogle, FaWhatsapp, FaTimes } from "react-icons/fa";
+import { FaGoogle, FaWhatsapp, FaTimes, FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Register = () => {
@@ -249,6 +249,27 @@ const Register = () => {
             )}
 
             <div className="register-content">
+                <button
+                    className="back-btn"
+                    onClick={() => navigate(-1)}
+                    style={{
+                        position: 'absolute',
+                        top: '20px',
+                        left: '20px',
+                        background: 'transparent',
+                        border: 'none',
+                        color: '#a78bfa',
+                        fontSize: '1rem',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        zIndex: 10
+                    }}
+                >
+                    <FaArrowLeft /> Back
+                </button>
+
                 <div className="register-header">
                     <p>{event} Registration</p>
                 </div>
