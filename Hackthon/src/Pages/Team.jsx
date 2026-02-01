@@ -361,7 +361,7 @@ const Team = () => {
                 ))}
             </div>
 
-            <div className="team-grid">
+            <div className="team-grid heads-grid">
                 {teamMembers.slice(6).map((member) => (
                     <div key={member.id} className="team-card">
                         <div className="member-img">

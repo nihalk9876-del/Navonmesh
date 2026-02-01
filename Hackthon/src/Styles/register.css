@@ -353,3 +353,61 @@
     }
 }
 .register-content { position: relative; }
+
+
+/* Fixes for Mobile Responsiveness and Simple Text */
+.register-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    background: #05060f;
+}
+
+.register-content {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(15, 16, 22, 0.8);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #2d2d3a;
+    backdrop-filter: blur(10px);
+}
+
+.register-form label, 
+.form-section-title, 
+.register-header p, .register-btn {
+    font-family: 'Poppins', sans-serif !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+@media (max-width: 600px) {
+    .register-container {
+        padding: 40px 10px;
+    }
+    .register-content {
+        padding: 30px 15px;
+    }
+    .register-form {
+        gap: 12px;
+    }
+    .register-form input,
+    .register-select {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    .register-form label {
+        font-size: 0.8rem;
+    }
+    .form-section-title {
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
+    .register-btn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
