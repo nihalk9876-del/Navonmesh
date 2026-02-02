@@ -743,10 +743,30 @@
     .heads-grid {
         gap: 10px !important;
     }
+
     .heads-grid .member-info h3 {
         font-size: 0.65rem !important;
     }
+
     .heads-grid .member-info p {
         font-size: 0.55rem !important;
     }
+}
+
+.ecell-logo {
+    width: 60px;
+    /* Reduced from default */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.ecell-logo:hover {
+    transform: scale(1.1);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
 }

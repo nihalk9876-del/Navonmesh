@@ -7,17 +7,29 @@ import nihalImg from "../assets/nihal_latest.png";
 import sanchitImg from "../assets/sanchit.png";
 import tanmayImg from "../assets/tanmay.png";
 import krushnaImg from "../assets/krushna.png";
-import omImg from "../assets/om_konde_new.jpg";
+import omImg from "../assets/om_konde_latest.png";
 import principalImg from "../assets/principal.png";
 import jadhaoImg from "../assets/jadhao.png";
 import wahileImg from "../assets/ganesh_wahile.png";
-import shrinitImg from "../assets/shrinit.png";
+import shrinitImg from "../assets/shrinit_latest.png";
 import EcellLogo from "../assets/ecell-logo.png";
-import shripadImg from "../assets/shripad.png";
+import shripadImg from "../assets/shripad_new.png";
 import vedantImg from "../assets/vedant.png";
-import abhishekImg from "../assets/abhishek.png";
+import abhishekImg from "../assets/abhishek_new.png";
 import prarthnaImg from "../assets/prarthna.png";
-import rutujaImg from "../assets/rutuja.png";
+import rutujaImg from "../assets/rutuja_new.png";
+import ajinkyaImg from "../assets/ajinkya.png";
+import chakradharImg from "../assets/chakradhar.png";
+import vikasGawadeImg from "../assets/vikas_gawade.png";
+import omDeshmukhImg from "../assets/om_deshmukh.png";
+import atharvaSononeImg from "../assets/atharva_sonone.png";
+import atharvaTayadeImg from "../assets/atharva_tayade.jpg";
+import vikasMoreImg from "../assets/vikas_more.png";
+import sushantAkhareImg from "../assets/sushant_akhare.png";
+import manjiriImg from "../assets/manjiri_new.png";
+import dollyImg from "../assets/dolly_bhutada.png";
+import sakshiSiddhiImg from "../assets/sakshi_siddhi.png";
+import hanzalaImg from "../assets/hanzala_khan.png";
 
 const mentors = [
     {
@@ -44,6 +56,33 @@ const mentors = [
 ];
 
 const teamMembers = [
+    {
+        id: 20,
+        name: "Vikas Gawade",
+        role: "Core Team Member",
+        subRole: "Final Year Advisor",
+        phone: "+91 8010324551",
+        email: "vikas@example.com",
+        image: vikasGawadeImg,
+    },
+    {
+        id: 21,
+        name: "Om Deshmukh",
+        role: "Core Team Member",
+        subRole: "Final Year Advisor",
+        phone: "+91 98765 43210",
+        email: "om@example.com",
+        image: omDeshmukhImg,
+    },
+    {
+        id: 4,
+        name: "Shripad Ingle",
+        role: "Core Team Member",
+        subRole: "Final Year Advisor",
+        phone: "+91 98765 43210",
+        email: "shripad@example.com",
+        image: shripadImg,
+    },
     {
         id: 2,
         name: "Nihal Kankal",
@@ -72,38 +111,12 @@ const teamMembers = [
         email: "rutuja@example.com",
         image: rutujaImg,
     },
-    {
-        id: 4,
-        name: "Shripad Ingle",
-        role: "Core Team Member",
-        subRole: "Final Year Advisor",
-        phone: "+91 98765 43210",
-        email: "shripad@example.com",
-        image: shripadImg,
-    },
-    {
-        id: 20,
-        name: "Vikas Gawade",
-        role: "Core Team Member",
-        subRole: "Final Year Advisor",
-        phone: "+91 8010324551",
-        email: "vikas@example.com",
-        image: teamPlaceholder,
-    },
-    {
-        id: 21,
-        name: "Om Deshmukh",
-        role: "Core Team Member",
-        subRole: "Final Year Advisor",
-        phone: "+91 98765 43210",
-        email: "om@example.com",
-        image: teamPlaceholder,
-    },
+
     {
         id: 14,
         name: "Prarthna Kale",
         role: "Core Team Member",
-        subRole: "Event Head",
+        subRole: "Event Co-head",
         phone: "+91 98765 43210",
         email: "prarthna@example.com",
         image: prarthnaImg,
@@ -112,19 +125,20 @@ const teamMembers = [
         id: 5,
         name: "Vikas More",
         role: "Core Team Member",
-        subRole: "Event Head",
+        subRole: "Technical Head",
         phone: "+91 98765 43210",
         email: "vikas@example.com",
-        image: teamPlaceholder,
+        image: vikasMoreImg,
     },
     {
         id: 6,
         name: "Chakradhar Mahale",
         role: "Core Team Member",
         subRole: "Treasurer",
+        subRole2: "E-Cell Vice Chairperson",
         phone: "+91 98765 43210",
         email: "chakradhar@example.com",
-        image: teamPlaceholder,
+        image: chakradharImg,
     },
     {
         id: 7,
@@ -134,15 +148,6 @@ const teamMembers = [
         phone: "+91 8010324551",
         email: "abhishek@example.com",
         image: abhishekImg,
-    },
-    {
-        id: 8,
-        name: "Atharva Sonone",
-        role: "Core Team Member",
-        subRole: "Volunteer Head ",
-        phone: "+91 9999999999 ",
-        email: "abhishek@example.com",
-        image: teamPlaceholder,
     },
     {
         id: 18,
@@ -172,6 +177,24 @@ const teamMembers = [
         image: tanmayImg,
     },
     {
+        id: 26,
+        name: "Atharva Tayade",
+        role: "Core Team Member",
+        subRole: "Report Writing Head",
+        phone: "+91 98765 43210",
+        email: "atharva@example.com",
+        image: atharvaTayadeImg,
+    },
+    {
+        id: 28,
+        name: "Sakshi Kamble",
+        role: "Core Team Member",
+        subRole: "Report Writing Co-head",
+        phone: "+91 98765 43210",
+        email: "sakshi@example.com",
+        image: sakshiSiddhiImg,
+    },
+    {
         id: 15,
         name: "Vedant Darokar",
         role: "Core Team Member",
@@ -181,13 +204,22 @@ const teamMembers = [
         image: vedantImg,
     },
     {
+        id: 29,
+        name: "Hanzala Khan",
+        role: "Core Team Member",
+        subRole: "Graphics Head",
+        phone: "+91 98765 43210",
+        email: "hanzala@example.com",
+        image: hanzalaImg,
+    },
+    {
         id: 16,
         name: "Ajinkya Surange",
         role: "Core Team Member",
         subRole: "Accommodation and Logistics Head",
         phone: "+91 98765 43210",
         email: "ajinkya@example.com",
-        image: teamPlaceholder,
+        image: ajinkyaImg,
     },
     {
         id: 17,
@@ -210,7 +242,7 @@ const teamMembers = [
         subRole: "Cultural Head",
         phone: "+91 98765 43210",
         email: "sushant@example.com",
-        image: teamPlaceholder,
+        image: sushantAkhareImg,
     },
     {
         id: 24,
@@ -219,7 +251,16 @@ const teamMembers = [
         subRole: "Cultural Co-head",
         phone: "+91 98765 43210",
         email: "manjiri@example.com",
-        image: teamPlaceholder,
+        image: manjiriImg,
+    },
+    {
+        id: 30,
+        name: "Shruti Mankar",
+        role: "Core Team Member",
+        subRole: "Decoration Co-head",
+        phone: "+91 98765 43210",
+        email: "shruti@example.com",
+        image: sakshiSiddhiImg,
     },
     {
         id: 25,
@@ -228,38 +269,30 @@ const teamMembers = [
         subRole: "Accommodation and Logistics Co-head",
         phone: "+91 98765 43210",
         email: "siddhi@example.com",
-        image: teamPlaceholder,
+        image: sakshiSiddhiImg,
+    },
+
+    {
+        id: 8,
+        name: "Atharva Sonone",
+        role: "Core Team Member",
+        subRole: "Volunteer Head ",
+        phone: "+91 9999999999 ",
+        email: "abhishek@example.com",
+        image: atharvaSononeImg,
     },
     {
-        id: 26,
-        name: "Atharva Tayade",
+        id: 27,
+        name: "Dolly Bhutada",
         role: "Core Team Member",
-        subRole: "Report Writing Head",
+        subRole: "Volunteer Co-head",
         phone: "+91 98765 43210",
-        email: "atharva@example.com",
-        image: teamPlaceholder,
+        email: "dolly@example.com",
+        image: dollyImg,
     },
 ];
 
 const Team = () => {
-    const [shuffledTopMembers, setShuffledTopMembers] = useState([]);
-
-    useEffect(() => {
-        // Shuffle function
-        const shuffleArray = (array) => {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-            }
-            return newArray;
-        };
-
-        // Shuffle only the top 6 members (Heads & Advisors)
-        const top6 = teamMembers.slice(0, 6);
-        setShuffledTopMembers(shuffleArray(top6));
-    }, []);
-
     return (
         <div className="team-container">
 
@@ -314,9 +347,9 @@ const Team = () => {
                 The dedicated minds behind Navonvesh 2026.
             </p>
 
-            {/* Core Team Grid - Top 6 Shuffled */}
+            {/* Core Team Grid - Top 6 Fixed Sequence */}
             <div className="team-grid core-team-top-grid" style={{ marginBottom: "40px" }}>
-                {shuffledTopMembers.map((member) => (
+                {teamMembers.slice(0, 6).map((member) => (
                     <div key={member.id} className="team-card overall-head-card">
                         <div className="member-img">
                             <img src={member.image} alt={member.name} />
@@ -371,8 +404,14 @@ const Team = () => {
                             <h3>{member.name}</h3>
 
                             {member.subRole && (
-                                <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "-5px", marginBottom: "10px", fontWeight: "bold" }}>
+                                <p style={{ color: "#00f3ff", fontSize: "0.85rem", marginTop: "-5px", marginBottom: "5px", fontWeight: "bold" }}>
                                     {member.subRole}
+                                </p>
+                            )}
+
+                            {member.subRole2 && (
+                                <p style={{ color: "#00f3ff", fontSize: "0.75rem", marginTop: "-5px", marginBottom: "10px", fontWeight: "bold", opacity: 0.9 }}>
+                                    {member.subRole2}
                                 </p>
                             )}
 
