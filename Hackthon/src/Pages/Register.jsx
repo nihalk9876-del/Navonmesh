@@ -16,7 +16,8 @@ const Register = () => {
 
         event: urlEvent === 'srujan' ? 'Srujan (Hackathon)' :
             urlEvent === 'ankur' ? 'Ankur (Project Expo)' :
-                urlEvent === 'uddhav' ? 'Uddhav (Conference)' : 'Srujan (Hackathon)',
+                urlEvent === 'uddhav' ? 'Uddhav (Conference)' :
+                    urlEvent === 'pursuit' ? 'Pursuit' : 'Srujan (Hackathon)',
 
         teamName: '',
         teamSize: '',
@@ -83,6 +84,27 @@ const Register = () => {
         },
         'Uddhav (Conference)': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLScNe95Djx06LVuzumpMYxO2uM7jpHvfkSA3XcIAIDoKdMySSQ/formResponse",
+            ids: {
+                teamName: "entry.40216783",
+                leaderName: "entry.2112252009",
+                leaderEmail: "entry.376939330",
+                leaderPhone: "entry.1651475776",
+                member2Name: "entry.1886708863",
+                member2Email: "entry.303258852",
+                member2Phone: "entry.1376236348",
+                member3Name: "entry.337717641",
+                member3Email: "entry.1923504292",
+                member3Phone: "entry.2044577159",
+                member4Name: "entry.1150982003",
+                member4Email: "entry.1575582295",
+                member4Phone: "entry.641202700",
+                accommodation: "entry.1941174996"
+            },
+            hasCollege: false,
+            bundleMembers: false
+        },
+        'Pursuit': {
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSej9oZlDfPMX7eQ0JJvcSIrmdqKZuHkDUS0E0L42kxhEfTpyw/formResponse", // Placeholder using Ankur's URL
             ids: {
                 teamName: "entry.40216783",
                 leaderName: "entry.2112252009",
@@ -283,6 +305,7 @@ const Register = () => {
                         <option value="Srujan (Hackathon)">Srujan (Hackathon)</option>
                         <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
                         <option value="Uddhav (Conference)">Uddhav (Conference)</option>
+                        <option value="Pursuit">Pursuit</option>
                     </select>
 
                     {/* TEAM INFO SECTION (Visible for all) */}

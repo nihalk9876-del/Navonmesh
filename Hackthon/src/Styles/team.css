@@ -686,3 +686,67 @@
         max-width: 250px !important;
     }
 }
+
+/* Heads Grid Mobile Optimization */
+@media (max-width: 768px) {
+    .heads-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .heads-grid .team-card {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 8px !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 12px !important;
+        margin: 0 !important;
+        flex: none !important;
+    }
+
+    .heads-grid .member-img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1/1 !important;
+        margin-bottom: 8px !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+    }
+
+    .heads-grid .member-img::before {
+        display: none !important;
+    }
+
+    .heads-grid .member-info h3 {
+        font-size: 0.75rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 3px !important;
+    }
+
+    .heads-grid .member-info p {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .heads-grid .contact-details,
+    .heads-grid .social-links {
+        display: none !important;
+    }
+}
+
+/* For very small screens, ensure 3 per row doesn't break */
+@media (max-width: 380px) {
+    .heads-grid {
+        gap: 10px !important;
+    }
+    .heads-grid .member-info h3 {
+        font-size: 0.65rem !important;
+    }
+    .heads-grid .member-info p {
+        font-size: 0.55rem !important;
+    }
+}

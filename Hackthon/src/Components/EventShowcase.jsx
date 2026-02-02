@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../Styles/eventShowcase.css";
 import e1 from "../assets/events/e1.png";
 import e2 from "../assets/events/e2.png";
 import e3 from "../assets/events/e3.png";
+import e4 from "../assets/events/pursuit.png";
 
 const events = [
   {
@@ -30,6 +31,14 @@ const events = [
     id: "conference",
     registerParam: "uddhav"
   },
+  {
+    title: "PURSUIT",
+    text: "PURSUIT is the theme-based national level technical symposium. It is a grand stage where innovation meets competition, featuring various technical events and challenges.",
+    image: e4,
+    side: "right",
+    id: "pursuit",
+    registerParam: "pursuit"
+  },
 ];
 
 const EventShowcase = () => {
@@ -45,6 +54,29 @@ const EventShowcase = () => {
     }, 800);
   };
 
+  const itemRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of the item is visible
+    );
+
+    itemRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -55,7 +87,11 @@ const EventShowcase = () => {
   return (
     <section className="event-showcase">
       {events.map((ev, i) => (
-        <div key={i} className={`timeline-item ${ev.side}`}>
+        <div
+          key={i}
+          className={`timeline-item ${ev.side}`}
+          ref={(el) => (itemRefs.current[i] = el)}
+        >
           {/* Image Column */}
           <div className="timeline-img-col">
             <div
@@ -73,7 +109,13 @@ const EventShowcase = () => {
                 className={`register-rocket-btn ${launchingId === i ? "launching" : ""}`}
                 onClick={() => handleLaunch(i, ev.registerParam)}
               >
-                <span>Register Now</span>
+                <span className="reg-text">Register Now</span>
+                <div className="reg-icon-circle">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                    <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                  </svg>
+                </div>
                 <div className="rocket-exhaust"></div>
               </div>
 
@@ -89,7 +131,9 @@ const EventShowcase = () => {
 
           {/* Text Column */}
           <div className="timeline-text-col">
-            <p className="event-desc">{ev.text}</p>
+            <div className="event-glass-card">
+              <p className="event-desc">{ev.text}</p>
+            </div>
           </div>
         </div>
       ))}

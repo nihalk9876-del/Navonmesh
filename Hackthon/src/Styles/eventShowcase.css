@@ -4,117 +4,306 @@
   background: transparent;
 }
 
-/* Center vertical line */
-.timeline-line {
+/* Center cosmic ray line */
+.event-showcase .timeline-line {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 50%;
-  width: 2px;
-  background: rgba(143, 139, 255, 0.4);
+  width: 1px;
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(0, 229, 255, 0.8) 20%,
+      rgba(143, 139, 255, 0.8) 50%,
+      rgba(0, 229, 255, 0.8) 80%,
+      transparent);
   transform: translateX(-50%);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+  z-index: 0;
 }
 
-.timeline-item {
+.event-showcase .timeline-item {
   display: flex;
   align-items: flex-start;
-  /* Align to top instead of center */
-  overflow: visible;
-  /* Allow rings to show outside */
-  margin-bottom: 60px;
-  /* Aggressive increase to completely clear text overlap */
+  margin-bottom: 100px;
   position: relative;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 1;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.event-showcase .timeline-item.left {
+  transform: translateX(-50px);
+}
+
+.event-showcase .timeline-item.right {
+  transform: translateX(50px);
+}
+
+/* Entrance Animation When Scrolled Into View */
+.event-showcase .timeline-item.in-view {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* ... (keep other styles) ... */
 
-.event-desc {
-  font-family: 'Times New Roman', serif;
-  font-style: italic;
-  font-size: 1.5rem;
-  /* Increased for cinematic feel */
-  line-height: 1.6;
-  color: #e0e0ff;
-  /* Soft Blue-White */
-  text-shadow: 0 0 12px rgba(100, 100, 255, 0.5);
-  /* Glowing effect */
-  max-width: 600px;
-  /* Optional constraint for readability */
-
-  margin-top: 40px;
-  /* Push down slightly to align with center of top image */
+.event-showcase .event-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(143, 139, 255, 0.05));
+  backdrop-filter: blur(15px) saturate(200%);
+  -webkit-backdrop-filter: blur(15px) saturate(200%);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 229, 255, 0.05);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.6s;
+  position: relative;
+  overflow: hidden;
 }
 
-.event-title-group {
+/* Nebula Dust Effect inside card */
+.event-showcase .event-glass-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 10%, rgba(0, 198, 255, 0.05), transparent 50%),
+    radial-gradient(circle at 90% 90%, rgba(143, 139, 255, 0.05), transparent 50%);
+  pointer-events: none;
+}
+
+.event-showcase .event-glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent);
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.event-showcase .timeline-item.in-view .event-glass-card::before {
+  animation: shine-sweep 4s infinite linear;
+}
+
+@keyframes shine-sweep {
+  0% {
+    left: -100%;
+  }
+
+  20% {
+    left: 100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.event-showcase .timeline-item:not(.in-view) .event-glass-card {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+}
+
+.event-showcase .event-desc {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #f0f0ff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.event-showcase .event-title-group {
+  position: relative;
+  z-index: 10;
+  /* Ensure title is ABOVE the glow rings */
   text-align: center;
-  margin-top: 15px;
+  margin-top: 30px;
+  /* Increased from 15px to avoid overlap */
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.4s;
+}
+
+.event-showcase .timeline-item:not(.in-view) .event-title-group {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .event-title-hindi {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
+  /* Increased slightly for impact */
   color: #fff;
   margin: 0;
   line-height: 1.2;
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
-/* Rocket Register Button */
+/* Premium Pill Register Button */
 .register-rocket-btn {
-  display: inline-block;
-  position: relative;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
-  padding: 12px 40px;
-  margin-top: 30px;
-  /* Moved downward */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 198, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 8px 8px 8px 40px;
+  margin-top: 40px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 229, 255, 0.4);
   cursor: pointer;
+  position: relative;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 20px rgba(0, 198, 255, 0.2), inset 0 0 10px rgba(0, 198, 255, 0.1);
+  min-width: 260px;
+}
 
-  /* Aerodynamic Shape */
-  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-
+.reg-text {
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  font-size: 1.1rem;
+  pointer-events: none;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
 
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+.reg-icon-circle {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0, 198, 255, 0.6);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.reg-icon-circle svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+  transition: transform 0.4s ease;
+}
+
+/* Shimmer Light Sweep */
+.register-rocket-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  transform: skewX(-20deg);
+  transition: 0.8s;
 }
 
 .register-rocket-btn:hover {
-  background: linear-gradient(90deg, #00e5ff, #0099ff);
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(0, 198, 255, 0.15);
+  border-color: #00e5ff;
+  box-shadow: 0 10px 30px rgba(0, 198, 255, 0.4), 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.register-rocket-btn:hover::after {
+  left: 100%;
+}
+
+.register-rocket-btn:hover .reg-icon-circle {
+  transform: rotate(360deg) scale(1.1);
   box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+}
+
+.register-rocket-btn:hover .reg-text {
+  letter-spacing: 2px;
+  color: #00e5ff;
+}
+
+/* Continuous Subtle Attraction Animation */
+.event-showcase .timeline-item.in-view .register-rocket-btn {
+  animation: button-float 3s infinite ease-in-out, glow-pulse 2s infinite alternate;
+}
+
+@keyframes button-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes glow-pulse {
+  from {
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 198, 255, 0.1);
+  }
+
+  to {
+    border-color: rgba(0, 229, 255, 0.7);
+    box-shadow: 0 0 25px rgba(0, 198, 255, 0.3);
+  }
 }
 
 /* Rocket Exhaust Container */
 .rocket-exhaust {
   position: absolute;
   top: 50%;
-  left: -20px;
+  right: 20px;
   transform: translateY(-50%);
   width: 0;
   height: 80%;
-  background: linear-gradient(to left, rgba(255, 100, 0, 0.8), transparent);
+  background: linear-gradient(to right, rgba(0, 229, 255, 0.8), transparent);
   border-radius: 50%;
   opacity: 0;
   transition: width 0.2s, opacity 0.2s;
   z-index: -1;
-  filter: blur(4px);
+  filter: blur(8px);
 }
 
-/* Launch Animation State */
+/* Launch Animation State Override for new design */
 .register-rocket-btn.launching {
-  animation: rocket-launch 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: pill-launch 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes pill-launch {
+  0% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(0.9) translateX(-10px);
+  }
+
+  100% {
+    transform: scale(1.2) translateX(150vw);
+    opacity: 0;
+  }
 }
 
 .register-rocket-btn.launching .rocket-exhaust {
-  width: 60px;
-  /* Shoot out flames */
+  width: 100px;
   opacity: 1;
 }
 
@@ -137,91 +326,93 @@
 }
 
 /* Image Container - Allow Glow Outside */
-.img-glow-container {
-  border-radius: 100px;
+.event-showcase .img-glow-container {
+  width: 300px;
+  /* Standardize desktop size slightly smaller to fit better */
+  height: 300px;
+  margin: 0 auto;
+  border-radius: 50%;
+  /* Perfect circle */
   position: relative;
   z-index: 1;
-  /* Ensure above background */
-  transition: transform 0.3s ease;
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  transition-delay: 0.2s;
 }
 
-/* Pseudo-elements for Aesthetic Rings */
-.img-glow-container::before,
-.img-glow-container::after {
+.event-showcase .timeline-item:not(.in-view) .img-glow-container {
+  transform: scale(0.8);
+}
+
+/* Celestial Orbits & Moons */
+.event-showcase .img-glow-container::before,
+.event-showcase .img-glow-container::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  /* Circular orbits */
   pointer-events: none;
   z-index: -1;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Inner Ripple - Solid Cyan */
-.img-glow-container::before {
-  width: 100%;
-  height: 100%;
-  border: 2px solid transparent;
-  /* Hidden by default */
-  box-shadow: 0 0 0 rgba(0, 229, 255, 0);
+/* Inner Atmosphere - Moon Orbit */
+.event-showcase .img-glow-container::before {
+  width: 115%;
+  height: 115%;
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  /* The "Moon" dot */
+  background: radial-gradient(circle at 0% 50%, #fff 2px, #00c6ff 5px, transparent 8px);
+  animation: spin-orbit 12s linear infinite;
 }
 
-/* Outer Orbit - Dashed Tech Ring */
-.img-glow-container::after {
-  width: 110%;
-  height: 120%;
-  /* Slightly oval to match scanline feel */
-  border: 1px dashed rgba(143, 139, 255, 0.5);
-  opacity: 0.6;
-}
-
-/* 🔥 Hover State - Holographic Activation */
-.img-glow-container:hover {
-  transform: translateY(-5px);
-}
-
-/* Pulse Effect */
-.img-glow-container:hover::before {
-  width: 130%;
-  height: 140%;
-  border-color: rgba(0, 229, 255, 0.4);
-  box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
-  opacity: 0;
-  animation: ripple-out 1s infinite;
-}
-
-/* Rotating Orbit */
-.img-glow-container:hover::after {
-  width: 125%;
+/* Outer Ring - Saturn Style */
+.event-showcase .img-glow-container::after {
+  width: 135%;
   height: 135%;
-  border-color: #00e5ff;
-  border-width: 2px;
-  border-style: dashed;
-  opacity: 1;
-  animation: spin-orbit 4s linear infinite;
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+  border: 1px solid rgba(143, 139, 255, 0.1);
+  /* Second "Satellite" */
+  background: radial-gradient(circle at 100% 50%, #fff 1.5px, #8f8bff 4px, transparent 6px);
+  animation: spin-orbit 18s linear reverse infinite;
 }
 
-.img-glow-container img {
+/* Gravitational Pull Effect on Hover */
+.event-showcase .img-glow-container:hover,
+.event-showcase .timeline-item.in-view .img-glow-container {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 50px rgba(0, 198, 255, 0.3);
+}
+
+.event-showcase .img-glow-container:hover::before {
+  width: 125%;
+  height: 125%;
+  border-color: rgba(0, 229, 255, 0.5);
+  animation-duration: 6s;
+}
+
+.event-showcase .img-glow-container:hover::after {
+  width: 150%;
+  height: 150%;
+  border-color: rgba(143, 139, 255, 0.3);
+  animation-duration: 9s;
+}
+
+.event-showcase .img-glow-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 100px;
-  /* Clip image corners directly */
-  transition: transform 0.5s ease;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.3);
-  /* Subtle dark rim */
+  border-radius: 50%;
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 198, 255, 0.2);
+  filter: saturate(1.1) brightness(1.1);
 }
 
-.img-glow-container:hover img {
-  transform: scale(1.05);
-  /* Slight internal zoom */
+.event-showcase .img-glow-container:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.2) contrast(1.1);
 }
 
-/* Animations */
+/* Standard Keyframe for Interstellar feel */
 @keyframes spin-orbit {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -234,23 +425,21 @@
 
 @keyframes ripple-out {
   0% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 1;
-    border-width: 4px;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.8;
   }
 
   100% {
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.4);
     opacity: 0;
-    border-width: 0px;
   }
 }
 
-.timeline-item.left {
+.event-showcase .timeline-item.left {
   justify-content: flex-start;
 }
 
-.timeline-item.right {
+.event-showcase .timeline-item.right {
   justify-content: flex-end;
 }
 
@@ -297,62 +486,51 @@
 }
 
 /* Mobile Responsiveness */
+/* Mobile Responsiveness Scoped */
 @media (max-width: 768px) {
-  .timeline-item {
+  .event-showcase .timeline-item {
     flex-direction: column !important;
     gap: 20px;
     margin-bottom: 60px;
     align-items: center;
-    /* Center everything */
   }
 
-  .timeline-divider {
+  .event-showcase .timeline-divider {
     display: none;
   }
 
-  .timeline-text-col,
-  .event-title-group {
+  .event-showcase .timeline-text-col,
+  .event-showcase .event-title-group {
     text-align: center;
     width: 100%;
   }
 
-  /* 1. Reduce Image Size */
-  .img-glow-container {
-    width: 220px;
-    /* Much smaller */
-    height: 220px;
-    /* Maintain aspect ratio if needed, or just let auto */
+  .event-showcase .img-glow-container {
+    width: 200px;
+    /* Slightly smaller for mobile */
+    height: 200px;
     margin: 0 auto;
-    /* Center */
+    border-radius: 50%;
   }
 
-  /* 2. Reduce Title Size */
-  .event-title-hindi {
+  .event-showcase .event-title-hindi {
     font-size: 1.6rem;
-    /* Reduced from 2.2rem */
     margin-top: 10px;
   }
 
-  /* 3. Reduce Register Button Size */
-  .register-rocket-btn {
+  .event-showcase .register-rocket-btn {
     padding: 10px 25px;
-    /* Smaller padding */
     font-size: 0.9rem;
-    /* Smaller text */
     margin-top: 15px;
   }
 
-  /* 4. Reduce Description Size */
-  .event-desc {
+  .event-showcase .event-desc {
     font-size: 1rem;
-    /* Reduced from 1.5rem */
     line-height: 1.4;
     margin-left: 0;
-    /* Reset desktop margin */
     padding-top: 15px;
     max-width: 90%;
     margin: 0 auto;
-    /* Center text */
   }
 }
 
