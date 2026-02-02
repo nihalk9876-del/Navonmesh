@@ -57,3 +57,15 @@
   transform: scale(1.2) translateY(-2px);
   text-shadow: 0 0 15px rgba(143, 139, 255, 0.8);
 }
+
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 10px 10px 12px;
+    font-size: 10px;
+  }
+
+  .developer-credit {
+    font-size: 0.75rem;
+    margin-top: 3px;
+  }
+}
