@@ -32,6 +32,14 @@ import sakshiImg from "../assets/sakshi_kamble.png";
 import siddhiImg from "../assets/siddhi_kulkarni.png";
 import hanzalaImg from "../assets/hanzala_khan.png";
 import satyajeetImg from "../assets/satyajeet.png";
+import thuteImg from "../assets/thute.png";
+import kankaleImg from "../assets/kankale.png";
+import zamareImg from "../assets/zamare.png";
+import dharmaleImg from "../assets/dharmale.png";
+import buteImg from "../assets/bute.png";
+import gawandeImg from "../assets/gawande.png";
+import mishraImg from "../assets/mishra.png";
+import chandanImg from "../assets/chandan.png";
 
 const mentors = [
     {
@@ -54,6 +62,62 @@ const mentors = [
         role: "E-Cell Faculty Advisor",
         image: wahileImg,
         description: "Expert coordinator facilitating seamless execution of technical events."
+    },
+    {
+        id: 4,
+        name: "Dr. V. K. Thute",
+        role: "Faculty Advisor",
+        image: thuteImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 5,
+        name: "Dr. R. S. Kankale",
+        role: "Faculty Advisor",
+        image: kankaleImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 6,
+        name: "Dr. R. A. Zamare",
+        role: "Faculty Advisor",
+        image: zamareImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 7,
+        name: "Dr. N. S. Dharmale",
+        role: "Faculty Advisor",
+        image: dharmaleImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 8,
+        name: "Miss P. P. Bute",
+        role: "Faculty Advisor",
+        image: buteImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 9,
+        name: "Dr. J. S. Gawande",
+        role: "Faculty Advisor",
+        image: gawandeImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 10,
+        name: "Dr. S. M. Mishra",
+        role: "Faculty Advisor",
+        image: mishraImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 11,
+        name: "Dr. K. V. Chandan",
+        role: "Faculty Advisor",
+        image: chandanImg,
+        description: "Dedicated faculty member supporting the Navonmesh mission."
     }
 ];
 
