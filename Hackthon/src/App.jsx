@@ -14,6 +14,7 @@ import ProblemStatement from "./Pages/ProblemStatement";
 import Team from "./Pages/Team";
 import Conference from "./Pages/Conference";
 import Accommodation from "./Pages/Accommodation";
+import CulturalRegister from "./Pages/CulturalRegister";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -42,6 +43,7 @@ function App() {
 
             {/* Pages WITHOUT Navbar / Sidebar / Footer */}
             <Route path="/register" element={<Register />} />
+            <Route path="/cultural" element={<CulturalRegister />} />
           </Routes>
         </div>
       </HashRouter>

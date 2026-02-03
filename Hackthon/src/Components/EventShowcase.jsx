@@ -46,6 +46,10 @@ const EventShowcase = () => {
   const [launchingId, setLaunchingId] = useState(null);
 
   const handleLaunch = (index, param) => {
+    if (param === "pursuit") {
+      window.open("https://pursuitssgmce.vercel.app/", "_blank");
+      return;
+    }
     setLaunchingId(index);
     // Wait for animation to finish before navigating
     setTimeout(() => {
@@ -96,7 +100,7 @@ const EventShowcase = () => {
           <div className="timeline-img-col">
             <div
               className="img-glow-container"
-              onClick={() => scrollToSection(ev.id)} /* Click to Scroll */
+              onClick={() => ev.id === "pursuit" ? window.open("https://pursuitssgmce.vercel.app/", "_blank") : scrollToSection(ev.id)} /* Click to Scroll or Redirect */
               style={{ cursor: "pointer" }}
             >
               <img src={ev.image} alt={ev.title} />
