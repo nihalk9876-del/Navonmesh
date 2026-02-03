@@ -12,8 +12,6 @@ import Hackathon from "./Hackathon";
 import ProjectExpo from "./ProjectExpo";
 import Conference from "./Conference";
 import Team from "./Team";
-import FAQs from "./FAQs";
-import ContactUs from "./ContactUs";
 import Gallery from "./Gallery";
 import Accommodation from "./Accommodation";
 
@@ -118,29 +116,6 @@ const Home = () => {
       {/* Team */}
       <section id="team">
         <Team />
-      </section>
-
-      {/* Split Section: FAQs (Left) & Contact (Right) */}
-      <section id="faqs-contact-split" style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px",
-        padding: "50px 20px",
-        maxWidth: "1400px",
-        margin: "0 auto",
-        alignItems: "flex-start"
-      }}>
-
-        {/* Left: FAQs */}
-        <div style={{ flex: "1", minWidth: "300px" }} id="faqs">
-          <FAQs />
-        </div>
-
-        {/* Right: Contact */}
-        <div style={{ flex: "1", minWidth: "300px" }} id="contact">
-          <ContactUs />
-        </div>
-
       </section>
     </>
   );

@@ -41,6 +41,9 @@ const KNOWLEDGE_BASE = [
     {
         keywords: ["reg", "apply", "form", "step"],
         answer: "To register: Click 'Register' on the navbar, select your event, and fill the Google Form!"
+    }, {
+        keywords: ["reg", "fee", "entry", "srijan"],
+        answer: "registration: the registration is completly free ."
     },
     {
         keywords: ["hi", "hello", "hey"],
@@ -52,6 +55,7 @@ const FAQ_SUGGESTIONS = [
     "What is Navonmesh?",
     "About Srijan Hackathon",
     "Accommodation Info",
+    "Registration fee",
     "Prize Pool",
     "Technical Workshops"
 ];

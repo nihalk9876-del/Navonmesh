@@ -4,7 +4,7 @@ import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import teamPlaceholder from "../assets/team_placeholder.jpg";
 import nihalImg from "../assets/nihal_latest.png";
-import sanchitImg from "../assets/sanchit.png";
+import sanchitImg from "../assets/sanchit_new.png";
 import tanmayImg from "../assets/tanmay.png";
 import krushnaImg from "../assets/krushna.png";
 import omImg from "../assets/om_konde_latest.png";
@@ -17,7 +17,7 @@ import shripadImg from "../assets/shripad_new.png";
 import vedantImg from "../assets/vedant.png";
 import abhishekImg from "../assets/abhishek_new.png";
 import prarthnaImg from "../assets/prarthna.png";
-import rutujaImg from "../assets/rutuja_new.png";
+import rutujaImg from "../assets/rutuja_latest_v2.png";
 import ajinkyaImg from "../assets/ajinkya.png";
 import chakradharImg from "../assets/chakradhar.png";
 import vikasGawadeImg from "../assets/vikas_gawade.png";
@@ -27,9 +27,11 @@ import atharvaTayadeImg from "../assets/atharva_tayade.jpg";
 import vikasMoreImg from "../assets/vikas_more.png";
 import sushantAkhareImg from "../assets/sushant_akhare.png";
 import manjiriImg from "../assets/manjiri_new.png";
-import dollyImg from "../assets/dolly_bhutada.png";
-import sakshiSiddhiImg from "../assets/sakshi_siddhi.png";
+import dollyImg from "../assets/dolly_new.png";
+import sakshiImg from "../assets/sakshi_kamble.png";
+import siddhiImg from "../assets/siddhi_kulkarni.png";
 import hanzalaImg from "../assets/hanzala_khan.png";
+import satyajeetImg from "../assets/satyajeet.png";
 
 const mentors = [
     {
@@ -106,7 +108,6 @@ const teamMembers = [
         name: "Rutuja Deshmukh",
         role: "Core Team Member",
         subRole: "Overall Head",
-        subRole2: "E-Cell Chairperson",
         phone: "+91 9022886503",
         email: "rutuja@example.com",
         image: rutujaImg,
@@ -135,7 +136,6 @@ const teamMembers = [
         name: "Chakradhar Mahale",
         role: "Core Team Member",
         subRole: "Treasurer",
-        subRole2: "E-Cell Vice Chairperson",
         phone: "+91 98765 43210",
         email: "chakradhar@example.com",
         image: chakradharImg,
@@ -192,7 +192,7 @@ const teamMembers = [
         subRole: "Report Writing Co-head",
         phone: "+91 98765 43210",
         email: "sakshi@example.com",
-        image: sakshiSiddhiImg,
+        image: sakshiImg,
     },
     {
         id: 15,
@@ -260,7 +260,7 @@ const teamMembers = [
         subRole: "Decoration Co-head",
         phone: "+91 98765 43210",
         email: "shruti@example.com",
-        image: sakshiSiddhiImg,
+        image: teamPlaceholder,
     },
     {
         id: 25,
@@ -269,7 +269,7 @@ const teamMembers = [
         subRole: "Accommodation and Logistics Co-head",
         phone: "+91 98765 43210",
         email: "siddhi@example.com",
-        image: sakshiSiddhiImg,
+        image: siddhiImg,
     },
 
     {
@@ -280,6 +280,15 @@ const teamMembers = [
         phone: "+91 9999999999 ",
         email: "abhishek@example.com",
         image: atharvaSononeImg,
+    },
+    {
+        id: 31,
+        name: "Satyajeet Patil",
+        role: "Core Team Member",
+        subRole: "Volunteer Head",
+        phone: "+91 98765 43210",
+        email: "satyajeet@example.com",
+        image: satyajeetImg,
     },
     {
         id: 27,
@@ -293,6 +302,8 @@ const teamMembers = [
 ];
 
 const Team = () => {
+    const [showAllCoreTeam, setShowAllCoreTeam] = useState(false);
+
     return (
         <div className="team-container">
 
@@ -394,51 +405,68 @@ const Team = () => {
                 ))}
             </div>
 
-            <div className="team-grid heads-grid">
-                {teamMembers.slice(6).map((member) => (
-                    <div key={member.id} className="team-card">
-                        <div className="member-img">
-                            <img src={member.image} alt={member.name} />
-                        </div>
-                        <div className="member-info">
-                            <h3>{member.name}</h3>
+            {!showAllCoreTeam && (
+                <div className="view-more-container">
+                    <button
+                        className="view-core-btn interstellar-btn"
+                        onClick={() => setShowAllCoreTeam(true)}
+                    >
+                        <span>View Core Team</span>
+                        <div className="star-particles"></div>
+                    </button>
+                    <p className="core-team-slogan">
+                        Beyond the horizon, navigating the frontiers of innovation.
+                    </p>
+                </div>
+            )}
 
-                            {member.subRole && (
-                                <p style={{ color: "#00f3ff", fontSize: "0.82rem", marginTop: "2px", marginBottom: "4px", fontWeight: "bold", lineHeight: "1.1" }}>
-                                    {member.subRole}
-                                </p>
-                            )}
-
-                            {member.subRole2 && (
-                                <p style={{ color: "#00f3ff", fontSize: "0.72rem", marginTop: "0px", marginBottom: "8px", fontWeight: "bold", opacity: 0.9, lineHeight: "1.1" }}>
-                                    {member.subRole2}
-                                </p>
-                            )}
-
-                            <div className="contact-details">
-                                <p>
-                                    <FaPhone className="icon" /> {member.phone}
-                                </p>
-                                <p>
-                                    <FaEnvelope className="icon" /> {member.email}
-                                </p>
+            {showAllCoreTeam && (
+                <div className="team-grid heads-grid">
+                    {teamMembers.slice(6).map((member) => (
+                        <div key={member.id} className="team-card">
+                            <div className="member-img">
+                                <img src={member.image} alt={member.name} />
                             </div>
+                            <div className="member-info">
+                                <h3>{member.name}</h3>
 
-                            <div className="social-links">
-                                <a href="#" className="social-icon">
-                                    <FaInstagram />
-                                </a>
-                                <a href="#" className="social-icon">
-                                    <FaLinkedin />
-                                </a>
-                                <a href="#" className="social-icon">
-                                    <FaXTwitter />
-                                </a>
+                                {member.subRole && (
+                                    <p style={{ color: "#00f3ff", fontSize: "0.82rem", marginTop: "2px", marginBottom: "4px", fontWeight: "bold", lineHeight: "1.1" }}>
+                                        {member.subRole}
+                                    </p>
+                                )}
+
+                                {member.subRole2 && (
+                                    <p style={{ color: "#00f3ff", fontSize: "0.72rem", marginTop: "0px", marginBottom: "8px", fontWeight: "bold", opacity: 0.9, lineHeight: "1.1" }}>
+                                        {member.subRole2}
+                                    </p>
+                                )}
+
+                                <div className="contact-details">
+                                    <p>
+                                        <FaPhone className="icon" /> {member.phone}
+                                    </p>
+                                    <p>
+                                        <FaEnvelope className="icon" /> {member.email}
+                                    </p>
+                                </div>
+
+                                <div className="social-links">
+                                    <a href="#" className="social-icon">
+                                        <FaInstagram />
+                                    </a>
+                                    <a href="#" className="social-icon">
+                                        <FaLinkedin />
+                                    </a>
+                                    <a href="#" className="social-icon">
+                                        <FaXTwitter />
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

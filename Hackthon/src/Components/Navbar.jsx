@@ -61,11 +61,6 @@ const Navbar = ({ onRegisterClick }) => {
         <li>
           <span onClick={() => scrollToSection("team")}>Team</span>
         </li>
-
-        <li>
-          <span onClick={() => scrollToSection("contact")}>Contact</span>
-        </li>
-        {/* Mobile-only action buttons (optional, or keep them separate) */}
       </ul>
     </nav>
   );
