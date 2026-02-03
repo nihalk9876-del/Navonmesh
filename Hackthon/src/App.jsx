@@ -10,8 +10,6 @@ import Gallery from "./Pages/Gallery";
 import ProjectExpo from "./Pages/ProjectExpo";
 // ... imports
 import Register from "./Pages/Register";
-import FAQs from "./Pages/FAQs";
-import ContactUs from "./Pages/ContactUs";
 import ProblemStatement from "./Pages/ProblemStatement";
 import Team from "./Pages/Team";
 import Conference from "./Pages/Conference";
@@ -38,8 +36,6 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/projectexpo" element={<ProjectExpo />} />
               <Route path="/conference" element={<Conference />} />
-              <Route path="/faqs" element={<FAQs />} />
-              <Route path="/contact" element={<ContactUs />} />
               <Route path="/accommodation" element={<Accommodation />} />
               <Route path="/team" element={<Team />} />
             </Route>
