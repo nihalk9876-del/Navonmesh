@@ -40,6 +40,7 @@ import buteImg from "../assets/bute.png";
 import gawandeImg from "../assets/gawande.png";
 import mishraImg from "../assets/mishra.png";
 import chandanImg from "../assets/chandan.png";
+import sanskrutiImg from "../assets/sanskruti.png";
 
 const mentors = [
     {
@@ -230,6 +231,15 @@ const teamMembers = [
         phone: "+91 7774900204",
         email: "chavanshrinit@gmail.com",
         image: shrinitImg,
+    },
+    {
+        id: 32,
+        name: "Sanskruti Kakade",
+        role: "Core Team Member",
+        subRole: "Management Co-head",
+        phone: "+91 9423413845",
+        email: "sanskrutikakade06@gmail.com",
+        image: sanskrutiImg,
     },
     {
         id: 13,

@@ -10,6 +10,12 @@ const Register = () => {
     const queryParams = new URLSearchParams(location.search);
     const urlEvent = queryParams.get('event');
 
+    useEffect(() => {
+        if (urlEvent === 'pursuit') {
+            window.location.href = "https://pursuitssgmce.vercel.app/";
+        }
+    }, [urlEvent]);
+
     const [formData, setFormData] = useState({
         // Team Leader (Member 1)
         fullName: '', email: '', phone: '', college: '',
