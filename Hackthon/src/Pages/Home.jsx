@@ -17,6 +17,7 @@ import Accommodation from "./Accommodation";
 
 import ProblemStatements from "../Components/ProblemStatements";
 import CampusMap from "../Components/CampusMap";
+import Podcast from "../Components/Podcast";
 
 const Home = () => {
   /* Rocket Launch Logic */
@@ -107,6 +108,9 @@ const Home = () => {
       <section id="accommodation">
         <Accommodation />
       </section>
+
+      {/* Podcast Window */}
+      <Podcast />
 
       {/* Gallery */}
       <section id="gallery">

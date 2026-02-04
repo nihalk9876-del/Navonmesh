@@ -10,11 +10,36 @@ import gallery7 from '../assets/gallery7.png';
 import gallery8 from '../assets/gallery8.png';
 
 const Gallery = () => {
+    const [isVisible, setIsVisible] = React.useState(false);
+    const galleryRef = React.useRef(null);
+
     // Placeholder images for background scrolling
     const images = [
         gallery1, gallery2, gallery3, gallery4,
         gallery5, gallery6, gallery7, gallery8
     ];
+
+    // Intersection Observer to detect when gallery is in view
+    React.useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.3 } // Play when 30% of gallery is visible
+        );
+
+        if (galleryRef.current) {
+            observer.observe(galleryRef.current);
+        }
+
+        return () => {
+            if (galleryRef.current) {
+                observer.unobserve(galleryRef.current);
+            }
+        };
+    }, []);
 
     // Create unique shuffled orders for each row
     const row1Images = [...images, ...images, ...images];
@@ -22,17 +47,16 @@ const Gallery = () => {
     const row3Images = [...[gallery4, gallery1, gallery7, gallery2, gallery8, gallery3, gallery6, gallery5], ...[gallery4, gallery1, gallery7, gallery2, gallery8, gallery3, gallery6, gallery5], ...[gallery4, gallery1, gallery7, gallery2, gallery8, gallery3, gallery6, gallery5]];
 
     // Video Sources
-    const video1 = "https://www.youtube.com/embed/08fySatSc2c?si=nZq1_yA3_J7vLBim";
-    const video2 = "https://www.youtube.com/embed/08fySatSc2c?si=nZq1_yA3_J7vLBim";
-    const video3 = "https://www.youtube.com/embed/08fySatSc2c?si=nZq1_yA3_J7vLBim";
+    // Add autoplay and mute params when visible. Mute is required by browsers for autoplay to work.
+    const baseVideoUrl = "https://www.youtube.com/embed/08fySatSc2c?si=nZq1_yA3_J7vLBim";
+    const autoPlayUrl = `${baseVideoUrl}&autoplay=1&mute=1`;
 
     return (
-        <div className="gallery-page">
+        <div className="gallery-page" ref={galleryRef}>
             <h1 className="gallery-title">Gallery</h1>
 
-            {/* Row 1: Left Overlay */}
+            {/* Row 1 */}
             <div className="gallery-row">
-                {/* Scrolling Background */}
                 <div className="marquee-layer">
                     <div className="marquee-track">
                         {row1Images.map((src, index) => (
@@ -40,17 +64,6 @@ const Gallery = () => {
                                 <img src={src} alt="Gallery Item" />
                             </div>
                         ))}
-                    </div>
-                </div>
-
-                {/* Stable Overlay - Left */}
-                <div className="video-overlay overlay-left">
-                    <div className="overlay-video-container">
-                        <iframe
-                            src={video1}
-                            title="Video 1"
-                            allowFullScreen
-                        ></iframe>
                     </div>
                 </div>
             </div>
@@ -71,15 +84,16 @@ const Gallery = () => {
                 <div className="video-overlay overlay-center">
                     <div className="overlay-video-container">
                         <iframe
-                            src={video2}
-                            title="Video 2"
+                            src={isVisible ? autoPlayUrl : baseVideoUrl}
+                            title="Gallery Feature Video"
+                            allow="autoplay; encrypted-media"
                             allowFullScreen
                         ></iframe>
                     </div>
                 </div>
             </div>
 
-            {/* Row 3: Right Overlay */}
+            {/* Row 3 */}
             <div className="gallery-row">
                 <div className="marquee-layer">
                     <div className="marquee-track">
@@ -88,17 +102,6 @@ const Gallery = () => {
                                 <img src={src} alt="Gallery Item" />
                             </div>
                         ))}
-                    </div>
-                </div>
-
-                {/* Stable Overlay - Right */}
-                <div className="video-overlay overlay-right">
-                    <div className="overlay-video-container">
-                        <iframe
-                            src={video3}
-                            title="Video 3"
-                            allowFullScreen
-                        ></iframe>
                     </div>
                 </div>
             </div>
