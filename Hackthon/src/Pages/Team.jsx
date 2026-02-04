@@ -54,8 +54,8 @@ const mentors = [
     },
     {
         id: 2,
-        name: "Dr. S. S. Jadhao",
-        role: "Event Incharge",
+        name: "Dr. S. S. Saurabh Jadhav",
+        role: "convener",
         image: jadhaoImg,
         description: "Dedicated mentor fostering technical growth and student development."
     },
@@ -118,7 +118,7 @@ const mentors = [
     {
         id: 11,
         name: "Dr. K. V. Chandan",
-        role: "Faculty Advisor",
+        role: " Pursuit Faculty Advisor",
         image: chandanImg,
         description: "Dedicated faculty member supporting the Navonmesh mission."
     }
@@ -148,7 +148,7 @@ const teamMembers = [
         name: "Shripad Ingle",
         role: "Core Team Member",
         subRole: "Final Year Advisor",
-        phone: "+91 98765 43210",
+        phone: "+91 9876543210",
         email: "shripad@example.com",
         image: shripadImg,
     },

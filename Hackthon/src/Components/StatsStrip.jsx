@@ -63,7 +63,7 @@ const StatsStrip = () => {
         {/* Special case for currency since it needs prefix */}
         <span className="stat-value-wrapper">
           <span className="currency-symbol">₹</span>
-          <AnimatedCounter end={65} suffix="K+" />
+          <AnimatedCounter end={1} suffix=" Lakh+" />
         </span>
         <span className="stat-label">Prize Pool</span>
       </div>

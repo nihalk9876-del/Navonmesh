@@ -44,24 +44,7 @@ const Hackathon = () => {
             location: "Main Hall",
             dotColor: "purple"
         },
-        {
-            title: "Cultural Event",
-            time: "March 23, 6:00 PM - 7:00 PM",
-            desc: "Take a break and enjoy exciting performances or showcase your talent.",
-            tag: "Optional",
-            tagColor: "blue",
-            location: "Auditorium",
-            dotColor: "purple"
-        },
-        {
-            title: "Jamming Session",
-            time: "March 23, 9:00 PM - 9:15 PM",
-            desc: "Sing along and enjoy the music in this creative session.",
-            tag: "Optional",
-            tagColor: "blue",
-            location: "Main Hall",
-            dotColor: "purple"
-        },
+
         {
             title: "Jury Round 2",
             time: "March 23, 10:00 PM - 12:00 AM",
