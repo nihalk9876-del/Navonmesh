@@ -16,7 +16,7 @@ const KNOWLEDGE_BASE = [
     },
     {
         keywords: ["srijan", "24 hr hackathon", "hackathon"],
-        answer: "Srijan is our astronomical 24-hour Hackathon! It's a platform where innovators collide to build solutions for real-world problems. Expect intense competition, amazing mentors, and a chance to win from the 65K+ prize pool!"
+        answer: "Srijan is our astronomical 24-hour Hackathon! It's a platform where innovators collide to build solutions for real-world problems. Expect intense competition, amazing mentors, and a chance to win from the 1 Lakh+ prize pool!"
     },
     {
         keywords: ["ankur", "project expo", "exhibition"],
@@ -35,8 +35,8 @@ const KNOWLEDGE_BASE = [
         answer: "Zero Gravity Accommodation! 🏠 We provide FREE stay for outstation participants. Just ensure you've checked the 'Accommodation Needed' box in your registration form."
     },
     {
-        keywords: ["prize", "money", "reward", "win", "pool", "65k"],
-        answer: "The total prize pool for Navonmesh is over ₹65,000! 💰 Winners in different categories and events will take home significant rewards and certificates."
+        keywords: ["prize", "money", "reward", "win", "pool", "1lakh", "lakh"],
+        answer: "The total prize pool for Navonmesh is over ₹1,00,000! 💰 Winners in different categories and events will take home significant rewards and certificates."
     },
     {
         keywords: ["registration", "apply", "form", "join", "link"],
