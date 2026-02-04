@@ -118,6 +118,17 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   /* Move upward */
 }
 
+.marathi-tagline {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  color: #00e5ff;
+  margin-top: -15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+  letter-spacing: 1px;
+}
+
 .hero-tagline {
   margin-top: -10px;
   /* Pull closer to the logo */
@@ -398,6 +409,13 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
     width: 70% !important;
     max-width: 280px;
     transform: translateY(-10px);
+  }
+
+  .marathi-tagline {
+    font-size: 1rem;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
   }
 
   /* SUBTITLE: "SSGMCE Presents" */
