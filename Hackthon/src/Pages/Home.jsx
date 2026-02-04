@@ -46,6 +46,7 @@ const Home = () => {
           </p>
 
           <img src={PursuitName} alt="Pursuit 2026" className="pursuit-name" />
+          <h2 className="marathi-tagline">ज्ञानातून नवोन्मेष, नवोन्मेषातून विकास</h2>
         </div>
 
         {/* Custom 3D Globe Animation */}
