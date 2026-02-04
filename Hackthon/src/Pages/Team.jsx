@@ -4,6 +4,7 @@ import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import teamPlaceholder from "../assets/team_placeholder.jpg";
 import nihalImg from "../assets/nihal_latest.png";
+import divineImg from "../assets/divine_blessings.png";
 import sanchitImg from "../assets/sanchit_new.png";
 import tanmayImg from "../assets/tanmay.png";
 import krushnaImg from "../assets/krushna.png";
@@ -14,7 +15,7 @@ import wahileImg from "../assets/ganesh_wahile.png";
 import shrinitImg from "../assets/shrinit_latest.png";
 import EcellLogo from "../assets/ecell-logo.png";
 import shripadImg from "../assets/shripad_new.png";
-import vedantImg from "../assets/vedant.png";
+import vedantImg from "../assets/vedant_latest.png";
 import abhishekImg from "../assets/abhishek_new.png";
 import prarthnaImg from "../assets/prarthna.png";
 import rutujaImg from "../assets/rutuja_latest_v2.png";
@@ -180,6 +181,15 @@ const teamMembers = [
     },
 
     {
+        id: 15,
+        name: "Vedant Darokar",
+        role: "Core Team Member",
+        subRole: "Executive Head",
+        phone: "+91 98765 43210",
+        email: "vedant@example.com",
+        image: vedantImg,
+    },
+    {
         id: 14,
         name: "Prarthna Kale",
         role: "Core Team Member",
@@ -268,15 +278,6 @@ const teamMembers = [
         phone: "+91 98765 43210",
         email: "sakshi@example.com",
         image: sakshiImg,
-    },
-    {
-        id: 15,
-        name: "Vedant Darokar",
-        role: "Core Team Member",
-        subRole: "Design Head",
-        phone: "+91 98765 43210",
-        email: "vedant@example.com",
-        image: vedantImg,
     },
     {
         id: 29,
@@ -382,6 +383,14 @@ const Team = () => {
     return (
         <div className="team-container">
 
+
+            <div className="divine-section" style={{ marginTop: "60px" }}>
+                <h2 className="divine-text">By the divine blessings of</h2>
+                <div className="divine-img-container">
+                    <img src={divineImg} alt="Divine Blessing" />
+                </div>
+                <h3 className="marathi-text">श्री संत गजानन महाराज, शेगाव</h3>
+            </div>
 
             <h1 className="team-title" style={{ marginTop: "40px" }}>MENTORS</h1>
             {/* Desktop Mentors Grid */}

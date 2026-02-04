@@ -28,6 +28,7 @@ const Register = () => {
         teamName: '',
         teamSize: '',
         accommodation: 'No',
+        suggestions: '',
 
         // Members 2-4
         member2Name: '', member2Email: '', member2Phone: '',
@@ -55,17 +56,23 @@ const Register = () => {
         'Srujan (Hackathon)': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSckdVMXfOtp8_v4yhbLR9RiGFZEi3axiKZYOlj9tq3V_KJ8ow/formResponse",
             ids: {
-                leaderName: "entry.685383898",
+                teamName: "entry.685383898",
+                leaderName: "entry.1299269564",
                 leaderEmail: "entry.209200253",
-                leaderPhone: "entry.1577051641",
-                college: "entry.1443456513",
-                event: "entry.566872537",
-                type: "entry.1968381259",
-                domain: "entry.1974017458",
-                abstract: "entry.705075754" // Used for bundling Team Name, Member Details etc.
+                member2Name: "entry.947643702",
+                member2Email: "entry.1791579024",
+                member3Name: "entry.1789252095",
+                member3Email: "entry.510037962",
+                member4Name: "entry.1333084002",
+                member4Email: "entry.415072966",
+                college: "entry.1577051641",
+                leaderPhone: "entry.1443456513",
+                suggestions: "entry.705075754"
             },
             hasCollege: true,
-            bundleMembers: true
+            hasMemberPhone: false,
+            hasAccommodation: false,
+            bundleMembers: false
         },
         'Ankur (Project Expo)': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSej9oZlDfPMX7eQ0JJvcSIrmdqKZuHkDUS0E0L42kxhEfTpyw/formResponse",
@@ -86,6 +93,8 @@ const Register = () => {
                 accommodation: "entry.1941174996"
             },
             hasCollege: false,
+            hasMemberPhone: true,
+            hasAccommodation: true,
             bundleMembers: false
         },
         'Uddhav (Conference)': {
@@ -107,6 +116,8 @@ const Register = () => {
                 accommodation: "entry.1941174996"
             },
             hasCollege: false,
+            hasMemberPhone: true,
+            hasAccommodation: true,
             bundleMembers: false
         },
         'Pursuit': {
@@ -128,6 +139,8 @@ const Register = () => {
                 accommodation: "entry.1941174996"
             },
             hasCollege: false,
+            hasMemberPhone: true,
+            hasAccommodation: true,
             bundleMembers: false
         }
     };
@@ -144,65 +157,50 @@ const Register = () => {
             return;
         }
 
-        const formBody = new FormData(); // Renamed from formData to formBody to avoid conflict with state variable
+        const formBody = new FormData();
 
-        // --- COMMON FIELDS (Leader) ---
-        formBody.append(config.ids.leaderName, fullName);
-        formBody.append(config.ids.leaderEmail, email);
-        formBody.append(config.ids.leaderPhone, phone);
-
-        if (config.hasCollege) {
-            formBody.append(config.ids.college, college);
-        }
+        // --- COMMON FIELDS ---
+        if (config.ids.teamName) formBody.append(config.ids.teamName, formData.teamName);
+        if (config.ids.leaderName) formBody.append(config.ids.leaderName, formData.fullName);
+        if (config.ids.leaderEmail) formBody.append(config.ids.leaderEmail, formData.email);
+        if (config.ids.leaderPhone) formBody.append(config.ids.leaderPhone, formData.phone);
+        if (config.ids.college && config.hasCollege) formBody.append(config.ids.college, formData.college);
+        if (config.ids.accommodation && config.hasAccommodation) formBody.append(config.ids.accommodation, formData.accommodation.toUpperCase());
+        if (config.ids.suggestions) formBody.append(config.ids.suggestions, formData.suggestions);
 
         if (config.bundleMembers) {
-            // --- SRUJAN LOGIC (Bundle everything into "Abstract") ---
-
-            // Srujan-specific extra fields
+            // Srujan legacy logic (if needed, but currently false for all)
             formBody.append(config.ids.event, event);
             formBody.append(config.ids.type, "Team Registration");
             formBody.append(config.ids.domain, "N/A");
 
-            // Bundle Members & Details
             let detailedInfo = `--- TEAM REGISTRATION ---`;
             detailedInfo += `\nTeam Name: ${teamName}`;
             detailedInfo += `\nTeam Size: ${teamSize}`;
-            detailedInfo += `\nAccommodation: ${accommodation}`;
-            detailedInfo += `\n\nMember 2: ${member2Name}, ${member2Email}, ${member2Phone}`;
-            if (parseInt(teamSize) >= 3) detailedInfo += `\nMember 3: ${member3Name}, ${member3Email}, ${member3Phone}`;
-            if (parseInt(teamSize) >= 4) detailedInfo += `\nMember 4: ${member4Name}, ${member4Email}, ${member4Phone}`;
+            detailedInfo += `\n\nMember 2: ${member2Name}, ${member2Email}`;
+            if (parseInt(teamSize) >= 3) detailedInfo += `\nMember 3: ${member3Name}, ${member3Email}`;
+            if (parseInt(teamSize) >= 4) detailedInfo += `\nMember 4: ${member4Name}, ${member4Email}`;
 
             formBody.append(config.ids.abstract, detailedInfo);
-
         } else {
-            // --- ANKUR / UDDHAV LOGIC (Direct Field Mapping) ---
-            formBody.append(config.ids.teamName, teamName);
-            formBody.append(config.ids.leaderName, fullName);
-            formBody.append(config.ids.leaderEmail, email);
-            formBody.append(config.ids.leaderPhone, phone);
+            // Member 2
+            if (config.ids.member2Name) formBody.append(config.ids.member2Name, formData.member2Name);
+            if (config.ids.member2Email) formBody.append(config.ids.member2Email, formData.member2Email);
+            if (config.ids.member2Phone && config.hasMemberPhone) formBody.append(config.ids.member2Phone, formData.member2Phone);
 
-            // Member 2 (Required)
-            formBody.append(config.ids.member2Name, member2Name);
-            formBody.append(config.ids.member2Email, member2Email);
-            formBody.append(config.ids.member2Phone, member2Phone);
-
-            // Member 3 (Optional in UI, but check if required in Form)
-            // If empty, submit empty string
-            if (parseInt(teamSize) >= 3) {
-                formBody.append(config.ids.member3Name, member3Name);
-                formBody.append(config.ids.member3Email, member3Email);
-                formBody.append(config.ids.member3Phone, member3Phone);
+            // Member 3
+            if (parseInt(formData.teamSize) >= 3) {
+                if (config.ids.member3Name) formBody.append(config.ids.member3Name, formData.member3Name);
+                if (config.ids.member3Email) formBody.append(config.ids.member3Email, formData.member3Email);
+                if (config.ids.member3Phone && config.hasMemberPhone) formBody.append(config.ids.member3Phone, formData.member3Phone);
             }
 
             // Member 4
-            if (parseInt(teamSize) >= 4) {
-                formBody.append(config.ids.member4Name, member4Name);
-                formBody.append(config.ids.member4Email, member4Email);
-                formBody.append(config.ids.member4Phone, member4Phone);
+            if (parseInt(formData.teamSize) >= 4) {
+                if (config.ids.member4Name) formBody.append(config.ids.member4Name, formData.member4Name);
+                if (config.ids.member4Email) formBody.append(config.ids.member4Email, formData.member4Email);
+                if (config.ids.member4Phone && config.hasMemberPhone) formBody.append(config.ids.member4Phone, formData.member4Phone);
             }
-
-            // Ensure Accommodation is "YES"/"NO" (Uppercase) for these forms
-            formBody.append(config.ids.accommodation, accommodation.toUpperCase());
         }
 
         try {
@@ -212,13 +210,13 @@ const Register = () => {
                 body: formBody
             });
 
-            setShowSuccessModal(true); // Changed from setSuccessModal to setShowSuccessModal
+            setShowSuccessModal(true);
             setLoading(false);
 
             // Reset fields
             setFormData(prev => ({
                 ...prev,
-                teamName: '', teamSize: '', accommodation: 'No',
+                teamName: '', teamSize: '', accommodation: 'No', suggestions: '',
                 member2Name: '', member2Email: '', member2Phone: '',
                 member3Name: '', member3Email: '', member3Phone: '',
                 member4Name: '', member4Email: '', member4Phone: ''
@@ -319,11 +317,15 @@ const Register = () => {
                     <label>TEAM NAME</label>
                     <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
 
-                    <label>ACCOMMODATION REQUIRED?</label>
-                    <select name="accommodation" value={accommodation} onChange={onChange} className="register-select" required>
-                        <option value="No">No</option>
-                        <option value="Yes">Yes</option>
-                    </select>
+                    {config?.hasAccommodation && (
+                        <>
+                            <label>ACCOMMODATION REQUIRED?</label>
+                            <select name="accommodation" value={accommodation} onChange={onChange} className="register-select" required>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </>
+                    )}
 
                     <label>TEAM SIZE (2-4)</label>
                     <input
@@ -364,8 +366,12 @@ const Register = () => {
                             <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
                             <label>EMAIL</label>
                             <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
-                            <label>PHONE</label>
-                            <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                            {config?.hasMemberPhone && (
+                                <>
+                                    <label>PHONE</label>
+                                    <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                                </>
+                            )}
                         </>
                     )}
 
@@ -376,8 +382,12 @@ const Register = () => {
                             <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
                             <label>EMAIL</label>
                             <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
-                            <label>PHONE</label>
-                            <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
+                            {config?.hasMemberPhone && (
+                                <>
+                                    <label>PHONE</label>
+                                    <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
+                                </>
+                            )}
                         </>
                     )}
 
@@ -388,10 +398,36 @@ const Register = () => {
                             <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
                             <label>EMAIL</label>
                             <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
-                            <label>PHONE</label>
-                            <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
+                            {config?.hasMemberPhone && (
+                                <>
+                                    <label>PHONE</label>
+                                    <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
+                                </>
+                            )}
                         </>
                     )}
+
+                    <label>DO YOU HAVE ANY SUGGESTION?</label>
+                    <textarea
+                        placeholder="Your suggestions..."
+                        name="suggestions"
+                        value={formData.suggestions}
+                        onChange={onChange}
+                        style={{
+                            background: '#0f1016',
+                            border: '1px solid #2d2d3a',
+                            padding: '14px 15px',
+                            borderRadius: '8px',
+                            color: 'white',
+                            fontSize: '0.95rem',
+                            outline: 'none',
+                            transition: '0.3s',
+                            fontFamily: 'Inter, sans-serif',
+                            width: '100%',
+                            minHeight: '100px',
+                            resize: 'vertical'
+                        }}
+                    />
 
                     <button type="submit" className="register-btn" disabled={loading}>
                         {loading ? 'Submitting...' : 'Register Team'}

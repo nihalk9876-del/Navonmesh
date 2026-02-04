@@ -131,21 +131,16 @@
 .video-overlay {
     position: absolute;
     top: 45%;
-    /* Moved up from 50% */
     transform: translateY(-50%);
     z-index: 10;
-    /* Above marquee */
-    width: 480px;
-    /* Decreased size */
-    /* Add styling to make it look like a featured card */
+    width: 800px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
-    padding: 10px;
-    border-radius: 15px;
+    padding: 15px;
+    border-radius: 20px;
     border: 1px solid #4488ff;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
     transition: all 0.3s ease;
-    /* Smooth transition */
 }
 
 .video-overlay:hover {
@@ -231,12 +226,14 @@
         border-width: 1px;
     }
 
-    .overlay-left, .overlay-right, .overlay-center {
+    .overlay-left,
+    .overlay-right,
+    .overlay-center {
         left: 50% !important;
         right: auto !important;
         transform: translate(-50%, -50%) !important;
     }
-    
+
     .video-overlay:hover {
         transform: translate(-50%, -50%) scale(1.03) !important;
     }

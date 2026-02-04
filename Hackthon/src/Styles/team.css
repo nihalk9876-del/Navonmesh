@@ -21,6 +21,56 @@
     letter-spacing: 2px;
 }
 
+/* Divine Blessings Section */
+.divine-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.divine-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.marathi-text {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-size: 1.6rem;
+    color: #ffd700;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.divine-img-container {
+    width: 300px;
+    border-radius: 20px;
+    padding: 10px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
+    transition: transform 0.4s ease;
+}
+
+.divine-img-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 70px rgba(255, 215, 0, 0.25);
+}
+
+.divine-img-container img {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
 .team-subtitle {
     text-align: center;
     color: #b0bfdc;
@@ -577,6 +627,19 @@
         border-radius: 12px !important;
         padding: 6px !important;
         box-sizing: border-box !important;
+    }
+
+    .divine-text {
+        font-size: 1.2rem;
+    }
+
+    .marathi-text {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .divine-img-container {
+        width: 200px;
     }
 
     .overall-head-card .member-img {
