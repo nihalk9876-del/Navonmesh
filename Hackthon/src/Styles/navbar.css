@@ -136,22 +136,25 @@
 }
 
 /* Consistent link styles */
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
 .nav-links a,
 .nav-links span,
-/* Added span targeting */
 .dropdown-trigger {
   padding: 10px 0;
-  display: block;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   cursor: pointer;
+  color: inherit;
+  transition: color 0.3s ease;
 }
 
 .dropdown-trigger {
-  display: flex;
-  align-items: center;
   gap: 6px;
-  transform: translateY(-2px);
-  /* User requested "move this little upward" */
 }
 
 .dropdown-arrow {

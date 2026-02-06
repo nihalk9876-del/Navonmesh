@@ -56,8 +56,8 @@ const Navbar = ({ onRegisterClick }) => {
           <span onClick={() => scrollToSection("accommodation")}>Accommodation</span>
         </li>
         <li>
-          <NavLink to="/cultural" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
-            <span>Cultural</span>
+          <NavLink to="/cultural" className="nav-item" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
+            Cultural
           </NavLink>
         </li>
         <li>

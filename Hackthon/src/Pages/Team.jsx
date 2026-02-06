@@ -342,7 +342,7 @@ const teamMembers = [
         id: 25,
         name: "Siddhi Kulkarni",
         role: "Core Team Member",
-        subRole: "Accommodation and Logistics Co-head",
+        subRole: "Registration co-head",
         phone: "+91 98765 43210",
         email: "siddhi@example.com",
         image: siddhiImg,
