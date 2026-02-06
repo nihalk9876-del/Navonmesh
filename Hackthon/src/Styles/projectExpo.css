@@ -102,10 +102,17 @@
     transform: scale(1.05);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
+
 .main-title {
-    font-size: 4rem;
-    font-weight: bold;
+    font-family: 'Khand', sans-serif;
+    font-size: 6rem;
+    /* Larger size for Khand as it is condensed */
+    font-weight: 700;
+    /* Bold for solid look */
     color: white;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    line-height: 1.1;
 }
 
 /* Green Divider for Ankur/Expo */

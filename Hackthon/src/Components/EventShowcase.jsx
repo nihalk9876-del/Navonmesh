@@ -24,7 +24,7 @@ const events = [
     registerParam: "ankur"
   },
   {
-    title: "उद्भव",
+    title: "उद्‌भव",
     text: "An electrifying cultural night where talent meets celebration. Experience unforgettable moments.",
     image: e3,
     side: "left",
