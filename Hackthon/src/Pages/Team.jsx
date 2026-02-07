@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Styles/team.css";
 import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import teamPlaceholder from "../assets/team_placeholder.jpg";
+import teamPlaceholder from "../assets/team_placeholder.png";
 import nihalImg from "../assets/nihal_latest.png";
 import divineImg from "../assets/divine_blessings.png";
 import sanchitImg from "../assets/sanchit_new.png";
@@ -17,18 +17,18 @@ import EcellLogo from "../assets/ecell-logo.png";
 import shripadImg from "../assets/shripad_new.png";
 import vedantImg from "../assets/vedant_latest.png";
 import abhishekImg from "../assets/abhishek_new.png";
-import prarthnaImg from "../assets/prarthna.png";
+import prarthnaImg from "../assets/prarthna.jpeg";
 import rutujaImg from "../assets/rutuja_latest_v2.png";
 import ajinkyaImg from "../assets/ajinkya.png";
 import chakradharImg from "../assets/chakradhar.png";
 import vikasGawadeImg from "../assets/vikas_gawade.png";
 import omDeshmukhImg from "../assets/om_deshmukh.png";
 import atharvaSononeImg from "../assets/atharva_sonone.png";
-import atharvaTayadeImg from "../assets/atharva_tayade.jpg";
+import atharvaTayadeImg from "../assets/atharva_tayade.png";
 import vikasMoreImg from "../assets/vikas_more.png";
 import sushantAkhareImg from "../assets/sushant_akhare.png";
 import manjiriImg from "../assets/manjiri_new.png";
-import dollyImg from "../assets/dolly_new.png";
+import dollyImg from "../assets/dolly_bhutada.png";
 import sakshiImg from "../assets/sakshi_kamble.png";
 import siddhiImg from "../assets/siddhi_kulkarni.png";
 import hanzalaImg from "../assets/hanzala_khan.png";
@@ -141,6 +141,8 @@ const teamMembers = [
         subRole: "Final Year Advisor",
         phone: "+91 98765 43210",
         email: "om@example.com",
+        instagram: "#",
+        linkedin: "#",
         image: omDeshmukhImg,
     },
     {
@@ -176,7 +178,9 @@ const teamMembers = [
         role: "Core Team Member",
         subRole: "Overall Head",
         phone: "+91 9022886503",
-        email: "rutuja@example.com",
+        email: "rutujadeshmukh1512@gmail.com",
+        instagram: "https://www.instagram.com/rutujadeshmukh157?igsh=MXQwd2dwY21lazg5eA==",
+        linkedin: "https://www.linkedin.com/in/rutuja-deshmukh-3aa0a03aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: rutujaImg,
     },
 
@@ -185,8 +189,10 @@ const teamMembers = [
         name: "Atharva Tayade",
         role: "Core Team Member",
         subRole: "HEAD(सृजन)",
-        phone: "+91 98765 43210",
-        email: "atharva@example.com",
+        phone: "+91 8767968475",
+        email: "tayadeatharva12@gmail.com",
+        instagram: "https://www.instagram.com/atharva_tayade_?igsh=dWFnaW43NDE0MTMx",
+        linkedin: "https://www.linkedin.com/in/atharva-tayade-b63449294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: atharvaTayadeImg,
     },
     {
@@ -194,8 +200,10 @@ const teamMembers = [
         name: "Krushna Kokate",
         role: "Core Team Member",
         subRole: "HEAD (अंकुर)",
-        phone: "+91 98765 43210",
-        email: "krushna@example.com",
+        phone: "+91 8261905585",
+        email: "krushnakokate829@gmail.com",
+        instagram: "https://www.instagram.com/krushna_kokate25?igsh=MTNwbGtpeml0aGJlNA==",
+        linkedin: "https://www.linkedin.com/in/krushna-kokate-591009329?utm_source=share_via&utm_content=profile&utm_medium=member_android",
         image: tanmayImg,
     },
     {
@@ -230,8 +238,10 @@ const teamMembers = [
         name: "Chakradhar Mahale",
         role: "Core Team Member",
         subRole: "Treasurer",
-        phone: "+91 98765 43210",
-        email: "chakradhar@example.com",
+        phone: "+91 7350976698",
+        email: "chakradharmahale7@gmail.com",
+        instagram: "https://www.instagram.com/chakradharmahale01",
+        linkedin: "#",
         image: chakradharImg,
     },
     {
@@ -240,8 +250,21 @@ const teamMembers = [
         role: "Core Team Member",
         subRole: "Publicity Head",
         phone: "+91 8010324551",
-        email: "abhishek@example.com",
+        email: "abhishek.kanherkar3@gmail.com",
+        instagram: "https://www.instagram.com/abhishekkanherkar03?igsh=MXM2bTZlaXd3OWw0Zw==",
+        linkedin: "https://www.linkedin.com/in/abhishek-kanherkar-2124083ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: abhishekImg,
+    },
+    {
+        id: 33,
+        name: "Pratik Mapari",
+        role: "Core Team Member",
+        subRole: "Discipline Co-Head",
+        phone: "+91 9764315703",
+        email: "pratikmapari61@gmail.com",
+        instagram: "https://www.instagram.com/theprxtik?igsh=MXhuZmE5M2YwcjFkZQ==",
+        linkedin: "https://www.linkedin.com/in/pratik-mapari-b259aa289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        image: teamPlaceholder,
     },
     {
         id: 18,
@@ -249,7 +272,9 @@ const teamMembers = [
         role: "Core Team Member",
         subRole: "Discipline Head",
         phone: "+91 8669873156",
-        email: "omkonde@gmail.com",
+        email: "kondeom970@gmail.com",
+        instagram: "https://www.instagram.com/om_3105_?igsh=ZHBxYmZoaWtmZm8x",
+        linkedin: "https://www.linkedin.com/in/om-konde-bb48b2290?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: omImg,
     },
     {
@@ -259,6 +284,8 @@ const teamMembers = [
         subRole: "Management Head",
         phone: "+91 7774900204",
         email: "chavanshrinit@gmail.com",
+        instagram: "https://www.instagram.com/_aniket_patil__0?igsh=azZ6ZGw0Ymtxemow",
+        linkedin: "https://www.linkedin.com/in/shrinit-chavan-106224295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: shrinitImg,
     },
     {
@@ -284,8 +311,10 @@ const teamMembers = [
         name: "Hanzala Khan",
         role: "Core Team Member",
         subRole: "Graphics Head",
-        phone: "+91 98765 43210",
-        email: "hanzala@example.com",
+        phone: "+91 7410799739",
+        email: "hanzalakhan004az@gmail.com",
+        instagram: "https://www.instagram.com/hanzala_khan_0004",
+        linkedin: "https://www.linkedin.com/in/hanzala-khan-068885294",
         image: hanzalaImg,
     },
     {
@@ -293,8 +322,10 @@ const teamMembers = [
         name: "Ajinkya Surange",
         role: "Core Team Member",
         subRole: "Accommodation and Logistics Head",
-        phone: "+91 98765 43210",
-        email: "ajinkya@example.com",
+        phone: "+91 9604765998",
+        email: "surangeajinkya9@gmail.com",
+        instagram: "https://www.instagram.com/ajinkyasurange?igsh=MW80am1ycXF4bGE4dg==",
+        linkedin: "https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
         image: ajinkyaImg,
     },
     {
@@ -316,8 +347,10 @@ const teamMembers = [
         name: "Sushant Akhare",
         role: "Core Team Member",
         subRole: "Cultural Head",
-        phone: "+91 98765 43210",
-        email: "sushant@example.com",
+        phone: "+91 8767872382",
+        email: "sushant.akhare@gmail.com",
+        instagram: "https://www.instagram.com/sushant.akhare?igsh=MWV5dGwyNjF5Y3gwZA==",
+        linkedin: "https://www.linkedin.com/in/sushant-akhare-0505ba31b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: sushantAkhareImg,
     },
     {
@@ -353,8 +386,10 @@ const teamMembers = [
         name: "Atharva Sonone",
         role: "Core Team Member",
         subRole: "Volunteer Head ",
-        phone: "+91 9999999999 ",
-        email: "abhishek@example.com",
+        phone: "+91 9834428773",
+        email: "atharvsonone98@gmail.com",
+        instagram: "https://www.instagram.com/atharv_sonone_?igsh=MnRnM2JxZGoxejly",
+        linkedin: "https://www.linkedin.com/in/atharv-sonone-43a707335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: atharvaSononeImg,
     },
     {
@@ -371,8 +406,10 @@ const teamMembers = [
         name: "Dolly Bhutada",
         role: "Core Team Member",
         subRole: "Volunteer Co-head",
-        phone: "+91 98765 43210",
-        email: "dolly@example.com",
+        phone: "+91 8459701982",
+        email: "dollybhutada05@gmail.com",
+        instagram: "https://www.instagram.com/dolly_bhutada?igsh=YTljcjdwd3J0NWZq",
+        linkedin: "https://www.linkedin.com/in/dolly-bhutada-45937a350?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: dollyImg,
     },
 ];
@@ -474,10 +511,10 @@ const Team = () => {
                             </div>
 
                             <div className="social-links">
-                                <a href="#" className="social-icon">
+                                <a href={member.instagram || "#"} target="_blank" rel="noopener noreferrer" className="social-icon">
                                     <FaInstagram />
                                 </a>
-                                <a href="#" className="social-icon">
+                                <a href={member.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="social-icon">
                                     <FaLinkedin />
                                 </a>
                                 <a href="#" className="social-icon">
@@ -536,10 +573,10 @@ const Team = () => {
                                 </div>
 
                                 <div className="social-links">
-                                    <a href="#" className="social-icon">
+                                    <a href={member.instagram || "#"} target="_blank" rel="noopener noreferrer" className="social-icon">
                                         <FaInstagram />
                                     </a>
-                                    <a href="#" className="social-icon">
+                                    <a href={member.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="social-icon">
                                         <FaLinkedin />
                                     </a>
                                     <a href="#" className="social-icon">

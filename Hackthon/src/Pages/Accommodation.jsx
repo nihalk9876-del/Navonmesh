@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/projectExpo.css";
+import "../Styles/accommodationHead.css"; // Add new CSS import
+import { FaPhone, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
 import girlsHostel1 from "../assets/girls_hostel_1.png";
 import girlsHostel2 from "../assets/girls_hostel_2.png";
 import girlsHostel3 from "../assets/girls_hostel_3.png";
@@ -169,6 +171,39 @@ const Accommodation = () => {
                             <div className="hostel-card">
                                 <img src={girlsHostel3} alt="Sant Muktabai Girls Hostel" />
                                 <p>Sant Muktabai Hostel</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Accommodation Head Section */}
+                    <div className="accommodation-head-container">
+                        <div className="cosmos-box">
+                            <div className="star-accent" style={{ top: '10%', left: '10%' }}></div>
+                            <div className="star-accent" style={{ top: '80%', right: '15%' }}></div>
+
+                            <h2 className="cosmos-title">Accommodation & Logistics Head</h2>
+
+                            <div className="head-details">
+                                <h3 className="head-name">Ajinkya Surange</h3>
+
+                                <div className="head-contact-item">
+                                    <FaPhone className="contact-icon" />
+                                    <span>+91 9604765998</span>
+                                </div>
+
+                                <div className="head-contact-item">
+                                    <FaEnvelope className="contact-icon" />
+                                    <span>surangeajinkya9@gmail.com</span>
+                                </div>
+
+                                <div className="head-socials">
+                                    <a href="https://www.instagram.com/ajinkyasurange?igsh=MW80am1ycXF4bGE4dg==" target="_blank" rel="noopener noreferrer" className="social-btn">
+                                        <FaInstagram />
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="social-btn">
+                                        <FaLinkedin />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
