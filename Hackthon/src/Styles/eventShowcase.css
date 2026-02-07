@@ -136,16 +136,19 @@
   transform: translateY(20px);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
+
 .event-title-hindi {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
-  /* Increased slightly for impact */
+  font-family: 'Khand', sans-serif;
+  font-size: 3.5rem;
+  /* Blocky impact font */
   color: #fff;
   margin: 0;
   line-height: 1.2;
   font-weight: 700;
+  /* Bold for blocky look */
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-shadow: 0 0 15px rgba(0, 229, 255, 0.4), 0 0 30px rgba(0, 0, 0, 0.8);
 }
 

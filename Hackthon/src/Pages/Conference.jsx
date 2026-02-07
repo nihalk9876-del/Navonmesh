@@ -49,7 +49,7 @@ const Conference = () => {
         <div className="projectexpo-page">
             {/* Header Section */}
             <div className="projectexpo-header">
-                <h1 className="main-title">उद्भव</h1>
+                <h1 className="main-title">उद्‌भव</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
                     Join us for an enlightening conference featuring thought-provoking talks,
