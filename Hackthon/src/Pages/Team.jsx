@@ -54,7 +54,7 @@ const mentors = [
     },
     {
         id: 2,
-        name: "Dr. S. S. Saurabh Jadhav",
+        name: "Dr.S.S.Jadhao",
         role: "convener",
         image: jadhaoImg,
         description: "Dedicated mentor fostering technical growth and student development."
