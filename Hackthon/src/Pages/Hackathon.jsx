@@ -163,7 +163,7 @@ const Hackathon = () => {
                             <FaCode color="#d46836ff" /> Entry Fee: ₹0
                         </div>
                         <h2 className="cta-title">Register now and start building.</h2>
-                        <Link to="/register?event=srujan">
+                        <Link to="/register?event=srijan">
                             <img src={registerBtnImg} alt="Register Now" className="register-btn-img" />
                         </Link>
                     </div>
@@ -179,7 +179,7 @@ const Hackathon = () => {
                             <li>The complete team must be present at the venue on the first day (23/03/2026) of the event without fail or any reasons.</li>
                             <li>The complete team must be present at the venue on the second day (24/03/2026) of the event without fail or any reasons.</li>
                             <li>Team size must be a maximum of 2-4 participants.</li>
-                            <li>Problem statements will be provided by NAVONMESH SSGMCE'25, and the description of all problem statements will be given on time.</li>
+                            <li>Problem statements will be provided by NAVONMESH SSGMCE'26, and the description of all problem statements will be given on time.</li>
                             <li>Each team must carry a laptop and a power extension.</li>
                             <li>Each team member must carry their Aadhar card and College ID.</li>
                             <li>Accommodation will be provided by the College, and only one participant is allowed to take rest in the restrooms for 1 hour only.</li>
@@ -188,7 +188,7 @@ const Hackathon = () => {
                             <li>Hackathon will be conducted in 3 phases: Phase-I (Day-1: 11:00 AM to Day-2: 07:00 PM), Phase-II (Day-1: 9:30 PM to Day-2: 06:00 AM), Phase-III (Day-1: 07:00 AM to Day-2: 04:00 PM).</li>
                             <li>Registration time is between 9:00 AM to 11:00 AM on the first day.</li>
                             <li>All other rules will be conveyed on time.</li>
-                            <li>The final decision will be taken by NAVONMESH SSGMCE 2025 (*Terms & Conditions apply).</li>
+                            <li>The final decision will be taken by NAVONMESH SSGMCE 2026 (*Terms & Conditions apply).</li>
                         </ul>
 
                         <div className="download-btn-container">

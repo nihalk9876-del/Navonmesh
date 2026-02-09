@@ -20,10 +20,10 @@ const Register = () => {
         // Team Leader (Member 1)
         fullName: '', email: '', phone: '', college: '',
 
-        event: urlEvent === 'srujan' ? 'Srujan (Hackathon)' :
+        event: urlEvent === 'srijan' ? 'Srijan (Hackathon)' :
             urlEvent === 'ankur' ? 'Ankur (Project Expo)' :
-                urlEvent === 'uddhav' ? 'Uddhav (Conference)' :
-                    urlEvent === 'pursuit' ? 'Pursuit' : 'Srujan (Hackathon)',
+                urlEvent === 'udbhav' ? 'Udbhav (Conference)' :
+                    urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
 
         teamName: '',
         teamSize: '',
@@ -53,7 +53,7 @@ const Register = () => {
 
     // --- GOOGLE FORM CONFIGURATION ---
     const FORM_CONFIG = {
-        'Srujan (Hackathon)': {
+        'Srijan (Hackathon)': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSckdVMXfOtp8_v4yhbLR9RiGFZEi3axiKZYOlj9tq3V_KJ8ow/formResponse",
             ids: {
                 teamName: "entry.685383898",
@@ -97,7 +97,7 @@ const Register = () => {
             hasAccommodation: true,
             bundleMembers: false
         },
-        'Uddhav (Conference)': {
+        'Udbhav (Conference)': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLScNe95Djx06LVuzumpMYxO2uM7jpHvfkSA3XcIAIDoKdMySSQ/formResponse",
             ids: {
                 teamName: "entry.40216783",
@@ -169,7 +169,7 @@ const Register = () => {
         if (config.ids.suggestions) formBody.append(config.ids.suggestions, formData.suggestions);
 
         if (config.bundleMembers) {
-            // Srujan legacy logic (if needed, but currently false for all)
+            // Srijan legacy logic (if needed, but currently false for all)
             formBody.append(config.ids.event, event);
             formBody.append(config.ids.type, "Team Registration");
             formBody.append(config.ids.domain, "N/A");
@@ -306,9 +306,9 @@ const Register = () => {
 
                     <label>EVENT</label>
                     <select name="event" value={event} onChange={onChange} className="register-select" required disabled>
-                        <option value="Srujan (Hackathon)">Srujan (Hackathon)</option>
+                        <option value="Srijan (Hackathon)">Srijan (Hackathon)</option>
                         <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
-                        <option value="Uddhav (Conference)">Uddhav (Conference)</option>
+                        <option value="Udbhav (Conference)">Udbhav (Conference)</option>
                         <option value="Pursuit">Pursuit</option>
                     </select>
 

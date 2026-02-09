@@ -280,7 +280,7 @@ const Accommodation = () => {
                                     <label style={labelStyle}>Select Event <span style={{ color: 'red' }}>*</span></label>
                                     <select name="event" value={formData.event} onChange={handleChange} required style={inputStyle}>
                                         <option value="">Choose Event</option>
-                                        <option value="SRUJAN">Srujan (Hackathon)</option>
+                                        <option value="SRIJAN">Srijan (Hackathon)</option>
                                         <option value="ANKUR">Ankur (Project Expo)</option>
                                         <option value="UDBHAV">Uddhav (Conference)</option>
                                     </select>

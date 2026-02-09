@@ -42,13 +42,13 @@ const Navbar = ({ onRegisterClick }) => {
           </span>
           <ul className="dropdown-menu">
             <li>
-              <span onClick={() => scrollToSection("hackathon")}>Srujan</span>
+              <span onClick={() => scrollToSection("hackathon")}>Srijan(Hackthon)</span>
             </li>
             <li>
-              <span onClick={() => scrollToSection("projectexpo")}>Project Expo</span>
+              <span onClick={() => scrollToSection("projectexpo")}>Ankur(Project Competition &Exhibition)</span>
             </li>
             <li>
-              <span onClick={() => scrollToSection("conference")}>Conference</span>
+              <span onClick={() => scrollToSection("conference")}>UDBHAV(Conference)</span>
             </li>
           </ul>
         </li>

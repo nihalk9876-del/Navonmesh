@@ -52,7 +52,7 @@ const ProjectExpo = () => {
                 <h1 className="main-title">अंकुर</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
-                    A National Level Project Expo Competition. Showcase your innovative ideas,
+                    A National Level Project Competition and Exhibition. Showcase your innovative ideas,
                     present your working models, and compete with the best minds across the nation.
                 </p>
             </div>
@@ -109,7 +109,7 @@ const ProjectExpo = () => {
                             <li>Participant must treat all other team members, competitors, judges, coaches, volunteers with respect and courtesy.</li>
                             <li>Members should have a valid Student ID card of the school/college, Aadhar card.</li>
                             <li>Maximum 2 to 3 students per project will be allowed.</li>
-                            <li>Participation is open to students from designated categories: Juniors (class 5th to 12th), Seniors (UG/PG).</li>
+                            <li>Participation is open to students from designated categories: Seniors (UG/PG).</li>
                             <li>Students need to specify the stream of their project before the Expo.</li>
                             <li>The model should be in good working condition.</li>
                             <li>Participants have to bring their power extension and other equipment as per requirement.</li>
