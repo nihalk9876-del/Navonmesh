@@ -52,8 +52,7 @@ const Conference = () => {
                 <h1 className="main-title">उद्‌भव</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
-                    Join us for an enlightening conference featuring thought-provoking talks,
-                    innovative ideas, and opportunities to network with the best minds in the industry.
+                    Join us for an enlightening conference featuring thought-provoking talks, innovative ideas, and opportunities to network with the best minds in the industry.
                 </p>
             </div>
 
@@ -61,28 +60,29 @@ const Conference = () => {
                 {/* Left Column: Schedule */}
                 <div className="projectexpo-card schedule-card">
                     <div className="card-header">
-                        <h2>Schedule</h2>
+                        <h2>Conference Details</h2>
                     </div>
 
-                    <div className="timeline">
-                        {scheduleItems.map((item, index) => (
-                            <div className="timeline-item" key={index}>
-                                <div className={`timeline-dot ${item.dotColor}`}></div>
-                                <div className="timeline-content">
-                                    <div className="timeline-top">
-                                        <h3>{item.title}</h3>
-                                        <span className="time">{item.time}</span>
-                                    </div>
-                                    <div className="timeline-desc">
-                                        {item.desc}
-                                        <span className={`tag ${item.tagColor}`}>{item.tag}</span>
-                                    </div>
-                                    <div className="timeline-link">
-                                        <FaPaperclip /> {item.location}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                    <div className="conference-info">
+                        <div className="info-section">
+                            <h3 style={{ color: "#d142f5", marginBottom: "15px", fontSize: "1.4rem" }}>Conference Tracks</h3>
+                            <ul className="rules-list">
+                                <li>Artificial Intelligence, Machine Learning & Data Science</li>
+                                <li>Renewable Energy, E-Mobility & Sustainability</li>
+                                <li>Smart Systems, Automation and Industry 4.0</li>
+                                <li>IoT and Emerging Communication Technologies</li>
+                            </ul>
+                        </div>
+
+                        <div className="info-section" style={{ marginTop: "30px" }}>
+                            <h3 style={{ color: "#d142f5", marginBottom: "15px", fontSize: "1.4rem" }}>Key Highlights</h3>
+                            <ul className="rules-list">
+                                <li>Best Paper Awards</li>
+                                <li>Paper presentations</li>
+                                <li>Selected Papers will be recommended for Journal publication</li>
+                                <li>Interaction with researchers & academicians</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -91,10 +91,10 @@ const Conference = () => {
                     {/* CTA Section */}
                     <div className="projectexpo-cta">
                         <div className="entry-fee">
-                            Entry Fee: ₹250
+                            Entry Fee: ₹0
                         </div>
                         <h2 className="cta-title">Register now and Secure your Seat.</h2>
-                        <Link to="/register?event=uddhav">
+                        <Link to="/register?event=udbhav">
                             <img src={registerBtnImg} alt="Register Now" className="register-btn-img" />
                         </Link>
                     </div>

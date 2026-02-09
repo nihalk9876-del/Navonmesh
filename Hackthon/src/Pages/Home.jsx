@@ -80,7 +80,7 @@ const Home = () => {
 
       {/* ------------------- STACKED SECTIONS ------------------- */}
 
-      {/* Srujan / Hackathon */}
+      {/* Srijan / Hackathon */}
       <section id="hackathon" style={{ position: "relative" }}>
         <Hackathon />
       </section>

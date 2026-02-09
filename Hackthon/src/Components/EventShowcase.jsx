@@ -13,7 +13,7 @@ const events = [
     image: e1,
     side: "left",
     id: "hackathon", // Use ID for scrolling
-    registerParam: "srujan"
+    registerParam: "srijan"
   },
   {
     title: "अंकुर",
@@ -25,7 +25,7 @@ const events = [
   },
   {
     title: "उद्‌भव",
-    text: "An electrifying cultural night where talent meets celebration. Experience unforgettable moments.",
+    text: "Join us for an enlightening conference featuring thought-provoking talks, innovative ideas, and opportunities to network with the best minds in the industry.",
     image: e3,
     side: "left",
     id: "conference",

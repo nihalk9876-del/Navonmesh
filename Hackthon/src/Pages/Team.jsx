@@ -43,6 +43,7 @@ import mishraImg from "../assets/mishra.png";
 import chandanImg from "../assets/chandan.png";
 import sanskrutiImg from "../assets/sanskruti.png";
 import shrutiMankarImg from "../assets/shruti_mankar.png";
+import dhanashriImg from "../assets/dhanashri_borde.png"
 
 const mentors = [
     {
@@ -223,6 +224,15 @@ const teamMembers = [
         phone: "+91 98765 43210",
         email: "vedant@example.com",
         image: vedantImg,
+    },
+    {
+        id: 34,
+        name: "Dhanashri Borde",
+        role: "Core Team Member",
+        subRole: "Event Head",
+        phone: "+91 7387546722",
+        email: "dhanashriborde206@gmail.com",
+        image: dhanashriImg,
     },
     {
         id: 14,
@@ -426,7 +436,7 @@ const Team = () => {
                 <div className="divine-img-container">
                     <img src={divineImg} alt="Divine Blessing" />
                 </div>
-                <h3 className="marathi-text">श्री संत गजानन महाराज, शेगाव</h3>
+                <h3 className="marathi-text">श्री संत गजानन महाराज,शेगाव</h3>
             </div>
 
             <h1 className="team-title" style={{ marginTop: "40px" }}>MENTORS</h1>
