@@ -17,7 +17,7 @@ const events = [
   },
   {
     title: "अंकुर",
-    text: "ANKUR - National Level Project Expo is a national platform for students to present innovative projects and working models, fostering creativity, practical learning, and technical excellence..",
+    text: "ANKUR - National Level Project Competition and Exhibition is a national platform for students to present innovative projects and working models, fostering creativity, practical learning, and technical excellence..",
     image: e2,
     side: "right",
     id: "projectexpo",
