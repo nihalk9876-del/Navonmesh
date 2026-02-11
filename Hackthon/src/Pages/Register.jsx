@@ -28,12 +28,12 @@ const Register = () => {
         teamName: '',
         teamSize: '',
         accommodation: 'No',
-        suggestions: '',
 
         // Members 2-4
         member2Name: '', member2Email: '', member2Phone: '',
         member3Name: '', member3Email: '', member3Phone: '',
         member4Name: '', member4Email: '', member4Phone: '',
+        agreed: false
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -49,7 +49,10 @@ const Register = () => {
         member4Name, member4Email, member4Phone,
     } = formData;
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => {
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        setFormData({ ...formData, [e.target.name]: value });
+    };
 
     // --- GOOGLE FORM CONFIGURATION ---
     const FORM_CONFIG = {
@@ -66,8 +69,7 @@ const Register = () => {
                 member4Name: "entry.1333084002",
                 member4Email: "entry.415072966",
                 college: "entry.1577051641",
-                leaderPhone: "entry.1443456513",
-                suggestions: "entry.705075754"
+                leaderPhone: "entry.1443456513"
             },
             hasCollege: true,
             hasMemberPhone: false,
@@ -166,7 +168,6 @@ const Register = () => {
         if (config.ids.leaderPhone) formBody.append(config.ids.leaderPhone, formData.phone);
         if (config.ids.college && config.hasCollege) formBody.append(config.ids.college, formData.college);
         if (config.ids.accommodation && config.hasAccommodation) formBody.append(config.ids.accommodation, formData.accommodation.toUpperCase());
-        if (config.ids.suggestions) formBody.append(config.ids.suggestions, formData.suggestions);
 
         if (config.bundleMembers) {
             // Srijan legacy logic (if needed, but currently false for all)
@@ -216,7 +217,7 @@ const Register = () => {
             // Reset fields
             setFormData(prev => ({
                 ...prev,
-                teamName: '', teamSize: '', accommodation: 'No', suggestions: '',
+                teamName: '', teamSize: '', accommodation: 'No',
                 member2Name: '', member2Email: '', member2Phone: '',
                 member3Name: '', member3Email: '', member3Phone: '',
                 member4Name: '', member4Email: '', member4Phone: ''
@@ -407,29 +408,21 @@ const Register = () => {
                         </>
                     )}
 
-                    <label>DO YOU HAVE ANY SUGGESTION?</label>
-                    <textarea
-                        placeholder="Your suggestions..."
-                        name="suggestions"
-                        value={formData.suggestions}
-                        onChange={onChange}
-                        style={{
-                            background: '#0f1016',
-                            border: '1px solid #2d2d3a',
-                            padding: '14px 15px',
-                            borderRadius: '8px',
-                            color: 'white',
-                            fontSize: '0.95rem',
-                            outline: 'none',
-                            transition: '0.3s',
-                            fontFamily: 'Inter, sans-serif',
-                            width: '100%',
-                            minHeight: '100px',
-                            resize: 'vertical'
-                        }}
-                    />
+                    <div className="terms-container" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '20px 0' }}>
+                        <input
+                            type="checkbox"
+                            name="agreed"
+                            checked={formData.agreed}
+                            onChange={onChange}
+                            required
+                            style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#00e5ff' }}
+                        />
+                        <label style={{ fontSize: '0.9rem', color: '#ccc', cursor: 'pointer' }}>
+                            I agree to the <span style={{ color: '#00e5ff', textDecoration: 'underline' }}>Terms and Conditions</span>
+                        </label>
+                    </div>
 
-                    <button type="submit" className="register-btn" disabled={loading}>
+                    <button type="submit" className="register-btn" disabled={loading || !formData.agreed}>
                         {loading ? 'Submitting...' : 'Register Team'}
                     </button>
 

@@ -95,13 +95,13 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   align-items: center;
   justify-content: center;
   /* height: 100%;  <-- Removed to allow margin-top to work better */
-  margin-top: -80px;
+  margin-top: -50px;
   /* Shift entire block upward as requested */
 }
 
 .hero-subtitle {
-  font-size: 20px;
-  margin-bottom: 12px;
+  font-size: 18px;
+  margin-bottom: 10px;
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   /* Bold to match tagline */
@@ -111,16 +111,16 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 }
 
 .pursuit-name {
-  max-width: 700px;
-  /* Increased from 520px */
-  width: 90%;
+  max-width: 550px;
+  /* Decreased from 700px */
+  width: 80%;
   transform: translateY(-20px);
   /* Move upward */
 }
 
 .marathi-tagline {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #00e5ff;
   margin-top: -15px;
   margin-bottom: 20px;
@@ -132,10 +132,10 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 .hero-tagline {
   margin-top: -10px;
   /* Pull closer to the logo */
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 1px;
   font-family: 'Poppins', sans-serif;
-  max-width: 700px;
+  max-width: 550px;
   /* Match logo width */
   margin-left: auto;
   margin-right: auto;
@@ -152,7 +152,7 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
+  width: 500px;
   /* adjust if needed */
   opacity: 1;
   z-index: -1;
@@ -188,7 +188,7 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   /* Moved up to avoid footer overlap */
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 70px;
   z-index: 10;
   pointer-events: none;
   animation: float 3s ease-in-out infinite;
@@ -324,9 +324,9 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  gap: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   position: relative;
   z-index: 10;
   pointer-events: none;
@@ -334,8 +334,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 .countdown-planet {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -344,8 +344,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 /* Orbit Ring Animation */
 .orbit-ring {
   position: absolute;
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   animation: orbit-spin 10s linear infinite;
@@ -375,8 +375,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 /* Planet Body */
 .planet-body {
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -437,14 +437,14 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 .count {
   font-family: 'Orbitron', sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   z-index: 2;
 }
 
 .label {
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -459,7 +459,10 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 /* Hero Tagline - Simple Times Roman */
 .particle-text {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 3rem;
+  /* font-size: 3rem; */
+  font-size: 2.2rem;
+  /* Reduced from 3rem */
+
   font-weight: 700;
   font-style: normal;
   /* "Simple" usually implies regular, but bold is good for visibility. Removing Italic unless preferred. Let's start with normal/bold. */
@@ -475,96 +478,92 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 }
 
 /* Responsive Styles - Appended to end for specificity */
+/* Responsive Styles - Appended to end for specificity */
 @media (max-width: 768px) {
   .blackhole-bg {
-    width: 280px;
-    /* Reduced from 600px */
+    width: 250px;
   }
 
   /* Flatten the layout slightly */
   .hero-center {
-    margin-top: -60px;
+    margin-top: -40px;
   }
 
   /* LOGO: Make it much smaller */
   .pursuit-name {
-    width: 70% !important;
-    max-width: 280px;
-    transform: translateY(-10px);
+    width: 60% !important;
+    max-width: 250px;
+    transform: translateY(-5px);
   }
 
   .marathi-tagline {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: -5px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: 0.5px;
   }
 
   /* SUBTITLE: "SSGMCE Presents" */
   .hero-subtitle {
-    font-size: 14px;
-    /* Reduced from 20px */
+    font-size: 12px;
     letter-spacing: 0.5px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   /* TAGLINE: "Ideate..." */
   .hero-tagline {
-    font-size: 16px;
-    /* Reduced from 22px */
+    font-size: 14px;
     max-width: 95%;
     margin-top: -5px;
   }
 
   /* PARTICLE TEXT (Main Title if used) */
   .particle-text {
-    font-size: 1.8rem !important;
-    /* Reduced from 3rem */
-    margin-top: 10px;
+    font-size: 1.5rem !important;
+    margin-top: 8px;
     letter-spacing: 1px;
   }
 
   /* ⏳ COUNTDOWN TIMER MOBILE */
   .countdown-container {
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .countdown-planet {
-    width: 65px;
-    height: 65px;
-  }
-
-  .orbit-ring {
-    width: 80px;
-    height: 80px;
-  }
-
-  .orbit-ring::before {
-    width: 5px;
-    height: 5px;
-    top: -3px;
-  }
-
-  .planet-body {
     width: 55px;
     height: 55px;
   }
 
+  .orbit-ring {
+    width: 70px;
+    height: 70px;
+  }
+
+  .orbit-ring::before {
+    width: 4px;
+    height: 4px;
+    top: -2px;
+  }
+
+  .planet-body {
+    width: 45px;
+    height: 45px;
+  }
+
   .count {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .label {
-    font-size: 8px;
+    font-size: 7px;
     margin-top: 0;
   }
 
   /* Rocket adjustments */
   .rocket {
-    width: 60px;
-    /* Smaller rocket */
-    bottom: 60px;
+    width: 50px;
+    bottom: 50px;
   }
 }

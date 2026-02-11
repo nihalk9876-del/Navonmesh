@@ -14,12 +14,16 @@ const CulturalRegister = () => {
         activity: 'solo dance',
         contact: '',
         email: '',
-        file: null
+        file: null,
+        agreed: false
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value
+        }));
     };
 
     const handleFileChange = (e) => {
@@ -200,7 +204,21 @@ const CulturalRegister = () => {
                         <p className="file-help">Accepted formats: MP3, MP4, WAV. Max size: 10MB.</p>
                     </div>
 
-                    <button type="submit" className="submit-interstellar-btn" disabled={loading}>
+                    <div className="terms-container" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '20px 0', paddingLeft: '5px' }}>
+                        <input
+                            type="checkbox"
+                            name="agreed"
+                            checked={formData.agreed}
+                            onChange={handleChange}
+                            required
+                            style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#ff007a' }}
+                        />
+                        <label style={{ fontSize: '0.9rem', color: '#e0e0e0', cursor: 'pointer' }}>
+                            I agree to the <span style={{ color: '#ff007a', textDecoration: 'underline' }}>Terms and Conditions</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" className="submit-interstellar-btn" disabled={loading || !formData.agreed}>
                         {loading ? "Transmitting..." : "Initialize Registration"}
                     </button>
 

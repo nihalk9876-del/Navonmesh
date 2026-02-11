@@ -52,8 +52,7 @@ const ProjectExpo = () => {
                 <h1 className="main-title">अंकुर</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
-                    A National Level Project Competition and Exhibition. Showcase your innovative ideas,
-                    present your working models, and compete with the best minds across the nation.
+                    Ankur is a National Level Project Competition that showcases innovative student projects addressing societal, industrial, and technological needs. It acts as a bridge between academic learning and real-world application.
                 </p>
             </div>
 

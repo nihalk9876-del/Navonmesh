@@ -111,9 +111,7 @@ const Hackathon = () => {
                 <h1 className="main-title">सृजन</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
-                    It's a celebration of innovation, learning, and the power of collective
-                    creativity. Brainstorm and build solutions overnight, have fun and win
-                    amazing prizes!
+                    Srujan is a National Level Hackathon aimed at fostering creative problem-solving, innovation, and rapid prototyping among students. It provides a dynamic platform where young minds collaborate, ideate, and develop technology-driven solutions to real-world challenges.
                 </p>
             </div>
 

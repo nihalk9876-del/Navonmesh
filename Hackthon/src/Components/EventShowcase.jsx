@@ -9,7 +9,7 @@ import e4 from "../assets/events/pursuit.png";
 const events = [
   {
     title: "सृजन",
-    text: "A celebration of innovation, teamwork, and the power of collective creativity. Build solutions overnight and win amazing prizes.",
+    text: "Srujan is a National Level Hackathon aimed at fostering creative problem-solving, innovation, and rapid prototyping among students. It provides a dynamic platform where young minds collaborate, ideate, and develop technology-driven solutions to real-world challenges.",
     image: e1,
     side: "left",
     id: "hackathon", // Use ID for scrolling
@@ -17,7 +17,7 @@ const events = [
   },
   {
     title: "अंकुर",
-    text: "ANKUR - National Level Project Competition and Exhibition is a national platform for students to present innovative projects and working models, fostering creativity, practical learning, and technical excellence..",
+    text: "Ankur is a National Level Project Competition that showcases innovative student projects addressing societal, industrial, and technological needs. It acts as a bridge between academic learning and real-world application.",
     image: e2,
     side: "right",
     id: "projectexpo",
@@ -25,7 +25,7 @@ const events = [
   },
   {
     title: "उद्‌भव",
-    text: "Join us for an enlightening conference featuring thought-provoking talks, innovative ideas, and opportunities to network with the best minds in the industry.",
+    text: "Udbhav is a National Student Conference designed to cultivate research aptitude and academic excellence among students. It offers a formal platform for students to present research papers, case studies, and innovative concepts.",
     image: e3,
     side: "left",
     id: "conference",
