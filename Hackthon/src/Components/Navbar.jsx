@@ -36,6 +36,11 @@ const Navbar = ({ onRegisterClick }) => {
         <li>
           <span onClick={() => scrollToSection("home")}>Home</span>
         </li>
+        <li>
+          <NavLink to="/cosmos" className="nav-item" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
+            Cosmos 🚀
+          </NavLink>
+        </li>
         <li className="dropdown-container">
           <span className="dropdown-trigger">
             Events <FaChevronDown className="dropdown-arrow" />

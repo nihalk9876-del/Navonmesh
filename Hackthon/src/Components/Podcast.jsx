@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/podcast.css';
 import { FaPlay, FaMicrophone, FaHeadphones, FaSpotify, FaYoutube } from 'react-icons/fa';
 import podcastThumb from '../assets/podcast_thumbnail.jpg';
 
 const Podcast = () => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <section className="podcast-section" id="podcast">
@@ -25,54 +27,78 @@ const Podcast = () => {
                     </p>
                 </div>
 
-                <div className="podcast-window-wrapper">
-                    <div className="podcast-glass-window">
-                        <div className="podcast-visualizer">
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                            <div className="v-bar"></div>
-                        </div>
+                <div className="podcast-content-layout">
+                    <div className="podcast-window-wrapper">
+                        <div className="podcast-glass-window">
+                            <div className="podcast-visualizer">
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                                <div className="v-bar"></div>
+                            </div>
 
-                        <div className="podcast-video-container">
-                            {!isPlaying ? (
-                                <div className="podcast-poster" onClick={() => setIsPlaying(true)}>
-                                    <img src={podcastThumb} alt="Podcast Preview" className="poster-img" />
-                                    <div className="play-overlay">
-                                        <div className="play-circle">
-                                            <FaPlay className="play-icon" />
+                            <div className="podcast-video-container">
+                                {!isPlaying ? (
+                                    <div className="podcast-poster" onClick={() => setIsPlaying(true)}>
+                                        <img src={podcastThumb} alt="Podcast Preview" className="poster-img" />
+                                        <div className="play-overlay">
+                                            <div className="play-circle">
+                                                <FaPlay className="play-icon" />
+                                            </div>
+                                            <span>Play Episode</span>
                                         </div>
-                                        <span>Play Episode</span>
+                                    </div>
+                                ) : (
+                                    <iframe
+                                        className="podcast-iframe"
+                                        src="https://www.youtube.com/embed/1KSBr2NC3xY?autoplay=1"
+                                        title="Navonmesh Podcast"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                    ></iframe>
+                                )}
+                            </div>
+
+                            <div className="podcast-controls">
+                                <div className="now-playing">
+                                    <FaHeadphones className="headphone-icon" />
+                                    <div className="track-info">
+                                        <span className="track-name">Navonmesh 2026: Innovation & Beyond</span>
+                                        <span className="track-host">Hosted by Overall Heads</span>
                                     </div>
                                 </div>
-                            ) : (
-                                <iframe
-                                    className="podcast-iframe"
-                                    src="https://www.youtube.com/embed/1KSBr2NC3xY?autoplay=1"
-                                    title="Navonmesh Podcast"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen
-                                ></iframe>
-                            )}
-                        </div>
-
-                        <div className="podcast-controls">
-                            <div className="now-playing">
-                                <FaHeadphones className="headphone-icon" />
-                                <div className="track-info">
-                                    <span className="track-name">Navonmesh 2026: Innovation & Beyond</span>
-                                    <span className="track-host">Hosted by Overall Heads</span>
+                                <div className="platform-links">
+                                    <a href="https://www.youtube.com/@MESIMCC" target="_blank" rel="noopener noreferrer" className="platform-btn youtube"><FaYoutube /> YouTube</a>
+                                    <a href="#" className="platform-btn spotify"><FaSpotify /> Spotify</a>
                                 </div>
                             </div>
-                            <div className="platform-links">
-                                <a href="https://www.youtube.com/@MESIMCC" target="_blank" rel="noopener noreferrer" className="platform-btn youtube"><FaYoutube /> YouTube</a>
-                                <a href="#" className="platform-btn spotify"><FaSpotify /> Spotify</a>
-                            </div>
+                        </div>
+                    </div>
+
+                    {/* Navigation Panel (Right Side) */}
+                    <div className="podcast-nav-panel">
+                        <h3 className="nav-title">ERROR 404 SYSTEMS</h3>
+                        <div className="nav-buttons">
+                            <button onClick={() => navigate('/hackathon')} className="nav-btn">
+                                <span>&gt; </span> ABOUT HACKATHON
+                            </button>
+                            <button onClick={() => navigate('/projectexpo')} className="nav-btn">
+                                <span>&gt; </span> NAT. PROJECT EXPO
+                            </button>
+                            <button onClick={() => navigate('/conference')} className="nav-btn">
+                                <span>&gt; </span> NAT. CONFERENCE
+                            </button>
+                            <button onClick={() => navigate('/accommodation')} className="nav-btn">
+                                <span>&gt; </span> ACCOMMODATION
+                            </button>
+                            <button onClick={() => navigate('/register')} className="nav-btn highlight">
+                                <span>&gt; </span> REGISTER NOW
+                            </button>
                         </div>
                     </div>
                 </div>
