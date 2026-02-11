@@ -133,3 +133,36 @@
         transform: scale(1.5);
     }
 }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .accommodation-head-container {
+        padding: 20px 10px;
+    }
+
+    .cosmos-box {
+        max-width: 280px;
+        /* Reduced width */
+        padding: 1rem;
+    }
+
+    .cosmos-title {
+        font-size: 1rem;
+        /* Smaller title */
+        letter-spacing: 1px;
+    }
+
+    .head-name {
+        font-size: 1rem;
+    }
+
+    .head-contact-item {
+        font-size: 0.8rem;
+    }
+
+    .social-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+}

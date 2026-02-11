@@ -39,25 +39,20 @@ const CountdownTimer = () => {
 
     return (
         <div className="countdown-container">
-            <div className="countdown-item">
-                <span className="count">{formatTime(timeLeft.days)}</span>
-                <span className="label">Days</span>
-            </div>
-            <div className="separator">:</div>
-            <div className="countdown-item">
-                <span className="count">{formatTime(timeLeft.hours)}</span>
-                <span className="label">Hours</span>
-            </div>
-            <div className="separator">:</div>
-            <div className="countdown-item">
-                <span className="count">{formatTime(timeLeft.minutes)}</span>
-                <span className="label">Minutes</span>
-            </div>
-            <div className="separator">:</div>
-            <div className="countdown-item">
-                <span className="count">{formatTime(timeLeft.seconds)}</span>
-                <span className="label">Seconds</span>
-            </div>
+            {Object.entries(timeLeft).map(([interval, value]) => (
+                <div className="countdown-planet" key={interval}>
+                    {/* Orbit Ring */}
+                    <div className="orbit-ring">
+                        <div className="orbit-dot"></div>
+                    </div>
+
+                    {/* Planet Body */}
+                    <div className={`planet-body ${interval}`}>
+                        <span className="count">{formatTime(value)}</span>
+                        <span className="label capitalize">{interval}</span>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
