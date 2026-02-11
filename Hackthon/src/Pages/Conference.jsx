@@ -52,7 +52,7 @@ const Conference = () => {
                 <h1 className="main-title">उद्‌भव</h1>
                 <div className="vertical-divider"></div>
                 <p className="header-desc">
-                    Join us for an enlightening conference featuring thought-provoking talks, innovative ideas, and opportunities to network with the best minds in the industry.
+                    Udbhav is a National Student Conference designed to cultivate research aptitude and academic excellence among students. It offers a formal platform for students to present research papers, case studies, and innovative concepts.
                 </p>
             </div>
 

@@ -1,29 +1,36 @@
+.problem-statements-section {
+    position: relative;
+    /* Optional: add a starfield background if not present in parent */
+}
+
 .problem-statements-container {
     width: 100%;
-    max-width: 1000px;
-    /* Limit width */
-    height: 350px;
-    /* Significantly reduced height */
+    max-width: 1200px;
+    height: 300px;
+    /* Reduced height significantly */
     display: flex;
-    overflow: hidden;
     margin: 40px auto;
-    /* Center with auto margin */
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.15), inset 0 0 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .problem-card {
     flex: 1;
     position: relative;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s;
     cursor: pointer;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    background-size: cover;
-    background-position: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(180deg, rgba(20, 20, 25, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    filter: brightness(0.8);
 }
 
 .problem-card:last-child {
@@ -32,34 +39,31 @@
 
 .problem-card:hover {
     flex: 3;
-    /* Expands on hover */
+    /* Less expansion ratio for smaller container */
+    filter: brightness(1.2);
+    background: linear-gradient(180deg, rgba(30, 30, 40, 0.95) 0%, rgba(15, 15, 25, 1) 100%);
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.2), inset 0 0 20px rgba(0, 229, 255, 0.05);
+    z-index: 5;
 }
 
-/* Gradient overlay to make text expanded readable */
+/* Gradient overlay */
+/* Gradient overlay removed as background images are removed */
 .card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.6) 100%);
-    opacity: 0.8;
-    transition: opacity 0.3s;
+    display: none;
 }
 
-.problem-card:hover .card-overlay {
-    opacity: 0.9;
-}
 
 .card-content {
     position: relative;
-    z-index: 2;
-    padding: 20px;
+    z-index: 10;
+    padding: 15px;
     width: 100%;
     text-align: center;
     color: white;
-    transform: translateY(20px);
-    transition: transform 0.3s;
+    transform: translateY(40px);
+    /* Smaller translate */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    min-width: 150px;
 }
 
 .problem-card:hover .card-content {
@@ -67,65 +71,85 @@
 }
 
 .card-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #4488ff;
+    font-size: 1.8rem;
+    /* Smaller icon */
+    margin-bottom: 8px;
+    color: #00e5ff;
     display: block;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+    transition: transform 0.3s;
+}
+
+.problem-card:hover .card-icon {
+    transform: scale(1.1);
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 .card-title {
     font-family: "Orbitron", sans-serif;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    /* Smaller title */
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     white-space: nowrap;
-    /* Keep title on one line initially */
     overflow: hidden;
     text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .problem-card:hover .card-title {
     white-space: normal;
-    /* Allow wrap on expand */
+    color: #00e5ff;
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
 }
 
 .card-desc {
-    font-family: sans-serif;
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    /* Smaller description */
+    line-height: 1.3;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     transition: all 0.5s ease;
+    color: #cccccc;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .problem-card:hover .card-desc {
     opacity: 1;
-    max-height: 200px;
-    margin-top: 10px;
+    max-height: 100px;
+    margin-top: 8px;
 }
 
 /* Button to open modal */
 .view-desc-btn {
-    margin-top: 15px;
-    padding: 8px 16px;
-    background: transparent;
-    border: 1px solid #4488ff;
-    color: #4488ff;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid #00e5ff;
+    color: #00e5ff;
     border-radius: 4px;
     cursor: pointer;
     font-family: "Orbitron", sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
     transition: all 0.3s;
     opacity: 0;
     transform: translateY(10px);
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
 }
 
 .view-desc-btn:hover {
-    background: #4488ff;
-    color: white;
-    box-shadow: 0 0 10px rgba(68, 136, 255, 0.5);
+    background: #00e5ff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
 }
 
 .problem-card:hover .view-desc-btn {
@@ -141,7 +165,7 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
     z-index: 2000;
     display: flex;
     align-items: center;
@@ -150,68 +174,105 @@
 }
 
 .problem-modal {
-    background: rgba(13, 13, 25, 0.95);
-    border: 1px solid rgba(68, 136, 255, 0.3);
-    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), rgba(10, 10, 20, 0.98));
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 16px;
     width: 100%;
-    max-width: 500px;
-    padding: 30px;
+    max-width: 600px;
+    padding: 40px;
     position: relative;
-    box-shadow: 0 0 30px rgba(68, 136, 255, 0.2);
-    animation: fadeInScale 0.3s ease-out;
+    box-shadow: 0 0 40px rgba(0, 229, 255, 0.15);
+    animation: fadeInScale 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
 @keyframes fadeInScale {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.9) translateY(20px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) translateY(0);
     }
 }
 
 .modal-close {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    color: #aaa;
-    font-size: 1.2rem;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: all 0.3s;
 }
 
 .modal-close:hover {
-    color: white;
+    background: rgba(255, 50, 50, 0.2);
+    border-color: #ff3333;
+    color: #ff3333;
+    transform: rotate(90deg);
 }
 
 .modal-title {
     font-family: "Orbitron", sans-serif;
-    color: #4488ff;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    color: #00e5ff;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
     text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.3);
+    padding-bottom: 15px;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
 }
 
 .modal-section {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .modal-section h4 {
-    color: #e0e0e0;
+    color: #a0a0ff;
     font-size: 1rem;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: "Orbitron", sans-serif;
 }
 
 .modal-section p {
-    color: #aaa;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    color: #d0d0d0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-family: sans-serif;
+}
+
+@media (max-width: 768px) {
+    .problem-statements-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .problem-card {
+        width: 100%;
+        height: 80px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .problem-card:hover {
+        flex: none;
+        height: 250px;
+    }
+
+    .card-content {
+        transform: translateY(0);
+    }
 }

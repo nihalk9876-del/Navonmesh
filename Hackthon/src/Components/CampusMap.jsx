@@ -12,7 +12,7 @@ const locations = [
     {
         id: 'projectexpo',
         name: 'Project Expo Venue',
-        markers: [{ top: '70%', left: '25%', label: 'Auditorium' }]
+        markers: [{ top: '70%', left: '25%', label: 'Swadhyay Kaksha' }]
     },
     {
         id: 'conference',
