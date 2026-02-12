@@ -44,6 +44,7 @@ import chandanImg from "../assets/chandan.png";
 import sanskrutiImg from "../assets/sanskruti.png";
 import shrutiMankarImg from "../assets/shruti_mankar.png";
 import dhanashriImg from "../assets/dhanashri_borde.png"
+import omTaleImg from "../assets/om_tale.png";
 
 const mentors = [
     {
@@ -422,6 +423,17 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/dolly-bhutada-45937a350?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: dollyImg,
     },
+    {
+        id: 35,
+        name: "Om Tale",
+        role: "Core Team Member",
+        subRole: "Volunteer Co-head",
+        phone: "+91 9834428773",
+        email: "mahadevtale81@gmail.com",
+        instagram: "https://www.instagram.com/omuuu__143?utm_source=qr&igsh=bnRraXVzMnI5MG1k",
+        image: omTaleImg,
+    },
+
 ];
 
 const Team = () => {
