@@ -3,7 +3,7 @@ import "../Styles/stats.css";
 import React, { useEffect, useState, useRef } from "react";
 import "../Styles/stats.css";
 
-const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
+const AnimatedCounter = ({ end, duration = 2000, suffix = "", decimals = 0 }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -37,7 +37,14 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
       // Easing function for smooth stop
       const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
 
-      setCount(Math.floor(easeOutQuart * end));
+      const currentCount = easeOutQuart * end;
+
+      // If end is small (like 1), we show a "searching" effect for better visual feedback
+      if (end <= 5 && percentage < 0.6) {
+        setCount(Math.floor(Math.random() * 10)); // Shuffle digits
+      } else {
+        setCount(decimals > 0 ? currentCount.toFixed(decimals) : Math.floor(currentCount + 0.5));
+      }
 
       if (percentage < 1) {
         animationFrame = requestAnimationFrame(animate);
@@ -47,7 +54,7 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
     animationFrame = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrame);
-  }, [isVisible, end, duration]);
+  }, [isVisible, end, duration, decimals]);
 
   return (
     <span ref={countRef} className="stat-value">
@@ -63,7 +70,7 @@ const StatsStrip = () => {
         {/* Special case for currency since it needs prefix */}
         <span className="stat-value-wrapper">
           <span className="currency-symbol">₹</span>
-          <AnimatedCounter end={1} suffix=" Lakh+" />
+          <AnimatedCounter end={1} suffix=" Lakh+" decimals={0} />
         </span>
         <span className="stat-label">Prize Pool</span>
       </div>

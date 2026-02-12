@@ -71,6 +71,84 @@ const ChatBot = () => {
     ]);
     const chatEndRef = useRef(null);
 
+    // Draggable Logic
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [hasMoved, setHasMoved] = useState(false);
+    const dragStartPos = useRef({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const startDrag = (clientX, clientY) => {
+        setIsDragging(true);
+        setHasMoved(false);
+        dragStartPos.current = {
+            startX: clientX,
+            startY: clientY,
+            initialX: position.x,
+            initialY: position.y
+        };
+    };
+
+    const handleMouseDown = (e) => {
+        if (e.button !== 0) return;
+        startDrag(e.clientX, e.clientY);
+    };
+
+    const handleTouchStart = (e) => {
+        const touch = e.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+    };
+
+    useEffect(() => {
+        const onMove = (clientX, clientY) => {
+            if (!isDragging) return;
+
+            const dx = clientX - dragStartPos.current.startX;
+            const dy = clientY - dragStartPos.current.startY;
+
+            if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+                setHasMoved(true);
+            }
+
+            setPosition({
+                x: dragStartPos.current.initialX + dx,
+                y: dragStartPos.current.initialY + dy
+            });
+        };
+
+        const handleMouseMove = (e) => onMove(e.clientX, e.clientY);
+        const handleTouchMove = (e) => {
+            if (isDragging) {
+                if (e.cancelable) e.preventDefault();
+                onMove(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        };
+
+        const stopDrag = () => {
+            setIsDragging(false);
+        };
+
+        if (isDragging) {
+            window.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mouseup', stopDrag);
+            window.addEventListener('touchmove', handleTouchMove, { passive: false });
+            window.addEventListener('touchend', stopDrag);
+        }
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('mouseup', stopDrag);
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('touchend', stopDrag);
+        };
+    }, [isDragging]);
+
     const scrollToBottom = () => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
@@ -79,7 +157,10 @@ const ChatBot = () => {
         if (isOpen) scrollToBottom();
     }, [messages, isOpen]);
 
-    const toggleChat = () => setIsOpen(!isOpen);
+    const toggleChat = () => {
+        if (hasMoved) return; // Don't toggle if we were dragging
+        setIsOpen(!isOpen);
+    };
 
     const handleSend = (text) => {
         const userQuery = text || input;
@@ -130,7 +211,13 @@ const ChatBot = () => {
     };
 
     return (
-        <div className="chatbot-wrapper galactic-theme">
+        <div
+            className={`chatbot-wrapper galactic-theme ${isDragging ? 'dragging' : ''} ${isOpen ? 'chat-is-open' : ''}`}
+            style={{
+                transform: (isOpen && isMobile) ? 'none' : `translate(${position.x}px, ${position.y}px)`,
+                cursor: isDragging ? 'grabbing' : 'auto'
+            }}
+        >
             {/* Ambient background stars */}
             <div className="stars-container">
                 <div className="star s1"></div>
@@ -139,7 +226,11 @@ const ChatBot = () => {
             </div>
 
             {!isOpen && (
-                <div className="chatbot-trigger-group">
+                <div
+                    className="chatbot-trigger-group"
+                    onMouseDown={handleMouseDown}
+                    onTouchStart={handleTouchStart}
+                >
                     <div className="chatbot-prompt-bubble">
                         <div className="prompt-content">
                             <span className="ai-badge">AI</span>
@@ -148,7 +239,11 @@ const ChatBot = () => {
                         <div className="prompt-sub">Ask the Universe anything...</div>
                         <div className="bubble-tail"></div>
                     </div>
-                    <button className="holographic-toggle" onClick={toggleChat}>
+                    <button
+                        className="holographic-toggle"
+                        onClick={toggleChat}
+                        style={{ cursor: isDragging ? 'grabbing' : 'pointer' }}
+                    >
                         <div className="orbit-ring"></div>
                         <div className="orbit-ring-alt"></div>
                         <div className="toggle-inner">
@@ -170,7 +265,12 @@ const ChatBot = () => {
                         <div className="stars-layer-2"></div>
                     </div>
 
-                    <div className="chatbot-header holographic-header">
+                    <div
+                        className="chatbot-header holographic-header"
+                        onMouseDown={handleMouseDown}
+                        onTouchStart={handleTouchStart}
+                        style={{ cursor: 'grab' }}
+                    >
                         <div className="bot-info-main">
                             <div className="header-avatar">
                                 <FaRobot className="header-icon-ai" />
@@ -187,7 +287,11 @@ const ChatBot = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className="header-close-btn" onClick={toggleChat}>
+                        <button
+                            className="header-close-btn"
+                            onClick={toggleChat}
+                            onMouseDown={(e) => e.stopPropagation()} // Prevent drag when clicking close
+                        >
                             <FaTimes />
                         </button>
                     </div>

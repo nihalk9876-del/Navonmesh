@@ -5,7 +5,15 @@
     bottom: 30px;
     right: 30px;
     z-index: 10000;
+    transition: transform 0.1s ease-out;
+    user-select: none;
+    /* Prevent text selection while dragging */
 }
+
+.chatbot-wrapper.galactic-theme.dragging {
+    transition: none;
+}
+
 
 /* --- CONTINUOUS TRIGGER ANIMATIONS --- */
 .chatbot-trigger-group {

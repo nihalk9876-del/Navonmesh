@@ -86,7 +86,7 @@ const CulturalRegister = () => {
                             <h2 className="success-title">Thank You!</h2>
                             <p className="success-body">
                                 You have successfully registered for <br />
-                                <span className="success-highlight">Cultural (उद्भव)</span>
+                                <span className="success-highlight">Cultural (उत्कर्ष)</span>
                             </p>
 
                             <p className="success-slogan">
@@ -116,7 +116,7 @@ const CulturalRegister = () => {
                 </button>
 
                 <div className="header-section">
-                    <h1 className="cultural-title">उद्भव <span>CULTURAL</span></h1>
+                    <h1 className="cultural-title">उत्कर्ष <span>CULTURAL</span></h1>
                     <p className="cultural-subtitle">Register your performance for the grand night.</p>
                 </div>
 
