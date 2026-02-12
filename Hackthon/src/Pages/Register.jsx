@@ -27,7 +27,6 @@ const Register = () => {
 
         teamName: '',
         teamSize: '',
-        accommodation: 'No',
 
         // Members 2-4
         member2Name: '', member2Email: '', member2Phone: '',
@@ -43,7 +42,7 @@ const Register = () => {
 
     const {
         fullName, email, phone, college, event,
-        teamName, teamSize, accommodation,
+        teamName, teamSize,
         member2Name, member2Email, member2Phone,
         member3Name, member3Email, member3Phone,
         member4Name, member4Email, member4Phone,
@@ -62,17 +61,20 @@ const Register = () => {
                 teamName: "entry.685383898",
                 leaderName: "entry.1299269564",
                 leaderEmail: "entry.209200253",
+                leaderPhone: "entry.7245340",
                 member2Name: "entry.947643702",
                 member2Email: "entry.1791579024",
+                member2Phone: "entry.908379874",
                 member3Name: "entry.1789252095",
                 member3Email: "entry.510037962",
+                member3Phone: "entry.922622339",
                 member4Name: "entry.1333084002",
                 member4Email: "entry.415072966",
-                college: "entry.1577051641",
-                leaderPhone: "entry.1443456513"
+                member4Phone: "entry.2084040226",
+                college: "entry.1577051641"
             },
             hasCollege: true,
-            hasMemberPhone: false,
+            hasMemberPhone: true,
             hasAccommodation: false,
             bundleMembers: false
         },
@@ -91,12 +93,11 @@ const Register = () => {
                 member3Phone: "entry.2044577159",
                 member4Name: "entry.1150982003",
                 member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700",
-                accommodation: "entry.1941174996"
+                member4Phone: "entry.641202700"
             },
             hasCollege: false,
             hasMemberPhone: true,
-            hasAccommodation: true,
+            hasAccommodation: false,
             bundleMembers: false
         },
         'Udbhav (Conference)': {
@@ -114,12 +115,11 @@ const Register = () => {
                 member3Phone: "entry.2044577159",
                 member4Name: "entry.1150982003",
                 member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700",
-                accommodation: "entry.1941174996"
+                member4Phone: "entry.641202700"
             },
             hasCollege: false,
             hasMemberPhone: true,
-            hasAccommodation: true,
+            hasAccommodation: false,
             bundleMembers: false
         },
         'Pursuit': {
@@ -137,12 +137,11 @@ const Register = () => {
                 member3Phone: "entry.2044577159",
                 member4Name: "entry.1150982003",
                 member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700",
-                accommodation: "entry.1941174996"
+                member4Phone: "entry.641202700"
             },
             hasCollege: false,
             hasMemberPhone: true,
-            hasAccommodation: true,
+            hasAccommodation: false,
             bundleMembers: false
         }
     };
@@ -167,7 +166,6 @@ const Register = () => {
         if (config.ids.leaderEmail) formBody.append(config.ids.leaderEmail, formData.email);
         if (config.ids.leaderPhone) formBody.append(config.ids.leaderPhone, formData.phone);
         if (config.ids.college && config.hasCollege) formBody.append(config.ids.college, formData.college);
-        if (config.ids.accommodation && config.hasAccommodation) formBody.append(config.ids.accommodation, formData.accommodation.toUpperCase());
 
         if (config.bundleMembers) {
             // Srijan legacy logic (if needed, but currently false for all)
@@ -217,7 +215,7 @@ const Register = () => {
             // Reset fields
             setFormData(prev => ({
                 ...prev,
-                teamName: '', teamSize: '', accommodation: 'No',
+                teamName: '', teamSize: '',
                 member2Name: '', member2Email: '', member2Phone: '',
                 member3Name: '', member3Email: '', member3Phone: '',
                 member4Name: '', member4Email: '', member4Phone: ''
@@ -252,15 +250,21 @@ const Register = () => {
                         </button>
 
                         <div className="register-content-modal">
-                            <h2 className="success-title">Thank You!</h2>
+                            <h2 className="success-title">Success!</h2>
                             <p className="success-body">
-                                You have successfully registered for <br />
-                                <span className="success-highlight">{event}</span>
+                                You have successfully registered for <span className="success-highlight">{event}</span>.
                             </p>
 
-                            <p className="success-slogan">
-                                "Innovate today to define tomorrow."
-                            </p>
+                            <div className="success-info-box">
+                                <div className="info-item">
+                                    <span className="info-icon">📧</span>
+                                    <p>Check the <strong>Team Leader's mailbox</strong> (including spam) for confirmation.</p>
+                                </div>
+                                <div className="info-item">
+                                    <span className="info-icon">📲</span>
+                                    <p>Join our WhatsApp group and channels for all future updates.</p>
+                                </div>
+                            </div>
 
                             <a
                                 href="https://whatsapp.com/channel/0029VbCVzgbBlHpY1prIRI1m"
@@ -270,163 +274,189 @@ const Register = () => {
                             >
                                 <FaWhatsapp className="whatsapp-icon" /> Join WhatsApp Group
                             </a>
+
+                            <div className="success-contact-section">
+                                <p className="contact-heading">For any queries, contact:</p>
+                                <div className="contact-grid">
+                                    <div className="contact-item">
+                                        <p className="c-name">Nihal Kankal</p>
+                                        <p className="c-role">(Overall Head)</p>
+                                        <p className="c-num">+91 8766417815</p>
+                                    </div>
+                                    <div className="contact-item">
+                                        <p className="c-name">Prarthna Kale</p>
+                                        <p className="c-role">(Overall Head)</p>
+                                        <p className="c-num">+91 98765 43210</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             )}
 
-            <div className="register-content">
-                <button
-                    className="back-btn"
-                    onClick={() => navigate(-1)}
-                    style={{
-                        position: 'absolute',
-                        top: '20px',
-                        left: '20px',
-                        background: 'transparent',
-                        border: 'none',
-                        color: '#a78bfa',
-                        fontSize: '1rem',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        zIndex: 10
-                    }}
-                >
-                    <FaArrowLeft /> Back
-                </button>
-
-                <div className="register-header">
-                    <p>{event} Registration</p>
-                </div>
-
-                {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-
-                <form className="register-form" onSubmit={onSubmit}>
-
-                    <label>EVENT</label>
-                    <select name="event" value={event} onChange={onChange} className="register-select" required disabled>
-                        <option value="Srijan (Hackathon)">Srijan (Hackathon)</option>
-                        <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
-                        <option value="Udbhav (Conference)">Udbhav (Conference)</option>
-                        <option value="Pursuit">Pursuit</option>
-                    </select>
-
-                    {/* TEAM INFO SECTION (Visible for all) */}
-                    <div className="form-section-title">Team Info</div>
-                    <label>TEAM NAME</label>
-                    <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
-
-                    {config?.hasAccommodation && (
-                        <>
-                            <label>ACCOMMODATION REQUIRED?</label>
-                            <select name="accommodation" value={accommodation} onChange={onChange} className="register-select" required>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select>
-                        </>
-                    )}
-
-                    <label>TEAM SIZE (2-4)</label>
-                    <input
-                        type="number"
-                        min="1"
-                        max="4"
-                        placeholder="Total Members (e.g. 4)"
-                        name="teamSize"
-                        value={teamSize}
-                        onChange={onChange}
-                        required
-                    />
-
-                    {/* TEAM LEADER */}
-                    <div className="form-section-title">Team Leader (Member 1) Details</div>
-                    <label>FULL NAME</label>
-                    <input type="text" placeholder="Leader Name" name="fullName" value={fullName} onChange={onChange} required />
-
-                    <label>EMAIL</label>
-                    <input type="email" placeholder="Leader Email" name="email" value={email} onChange={onChange} required />
-
-                    <label>PHONE</label>
-                    <input type="tel" placeholder="Leader Phone" name="phone" value={phone} onChange={onChange} required />
-
-                    {showCollege && (
-                        <>
-                            <label>COLLEGE</label>
-                            <input type="text" placeholder="College Name" name="college" value={college} onChange={onChange} required />
-                        </>
-                    )}
-
-
-                    {/* DYNAMIC MEMBERS */}
-                    {parseInt(teamSize) >= 2 && (
-                        <>
-                            <div className="form-section-title">Member 2 Details</div>
-                            <label>NAME</label>
-                            <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
-                            <label>EMAIL</label>
-                            <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
-                            {config?.hasMemberPhone && (
-                                <>
-                                    <label>PHONE</label>
-                                    <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
-                                </>
-                            )}
-                        </>
-                    )}
-
-                    {parseInt(teamSize) >= 3 && (
-                        <>
-                            <div className="form-section-title">Member 3 Details</div>
-                            <label>NAME</label>
-                            <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
-                            <label>EMAIL</label>
-                            <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
-                            {config?.hasMemberPhone && (
-                                <>
-                                    <label>PHONE</label>
-                                    <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
-                                </>
-                            )}
-                        </>
-                    )}
-
-                    {parseInt(teamSize) >= 4 && (
-                        <>
-                            <div className="form-section-title">Member 4 Details</div>
-                            <label>NAME</label>
-                            <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
-                            <label>EMAIL</label>
-                            <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
-                            {config?.hasMemberPhone && (
-                                <>
-                                    <label>PHONE</label>
-                                    <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
-                                </>
-                            )}
-                        </>
-                    )}
-
-                    <div className="terms-container" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '20px 0' }}>
-                        <input
-                            type="checkbox"
-                            name="agreed"
-                            checked={formData.agreed}
-                            onChange={onChange}
-                            required
-                            style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#00e5ff' }}
-                        />
-                        <label style={{ fontSize: '0.9rem', color: '#ccc', cursor: 'pointer' }}>
-                            I agree to the <span style={{ color: '#00e5ff', textDecoration: 'underline' }}>Terms and Conditions</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" className="register-btn" disabled={loading || !formData.agreed}>
-                        {loading ? 'Submitting...' : 'Register Team'}
+            <div className="register-layout">
+                <div className="register-content">
+                    <button
+                        className="back-btn"
+                        onClick={() => navigate(-1)}
+                        style={{
+                            position: 'absolute',
+                            top: '20px',
+                            left: '20px',
+                            background: 'transparent',
+                            border: 'none',
+                            color: '#a78bfa',
+                            fontSize: '1rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            zIndex: 10
+                        }}
+                    >
+                        <FaArrowLeft /> Back
                     </button>
 
-                </form>
+                    <div className="register-header">
+                        <p>{event} Registration</p>
+                    </div>
+
+                    <div className="register-highlights-grid">
+                        <div className="highlight-box">
+                            <h4>FACILITIES</h4>
+                            <p>Ethernet • WiFi • Extension Boards • Accomodation</p>
+                        </div>
+                        <div className="highlight-box">
+                            <h4>REWARDS</h4>
+                            <p>Certificates • Exposure • Networking • Recognition</p>
+                        </div>
+                    </div>
+
+                    {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+
+                    <form className="register-form" onSubmit={onSubmit}>
+
+                        <label>EVENT</label>
+                        <select name="event" value={event} onChange={onChange} className="register-select" required disabled>
+                            <option value="Srijan (Hackathon)">Srijan (Hackathon)</option>
+                            <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
+                            <option value="Udbhav (Conference)">Udbhav (Conference)</option>
+                            <option value="Pursuit">Pursuit</option>
+                        </select>
+
+                        {/* TEAM INFO SECTION (Visible for all) */}
+                        <div className="form-section-title">Team Info</div>
+                        <label>TEAM NAME</label>
+                        <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
+
+                        <label>TEAM SIZE (2-4)</label>
+                        <input
+                            type="number"
+                            min="2"
+                            max="4"
+                            placeholder="Total Members (e.g. 4)"
+                            name="teamSize"
+                            value={teamSize}
+                            onChange={onChange}
+                            required
+                        />
+
+                        {/* TEAM LEADER */}
+                        <div className="form-section-title">Team Leader (Member 1) Details</div>
+                        <label>FULL NAME</label>
+                        <input type="text" placeholder="Leader Name" name="fullName" value={fullName} onChange={onChange} required />
+
+                        <label>EMAIL</label>
+                        <input type="email" placeholder="Leader Email" name="email" value={email} onChange={onChange} required />
+
+                        <label>PHONE</label>
+                        <input type="tel" placeholder="Leader Phone" name="phone" value={phone} onChange={onChange} required />
+
+                        {showCollege && (
+                            <>
+                                <label>COLLEGE</label>
+                                <input type="text" placeholder="College Name" name="college" value={college} onChange={onChange} required />
+                            </>
+                        )}
+
+
+                        {/* DYNAMIC MEMBERS */}
+                        {parseInt(teamSize) >= 2 && (
+                            <>
+                                <div className="form-section-title">Member 2 Details</div>
+                                <label>NAME</label>
+                                <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
+                                <label>EMAIL</label>
+                                <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
+                                {config?.hasMemberPhone && (
+                                    <>
+                                        <label>PHONE</label>
+                                        <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                                    </>
+                                )}
+                            </>
+                        )}
+
+                        {parseInt(teamSize) >= 3 && (
+                            <>
+                                <div className="form-section-title">Member 3 Details</div>
+                                <label>NAME</label>
+                                <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
+                                <label>EMAIL</label>
+                                <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
+                                {config?.hasMemberPhone && (
+                                    <>
+                                        <label>PHONE</label>
+                                        <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
+                                    </>
+                                )}
+                            </>
+                        )}
+
+                        {parseInt(teamSize) >= 4 && (
+                            <>
+                                <div className="form-section-title">Member 4 Details</div>
+                                <label>NAME</label>
+                                <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
+                                <label>EMAIL</label>
+                                <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
+                                {config?.hasMemberPhone && (
+                                    <>
+                                        <label>PHONE</label>
+                                        <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
+                                    </>
+                                )}
+                            </>
+                        )}
+
+                        <div className="terms-container" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '20px 0' }}>
+                            <input
+                                type="checkbox"
+                                name="agreed"
+                                checked={formData.agreed}
+                                onChange={onChange}
+                                required
+                                style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#00e5ff' }}
+                            />
+                            <label style={{ fontSize: '0.9rem', color: '#ccc', cursor: 'pointer' }}>
+                                I agree to the <span style={{ color: '#00e5ff', textDecoration: 'underline' }}>Terms and Conditions</span>
+                            </label>
+                        </div>
+
+                        <div className="accommodation-notice-box">
+                            <p className="notice-text">
+                                <span className="notice-icon">🚀</span>
+                                <strong>NOTICE:</strong> For accommodation, please fill the <Link to="/accommodation" className="notice-link">Accommodation Form</Link> separately on the website.
+                            </p>
+                        </div>
+
+                        <button type="submit" className="register-btn" disabled={loading || !formData.agreed}>
+                            {loading ? 'Submitting...' : 'Register Team'}
+                        </button>
+
+                    </form>
+                </div>
             </div>
         </div>
     );

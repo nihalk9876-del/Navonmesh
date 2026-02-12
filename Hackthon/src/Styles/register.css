@@ -1,4 +1,4 @@
-/* Registration Modal Styles */
+/* Registration Modal Styles - Final Update */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -353,71 +353,207 @@
     }
 }
 
-.register-content {
-    position: relative;
-}
-
-
-/* Fixes for Mobile Responsiveness and Simple Text */
-.register-container {
-    width: 100%;
-    min-height: 100vh;
+/* Registration Page Layout - Streamlined Focus */
+.register-layout {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 60px 20px;
-    background: #05060f;
-}
-
-.register-content {
     width: 100%;
-    max-width: 600px;
-    background: rgba(15, 16, 22, 0.8);
-    padding: 40px;
-    border-radius: 16px;
-    border: 1px solid #2d2d3a;
-    backdrop-filter: blur(10px);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
-.register-form label,
-.form-section-title,
-.register-header p,
-.register-btn {
-    font-family: 'Poppins', sans-serif !important;
-    text-transform: none !important;
-    letter-spacing: normal !important;
+.register-highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.highlight-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.highlight-box:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+
+.highlight-box h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: #a78bfa;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.highlight-box p {
+    font-size: 0.75rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Success Modal Overhaul */
+.success-info-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-icon {
+    font-size: 1.2rem;
+}
+
+.info-item p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.success-contact-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-heading {
+    font-size: 0.85rem;
+    color: #a78bfa;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.contact-item .c-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.contact-item .c-role {
+    font-size: 0.7rem;
+    color: #a78bfa;
+    margin: 2px 0;
+}
+
+.contact-item .c-num {
+    font-family: 'Inter', sans-serif;
+    color: #00f3ff;
+    font-size: 0.85rem;
+    margin: 0;
 }
 
 @media (max-width: 600px) {
-    .register-container {
-        padding: 40px 10px;
+
+    .register-highlights-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Accommodation Notice Box - Interstellar Style */
+.accommodation-notice-box {
+    background: rgba(124, 58, 237, 0.05);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-left: 4px solid #00f3ff;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin: 25px 0;
+    backdrop-filter: blur(10px);
+    animation: boxEntry 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.accommodation-notice-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.05), transparent);
+    animation: sweep 3s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes boxEntry {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
 
-    .register-content {
-        padding: 30px 15px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sweep {
+    0% {
+        transform: translateX(-100%);
     }
 
-    .register-form {
-        gap: 12px;
+    100% {
+        transform: translateX(100%);
     }
+}
 
-    .register-form input,
-    .register-select {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
+.notice-text {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-    .register-form label {
-        font-size: 0.8rem;
-    }
+.notice-icon {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
+}
 
-    .form-section-title {
-        font-size: 0.9rem;
-        margin-top: 15px;
-    }
+.notice-link {
+    color: #00f3ff;
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: 1px dashed rgba(0, 243, 255, 0.5);
+    transition: all 0.3s ease;
+    padding: 0 2px;
+}
 
-    .register-btn {
-        font-size: 1rem;
-        padding: 12px;
-    }
+.notice-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.8);
 }

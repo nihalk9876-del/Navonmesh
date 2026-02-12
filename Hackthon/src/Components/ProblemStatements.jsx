@@ -85,33 +85,64 @@ const problems = [
 
 const ProblemStatements = () => {
     const [activeProblem, setActiveProblem] = useState(null);
+    const [showMobileDomains, setShowMobileDomains] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    React.useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <div className="problem-statements-section" style={{ padding: "40px", color: "white" }}>
             <h2 style={{ fontFamily: "Orbitron", textAlign: "center", fontSize: "2.5rem", marginBottom: "20px" }}>
                 Domains
             </h2>
-            <div className="problem-statements-container">
-                {problems.map((item) => (
-                    <div
-                        key={item.id}
-                        className="problem-card"
+
+            {isMobile && !showMobileDomains ? (
+                <div className="mobile-view-domains-wrapper">
+                    <button
+                        className="mobile-view-domains-btn"
+                        onClick={() => setShowMobileDomains(true)}
                     >
-                        <div className="card-overlay"></div>
-                        <div className="card-content">
-                            <span className="card-icon">{item.icon}</span>
-                            <h3 className="card-title">{item.title}</h3>
-                            <p className="card-desc">{item.desc}</p>
-                            <button
-                                className="view-desc-btn"
-                                onClick={() => setActiveProblem(item)}
-                            >
-                                View Description
-                            </button>
-                        </div>
+                        View Domains
+                    </button>
+                    <p className="mobile-hint">Select to view competition domains</p>
+                </div>
+            ) : isMobile && showMobileDomains ? (
+                <div className="simple-mobile-domains">
+                    <div className="simple-domains-header">
+                        <button className="simple-close-btn" onClick={() => setShowMobileDomains(false)}>
+                            <FaTimes /> Close List
+                        </button>
                     </div>
-                ))}
-            </div>
+                    <div className="simple-domains-list">
+                        {problems.map((item) => (
+                            <div key={item.id} className="simple-domain-item" onClick={() => setActiveProblem(item)}>
+                                <span>{item.title}</span>
+                                <span className="arrow-right">→</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div className="problem-statements-container">
+                    {problems.map((item) => (
+                        <div
+                            key={item.id}
+                            className="problem-card"
+                            onClick={() => setActiveProblem(item)}
+                        >
+                            <div className="card-overlay"></div>
+                            <div className="card-content">
+                                <span className="card-icon">{item.icon}</span>
+                                <h3 className="card-title">{item.title}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
 
             {/* MODAL */}
             {activeProblem && (

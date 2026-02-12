@@ -104,105 +104,150 @@
     flex: 2;
     min-width: 300px;
     position: relative;
+    padding: 50px 0;
+    perspective: 2000px;
+}
+
+.map-3d-container {
+    padding: 20px;
+    width: 100%;
 }
 
 .map-wrapper {
     position: relative;
     width: 100%;
     border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    overflow: visible;
+    /* Allow floating markers */
+    border: 2px solid rgba(0, 243, 255, 0.3);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(0, 243, 255, 0.1);
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+    background: #050510;
 }
 
 .map-image {
     width: 100%;
     display: block;
-    transition: transform 0.3s ease;
+    border-radius: 20px;
+    opacity: 0.8;
 }
 
-/* Markers */
+/* Holographic Grid Overlay */
+.map-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.2), transparent);
+    animation: mapSweep 4s infinite linear;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes mapSweep {
+    0% {
+        top: -10%;
+    }
+
+    100% {
+        top: 110%;
+    }
+}
+
+/* 3D Markers */
 .map-marker {
     position: absolute;
-    transform: translate(-50%, -100%);
-    /* Center bottom tip on point */
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     opacity: 0;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     pointer-events: none;
     z-index: 10;
+    transform-style: preserve-3d;
 }
 
 .map-marker.active {
     opacity: 1;
-    transform: translate(-50%, -110%) scale(1.1);
-    /* Pop up slightly */
+}
+
+/* The vertical beam effect */
+.marker-stem {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(to top, #00f3ff, transparent);
+    transform: rotateX(-35deg);
+    /* Neutralize map tilt */
+    transform-origin: bottom;
+    z-index: -1;
+}
+
+.marker-content-3d {
+    transform: rotateX(-35deg) translateZ(80px);
+    /* Stand upright higher */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
 }
 
 .marker-pin {
     width: 40px;
     height: 40px;
-    background: #ff4757;
-    color: white;
+    background: #00f3ff;
+    color: #050510;
     border-radius: 50% 50% 50% 0;
     transform: rotate(-45deg);
-    /* Pin shape */
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.5);
-    position: relative;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+    border: 2px solid white;
 }
 
 .marker-pin svg {
     transform: rotate(45deg);
-    /* Un-rotate icon */
     font-size: 1.2rem;
 }
 
 .marker-label {
-    margin-top: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 5px;
+    margin-top: 15px;
+    background: rgba(10, 10, 30, 0.9);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
     font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
     white-space: nowrap;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid #00f3ff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
-/* Ripple Effect for active marker */
-.map-marker.active::after {
-    content: '';
-    position: absolute;
-    top: 35px;
-    /* Adjust to pin bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 10px;
-    background: rgba(255, 71, 87, 0.5);
-    border-radius: 50%;
-    animation: ripple 1.5s infinite;
-    z-index: -1;
-}
-
-@keyframes ripple {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 1;
-    }
-
-    100% {
-        width: 60px;
-        height: 30px;
-        opacity: 0;
-    }
+.map-instruction {
+    color: #00f3ff !important;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 @media (max-width: 1024px) {
@@ -235,6 +280,10 @@
     .map-display {
         width: 100%;
         min-width: unset;
+        padding: 20px 0;
+        /* Reduced padding on mobile */
+        perspective: 1500px;
+        /* Adjust perspective for mobile */
     }
 }
 
@@ -267,5 +316,31 @@
 
     .map-instruction {
         text-align: center;
+    }
+
+    /* MINI MARKERS FOR MOBILE */
+    .marker-label {
+        font-size: 0.6rem !important;
+        padding: 4px 8px !important;
+        margin-top: 4px !important;
+        letter-spacing: 0.2px;
+    }
+
+    .marker-pin {
+        width: 22px !important;
+        height: 22px !important;
+        border-width: 1px !important;
+    }
+
+    .marker-pin svg {
+        font-size: 0.7rem !important;
+    }
+
+    .marker-stem {
+        height: 30px !important;
+    }
+
+    .marker-content-3d {
+        transform: rotateX(-12deg) translateZ(30px) !important;
     }
 }

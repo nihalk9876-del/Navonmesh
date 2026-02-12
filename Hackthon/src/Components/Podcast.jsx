@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/podcast.css';
 import { FaPlay, FaMicrophone, FaHeadphones, FaSpotify, FaYoutube } from 'react-icons/fa';
@@ -6,7 +6,53 @@ import podcastThumb from '../assets/podcast_thumbnail.jpg';
 
 const Podcast = () => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [videoEnded, setVideoEnded] = useState(false);
     const navigate = useNavigate();
+    const playerRef = useRef(null);
+
+    // YouTube IFrame API initialization
+    useEffect(() => {
+        if (!isPlaying) return;
+
+        // Load the API script if not already loaded
+        if (!window.YT) {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        const createPlayer = () => {
+            playerRef.current = new window.YT.Player('podcast-video', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        };
+
+        const onPlayerStateChange = (event) => {
+            // YT.PlayerState.ENDED is 0
+            if (event.data === 0) {
+                setVideoEnded(true);
+            }
+        };
+
+        // If API is already loaded, initialize after a small delay to ensure iframe is rendered
+        if (window.YT && window.YT.Player) {
+            setTimeout(createPlayer, 100);
+        } else {
+            window.onYouTubeIframeAPIReady = () => {
+                createPlayer();
+            };
+        }
+    }, [isPlaying]);
+
+    const handlePlayAgain = () => {
+        setVideoEnded(false);
+        if (playerRef.current && playerRef.current.playVideo) {
+            playerRef.current.playVideo();
+        }
+    };
 
     return (
         <section className="podcast-section" id="podcast">
@@ -53,14 +99,29 @@ const Podcast = () => {
                                         </div>
                                     </div>
                                 ) : (
-                                    <iframe
-                                        className="podcast-iframe"
-                                        src="https://www.youtube.com/embed/1KSBr2NC3xY?autoplay=1"
-                                        title="Navonmesh Podcast"
-                                        frameBorder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        allowFullScreen
-                                    ></iframe>
+                                    <div className="video-wrapper" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                                        <iframe
+                                            id="podcast-video"
+                                            className="podcast-iframe"
+                                            src="https://www.youtube.com/embed/1KSBr2NC3xY?autoplay=1&rel=0&enablejsapi=1"
+                                            title="Navonmesh Podcast"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen
+                                        ></iframe>
+
+                                        {/* End Screen Overlay */}
+                                        {videoEnded && (
+                                            <div className="podcast-video-end-screen">
+                                                <div className="end-screen-content">
+                                                    <h3>Thank you for watching!</h3>
+                                                    <button className="play-again-btn" onClick={handlePlayAgain}>
+                                                        <FaPlay /> Play Again
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
                                 )}
                             </div>
 

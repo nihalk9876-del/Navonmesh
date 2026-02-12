@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/projectExpo.css";
 import "../Styles/accommodationHead.css"; // Add new CSS import
 import { FaPhone, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -11,6 +12,7 @@ import boysHostel3 from "../assets/boys_hostel_3.png";
 import boysHostel4 from "../assets/boys_hostel_4.png";
 
 const Accommodation = () => {
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
     const [status, setStatus] = useState("idle"); // idle, submitting, success, error
     const [formData, setFormData] = useState({
@@ -93,7 +95,7 @@ const Accommodation = () => {
                 Accommodation
             </h1>
 
-            <div className="accommodation-content" style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center", color: "#ccc", padding: "0 20px" }}>
+            <div className="accommodation-content" style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center", color: "#ccc", padding: "0 20px" }}>
 
                 {/* Intro Section */}
                 <div style={{ marginBottom: "40px", background: "rgba(255,255,255,0.05)", padding: "20px", borderRadius: "10px" }}>
@@ -116,21 +118,35 @@ const Accommodation = () => {
                     <span style={{ color: "#4488ff", fontSize: "0.9rem" }}>*Limited slots available for participants.</span>
                 </p>
 
-                {/* Register Button */}
-                <button
-                    className="download-btn"
-                    onClick={toggleModal}
-                    style={{ maxWidth: "300px", margin: "0 auto 50px auto" }}
-                >
-                    Register for Accommodation
-                </button>
+                {/* Register Button & Journey Button */}
+                <div style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap", marginBottom: "50px" }}>
+                    <button
+                        className="download-btn"
+                        onClick={toggleModal}
+                        style={{ maxWidth: "300px", margin: "0" }}
+                    >
+                        Register for Accommodation
+                    </button>
+
+                    <button
+                        className="download-btn"
+                        onClick={() => navigate('/event-journey')}
+                        style={{
+                            maxWidth: "300px",
+                            margin: "0",
+                            background: "linear-gradient(45deg, #ff00cc, #333399)",
+                            border: "1px solid #ff00cc"
+                        }}
+                    >
+                        Complete Event Journey 🚀
+                    </button>
+                </div>
 
                 {/* Hostels Showcase */}
                 <div className="hostels-showcase">
-
                     {/* Left Part: Boys Hostels */}
                     <div className="hostel-category">
-                        <h3 style={{ color: "#4488ff", fontSize: "1.8rem", marginBottom: "20px", borderBottom: "1px solid #4488ff", display: "inline-block", paddingBottom: "5px" }}>
+                        <h3 style={{ color: "#4488ff", fontSize: "1.2rem", marginBottom: "12px", borderBottom: "1px solid #4488ff", display: "inline-block", paddingBottom: "3px" }}>
                             Boys Hostels
                         </h3>
                         <div className="hostel-grid">
@@ -155,10 +171,9 @@ const Accommodation = () => {
 
                     {/* Right Part: Girls Hostels */}
                     <div className="hostel-category">
-                        <h3 style={{ color: "#ff88dd", fontSize: "1.8rem", marginBottom: "20px", borderBottom: "1px solid #ff88dd", display: "inline-block", paddingBottom: "5px" }}>
+                        <h3 style={{ color: "#ff88dd", fontSize: "1.2rem", marginBottom: "12px", borderBottom: "1px solid #ff88dd", display: "inline-block", paddingBottom: "3px" }}>
                             Girls Hostels
                         </h3>
-                        {/* Wrapper div for grid layout */}
                         <div className="hostel-grid">
                             <div className="hostel-card">
                                 <img src={girlsHostel1} alt="Sant Meerabai Girls Hostel" />
@@ -175,13 +190,13 @@ const Accommodation = () => {
                         </div>
                     </div>
 
-                    {/* Accommodation Head Section */}
-                    <div className="accommodation-head-container">
+                    {/* Accommodation Head Section - Tucked inside for better space utilization */}
+                    <div className="accommodation-head-container" style={{ padding: "0", margin: "0" }}>
                         <div className="cosmos-box">
                             <div className="star-accent" style={{ top: '10%', left: '10%' }}></div>
                             <div className="star-accent" style={{ top: '80%', right: '15%' }}></div>
 
-                            <h2 className="cosmos-title">Accommodation & Logistics Head</h2>
+                            <h2 className="cosmos-title">Logistics Head</h2>
 
                             <div className="head-details">
                                 <h3 className="head-name">Ajinkya Surange</h3>
@@ -207,7 +222,6 @@ const Accommodation = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

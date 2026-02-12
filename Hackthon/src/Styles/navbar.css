@@ -25,79 +25,9 @@
   padding: 0;
 }
 
-.nav-actions button {
-  margin-left: 12px;
-  padding: 8px 18px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.nav-actions {
-  display: flex;
-  gap: 12px;
-}
-
-/* Futuristic angled button */
-/* Futuristic Pill button */
-/* Cyber-Leaf Modern Button */
-.neo-btn {
-  padding: 10px 30px;
-  font-family: "Orbitron", sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  /* Unique Shape: Diagonal Rounding */
-  border-radius: 24px 4px 24px 4px;
-
-  /* Glassy Gradient Base */
-  background: linear-gradient(135deg, rgba(68, 136, 255, 0.1), rgba(123, 76, 255, 0.1));
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-
-  cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-.neo-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #4488ff, #7b4cff);
-  z-index: -1;
-  transition: width 0.4s ease;
-  border-radius: 24px 4px 24px 4px;
-}
-
-.neo-btn:hover::before {
-  width: 100%;
-}
-
-.neo-btn:hover {
-  border-color: transparent;
-  box-shadow: 0 0 25px rgba(68, 136, 255, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Click effect */
-.neo-btn:active {
-  transform: scale(0.96);
-}
-
 .nav-logo img {
   height: 80px;
-  /* perfect navbar height */
   width: auto;
-  /* keeps aspect ratio */
   object-fit: contain;
   cursor: pointer;
 }
@@ -105,28 +35,7 @@
 .nav-logo {
   display: flex;
   align-items: center;
-  /* vertical alignment */
   gap: 12px;
-  /* space between logo & text */
-}
-
-/* Logo */
-.nav-logo img {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-}
-
-/* Title text */
-.nav-title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  color: #ffffff;
-  margin: 0;
-  /* remove default h1 margin */
-  line-height: 1;
-  /* aligns text with logo */
 }
 
 /* Dropdown Styles */
@@ -135,7 +44,6 @@
   cursor: pointer;
 }
 
-/* Consistent link styles */
 .nav-links li {
   display: flex;
   align-items: center;
@@ -159,7 +67,6 @@
 
 .dropdown-arrow {
   font-size: 10px;
-  /* Small arrow */
   transition: transform 0.3s ease;
 }
 
@@ -195,7 +102,7 @@
   margin: 5px 0;
 }
 
-.dropdown-menu li a {
+.dropdown-menu li span {
   display: block;
   padding: 8px 12px;
   color: #ccc;
@@ -205,8 +112,7 @@
   white-space: nowrap;
 }
 
-.dropdown-menu li a:hover,
-.dropdown-menu li a.active {
+.dropdown-menu li span:hover {
   background: rgba(255, 255, 255, 0.1);
   color: white;
 }
@@ -219,18 +125,10 @@
   cursor: pointer;
 }
 
-.mobile-nav-actions {
-  display: none;
-}
-
-/* ============================
-   MOBILE RESPONSIVENESS
-   ============================ */
 @media screen and (max-width: 768px) {
   .navbar {
     padding: 10px 20px;
     background: rgba(13, 13, 25, 0.95);
-    /* Solid Darker Background */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -238,36 +136,24 @@
     height: 40px;
   }
 
-  /* Hamburger Icon */
   .menu-icon {
     display: block;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
   }
 
-  /* Mobile Menu Container */
   .nav-links {
     position: fixed;
-    /* Fixed to cover screen correctly */
     top: 60px;
-    /* Below navbar height */
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
-    /* Full height */
     background: rgba(10, 10, 20, 0.98);
-    /* Less transparent */
     backdrop-filter: blur(20px);
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    /* Start from top */
     padding-top: 40px;
     gap: 30px;
     transform: translateX(100%);
-    /* Slide from right */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
   }
@@ -276,111 +162,13 @@
     transform: translateX(0);
   }
 
-  /* Navigation Items */
-  .nav-links li {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-links a {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #fff;
-    letter-spacing: 1px;
-    padding: 10px 0;
-  }
-
-  /* Dropdown Handling */
-  /* Dropdown Handling */
-  .dropdown-trigger {
-    justify-content: center;
-    /* Center spacing */
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-  }
-
   .dropdown-menu {
     position: static;
-    /* Flow naturally */
     transform: none;
     background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Faint border */
-    box-shadow: none;
     opacity: 1;
     visibility: visible;
     width: 220px;
-    /* Slightly wider */
     margin: 5px auto;
-    /* Center perfectly */
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .dropdown-menu li {
-    margin: 0;
-    width: 100%;
-  }
-
-  .dropdown-menu li span {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
-    color: #ccc;
-    transition: 0.3s;
-    font-size: 1rem;
-  }
-
-  .dropdown-menu li span:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 6px;
-  }
-
-  /* Mobile Actions (Buttons) */
-  .mobile-nav-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-    width: 100%;
-    align-items: center;
-    padding-bottom: 60px;
-    /* Extra space at bottom */
-  }
-
-  .neo-btn {
-    width: 220px;
-    /* Uniform width */
-    text-align: center;
-    padding: 0;
-    /* Remove padding to let flex center content or link fill */
-    height: 44px;
-    /* Fixed height for symmetry */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* Link inside button fill */
-  .neo-btn a {
-    color: inherit;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Hide Desktop actions */
-  .desktop-actions {
-    display: none;
   }
 }

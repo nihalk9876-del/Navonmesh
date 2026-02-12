@@ -528,9 +528,18 @@ const Cosmos = () => {
             {!isWarping && stage >= STAGES.EARTH && (
                 <>
                     {/* Top HUD Bar */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', zIndex: 10 }}>
-                        <div style={{ fontSize: '0.8rem', color: '#00ffcc' }}>SYS: ONLINE // TRJ: {Object.keys(STAGES).find(key => STAGES[key] === stage)}</div>
-                        <div style={{ fontSize: '0.8rem', color: '#00ffcc' }}>FUEL: 98% // VEL: 25,000 KM/S</div>
+                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', padding: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '25px' }}>
+                            <button className="hud-back-btn" onClick={() => navigate('/')} style={hudBackButton}>
+                                <span style={{ fontSize: '1.2rem', lineHeight: '1' }}>«</span> RETURN TO BASE
+                            </button>
+                            <div style={{ fontSize: '0.8rem', color: '#00ffcc', fontFamily: "'Orbitron', sans-serif", letterSpacing: '1px' }}>
+                                SYS: ONLINE // TRJ: {Object.keys(STAGES).find(key => STAGES[key] === stage)}
+                            </div>
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: '#00ffcc', fontFamily: "'Orbitron', sans-serif", letterSpacing: '1px' }}>
+                            FUEL: 98% // VEL: 25,000 KM/S
+                        </div>
                     </div>
 
                     {/* Left Side Planetary Data (EARTH) */}
@@ -676,6 +685,12 @@ const Cosmos = () => {
             <style>{`
                 @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
                 .pulse { animation: pulse 1.5s infinite; }
+                .hud-back-btn:hover {
+                    background: rgba(0, 243, 255, 0.15) !important;
+                    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4) !important;
+                    transform: translateX(-5px);
+                    border-color: #00f3ff !important;
+                }
             `}</style>
         </div>
     );
@@ -737,6 +752,25 @@ const navPanel = {
     borderRight: '4px solid #00ffcc',
     zIndex: 60,
     display: 'flex', flexDirection: 'column', gap: '10px'
+};
+
+const hudBackButton = {
+    background: 'rgba(0, 243, 255, 0.05)',
+    border: '1px solid rgba(0, 243, 255, 0.3)',
+    color: '#00f3ff',
+    padding: '8px 20px',
+    fontFamily: "'Orbitron', sans-serif",
+    fontSize: '0.75rem',
+    cursor: 'pointer',
+    letterSpacing: '2px',
+    backdropFilter: 'blur(10px)',
+    transition: '0.3s',
+    textTransform: 'uppercase',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+    boxShadow: '0 0 15px rgba(0, 243, 255, 0.1)',
+    borderRadius: '4px'
 };
 
 const navButton = {

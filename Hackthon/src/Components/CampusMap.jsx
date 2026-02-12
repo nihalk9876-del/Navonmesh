@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Styles/campusMap.css';
 import campusMapImg from '../assets/campus_map_v3.png';
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -36,6 +36,35 @@ const locations = [
 
 const CampusMap = () => {
     const [activeLocation, setActiveLocation] = useState(null);
+    const [rotate, setRotate] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handleMouseMove = (e) => {
+        if (isMobile) return;
+        const card = e.currentTarget;
+        const box = card.getBoundingClientRect();
+        const x = e.clientX - box.left;
+        const y = e.clientY - box.top;
+        const centerX = box.width / 2;
+        const centerY = box.height / 2;
+        const rotateX = (y - centerY) / 30; // Reduced intensity
+        const rotateY = (centerX - x) / 30;
+
+        setRotate({ x: rotateX, y: rotateY });
+    };
+
+    const handleMouseLeave = () => {
+        setRotate({ x: 0, y: 0 });
+    };
+
+    const baseRotateX = isMobile ? 12 : 35; // Reduced for mobile
+    const baseRotateZ = isMobile ? -3 : -10;
 
     return (
         <section className="campus-map-section">
@@ -48,7 +77,7 @@ const CampusMap = () => {
             <div className="map-content">
                 <div className="map-sidebar">
                     <h3>Explore Venues</h3>
-                    <p className="map-instruction">Click on a venue to locate it on the map.</p>
+                    <p className="map-instruction">Interstellar navigation active. Select a coordinate to track.</p>
 
                     <div className="location-buttons">
                         {locations.map((loc) => (
@@ -64,23 +93,41 @@ const CampusMap = () => {
                 </div>
 
                 <div className="map-display">
-                    <div className="map-wrapper">
-                        <img src={campusMapImg} alt="SSGMCE Campus Map" className="map-image" />
+                    <div
+                        className="map-3d-container"
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <div
+                            className="map-wrapper"
+                            style={{
+                                transform: `perspective(1200px) rotateX(${baseRotateX + rotate.x}deg) rotateY(${rotate.y}deg) rotateZ(${baseRotateZ}deg)`
+                            }}
+                        >
+                            <img src={campusMapImg} alt="SSGMCE Campus Map" className="map-image" />
 
-                        {locations.map((loc) => (
-                            loc.markers.map((marker, index) => (
-                                <div
-                                    key={`${loc.id}-${index}`}
-                                    className={`map-marker ${activeLocation === loc.id ? 'active' : ''}`}
-                                    style={{ top: marker.top, left: marker.left }}
-                                >
-                                    <div className="marker-pin">
-                                        <FaMapMarkerAlt />
+                            {/* Holographic grid overlay */}
+                            <div className="map-grid-overlay"></div>
+                            <div className="scanline"></div>
+
+                            {locations.map((loc) => (
+                                loc.markers.map((marker, index) => (
+                                    <div
+                                        key={`${loc.id}-${index}`}
+                                        className={`map-marker ${activeLocation === loc.id ? 'active' : ''}`}
+                                        style={{ top: marker.top, left: marker.left }}
+                                    >
+                                        <div className="marker-stem"></div>
+                                        <div className="marker-content-3d">
+                                            <div className="marker-pin">
+                                                <FaMapMarkerAlt />
+                                            </div>
+                                            <div className="marker-label">{marker.label}</div>
+                                        </div>
                                     </div>
-                                    <div className="marker-label">{marker.label}</div>
-                                </div>
-                            ))
-                        ))}
+                                ))
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

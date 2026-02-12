@@ -14,6 +14,7 @@ import ProblemStatement from "./Pages/ProblemStatement";
 import Team from "./Pages/Team";
 import Conference from "./Pages/Conference";
 import Accommodation from "./Pages/Accommodation";
+import EventJourney from "./Pages/EventJourney";
 import CulturalRegister from "./Pages/CulturalRegister";
 import Cosmos from "./Pages/Cosmos";
 
@@ -40,6 +41,7 @@ function App() {
               <Route path="/conference" element={<Conference />} />
               <Route path="/accommodation" element={<Accommodation />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/event-journey" element={<EventJourney />} />
             </Route>
 
             {/* Pages WITHOUT Navbar / Sidebar / Footer */}
