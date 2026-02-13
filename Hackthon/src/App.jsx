@@ -16,7 +16,9 @@ import Conference from "./Pages/Conference";
 import Accommodation from "./Pages/Accommodation";
 import EventJourney from "./Pages/EventJourney";
 import CulturalRegister from "./Pages/CulturalRegister";
+import Cultural from "./Pages/Cultural";
 import Cosmos from "./Pages/Cosmos";
+import Pursuit from "./Pages/Pursuit";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -39,15 +41,17 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/projectexpo" element={<ProjectExpo />} />
               <Route path="/conference" element={<Conference />} />
+              <Route path="/pursuit" element={<Pursuit />} />
               <Route path="/accommodation" element={<Accommodation />} />
               <Route path="/team" element={<Team />} />
               <Route path="/event-journey" element={<EventJourney />} />
+              <Route path="/cultural" element={<Cultural />} />
+              <Route path="/cosmos" element={<Cosmos />} />
             </Route>
 
             {/* Pages WITHOUT Navbar / Sidebar / Footer */}
             <Route path="/register" element={<Register />} />
-            <Route path="/cultural" element={<CulturalRegister />} />
-            <Route path="/cosmos" element={<Cosmos />} />
+            <Route path="/cultural-register" element={<CulturalRegister />} />
           </Routes>
         </div>
       </HashRouter>

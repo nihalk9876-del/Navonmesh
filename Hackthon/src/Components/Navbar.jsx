@@ -71,6 +71,11 @@ const Navbar = ({ onRegisterClick }) => {
             <li>
               <span onClick={() => scrollToSection("conference")}>Udbhav (Conference)</span>
             </li>
+            <li>
+              <NavLink to="/pursuit" className="nav-item-dropdown" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
+                Pursuit
+              </NavLink>
+            </li>
           </ul>
         </li>
         <li>

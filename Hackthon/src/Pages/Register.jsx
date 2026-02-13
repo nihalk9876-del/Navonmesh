@@ -11,9 +11,7 @@ const Register = () => {
     const urlEvent = queryParams.get('event');
 
     useEffect(() => {
-        if (urlEvent === 'pursuit') {
-            window.location.href = "https://pursuitssgmce.vercel.app/";
-        }
+        // Redirect handled externally if needed, but now pursuit has its own landing page
     }, [urlEvent]);
 
     const [formData, setFormData] = useState({
