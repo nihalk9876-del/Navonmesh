@@ -85,7 +85,6 @@ const problems = [
 
 const ProblemStatements = () => {
     const [activeProblem, setActiveProblem] = useState(null);
-    const [showMobileDomains, setShowMobileDomains] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     React.useEffect(() => {
@@ -100,28 +99,17 @@ const ProblemStatements = () => {
                 Domains
             </h2>
 
-            {isMobile && !showMobileDomains ? (
-                <div className="mobile-view-domains-wrapper">
-                    <button
-                        className="mobile-view-domains-btn"
-                        onClick={() => setShowMobileDomains(true)}
-                    >
-                        View Domains
-                    </button>
-                    <p className="mobile-hint">Select to view competition domains</p>
-                </div>
-            ) : isMobile && showMobileDomains ? (
-                <div className="simple-mobile-domains">
-                    <div className="simple-domains-header">
-                        <button className="simple-close-btn" onClick={() => setShowMobileDomains(false)}>
-                            <FaTimes /> Close List
-                        </button>
-                    </div>
-                    <div className="simple-domains-list">
+            {isMobile ? (
+                <div className="mobile-domains-hub">
+                    <div className="hub-scanner"></div>
+                    <div className="mobile-domains-grid">
                         {problems.map((item) => (
-                            <div key={item.id} className="simple-domain-item" onClick={() => setActiveProblem(item)}>
-                                <span>{item.title}</span>
-                                <span className="arrow-right">→</span>
+                            <div key={item.id} className="mini-hex-card" onClick={() => setActiveProblem(item)}>
+                                <div className="mini-hex-glow"></div>
+                                <div className="mini-hex-content">
+                                    <span className="mini-icon">{item.icon}</span>
+                                    <span className="mini-title">{item.title}</span>
+                                </div>
                             </div>
                         ))}
                     </div>

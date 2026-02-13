@@ -1,0 +1,464 @@
+/* ============================================================ */
+/* THE VOYAGER STATION: PURSUIT PAGE STYLES */
+/* ============================================================ */
+
+.pursuit-page {
+    min-height: 100vh;
+    background: transparent;
+    /* Use global background */
+    color: #fff;
+    padding-top: 100px;
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 🚀 HERO SECTION */
+.pursuit-hero {
+    max-width: 1400px;
+    margin: 0 auto 60px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.pursuit-title {
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 20px;
+    background: linear-gradient(to right, #fff, #00f3ff, #8f8bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 5px;
+    text-shadow: 0 0 50px rgba(0, 243, 255, 0.5);
+    text-transform: uppercase;
+}
+
+/* 🛠️ WORKSHOPS SECTION (MISSION MODULES) */
+.pursuit-section {
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.6rem;
+    color: #00f3ff;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+    padding-bottom: 10px;
+    width: fit-content;
+}
+
+.workshops-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 workshops per row */
+    gap: 15px;
+}
+
+.workshop-item {
+    background: rgba(10, 15, 30, 0.7);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-radius: 4px;
+    /* Shorter corners as requested */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05);
+}
+
+.workshop-item::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid #00f3ff;
+    border-left: 2px solid #00f3ff;
+    z-index: 2;
+}
+
+.workshop-item::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid #00f3ff;
+    border-right: 2px solid #00f3ff;
+    z-index: 2;
+}
+
+.workshop-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #00f3ff;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2), inset 0 0 20px rgba(0, 243, 255, 0.1);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.workshop-img-box {
+    width: 100%;
+    height: 140px;
+    /* Reduced for 5-column layout */
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.workshop-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.workshop-item:hover .workshop-card-img {
+    transform: scale(1.2);
+}
+
+.workshop-fee-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #00f3ff;
+    color: #000;
+    padding: 2px 10px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    z-index: 3;
+}
+
+.workshop-details-content {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.workshop-title {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 4px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.workshop-subtitle {
+    font-size: 0.75rem;
+    color: #00f3ff;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.workshop-desc {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.workshop-cta-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #00f3ff;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 10px;
+}
+
+/* Responsive adjustments for 5 columns */
+@media (max-width: 1200px) {
+    .workshops-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .workshops-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .workshops-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.workshop-item:hover .workshop-cta-footer {
+    gap: 15px;
+}
+
+/* 🎙️ SPEAKERS SECTION */
+.speakers-header-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.speakers-title-badge {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    padding: 15px 60px;
+    border-radius: 12px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #fff;
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.2);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.speakers-intro {
+    text-align: center;
+    color: #94a3b8;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.speaker-card {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    padding: 30px 20px;
+    backdrop-filter: blur(10px);
+}
+
+.speaker-card:hover {
+    border-color: rgba(0, 243, 255, 0.5);
+    transform: translateY(-10px);
+    background: rgba(15, 23, 42, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.speaker-img-wrapper {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(45deg, #312e81, #00f3ff);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.speaker-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #05060f;
+}
+
+.speaker-name {
+    font-size: 1.3rem;
+    margin: 0 0 10px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.speaker-role {
+    font-size: 0.85rem;
+    color: #00f3ff;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
+.speaker-org {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+/* 📞 MISSION SUPPORT / CONTACTS */
+.support-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.support-card {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+    backdrop-filter: blur(15px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.support-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+}
+
+.support-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.support-title {
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.support-subtitle {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.support-contacts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    color: #00f3ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.contact-name {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.contact-phone {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.contact-phone:hover {
+    color: #00f3ff;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.contact-divider {
+    width: 1px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .support-contacts {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-divider {
+        width: 100%;
+        height: 1px;
+    }
+}
+
+/* 🎯 CTA BUTTON */
+.pursuit-cta-container {
+    display: flex;
+    justify-content: center;
+    margin: 80px 0 100px;
+}
+
+.pursuit-visit-btn {
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    color: #fff;
+    background: rgba(0, 243, 255, 0.1);
+    border: 2px solid #00f3ff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+}
+
+.pursuit-visit-btn:hover {
+    background: #00f3ff;
+    color: #000;
+    box-shadow: 0 0 50px rgba(0, 243, 255, 0.6);
+    transform: scale(1.05);
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+    .pursuit-title {
+        font-size: 2.2rem;
+        letter-spacing: 8px;
+    }
+
+    .pursuit-subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+
+    .pursuit-visit-btn {
+        padding: 15px 25px;
+        font-size: 0.9rem;
+    }
+}

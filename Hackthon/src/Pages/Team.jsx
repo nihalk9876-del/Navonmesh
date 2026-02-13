@@ -41,7 +41,6 @@ import buteImg from "../assets/bute.png";
 import gawandeImg from "../assets/gawande.png";
 import mishraImg from "../assets/mishra.png";
 import chandanImg from "../assets/chandan.png";
-import sanskrutiImg from "../assets/sanskruti.png";
 import shrutiMankarImg from "../assets/shruti_mankar.png";
 import dhanashriImg from "../assets/dhanashri_borde.png"
 import omTaleImg from "../assets/om_tale.png";
@@ -299,15 +298,7 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/shrinit-chavan-106224295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: shrinitImg,
     },
-    {
-        id: 32,
-        name: "Sanskruti Kakade",
-        role: "Core Team Member",
-        subRole: "Management Co-head",
-        phone: "+91 9423413845",
-        email: "sanskrutikakade06@gmail.com",
-        image: sanskrutiImg,
-    },
+
     {
         id: 28,
         name: "Sakshi Kamble",

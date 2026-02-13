@@ -49,7 +49,7 @@ const Footer = () => {
               <li><Link to="/hackathon" onClick={scrollToTop}>Srijan (Hackathon)</Link></li>
               <li><Link to="/projectexpo" onClick={scrollToTop}>Ankur (Project Expo)</Link></li>
               <li><Link to="/conference" onClick={scrollToTop}>Udbhav (Conference)</Link></li>
-              <li><a href="https://pursuitssgmce.vercel.app/" target="_blank" rel="noreferrer">Pursuit</a></li>
+              <li><Link to="/pursuit" onClick={scrollToTop}>Pursuit</Link></li>
             </ul>
           </div>
 
