@@ -298,23 +298,10 @@ const Register = () => {
                     <button
                         className="back-btn"
                         onClick={() => navigate(-1)}
-                        style={{
-                            position: 'absolute',
-                            top: '20px',
-                            left: '20px',
-                            background: 'transparent',
-                            border: 'none',
-                            color: '#a78bfa',
-                            fontSize: '1rem',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            zIndex: 10
-                        }}
                     >
                         <FaArrowLeft /> Back
                     </button>
+
 
                     <div className="register-header">
                         <p>{event} Registration</p>
@@ -428,19 +415,21 @@ const Register = () => {
                             </>
                         )}
 
-                        <div className="terms-container" style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '20px 0' }}>
+                        <div className="terms-container">
                             <input
                                 type="checkbox"
                                 name="agreed"
                                 checked={formData.agreed}
                                 onChange={onChange}
                                 required
-                                style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#00e5ff' }}
+                                className="terms-checkbox"
                             />
-                            <label style={{ fontSize: '0.9rem', color: '#ccc', cursor: 'pointer' }}>
-                                I agree to the <span style={{ color: '#00e5ff', textDecoration: 'underline' }}>Terms and Conditions</span>
-                            </label>
+                            <div className="terms-text-wrapper">
+                                I agree to the <span className="terms-link">Terms and Conditions</span>
+                            </div>
                         </div>
+
+
 
                         <div className="accommodation-notice-box">
                             <p className="notice-text">
