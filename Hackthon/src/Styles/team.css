@@ -1074,7 +1074,101 @@
         background-position: 0 0;
     }
 
+
     to {
         background-position: 200px 200px;
+    }
+}
+
+/* Coordinating Team Banner */
+.banner-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.team-banner-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    background: transparent;
+}
+
+
+@media (max-width: 768px) {
+    .banner-container {
+        padding: 0 10px;
+    }
+}
+
+/* Coordinating Team Logos Row */
+.logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    /* Increased gap */
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.team-logo {
+    height: 140px;
+    /* Uniform Medium Height */
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.team-logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.5));
+}
+
+/* Remove giant overrides, keep slight adjustments if needed for visual balance */
+.pursuit-logo-img {
+    height: 140px;
+}
+
+.navonmesh-logo-img {
+    height: 160px;
+    /* Navonmesh logo is wider/shorter usually, needs slight bump to look visually equal */
+}
+
+@media (max-width: 768px) {
+    .logos-row {
+        gap: 15px;
+        /* Tighter gap */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        /* Force single line */
+        justify-content: center;
+        width: 100%;
+        overflow-x: auto;
+        /* Allow scroll if screen extremely small, though sizing should prevent */
+        padding: 0 10px;
+    }
+
+    .team-logo {
+        height: 60px;
+        /* Reduced for single line fit */
+        width: auto;
+        max-width: 30%;
+        /* Prevent any logo from hogging space */
+    }
+
+    .navonmesh-logo-img {
+        height: 70px;
+    }
+
+    .pursuit-logo-img {
+        height: 60px;
     }
 }
