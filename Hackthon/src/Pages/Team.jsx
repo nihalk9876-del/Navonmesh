@@ -46,6 +46,7 @@ import dhanashriImg from "../assets/dhanashri_borde.png"
 import omTaleImg from "../assets/om_tale.png";
 import bannerImg from "../assets/coordinating_team_banner.png";
 import PursuitLogo from "../assets/pursuitlogo.png";
+import imgPranita from "../assets/pranita.png";
 import NavonmeshLogo from "../assets/namonvesh-logo.png";
 
 
@@ -428,8 +429,17 @@ const teamMembers = [
         instagram: "https://www.instagram.com/omuuu__143?utm_source=qr&igsh=bnRraXVzMnI5MG1k",
         image: omTaleImg,
     },
-
+    {
+        id: 36,
+        name: "Pranita Warade",
+        role: "Core Team Member",
+        subRole: "Technical co-head",
+        phone: "+91 93561 15794",
+        email: "pranitawarade03@gmail.com",
+        image: imgPranita,
+    },
 ];
+
 
 const Team = () => {
     const [showAllCoreTeam, setShowAllCoreTeam] = useState(false);
