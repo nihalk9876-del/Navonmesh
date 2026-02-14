@@ -7,6 +7,16 @@ import pursuitLogo from "../assets/events/pursuit.png";
 import placeholderImg from "../assets/team_placeholder.png";
 import bgVideo from "../assets/bg.mp4";
 
+// Speaker Images
+import yogeshImg from "../assets/yogesh.jpg";
+import nakulImg from "../assets/nakul.png";
+import amitImg from "../assets/amit.jpg";
+import riyaImg from "../assets/riya.jpg";
+import pranavImg from "../assets/pranav.jpg";
+import chetanImg from "../assets/chetan.png";
+import mahamuneImg from "../assets/mahamune.jpg";
+
+
 const Pursuit = () => {
     // Scroll to top on mount
     useEffect(() => {
@@ -79,50 +89,58 @@ const Pursuit = () => {
         }
     ];
 
+    const [activeTab, setActiveTab] = React.useState('workshops');
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+        // Optional: specific scroll logic if needed
+    };
+
     const speakers = [
         {
             name: "Mr. Yogesh P Murumkar",
             role: "CEO & Corporate Trainer",
             org: "Bharat Software Solutions",
-            image: placeholderImg
+            image: yogeshImg
         },
         {
             name: "Mr. Nakul Deshmukh",
             role: "Founder & CEO",
             org: "Electrosoft LLP",
-            image: placeholderImg
+            image: nakulImg
         },
         {
             name: "Mr. Amit Molke",
             role: "SDR Associate",
             org: "Briskcone",
-            image: placeholderImg
+            image: amitImg
         },
         {
             name: "Miss Riya Dangra",
             role: "Software Engineer",
             org: "Apexon",
-            image: placeholderImg
+            image: riyaImg
         },
         {
             name: "Mr. Pranav Khedkar",
             role: "Alumni",
             org: "SSGMCE",
-            image: placeholderImg
+            image: pranavImg
         },
         {
             name: "Mr. Chetan Tajane",
             role: "Founder",
             org: "CRITS (Centre of Innovation and Advance Technical Skills)",
-            image: placeholderImg
+            image: chetanImg
         },
         {
             name: "Dr. R.S. Mahamune",
             role: "Faculty",
             org: "SSGMCE",
-            image: placeholderImg
+            image: mahamuneImg
         }
     ];
+
 
     return (
         <div className="pursuit-page">
@@ -132,66 +150,86 @@ const Pursuit = () => {
                 <p className="pursuit-subtitle">Thermal-Based Technical Symposium</p>
 
                 <div className="pursuit-info-box">
-                    PURSUIT is the theme-based national level technical symposium. It is a grand stage where innovation meets competition, featuring various technical events and challenges. It provides a unique opportunity for students to upgrade their technical skill set through specialized workshops led by industry experts.
+                    PURSUIT is the theme-based national level technical symposium. It is a grand stage where innovation meets competition.
                 </div>
             </div>
 
-            {/* 🛠️ Specialized Workshops (NOW FIRST) */}
-            <div className="pursuit-section">
-                <h2 className="section-heading">
-                    <FaMicrochip /> Mission Modules: Workshops
-                </h2>
-                <div className="workshops-container">
-                    {workshops.map((ws, i) => (
-                        <div
-                            key={i}
-                            className="workshop-item"
-                            onClick={() => window.open("https://pursuitssgmce.vercel.app/", "_blank")}
-                        >
-                            <div className="workshop-img-box">
-                                <img src={ws.image} alt={ws.title} className="workshop-card-img" />
-                                <div className="workshop-fee-badge">{ws.fee}</div>
-                                <div className="img-overlay-glow"></div>
-                            </div>
+            {/* Navigation Tabs */}
+            <div className="pursuit-tabs">
+                <button
+                    className={`pursuit-tab-btn ${activeTab === 'workshops' ? 'active' : ''}`}
+                    onClick={() => handleTabChange('workshops')}
+                >
+                    <FaMicrochip /> Workshops
+                </button>
+                <button
+                    className={`pursuit-tab-btn ${activeTab === 'speakers' ? 'active' : ''}`}
+                    onClick={() => handleTabChange('speakers')}
+                >
+                    <FaUsers /> Speakers
+                </button>
+            </div>
 
-                            <div className="workshop-details-content">
-                                <h3 className="workshop-title">{ws.title}</h3>
-                                <h4 className="workshop-subtitle">{ws.subtitle}</h4>
-                                <p className="workshop-desc">{ws.desc}</p>
-                                <div className="workshop-cta-footer">
-                                    <span>Initialize Program</span>
-                                    <FaArrowRight size={12} />
+            {/* 🛠️ Specialized Workshops (Conditionally Visible) */}
+            {activeTab === 'workshops' && (
+                <div className="pursuit-section fade-in">
+                    <h2 className="section-heading">
+                        <FaMicrochip /> Mission Modules: Workshops
+                    </h2>
+                    <div className="workshops-container">
+                        {workshops.map((ws, i) => (
+                            <div
+                                key={i}
+                                className="workshop-item"
+                                onClick={() => window.open("https://pursuitssgmce.vercel.app/", "_blank")}
+                            >
+                                <div className="workshop-img-box">
+                                    <img src={ws.image} alt={ws.title} className="workshop-card-img" />
+                                    <div className="workshop-fee-badge">{ws.fee}</div>
+                                    <div className="img-overlay-glow"></div>
+                                </div>
+
+                                <div className="workshop-details-content">
+                                    <h3 className="workshop-title">{ws.title}</h3>
+                                    <h4 className="workshop-subtitle">{ws.subtitle}</h4>
+                                    <p className="workshop-desc">{ws.desc}</p>
+                                    <div className="workshop-cta-footer">
+                                        <span>Initialize Program</span>
+                                        <FaArrowRight size={12} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* 🎙️ Mission Command: Speakers (NOW SECOND) */}
-            <div className="pursuit-section">
-                <div className="speakers-header-container">
-                    <div className="speakers-title-badge">
-                        Speakers
+                        ))}
                     </div>
                 </div>
-                <p className="speakers-intro">
-                    Meet the minds inspiring Pursuit 2026 – innovators, builders, and leaders shaping the future.
-                </p>
+            )}
 
-                <div className="speakers-grid">
-                    {speakers.map((speaker, idx) => (
-                        <div key={idx} className="speaker-card">
-                            <div className="speaker-img-wrapper">
-                                <img src={speaker.image} alt={speaker.name} className="speaker-img" />
-                            </div>
-                            <h3 className="speaker-name">{speaker.name}</h3>
-                            <p className="speaker-role">{speaker.role}</p>
-                            <p className="speaker-org">{speaker.org}</p>
+            {/* 🎙️ Mission Command: Speakers (Conditionally Visible) */}
+            {activeTab === 'speakers' && (
+                <div className="pursuit-section fade-in">
+                    <div className="speakers-header-container">
+                        <div className="speakers-title-badge">
+                            Speakers
                         </div>
-                    ))}
+                    </div>
+                    <p className="speakers-intro">
+                        Meet the minds inspiring Pursuit 2026 – innovators, builders, and leaders shaping the future.
+                    </p>
+
+                    <div className="speakers-grid">
+                        {speakers.map((speaker, idx) => (
+                            <div key={idx} className="speaker-card">
+                                <div className="speaker-img-wrapper">
+                                    <img src={speaker.image} alt={speaker.name} className="speaker-img" />
+                                </div>
+                                <h3 className="speaker-name">{speaker.name}</h3>
+                                <p className="speaker-role">{speaker.role}</p>
+                                <p className="speaker-org">{speaker.org}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* 📞 Mission Support / Queries Section */}
             <div className="pursuit-section">

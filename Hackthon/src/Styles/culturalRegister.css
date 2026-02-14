@@ -4,21 +4,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 60px 20px;
     color: #fff;
     font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .cultural-content {
     width: 100%;
     max-width: 650px;
-    background: rgba(15, 16, 22, 0.7);
-    backdrop-filter: blur(15px);
+    background: rgba(15, 16, 22, 0.8);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 20px;
+    border-radius: 24px;
     padding: 40px;
     position: relative;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.1);
 }
 
 .back-btn-top {
@@ -34,6 +36,7 @@
     cursor: pointer;
     font-weight: 500;
     transition: 0.3s;
+    font-size: 0.95rem;
 }
 
 .back-btn-top:hover {
@@ -46,12 +49,9 @@
     margin-bottom: 35px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
-
 .cultural-title {
     font-family: 'Rozha One', serif;
     font-size: 3rem;
-    /* Reverted to Rozha One */
     margin-bottom: 5px;
     background: linear-gradient(90deg, #c084fc, #818cf8);
     -webkit-background-clip: text;
@@ -62,7 +62,6 @@
 
 .cultural-title span {
     font-family: 'Orbitron', sans-serif;
-    /* Preserve Orbitron for CULTURAL */
     font-size: 1rem;
     display: block;
     letter-spacing: 4px;
@@ -84,12 +83,12 @@
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .input-group label {
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #a78bfa;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -97,21 +96,22 @@
 
 .input-group input,
 .cultural-form select {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 12px 16px;
+    border-radius: 12px;
+    padding: 14px 16px;
     color: #fff;
     font-size: 1rem;
     transition: 0.3s;
     outline: none;
+    width: 100%;
 }
 
 .input-group input:focus,
 .cultural-form select:focus {
     border-color: #a78bfa;
     background: rgba(139, 92, 246, 0.05);
-    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
 }
 
 .form-row {
@@ -120,77 +120,42 @@
     gap: 20px;
 }
 
-.select-wrapper {
-    position: relative;
+/* Terms Container - Reuse Logic */
+.terms-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 20px 0;
 }
 
-.select-wrapper select {
-    width: 100%;
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-.select-arrow {
-    position: absolute;
-    right: 15px;
-    pointer-events: none;
-    color: #94a3b8;
-}
-
-.upload-section {
-    margin-top: 10px;
-}
-
-.file-drop-zone {
-    border: 2px dashed rgba(139, 92, 246, 0.3);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    transition: 0.3s;
-}
-
-.file-drop-zone:hover {
-    border-color: #a78bfa;
-    background: rgba(139, 92, 246, 0.05);
-}
-
-.file-drop-zone input[type="file"] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+.terms-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
     cursor: pointer;
+    accent-color: #c084fc;
+    flex-shrink: 0;
 }
 
-.file-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    color: #94a3b8;
+.terms-label {
+    font-size: 0.9rem;
+    color: #cbd5e1;
     cursor: pointer;
+    line-height: 1.5;
 }
 
-.file-label svg {
-    font-size: 1.5rem;
+.terms-link {
+    color: #c084fc;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
-.file-help {
-    font-size: 0.75rem;
-    color: #64748b;
-    margin-top: 8px;
-}
-
+/* Specific button style */
 .submit-interstellar-btn {
     background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
     border: none;
     border-radius: 12px;
-    padding: 16px;
+    padding: 18px;
     color: #fff;
     font-family: 'Orbitron', sans-serif;
     font-weight: bold;
@@ -208,87 +173,60 @@
     filter: brightness(1.2);
 }
 
-.submit-interstellar-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.form-footer-note {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #475569;
-    margin-top: 15px;
-}
-
-.success-panel {
-    text-align: center;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.success-icon {
-    font-size: 4rem;
-    color: #4ade80;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.4));
-}
-
-.file-reminder {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
+.file-drop-zone {
+    border: 2px dashed rgba(139, 92, 246, 0.3);
     border-radius: 12px;
-    margin: 20px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.file-reminder p {
-    font-size: 0.9rem;
-    color: #cbd5e1;
-    margin-bottom: 15px;
-}
-
-.external-link-btn {
-    color: #facc15;
-    text-decoration: underline;
-    font-weight: 600;
-}
-
-.back-home-btn {
-    background: transparent;
-    border: 1px solid #475569;
-    color: #94a3b8;
-    padding: 10px 24px;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 30px;
+    text-align: center;
+    position: relative;
     transition: 0.3s;
 }
 
-.back-home-btn:hover {
-    color: #fff;
-    border-color: #fff;
+.file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #94a3b8;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
+/* Mobile Responsive */
 @media (max-width: 600px) {
+    .cultural-container {
+        padding: 40px 10px;
+    }
+
+    .cultural-content {
+        padding: 30px 15px;
+        border-radius: 16px;
+    }
+
+    .cultural-title {
+        font-size: 2.2rem;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
 
+    .back-btn-top {
+        top: 15px;
+        left: 15px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
     .cultural-title {
         font-size: 1.8rem;
     }
 
-    .cultural-content {
-        padding: 30px 20px;
+    .submit-interstellar-btn {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .terms-label {
+        font-size: 0.8rem;
     }
 }

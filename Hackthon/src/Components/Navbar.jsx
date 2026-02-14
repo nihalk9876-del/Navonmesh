@@ -23,6 +23,7 @@ const Navbar = ({ onRegisterClick }) => {
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
+
     } else {
       // If not on home page, navigate to home.
       // The path "/" is the home route in HashRouter (#/)
