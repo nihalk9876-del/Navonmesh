@@ -181,7 +181,7 @@ const Pursuit = () => {
                             <div
                                 key={i}
                                 className="workshop-item"
-                                onClick={() => window.open("https://pursuitssgmce.vercel.app/", "_blank")}
+                                onClick={() => window.open("https://www.pursuitssgmce.com", "_blank")}
                             >
                                 <div className="workshop-img-box">
                                     <img src={ws.image} alt={ws.title} className="workshop-card-img" />
@@ -260,7 +260,7 @@ const Pursuit = () => {
             <div className="pursuit-cta-container">
                 <button
                     className="pursuit-visit-btn"
-                    onClick={() => window.open("https://pursuitssgmce.vercel.app/", "_blank")}
+                    onClick={() => window.open("https://www.pursuitssgmce.com", "_blank")}
                 >
                     Visit Pursuit Website for Registration <FaArrowRight style={{ marginLeft: "10px" }} />
                 </button>
