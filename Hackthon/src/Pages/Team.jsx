@@ -44,6 +44,10 @@ import chandanImg from "../assets/chandan.png";
 import shrutiMankarImg from "../assets/shruti_mankar.png";
 import dhanashriImg from "../assets/dhanashri_borde.png"
 import omTaleImg from "../assets/om_tale.png";
+import bannerImg from "../assets/coordinating_team_banner.png";
+import PursuitLogo from "../assets/pursuitlogo.png";
+import NavonmeshLogo from "../assets/namonvesh-logo.png";
+
 
 const mentors = [
     {
@@ -480,10 +484,12 @@ const Team = () => {
             </div>
 
             {/* Coordinating Team Section */}
-            <div className="coordinating-section" style={{ marginBottom: "60px" }}>
+            <div className="coordinating-section" style={{ marginBottom: "60px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h2 className="section-title">Coordinating Team</h2>
-                <div className="logo-container">
-                    <img src={EcellLogo} alt="E-Cell SSGMCE" className="ecell-logo" />
+                <div className="logo-container logos-row">
+                    <img src={EcellLogo} alt="E-Cell Logo" className="team-logo ecell-logo-img" />
+                    <img src={NavonmeshLogo} alt="Navonmesh Logo" className="team-logo navonmesh-logo-img" />
+                    <img src={PursuitLogo} alt="Pursuit Logo" className="team-logo pursuit-logo-img" />
                 </div>
             </div>
 
