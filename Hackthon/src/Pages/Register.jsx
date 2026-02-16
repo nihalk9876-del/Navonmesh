@@ -12,7 +12,11 @@ const Register = () => {
 
     useEffect(() => {
         // Redirect handled externally if needed, but now pursuit has its own landing page
+        if (urlEvent === 'srijan') {
+            setFormData(prev => ({ ...prev, teamSize: '4' }));
+        }
     }, [urlEvent]);
+
 
     const [formData, setFormData] = useState({
         // Team Leader (Member 1)
@@ -24,7 +28,7 @@ const Register = () => {
                     urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
 
         teamName: '',
-        teamSize: '',
+        teamSize: urlEvent === 'srijan' ? '4' : '',
 
         // Members 2-4
         member2Name: '', member2Email: '', member2Phone: '',
@@ -338,13 +342,15 @@ const Register = () => {
                         <label>TEAM SIZE (2-4)</label>
                         <input
                             type="number"
-                            min="2"
+                            min={event === 'Srijan (Hackathon)' ? "4" : "2"}
                             max="4"
                             placeholder="Total Members (e.g. 4)"
                             name="teamSize"
-                            value={teamSize}
+                            value={event === 'Srijan (Hackathon)' ? "4" : teamSize}
                             onChange={onChange}
                             required
+                            readOnly={event === 'Srijan (Hackathon)'}
+                            style={event === 'Srijan (Hackathon)' ? { backgroundColor: '#e9ecef', cursor: 'not-allowed' } : {}}
                         />
 
                         {/* TEAM LEADER */}
