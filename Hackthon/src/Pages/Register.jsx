@@ -68,9 +68,10 @@ const Register = () => {
                 member3Phone: "entry.1200228325",
                 member4Name: "entry.1710049001",
                 member4Email: "entry.921494192",
-                member4Phone: "entry.1681717638"
+                member4Phone: "entry.1681717638",
+                college: "entry.323039862"
             },
-            hasCollege: false,
+            hasCollege: true,
             hasMemberPhone: true,
             hasAccommodation: false,
             bundleMembers: false
