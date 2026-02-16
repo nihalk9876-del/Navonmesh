@@ -54,24 +54,23 @@ const Register = () => {
     // --- GOOGLE FORM CONFIGURATION ---
     const FORM_CONFIG = {
         'Srijan (Hackathon)': {
-            url: "https://docs.google.com/forms/d/e/1FAIpQLSckdVMXfOtp8_v4yhbLR9RiGFZEi3axiKZYOlj9tq3V_KJ8ow/formResponse",
+            url: "https://docs.google.com/forms/d/e/1FAIpQLSfMpbvgeNfFKXVrTLL4ug41aUpE7YDneNNQv4_IfmkyPTlQ-Q/formResponse",
             ids: {
-                teamName: "entry.685383898",
-                leaderName: "entry.1299269564",
-                leaderEmail: "entry.209200253",
-                leaderPhone: "entry.7245340",
-                member2Name: "entry.947643702",
-                member2Email: "entry.1791579024",
-                member2Phone: "entry.908379874",
-                member3Name: "entry.1789252095",
-                member3Email: "entry.510037962",
-                member3Phone: "entry.922622339",
-                member4Name: "entry.1333084002",
-                member4Email: "entry.415072966",
-                member4Phone: "entry.2084040226",
-                college: "entry.1577051641"
+                teamName: "entry.2005620554",
+                leaderName: "entry.1045781291",
+                leaderEmail: "entry.1065046570",
+                leaderPhone: "entry.1166974658",
+                member2Name: "entry.1446904082",
+                member2Email: "entry.282203664",
+                member2Phone: "entry.1059585569",
+                member3Name: "entry.1158408763",
+                member3Email: "entry.194510035",
+                member3Phone: "entry.1200228325",
+                member4Name: "entry.1710049001",
+                member4Email: "entry.921494192",
+                member4Phone: "entry.1681717638"
             },
-            hasCollege: true,
+            hasCollege: false,
             hasMemberPhone: true,
             hasAccommodation: false,
             bundleMembers: false
