@@ -280,16 +280,33 @@ const Register = () => {
                             <div className="success-contact-section">
                                 <p className="contact-heading">For any queries, contact:</p>
                                 <div className="contact-grid">
-                                    <div className="contact-item">
-                                        <p className="c-name">Nihal Kankal</p>
-                                        <p className="c-role">(Overall Head)</p>
-                                        <p className="c-num">+91 8766417815</p>
-                                    </div>
-                                    <div className="contact-item">
-                                        <p className="c-name">Prarthna Kale</p>
-                                        <p className="c-role">(Overall Head)</p>
-                                        <p className="c-num">+91 98765 43210</p>
-                                    </div>
+                                    {event === 'Srijan (Hackathon)' ? (
+                                        <>
+                                            <div className="contact-item">
+                                                <p className="c-name">Dolly Bhutada</p>
+                                                <p className="c-role">(Volunteer Co-head)</p>
+                                                <p className="c-num">+91 8459701982</p>
+                                            </div>
+                                            <div className="contact-item">
+                                                <p className="c-name">Atharva Sonone</p>
+                                                <p className="c-role">(Volunteer Head)</p>
+                                                <p className="c-num">+91 9834428773</p>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <div className="contact-item">
+                                                <p className="c-name">Nihal Kankal</p>
+                                                <p className="c-role">(Overall Head)</p>
+                                                <p className="c-num">+91 8766417815</p>
+                                            </div>
+                                            <div className="contact-item">
+                                                <p className="c-name">Prarthna Kale</p>
+                                                <p className="c-role">(Overall Head)</p>
+                                                <p className="c-num">+91 98765 43210</p>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
