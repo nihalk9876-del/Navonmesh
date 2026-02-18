@@ -90,7 +90,7 @@ const ProjectExpo = () => {
                     {/* CTA Section */}
                     <div className="projectexpo-cta">
                         <div className="entry-fee">
-                            Entry Fee: ₹0
+                            Entry Fee: ₹300
                         </div>
                         <h2 className="cta-title">Register now and Win Prizes.</h2>
                         <Link to="/register?event=ankur">

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/register.css';
+import '../Styles/register_help.css';
 import { FaGoogle, FaWhatsapp, FaTimes, FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+
+import PaymentQR from '../assets/payment-qr.png';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -13,7 +16,7 @@ const Register = () => {
     useEffect(() => {
         // Redirect handled externally if needed, but now pursuit has its own landing page
         if (urlEvent === 'srijan') {
-            setFormData(prev => ({ ...prev, teamSize: '4' }));
+            // Srijan now allows 2-4 members, so let default handle it or set to empty
         }
     }, [urlEvent]);
 
@@ -28,12 +31,13 @@ const Register = () => {
                     urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
 
         teamName: '',
-        teamSize: urlEvent === 'srijan' ? '4' : '',
+        teamSize: '',
 
         // Members 2-4
         member2Name: '', member2Email: '', member2Phone: '',
         member3Name: '', member3Email: '', member3Phone: '',
         member4Name: '', member4Email: '', member4Phone: '',
+        utrNumber: '',
         agreed: false
     });
     const [error, setError] = useState('');
@@ -41,6 +45,7 @@ const Register = () => {
 
     // Success Modal State
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showUTRHelp, setShowUTRHelp] = useState(false);
 
     const {
         fullName, email, phone, college, event,
@@ -48,6 +53,7 @@ const Register = () => {
         member2Name, member2Email, member2Phone,
         member3Name, member3Email, member3Phone,
         member4Name, member4Email, member4Phone,
+        utrNumber
     } = formData;
 
     const onChange = e => {
@@ -73,7 +79,8 @@ const Register = () => {
                 member4Name: "entry.1710049001",
                 member4Email: "entry.921494192",
                 member4Phone: "entry.1681717638",
-                college: "entry.323039862"
+                college: "entry.323039862",
+                utrNumber: "entry.624710763"
             },
             hasCollege: true,
             hasMemberPhone: true,
@@ -95,7 +102,8 @@ const Register = () => {
                 member3Phone: "entry.2044577159",
                 member4Name: "entry.1150982003",
                 member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700"
+                member4Phone: "entry.641202700",
+                utrNumber: ""
             },
             hasCollege: false,
             hasMemberPhone: true,
@@ -117,7 +125,8 @@ const Register = () => {
                 member3Phone: "entry.2044577159",
                 member4Name: "entry.1150982003",
                 member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700"
+                member4Phone: "entry.641202700",
+                utrNumber: ""
             },
             hasCollege: false,
             hasMemberPhone: true,
@@ -139,7 +148,8 @@ const Register = () => {
                 member3Phone: "entry.2044577159",
                 member4Name: "entry.1150982003",
                 member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700"
+                member4Phone: "entry.641202700",
+                utrNumber: ""
             },
             hasCollege: false,
             hasMemberPhone: true,
@@ -204,6 +214,11 @@ const Register = () => {
             }
         }
 
+
+
+        // UTR Number
+        if (config.ids.utrNumber) formBody.append(config.ids.utrNumber, formData.utrNumber);
+
         try {
             await fetch(config.url, {
                 method: 'POST',
@@ -220,7 +235,8 @@ const Register = () => {
                 teamName: '', teamSize: '',
                 member2Name: '', member2Email: '', member2Phone: '',
                 member3Name: '', member3Email: '', member3Phone: '',
-                member4Name: '', member4Email: '', member4Phone: ''
+                member4Name: '', member4Email: '', member4Phone: '',
+                utrNumber: ''
             }));
 
         } catch (err) {
@@ -314,6 +330,40 @@ const Register = () => {
                 </div>
             )}
 
+            {/* UTR HELP MODAL */}
+            {showUTRHelp && (
+                <div className="modal-overlay" onClick={() => setShowUTRHelp(false)}>
+                    <div className="modal-content-wrapper help-modal" onClick={e => e.stopPropagation()}>
+                        <button className="modal-close-btn" onClick={() => setShowUTRHelp(false)}>
+                            <FaTimes />
+                        </button>
+                        <h3 className="help-title">How to find UTR / Transaction ID?</h3>
+                        <div className="help-steps">
+                            <div className="step-item">
+                                <span className="step-num">1</span>
+                                <p>Open your payment app (Google Pay, PhonePe, Paytm, etc.)</p>
+                            </div>
+                            <div className="step-item">
+                                <span className="step-num">2</span>
+                                <p>Go to <strong>History</strong> and find the transaction to "SSGMCE".</p>
+                            </div>
+                            <div className="step-item">
+                                <span className="step-num">3</span>
+                                <p>Tap on the transaction to view details.</p>
+                            </div>
+                            <div className="step-item">
+                                <span className="step-num">4</span>
+                                <p>Look for <strong>UTR Number</strong> or <strong>UPI Reference ID</strong> (usually 12 digits).</p>
+                            </div>
+                        </div>
+                        <div className="help-note">
+                            <strong>Note:</strong> Enter the correct 12-digit number to avoid rejection.
+                        </div>
+                        <button className="help-close-btn" onClick={() => setShowUTRHelp(false)}>Got it</button>
+                    </div>
+                </div>
+            )}
+
             <div className="register-layout">
                 <div className="register-content">
                     <button
@@ -359,15 +409,13 @@ const Register = () => {
                         <label>TEAM SIZE (2-4)</label>
                         <input
                             type="number"
-                            min={event === 'Srijan (Hackathon)' ? "4" : "2"}
+                            min="2"
                             max="4"
-                            placeholder="Total Members (e.g. 4)"
+                            placeholder="Total Members (e.g. 2, 3 or 4)"
                             name="teamSize"
-                            value={event === 'Srijan (Hackathon)' ? "4" : teamSize}
+                            value={teamSize}
                             onChange={onChange}
                             required
-                            readOnly={event === 'Srijan (Hackathon)'}
-                            style={event === 'Srijan (Hackathon)' ? { backgroundColor: '#e9ecef', cursor: 'not-allowed' } : {}}
                         />
 
                         {/* TEAM LEADER */}
@@ -436,7 +484,42 @@ const Register = () => {
                                     </>
                                 )}
                             </>
+
                         )}
+
+                        {/* PAYMENT SECTION */}
+                        <div className="form-section-title">Payment Details</div>
+                        <div className="payment-section" style={{ textAlign: "center", marginBottom: "20px" }}>
+                            <p style={{ marginBottom: "10px", fontSize: "1.1em" }}>Scan to pay <strong>₹300</strong></p>
+                            <img
+                                src={PaymentQR}
+                                alt="Payment QR Code"
+                                style={{ width: "200px", height: "auto", borderRadius: "10px", border: "2px solid #ccc", marginBottom: "15px" }}
+                            />
+                            <p style={{ fontSize: "0.9em", color: "#666", marginBottom: "15px" }}>
+                                *Please enter the correct <strong>Transaction ID / UTR Number</strong> to verify your payment.
+                            </p>
+
+                            <div className="utr-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+                                <label style={{ marginBottom: 0 }}>TRANSACTION ID / UTR NUMBER</label>
+                                <button
+                                    type="button"
+                                    className="help-link-btn"
+                                    onClick={() => setShowUTRHelp(true)}
+                                    style={{ background: 'none', border: 'none', color: '#007bff', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.85em' }}
+                                >
+                                    Where to find UTR?
+                                </button>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="e.g. 123456789012"
+                                name="utrNumber"
+                                value={utrNumber}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
 
                         <div className="terms-container">
                             <input
@@ -468,7 +551,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -1,0 +1,86 @@
+/* CSS for Register Page - Additional Styles */
+
+/* UTR Help Modal Styles */
+.help-modal {
+    max-width: 400px;
+    padding: 25px;
+    text-align: left;
+}
+
+.help-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.help-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.step-num {
+    background-color: #007bff;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.step-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+.help-note {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.help-close-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.help-close-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Mobile Adjustments for Help Modal */
+@media (max-width: 480px) {
+    .help-modal {
+        width: 90%;
+        padding: 20px;
+    }
+}
