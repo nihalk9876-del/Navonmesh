@@ -158,7 +158,7 @@ const Hackathon = () => {
                     {/* CTA Section */}
                     <div className="hackathon-cta">
                         <div className="entry-fee">
-                            <FaCode color="#d46836ff" /> Entry Fee: ₹0
+                            <FaCode color="#d46836ff" /> Entry Fee: ₹300
                         </div>
                         <h2 className="cta-title">Register now and start building.</h2>
                         <Link to="/register?event=srijan">
