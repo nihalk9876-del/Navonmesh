@@ -27,7 +27,7 @@
     gap: 40px;
 }
 
-.main-title {
+.problem-main-title {
     font-size: 4rem;
     font-weight: bold;
     color: white;
@@ -63,7 +63,7 @@
     bottom: 0;
 }
 
-.header-desc {
+.problem-header-desc {
     color: #ccc;
     font-size: 1rem;
     max-width: 400px;

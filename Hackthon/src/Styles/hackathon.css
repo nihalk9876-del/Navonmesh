@@ -1,472 +1,709 @@
 /* Hackathon Page Styles */
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
 
-.hackathon-page {
-    width: 100%;
+/* 🌌 VOYAGER-CLASS GLOBAL THEME */
+.voyager-theme {
+    background: transparent !important;
+    overflow-x: hidden;
+    padding-top: 100px !important;
     min-height: 100vh;
-    padding-top: 100px;
-    padding-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: white;
-    font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* Header Section */
-.hackathon-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-    max-width: 900px;
-    width: 100%;
-    gap: 40px;
-    /* Restored gap to prevent overlap */
-}
-
-.right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* CTA Section */
-.hackathon-cta {
-    text-align: center;
-    /* margin-bottom: 50px; Moved inside Grid */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.entry-fee {
-    font-size: 1.2rem;
-    /* Adjusted for column */
-    font-weight: bold;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cta-title {
-    font-size: 2rem;
-    /* Adjusted */
-    font-weight: 800;
-    color: white;
-    margin-bottom: 10px;
-    font-family: 'Patrick Hand SC', cursive;
-    /* Match Aesthetic if desired, or keep bold sans */
-    line-height: 1.2;
-}
-
-.register-btn-img {
-    width: 300px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.register-btn-img:hover {
-    transform: scale(1.05);
-}
-
-.main-title {
-    font-size: 4rem;
-    font-weight: bold;
-    color: white;
-}
-
-.vertical-divider {
-    width: 2px;
-    height: 90px;
-    background-color: #2dd4bf;
-    /* Type of Cyan/Teal */
-    flex-shrink: 0;
-    position: relative;
-    border-radius: 2px;
-}
-
-.vertical-divider::before,
-.vertical-divider::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: #2dd4bf;
-    border-radius: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 5px #2dd4bf;
-}
-
-.vertical-divider::before {
-    top: 0;
-}
-
-.vertical-divider::after {
-    bottom: 0;
-}
-
-.header-desc {
-    color: #ccc;
-    font-size: 1rem;
-    max-width: 400px;
-    line-height: 1.5;
-    font-style: italic;
-}
-
-/* Grid Container */
-.hackathon-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-    align-items: start;
-    /* Ensure cards don't stretch to equal height */
-}
-
-/* Card Styling */
-.hackathon-card {
-    background: rgba(13, 13, 25, 0.8);
-    border-radius: 30px;
-    padding: 30px;
-    width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    position: relative;
-    backdrop-filter: blur(5px);
-    /* overflow: hidden;  REMOVED to allow full scrolling of content */
-}
-
-.schedule-card {
-    border: 1px solid #1e3a8a;
-    /* Dark Blue border for Schedule - adjusting to match screenshot aesthetic if needed, or keep cyan */
-    border: 1px solid #4488ff;
-    /* Using Blue/Cyan */
-}
-
-.rules-card {
-    border: 1px solid #d142f5;
-    /* Magenta/Purple border for Rules */
-    font-family: 'ABeeZee', sans-serif;
-    /* Apply to whole card */
-}
-
-.rules-card h2 {
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 2rem;
-    /* Adjusted for Orbitron */
-    letter-spacing: 1px;
-}
-
-/* Scroll Headers */
-.hackathon-header h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.card-header h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    font-family: serif;
-    /* "Schedule" and "Rules" look serif in screenshot? Or just Bold Inter */
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-/* Timeline specific styles */
-.timeline {
-    position: relative;
-    /* max-height: 800px;  REMOVED to allow full expansion */
-}
-
-.timeline-item {
-    margin-bottom: 25px;
-}
-
-/* Rules List Styles */
-.rules-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
-    font-size: 1.3rem;
-    /* Larger for readability */
-    color: #eee;
-    line-height: 1.5;
-    /* font-family set on card now */
-}
-
-.rules-list li {
-    margin-bottom: 12px;
-    padding-left: 20px;
     position: relative;
 }
 
-.rules-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #fff;
-    font-weight: bold;
-}
-
-/* Download Button */
-.download-btn-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.download-btn {
-    width: 100%;
-    background: linear-gradient(90deg, #c77dff, #9d4edd);
-    /* Bright Purple Gradient */
-    border: none;
-    padding: 18px;
-    border-radius: 12px;
-    color: white;
-    font-weight: 800;
-    /* Extra bold */
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(157, 78, 221, 0.6);
-    /* Glow effect */
-}
-
-.download-btn:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 0 25px rgba(157, 78, 221, 0.8);
-    transform: scale(1.02);
-}
-
-/* Timeline Styling Reuse */
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 10px;
-    bottom: 0;
-    /* Extend to bottom */
-    width: 1px;
-    background: #444;
-    /* Slightly visible line */
-    z-index: 0;
-}
-
-.timeline-item {
-    display: flex;
-    gap: 20px;
-    position: relative;
+.voyager-grid-overlay {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(45, 212, 191, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
     z-index: 1;
 }
 
-.timeline-dot {
-    width: 12px;
-    height: 12px;
+.voyager-vignette {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 🛰️ TOP HUD BAR */
+.voyager-hud-top {
+    position: absolute;
+    top: 30px;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(45, 212, 191, 0.05);
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    border-radius: 4px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: #2dd4bf;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.hud-center {
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+}
+
+/* 🏔️ VOYAGER-CLASS HERO CONSOLE */
+.hackathon-hero {
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    gap: 80px;
+    max-width: 1300px;
+    width: 90%;
+    margin: 60px auto 100px;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+.hero-poster {
+    perspective: 1500px;
+}
+
+.poster-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #000;
+    border: 1px solid rgba(45, 212, 191, 0.4);
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    filter: contrast(1.1) saturate(1.1);
+}
+
+.poster-tech-stats {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #2dd4bf;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-left: 3px solid #2dd4bf;
+}
+
+.hero-intel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.mission-status {
+    font-family: 'Orbitron', sans-serif;
+    color: #2dd4bf;
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: uppercase;
+}
+
+.pulse::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #2dd4bf;
     border-radius: 50%;
-    background-color: #555;
-    flex-shrink: 0;
-    margin-top: 5px;
+    animation: pulse-glow 2s infinite;
 }
 
-.timeline-dot.pink {
-    background-color: #d142f5;
-    box-shadow: 0 0 8px #d142f5;
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(45, 212, 191, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(45, 212, 191, 0);
+    }
 }
 
-.timeline-dot.purple {
-    background-color: #8a2be2;
-    box-shadow: 0 0 8px #8a2be2;
+.hackathon-main-title {
+    font-size: 7rem !important;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Khand', sans-serif;
+    background: linear-gradient(135deg, #fff 40%, #2dd4bf 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    filter: drop-shadow(0 0 40px rgba(45, 212, 191, 0.5));
+    line-height: 1.2;
+    padding-bottom: 15px;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.hackathon-intel-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #2dd4bf;
+    letter-spacing: 10px;
+    font-weight: 900;
+    margin-top: 25px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(45, 212, 191, 0.4);
+}
+
+.intel-description-box {
+    margin-top: 50px;
+    max-width: 650px;
+    position: relative;
+}
+
+.hackathon-header-desc {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 40px;
+    border-left: 5px solid #2dd4bf;
+    backdrop-filter: blur(20px);
+    text-align: left;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.intel-accents {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+}
+
+.accent-bar {
+    width: 100px;
+    height: 2px;
+    background: #2dd4bf;
+    opacity: 0.8;
+}
+
+.accent-dots {
+    width: 40px;
+    height: 5px;
+    border-bottom: 5px dotted #2dd4bf;
+    opacity: 0.5;
+}
+
+.header-actions {
+    margin-top: 60px;
+}
+
+.hero-register-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 22px 65px;
+    background: rgba(45, 212, 191, 0.05);
+    border: 1px solid #2dd4bf;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-register-btn:hover {
+    background: #2dd4bf;
+    color: #000;
+    box-shadow: 0 0 60px rgba(45, 212, 191, 0.5);
+    transform: translateY(-3px);
+}
+
+.btn-glitch {
+    position: relative;
+    display: block;
+}
+
+.hero-register-btn:hover .btn-glitch {
+    animation: glitch-text 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+}
+
+@keyframes glitch-text {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* 📊 MISSION HUD SPECS - REFINED */
+.mission-hud-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1300px;
+    width: 90%;
+    margin: 0 auto 100px;
+    z-index: 5;
+    position: relative;
+}
+
+.hud-spec-item {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(45, 212, 191, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: 0.3s;
+}
+
+.hud-spec-item:hover {
+    border-color: rgba(45, 212, 191, 0.4);
+    background: rgba(45, 212, 191, 0.05);
+}
+
+.hud-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.hud-value {
+    font-family: 'Khand', sans-serif;
+    font-size: 2.2rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.hud-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hud-bar .fill {
+    height: 100%;
+    background: #2dd4bf;
+    box-shadow: 0 0 10px #2dd4bf;
+}
+
+/* 🛸 PRIZE POOL & GRID STYLES */
+.prizes-container {
+    max-width: 1300px;
+    width: 90%;
+    margin-bottom: 120px;
+    z-index: 5;
+    position: relative;
+}
+
+.prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.prize-card {
+    background: rgba(5, 6, 15, 0.6);
+    border: 1px solid rgba(45, 212, 191, 0.1);
+    border-radius: 4px;
+    padding: 40px;
+    transition: 0.4s;
+    backdrop-filter: blur(20px);
+}
+
+.prize-card:hover {
+    border-color: rgba(45, 212, 191, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* 📑 MISSION TRAJECTORY & PROTOCOLS */
+.hackathon-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    max-width: 1400px;
+    width: 95%;
+    margin: 0 auto 100px;
+    z-index: 5;
+    position: relative;
+}
+
+.hackathon-card {
+    background: rgba(10, 15, 30, 0.4);
+    border: 1px solid rgba(45, 212, 191, 0.1);
+    padding: 0 !important;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    background: rgba(45, 212, 191, 0.05);
+    padding: 30px 40px;
+    border-bottom: 1px solid rgba(45, 212, 191, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem !important;
+    color: #fff;
+    margin: 0 !important;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+/* 📡 TIMELINE: FLIGHT PATH */
+.timeline-container {
+    padding: 40px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #2dd4bf 0%, transparent 100%);
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    transition: 0.3s;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -48px !important;
+    top: 6px !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: #020308 !important;
+    border: 2px solid #2dd4bf !important;
+    border-radius: 50% !important;
+    z-index: 2;
+    box-shadow: 0 0 15px #2dd4bf;
+}
+
+.timeline-dot::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    border-radius: 50%;
+    animation: ripple 2s infinite linear;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
 }
 
 .timeline-content {
-    flex: 1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 15px;
+    background: rgba(45, 212, 191, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 25px 30px;
+    border-radius: 4px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item:hover .timeline-content {
+    background: rgba(45, 212, 191, 0.05);
+    border-color: rgba(45, 212, 191, 0.2);
+    transform: translateX(10px);
 }
 
 .timeline-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
-    flex-wrap: wrap;
+    margin-bottom: 12px;
 }
 
 .timeline-top h3 {
-    font-size: 1rem;
-    /* Slightly smaller for dense list */
-    font-weight: bold;
-    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 2px;
 }
 
 .time {
+    font-family: 'Orbitron', sans-serif;
     font-size: 0.8rem;
-    color: #bbb;
+    color: #2dd4bf;
+    font-weight: 700;
 }
 
 .timeline-desc {
-    font-size: 0.85rem;
-    color: #999;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 .tag {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.tag.purple {
-    background-color: rgba(138, 43, 226, 0.2);
-    color: #a0a0ff;
-}
-
-.tag.blue {
-    background-color: rgba(0, 0, 255, 0.2);
-    color: #4488ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-left: 15px;
+    background: rgba(45, 212, 191, 0.1);
+    color: #2dd4bf;
+    border: 1px solid rgba(45, 212, 191, 0.2);
 }
 
 .timeline-link {
-    font-size: 0.8rem;
-    color: #aaa;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: #475569;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .hackathon-grid {
-        grid-template-columns: 1fr;
-        /* Stack vertically on tablets/mobiles */
-        max-width: 700px;
-    }
+/* 📥 RULES: MISSION PROTOCOLS */
+.rules-container {
+    padding: 40px;
+    position: relative;
+    height: 100%;
 }
 
-@media (max-width: 768px) {
-    .hackathon-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .vertical-divider {
-        width: 60px;
-        height: 2px;
-    }
-
-    /* Compact Rules & Schedule Cards */
-    .hackathon-card {
-        padding: 15px !important;
-        /* Reduced padding */
-        width: 90% !important;
-        /* Force scale down */
-        max-width: 320px !important;
-        /* Strict limit for mobile */
-        margin: 0 auto;
-        /* Center it */
-    }
-
-    /* Responsive Text Sizing for Rules & Schedule */
-    .rules-card h2,
-    .schedule-card h2 {
-        font-size: 1.4rem;
-        /* Smaller Headers */
-        margin-bottom: 15px;
-    }
-
-    .rules-list {
-        font-size: 0.85rem;
-        /* Smaller text */
-        line-height: 1.4;
-    }
-
-    .rules-list li {
-        margin-bottom: 8px;
-    }
-
-    /* Compact Timeline/Schedule Items */
-    .timeline-item {
-        gap: 10px;
-    }
-
-    .timeline-content {
-        /* Override potential leaky styles from eventShowcase if conflict exists, or just compact it */
-        padding: 10px 12px !important;
-        margin: 0 0 10px 0 !important;
-        /* Remove side margins */
-        width: 100%;
-        max-width: 100% !important;
-    }
-
-    .timeline-top h3 {
-        font-size: 0.9rem;
-    }
-
-    .timeline-desc {
-        font-size: 0.8rem;
-    }
-
-    .timeline-link {
-        font-size: 0.75rem;
-    }
-
-    .register-btn-img {
-        width: 240px !important;
-    }
+.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-@media (max-width: 480px) {
-
-    .rules-card h2,
-    .schedule-card h2 {
-        font-size: 1.4rem;
-    }
-
-    .rules-list {
-        font-size: 0.85rem;
-    }
-
-    .hackathon-card {
-        padding: 20px;
-    }
+.rules-list li {
+    position: relative;
+    padding: 20px 25px 20px 60px;
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    margin-bottom: 15px;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: 0.3s;
 }
 
-/* Show More Button */
+.rules-list li::before {
+    content: attr(data-index);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: #2dd4bf;
+    font-weight: 900;
+    opacity: 0.5;
+}
+
+.rules-list li:hover {
+    border-color: rgba(45, 212, 191, 0.2);
+    background: rgba(45, 212, 191, 0.05);
+    color: #fff;
+}
+
+/* 🔘 BUTTON STYLING */
 .show-more-container {
-    text-align: center;
-    margin-top: 20px;
+    padding: 20px 40px 40px;
+    display: flex;
+    justify-content: center;
 }
 
 .show-more-btn {
     background: transparent;
-    border: 1px solid #4488ff;
-    color: #4488ff;
-    padding: 10px 20px;
-    border-radius: 20px;
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    color: #2dd4bf;
+    font-family: 'Orbitron', sans-serif;
+    padding: 12px 40px;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
     cursor: pointer;
-    font-family: 'ABeeZee', sans-serif;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.show-more-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #2dd4bf;
+    transform: translateX(-101%);
+    transition: 0.3s;
+    z-index: -1;
 }
 
 .show-more-btn:hover {
-    background: rgba(68, 136, 255, 0.1);
-    box-shadow: 0 0 10px rgba(68, 136, 255, 0.4);
+    color: #000;
+}
+
+.show-more-btn:hover::after {
+    transform: translateX(0);
+}
+
+.download-btn-container {
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.download-btn {
+    width: 100%;
+    background: rgba(45, 212, 191, 0.05);
+    border: 1px solid #2dd4bf;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    padding: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.4s;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.1);
+}
+
+.download-btn:hover {
+    background: #2dd4bf;
+    color: #000;
+    box-shadow: 0 0 40px rgba(45, 212, 191, 0.4);
+}
+
+@media (max-width: 1200px) {
+    .hackathon-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-intel {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hackathon-main-title {
+        font-size: 4rem !important;
+        white-space: normal;
+        line-height: 1.1;
+    }
+
+    .hackathon-header-desc {
+        text-align: center;
+        border-left: 0;
+        border-top: 5px solid #2dd4bf;
+    }
+
+    .mission-hud-specs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .prizes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hackathon-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-header {
+        padding: 20px;
+    }
+
+    .card-header h2 {
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+    }
+
+    .timeline-container,
+    .rules-container {
+        padding: 20px;
+    }
+
+    .timeline {
+        padding-left: 30px;
+    }
+
+    .timeline-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .tag {
+        margin: 5px 0 0 0;
+        display: inline-block;
+    }
+
+    .rules-list li {
+        padding: 15px 15px 15px 45px;
+        font-size: 0.85rem;
+    }
 }

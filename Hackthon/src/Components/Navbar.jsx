@@ -64,13 +64,19 @@ const Navbar = ({ onRegisterClick }) => {
           </span>
           <ul className="dropdown-menu">
             <li>
-              <span onClick={() => scrollToSection("hackathon")}>Srijan (Hackathon)</span>
+              <NavLink to="/hackathon" className="nav-item-dropdown" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
+                Srijan (Hackathon)
+              </NavLink>
             </li>
             <li>
-              <span onClick={() => scrollToSection("projectexpo")}>Ankur (Project Expo)</span>
+              <NavLink to="/projectexpo" className="nav-item-dropdown" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
+                Ankur (Project Expo)
+              </NavLink>
             </li>
             <li>
-              <span onClick={() => scrollToSection("conference")}>Udbhav (Conference)</span>
+              <NavLink to="/conference" className="nav-item-dropdown" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
+                Udbhav (Conference)
+              </NavLink>
             </li>
             <li>
               <NavLink to="/pursuit" className="nav-item-dropdown" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>

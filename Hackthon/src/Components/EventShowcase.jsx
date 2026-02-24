@@ -8,7 +8,7 @@ import e4 from "../assets/events/pursuit.png";
 
 const events = [
   {
-    title: "सृजन",
+    title: "सृजन (HACKATHON)",
     text: "Srujan is a National Level Hackathon aimed at fostering creative problem-solving, innovation, and rapid prototyping among students. It provides a dynamic platform where young minds collaborate, ideate, and develop technology-driven solutions to real-world challenges.",
     image: e1,
     side: "left",
@@ -16,7 +16,7 @@ const events = [
     registerParam: "srijan"
   },
   {
-    title: "अंकुर",
+    title: "अंकुर (PROJECT COMPETITION)",
     text: "Ankur is a National Level Project Competition that showcases innovative student projects addressing societal, industrial, and technological needs. It acts as a bridge between academic learning and real-world application.",
     image: e2,
     side: "right",
@@ -24,12 +24,12 @@ const events = [
     registerParam: "ankur"
   },
   {
-    title: "उद्‌भव",
+    title: "उद्‌भव (STUDENT CONFERENCE)",
     text: "Udbhav is a National Student Conference designed to cultivate research aptitude and academic excellence among students. It offers a formal platform for students to present research papers, case studies, and innovative concepts.",
     image: e3,
     side: "left",
     id: "conference",
-    registerParam: "uddhav"
+    registerParam: "udbhav"
   },
   {
     title: "PURSUIT",
@@ -46,10 +46,26 @@ const EventShowcase = () => {
   const [launchingId, setLaunchingId] = useState(null);
 
   const handleLaunch = (index, param) => {
+    let targetPath = "";
     if (param === "pursuit") {
-      navigate("/pursuit");
+      targetPath = "/pursuit";
+    } else if (param === "srijan") {
+      targetPath = "/hackathon";
+    } else if (param === "ankur") {
+      targetPath = "/projectexpo";
+    } else if (param === "udbhav") {
+      targetPath = "/conference";
+    }
+
+    if (targetPath) {
+      setLaunchingId(index);
+      setTimeout(() => {
+        navigate(targetPath);
+        setLaunchingId(null);
+      }, 800);
       return;
     }
+
     setLaunchingId(index);
     // Wait for animation to finish before navigating
     setTimeout(() => {
@@ -81,11 +97,12 @@ const EventShowcase = () => {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const getEventPath = (param) => {
+    if (param === "pursuit") return "/pursuit";
+    if (param === "srijan") return "/hackathon";
+    if (param === "ankur") return "/projectexpo";
+    if (param === "udbhav") return "/conference";
+    return `/register?event=${param}`;
   };
 
   return (
@@ -100,7 +117,7 @@ const EventShowcase = () => {
           <div className="timeline-img-col">
             <div
               className="img-glow-container"
-              onClick={() => ev.id === "pursuit" ? navigate("/pursuit") : scrollToSection(ev.id)} /* Click to Scroll or Internal Link */
+              onClick={() => navigate(getEventPath(ev.registerParam))}
               style={{ cursor: "pointer" }}
             >
               <img src={ev.image} alt={ev.title} />

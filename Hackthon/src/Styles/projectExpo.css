@@ -1,543 +1,405 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
-
-/* ... */
-
-.rules-card {
-    border: 1px solid #4488ff;
-    /* Blue border to match theme */
-    font-family: Arial, sans-serif;
-    /* Simple standard font */
-    color: #e0e0ff;
-    letter-spacing: 0.5px;
-}
-
-.rules-card h2 {
-    font-family: Arial, sans-serif;
-    font-size: 1.8rem;
-    color: #00e5ff;
-    /* Cyan title */
-    margin-bottom: 25px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-}
-
-.rules-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 30px;
-    font-size: 1rem;
-    color: #cceeff;
-    /* Light cyan text */
-    line-height: 1.8;
-}
-
-/* Page Layout */
-.projectexpo-page {
-    width: 100%;
-    min-height: 100vh;
-    padding-top: 100px;
-    padding-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
-    color: white;
-    font-family: 'Inter',
-        sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Header Section */
-.projectexpo-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
-    max-width: 900px;
-    width: 100%;
-    gap: 40px;
-}
-
-.right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* CTA Section */
-.projectexpo-cta {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.entry-fee {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cta-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 10px;
-    font-family: 'Patrick Hand SC', cursive;
-    line-height: 1.2;
-}
-
-.register-btn-img {
-    width: 300px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.register-btn-img:hover {
-    transform: scale(1.05);
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
 
-.main-title {
-    font-family: 'Khand', sans-serif;
-    font-size: 6rem;
-    /* Larger size for Khand as it is condensed */
-    font-weight: 700;
-    /* Bold for solid look */
-    color: white;
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
-    line-height: 1.1;
-}
-
-/* Green Divider for Ankur/Expo */
-.vertical-divider {
-    width: 2px;
-    height: 90px;
-    background-color: #2dd4bf;
-    flex-shrink: 0;
+/* 🌌 VOYAGER-CLASS GLOBAL THEME (ANKUR/UDBHAV) */
+.ankur-voyager-theme {
+    background: transparent !important;
+    overflow-x: hidden;
+    padding-top: 100px !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    border-radius: 2px;
 }
 
-.vertical-divider::before,
-.vertical-divider::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: #2dd4bf;
-    border-radius: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 5px #2dd4bf;
-}
-
-.vertical-divider::before {
-    top: 0;
-}
-
-.vertical-divider::after {
-    bottom: 0;
-}
-
-.header-desc {
-    color: #ccc;
-    font-size: 1.1rem;
-    max-width: 500px;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-/* Grid Container */
-.projectexpo-grid {
+/* 🏔️ CINEMATIC HERO CONSOLE */
+.ankur-hero {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-    align-items: start;
-}
-
-/* Card Styling */
-.projectexpo-card {
-    background: rgba(13, 13, 25, 0.8);
-    border-radius: 30px;
-    padding: 30px;
-    width: 100%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    grid-template-columns: 450px 1fr;
+    gap: 70px;
+    max-width: 1300px;
+    width: 90%;
+    margin: 60px auto 100px;
+    align-items: center;
     position: relative;
-    backdrop-filter: blur(5px);
+    z-index: 5;
 }
 
-.schedule-card {
-    border: 1px solid #4488ff;
+.hero-poster {
+    perspective: 1500px;
 }
 
-.rules-card {
-    border: 1px solid #d142f5;
-    font-family: 'ABeeZee', sans-serif;
+.poster-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: #000;
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    box-shadow: 0 0 80px rgba(0, 229, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-.rules-card h2 {
-    font-family: 'ABeeZee', sans-serif;
+.poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.poster-tech-stats {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #00e5ff;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-left: 3px solid #00e5ff;
+}
+
+.ankur-intel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.mission-status {
+    font-family: 'Orbitron', sans-serif;
+    color: #00e5ff;
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: uppercase;
+}
+
+.pulse::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #00e5ff;
+    border-radius: 50%;
+    animation: ankur-pulse 2s infinite;
+}
+
+@keyframes ankur-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 229, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+    }
+}
+
+.ankur-main-title {
+    font-size: 6.5rem !important;
+    font-weight: 700;
+    margin: 0;
+    font-family: 'Khand', sans-serif;
+    background: linear-gradient(135deg, #fff 40%, #00e5ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.4));
+    line-height: 1.2;
+    padding-bottom: 15px;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.ankur-intel-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #00e5ff;
+    letter-spacing: 8px;
+    font-weight: 900;
+    margin-top: 25px;
+    text-transform: uppercase;
+}
+
+.ankur-header-desc {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    background: rgba(15, 23, 42, 0.6);
+    padding: 35px;
+    border-left: 5px solid #00e5ff;
+    backdrop-filter: blur(20px);
+    margin-top: 40px;
+    max-width: 650px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.header-actions {
+    margin-top: 50px;
+}
+
+.ankur-register-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid #00e5ff;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 5px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.ankur-register-btn:hover {
+    background: #00e5ff;
+    color: #000;
+    box-shadow: 0 0 50px rgba(0, 229, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+/* 📊 MISSION HUD SPECS */
+.ankur-hud-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    max-width: 1300px;
+    width: 90%;
+    margin: 0 auto 100px;
+}
+
+.ankur-spec-item {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.ankur-spec-item:hover {
+    border-color: rgba(0, 229, 255, 0.4);
+    background: rgba(0, 229, 255, 0.05);
+}
+
+.hud-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hud-value {
+    font-family: 'Khand', sans-serif;
     font-size: 2rem;
-    letter-spacing: 1px;
+    color: #fff;
+    font-weight: 700;
 }
 
-/* Scroll Headers */
-.projectexpo-header h2 {
-    text-align: center;
-    margin-bottom: 30px;
+.hud-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hud-bar .fill {
+    height: 100%;
+    background: #00e5ff;
+    box-shadow: 0 0 10px #00e5ff;
+}
+
+/* 📑 MISSION GRID (SCHEDULE & RULES) */
+.ankur-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    max-width: 1350px;
+    width: 95%;
+    margin: 0 auto 100px;
+}
+
+.ankur-card {
+    background: rgba(10, 15, 30, 0.4);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header {
+    background: rgba(0, 229, 255, 0.05);
+    padding: 25px 35px;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
 }
 
 .card-header h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    font-family: serif;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem !important;
+    color: #fff;
+    margin: 0 !important;
+    letter-spacing: 4px;
+    text-transform: uppercase;
 }
 
-/* Timeline specific styles */
+.timeline-container,
+.rules-container {
+    padding: 40px;
+}
+
 .timeline {
     position: relative;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 10px;
-    bottom: 0;
-    width: 1px;
-    background: #444;
-    z-index: 0;
+    padding-left: 35px;
+    border-left: 2px solid rgba(0, 229, 255, 0.2);
 }
 
 .timeline-item {
-    display: flex;
-    gap: 20px;
     position: relative;
-    z-index: 1;
-    margin-bottom: 25px;
+    margin-bottom: 45px;
 }
 
 .timeline-dot {
-    width: 12px;
-    height: 12px;
+    position: absolute;
+    left: -44.5px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    background: #020308;
+    border: 2px solid #00e5ff;
     border-radius: 50%;
-    background-color: #555;
-    flex-shrink: 0;
-    margin-top: 5px;
-}
-
-.timeline-dot.pink {
-    background-color: #d142f5;
-    box-shadow: 0 0 8px #d142f5;
-}
-
-.timeline-dot.purple {
-    background-color: #8a2be2;
-    box-shadow: 0 0 8px #8a2be2;
+    box-shadow: 0 0 10px #00e5ff;
 }
 
 .timeline-content {
-    flex: 1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 15px;
+    background: rgba(0, 229, 255, 0.02);
+    padding: 20px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: 0.3s;
 }
 
-.timeline-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5px;
-    flex-wrap: wrap;
+.timeline-item:hover .timeline-content {
+    background: rgba(0, 229, 255, 0.05);
+    border-color: rgba(0, 229, 255, 0.2);
+    transform: translateX(10px);
 }
 
 .timeline-top h3 {
+    font-family: 'Orbitron', sans-serif;
     font-size: 1rem;
-    font-weight: bold;
-    color: white;
+    color: #fff;
+    margin-bottom: 8px;
 }
 
 .time {
+    color: #00e5ff;
+    font-weight: 700;
     font-size: 0.8rem;
-    color: #bbb;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .timeline-desc {
-    font-size: 0.85rem;
-    color: #999;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
 }
 
-.tag {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.tag.purple {
-    background-color: rgba(138, 43, 226, 0.2);
-    color: #a0a0ff;
-}
-
-.tag.blue {
-    background-color: rgba(0, 0, 255, 0.2);
-    color: #4488ff;
-}
-
-.timeline-link {
-    font-size: 0.8rem;
-    color: #aaa;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* Rules List Styles */
 .rules-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    /* Slightly smaller than hackathon based on density */
-    color: #eee;
-    line-height: 1.6;
 }
 
 .rules-list li {
-    margin-bottom: 12px;
-    padding-left: 20px;
     position: relative;
+    padding: 18px 20px 18px 55px;
+    background: rgba(15, 23, 42, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    margin-bottom: 12px;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
 
 .rules-list li::before {
-    content: "•";
+    content: attr(data-index);
     position: absolute;
-    left: 0;
-    color: #fff;
-    font-weight: bold;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    color: #00e5ff;
+    opacity: 0.5;
+    font-weight: 900;
 }
 
-/* Download Button */
-.download-btn-container {
-    text-align: center;
+.rules-list li:hover {
+    background: rgba(0, 229, 255, 0.05);
+    color: #fff;
+    border-color: rgba(0, 229, 255, 0.2);
+}
+
+.ankur-download-btn {
+    width: 100%;
+    background: rgba(0, 229, 255, 0.05);
+    border: 1px solid #00e5ff;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    padding: 18px;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.4s;
     margin-top: 20px;
 }
 
-.download-btn {
-    width: 100%;
-    background: linear-gradient(90deg, #ff7d7d, #dd4e4e);
-    /* Adjusted gradient to be reddish/orange if needed, but keeping consistently styled for now. Screenshot shows similar pinkish/orange button. Let's use a slightly different gradient for Ankur? Or keep familiar. The screenshot button looks pink/orange. */
-    background: linear-gradient(90deg, #f06, #f80);
-    border: none;
-    padding: 18px;
-    border-radius: 12px;
-    color: white;
-    font-weight: 800;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(255, 0, 100, 0.6);
+.ankur-download-btn:hover {
+    background: #00e5ff;
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
 }
 
-.download-btn:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 0 25px rgba(255, 0, 100, 0.8);
-    transform: scale(1.02);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .projectexpo-grid {
+@media (max-width: 1200px) {
+    .ankur-hero {
         grid-template-columns: 1fr;
-        max-width: 700px;
-    }
-}
-
-@media (max-width: 768px) {
-    .projectexpo-header {
-        flex-direction: column;
         text-align: center;
-        margin-bottom: 30px;
     }
 
-    .projectexpo-header h2 {
-        font-size: 1.8rem;
+    .ankur-intel {
+        align-items: center;
     }
 
-    .vertical-divider {
-        width: 60px;
-        height: 2px;
-        margin: 20px 0;
+    .ankur-main-title {
+        font-size: 3.5rem !important;
+        white-space: normal;
+        line-height: 1.1;
     }
 
-    /* Responsive Text Sizing for Rules & Schedule */
-    .rules-card h2,
-    .schedule-card h2 {
-        font-size: 1.3rem;
-        /* Small comfortable header */
-        margin-bottom: 15px;
+    .ankur-header-desc {
+        border-left: 0;
+        border-top: 5px solid #00e5ff;
+        text-align: center;
     }
 
-    .rules-list {
-        font-size: 0.85rem;
-        /* Small readable text */
-        line-height: 1.5;
-    }
-
-    .timeline-top h3 {
-        font-size: 0.9rem;
-    }
-
-    .projectexpo-card {
-        padding: 20px;
-        /* Reduced padding */
-        width: 90% !important;
-        /* Force scale down */
-        max-width: 320px !important;
-        /* Strict limit for mobile */
-        margin: 0 auto;
-        /* Center it */
-    }
-
-    .register-btn-img {
-        width: 240px !important;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .rules-card h2,
-    .schedule-card h2 {
-        font-size: 1.2rem;
-    }
-
-    .rules-list {
-        font-size: 0.8rem;
-    }
-}
-
-/* Hostel Layout & Styling */
-.hostels-showcase {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    /* Use stretch to keep boxes aligned */
-    gap: 20px;
-    width: 100%;
-}
-
-.hostel-category {
-    flex: 1;
-    min-width: 320px;
-    /* Reduced from 450px */
-    max-width: 400px;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(68, 136, 255, 0.15);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.hostel-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.hostel-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 3px solid #00008b;
-    /* Request: Blue Stroke */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #000;
-}
-
-.hostel-card:hover {
-    transform: scale(1.05);
-    /* Request: Popup little bit */
-    box-shadow: 0 0 20px rgba(0, 0, 255, 0.6);
-    z-index: 10;
-}
-
-.hostel-card img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    /* Request: Same image ratio */
-    object-fit: cover;
-    display: block;
-}
-
-.hostel-card p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.65);
-    color: #fff;
-    padding: 3px 5px;
-    text-align: center;
-    font-size: 0.6rem;
-    font-family: 'Inter', sans-serif;
-    backdrop-filter: blur(3px);
-    margin: 0;
-    line-height: 1.2;
-}
-
-@media (max-width: 768px) {
-    .hostels-showcase {
-        gap: 20px;
-    }
-
-    .hostel-category {
-        min-width: 0;
-        width: 100%;
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-
-    .hostel-category h3 {
-        font-size: 1.4rem !important;
-        margin-bottom: 15px !important;
-    }
-
-    .hostel-grid {
+    .ankur-hud-specs {
         grid-template-columns: repeat(2, 1fr);
-        /* Force 2 columns side-by-side */
-        gap: 10px;
-        /* Tighter gap */
     }
 
-    .hostel-card {
-        border-width: 2px;
-        /* Thinner border for small scale */
-    }
-
-    .hostel-card p {
-        display: none !important;
-        /* Hide names on mobile */
+    .ankur-grid {
+        grid-template-columns: 1fr;
     }
 }

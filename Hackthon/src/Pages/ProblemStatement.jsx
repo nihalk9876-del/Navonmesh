@@ -44,9 +44,9 @@ const ProblemStatement = () => {
     return (
         <div className="problem-statement-page">
             <div className="problem-header">
-                <h1 className="main-title">समस्या</h1>
+                <h1 className="problem-main-title">समस्या</h1>
                 <div className="vertical-divider"></div>
-                <p className="header-desc">
+                <p className="problem-header-desc">
                     Identify the gaps, innovate the solutions. Explore the problem statements
                     that challenge your creativity and technical prowess.
                 </p>

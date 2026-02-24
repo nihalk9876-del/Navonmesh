@@ -1,7 +1,7 @@
 /* Interstellar Theme for Accommodation Page */
 
 .accommodation-page {
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    background: transparent !important;
     min-height: 100vh;
     padding-top: 100px;
     padding-bottom: 50px;
@@ -205,47 +205,110 @@
     text-shadow: 0 0 10px #ff0000;
 }
 
-/* Mobile Responsive Adjustments */
-@media (max-width: 768px) {
-    .accommodation-page {
-        padding-top: 80px;
+/* 🚀 TRIPLE-COLUMN COMMAND DECK - RESTORED FROM IMAGE */
+.hostels-showcase {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 1400px;
+    flex-wrap: nowrap;
+    /* Keep them side-by-side on desktop */
+}
+
+.hostel-category {
+    background: rgba(10, 15, 30, 0.5);
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    border-radius: 16px;
+    padding: 25px;
+    flex: 1.2;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hostel-category h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid currentColor;
+    width: fit-content;
+}
+
+.hostel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.hostel-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #001eff;
+    border-radius: 12px;
+    padding: 0;
+    overflow: hidden;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.hostel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 30, 255, 0.4);
+}
+
+.hostel-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+}
+
+.hostel-card p {
+    font-size: 0.65rem;
+    color: #fff;
+    padding: 8px 5px;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Specific styling for the Logistics Head Column */
+.accommodation-head-container {
+    flex: 0.8;
+}
+
+.cosmos-box {
+    height: 100%;
+    min-height: 400px;
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(0, 243, 255, 0.2) !important;
+    max-width: unset !important;
+}
+
+@media (max-width: 1200px) {
+    .hostels-showcase {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .section-title {
-        font-size: 1.5rem;
-    }
-
-    .intro-box {
-        padding: 20px;
-    }
-
-    .highlight-text {
-        font-size: 1.1rem;
-    }
-
-    .register-btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-
-    .modal-content {
-        padding: 20px 15px;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .close-modal-btn {
-        top: 10px;
-        right: 10px;
+    .hostel-category,
+    .accommodation-head-container {
+        width: 100%;
+        max-width: 600px;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .hostel-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
