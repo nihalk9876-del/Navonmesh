@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/accommodation.css";
 import "../Styles/accommodationHead.css"; // Add new CSS import
-import { FaPhone, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaInstagram, FaLinkedin, FaCalendarAlt, FaRocket } from "react-icons/fa";
 import girlsHostel1 from "../assets/girls_hostel_1.png";
 import girlsHostel2 from "../assets/girls_hostel_2.png";
 import girlsHostel3 from "../assets/girls_hostel_3.png";
@@ -120,51 +120,42 @@ const Accommodation = () => {
                     <span style={{ color: "#4488ff", fontSize: "0.9rem" }}>*Limited slots available for participants.</span>
                 </p>
 
-                {/* Register Button & Journey Button */}
-                <div style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap", marginBottom: "50px" }}>
-                    <button
-                        className="download-btn"
-                        onClick={toggleModal}
-                        style={{ maxWidth: "300px", margin: "0" }}
-                    >
-                        Register for Accommodation
+                {/* Cinematic Header Actions */}
+                <div className="accommodation-hero-actions">
+                    <button className="acc-action-btn register-acc" onClick={toggleModal}>
+                        <span className="btn-text">REGISTER FOR ACCOMMODATION</span>
+                        <div className="btn-icon-circle">
+                            <FaCalendarAlt />
+                        </div>
                     </button>
 
-                    <button
-                        className="download-btn"
-                        onClick={() => navigate('/event-journey')}
-                        style={{
-                            maxWidth: "300px",
-                            margin: "0",
-                            background: "linear-gradient(45deg, #ff00cc, #333399)",
-                            border: "1px solid #ff00cc"
-                        }}
-                    >
-                        Complete Event Journey 🚀
+                    <button className="acc-action-btn journey-acc" onClick={() => navigate('/event-journey')}>
+                        <span className="btn-text">COMPLETE EVENT JOURNEY</span>
+                        <div className="btn-icon-circle">
+                            <FaRocket />
+                        </div>
                     </button>
                 </div>
 
                 {/* Hostels Showcase */}
                 <div className="hostels-showcase">
                     {/* Left Part: Boys Hostels */}
-                    <div className="hostel-category">
-                        <h3 style={{ color: "#4488ff", fontSize: "1.2rem", marginBottom: "12px", borderBottom: "1px solid #4488ff", display: "inline-block", paddingBottom: "3px" }}>
-                            Boys Hostels
-                        </h3>
+                    <div className="hostel-category boys-section">
+                        <h3>Boys Hostels</h3>
                         <div className="hostel-grid">
-                            <div className="hostel-card">
+                            <div className="hostel-card boys-card">
                                 <img src={boysHostel1} alt="Sant Guru Nanak & Sant Kabir Boys Hostel" />
                                 <p>Sant Guru Nanak & Sant Kabir Hostel</p>
                             </div>
-                            <div className="hostel-card">
+                            <div className="hostel-card boys-card">
                                 <img src={boysHostel2} alt="Swami Vivekanand Boys Hostel" />
                                 <p>Swami Vivekanand Hostel</p>
                             </div>
-                            <div className="hostel-card">
+                            <div className="hostel-card boys-card">
                                 <img src={boysHostel3} alt="Adya Shankaracharya Boys Hostel" />
                                 <p>Adya Shankaracharya Hostel</p>
                             </div>
-                            <div className="hostel-card">
+                            <div className="hostel-card boys-card">
                                 <img src={boysHostel4} alt="Sant Dnyaneshwar Boys Hostel" />
                                 <p>Sant Dnyaneshwar Hostel</p>
                             </div>
@@ -172,20 +163,18 @@ const Accommodation = () => {
                     </div>
 
                     {/* Right Part: Girls Hostels */}
-                    <div className="hostel-category">
-                        <h3 style={{ color: "#ff88dd", fontSize: "1.2rem", marginBottom: "12px", borderBottom: "1px solid #ff88dd", display: "inline-block", paddingBottom: "3px" }}>
-                            Girls Hostels
-                        </h3>
+                    <div className="hostel-category girls-section">
+                        <h3>Girls Hostels</h3>
                         <div className="hostel-grid">
-                            <div className="hostel-card">
+                            <div className="hostel-card girls-card">
                                 <img src={girlsHostel1} alt="Sant Meerabai Girls Hostel" />
                                 <p>Sant Meerabai Hostel</p>
                             </div>
-                            <div className="hostel-card">
+                            <div className="hostel-card girls-card">
                                 <img src={girlsHostel2} alt="Sant Janabai Girls Hostel" />
                                 <p>Sant Janabai Hostel</p>
                             </div>
-                            <div className="hostel-card">
+                            <div className="hostel-card girls-card">
                                 <img src={girlsHostel3} alt="Sant Muktabai Girls Hostel" />
                                 <p>Sant Muktabai Hostel</p>
                             </div>
@@ -198,28 +187,51 @@ const Accommodation = () => {
                             <div className="star-accent" style={{ top: '10%', left: '10%' }}></div>
                             <div className="star-accent" style={{ top: '80%', right: '15%' }}></div>
 
-                            <h2 className="cosmos-title">Logistics Head</h2>
+                            <h2 className="cosmos-title">ACCOMMODATION HEAD</h2>
 
-                            <div className="head-details">
-                                <h3 className="head-name">Ajinkya Surange</h3>
-
-                                <div className="head-contact-item">
-                                    <FaPhone className="contact-icon" />
-                                    <span>+91 9604765998</span>
+                            <div className="head-details-scroll">
+                                {/* Head 1: Ajinkya */}
+                                <div className="head-details">
+                                    <h3 className="head-name">Ajinkya Surange</h3>
+                                    <div className="head-contact-item">
+                                        <FaPhone className="contact-icon" />
+                                        <span>+91 9604765998</span>
+                                    </div>
+                                    <div className="head-contact-item">
+                                        <FaEnvelope className="contact-icon" />
+                                        <span>surangeajinkya9@gmail.com</span>
+                                    </div>
+                                    <div className="head-socials">
+                                        <a href="https://www.instagram.com/ajinkyasurange?igsh=MW80am1ycXF4bGE4dg==" target="_blank" rel="noopener noreferrer" className="social-btn">
+                                            <FaInstagram />
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="social-btn">
+                                            <FaLinkedin />
+                                        </a>
+                                    </div>
                                 </div>
 
-                                <div className="head-contact-item">
-                                    <FaEnvelope className="contact-icon" />
-                                    <span>surangeajinkya9@gmail.com</span>
-                                </div>
+                                <div className="head-separator"></div>
 
-                                <div className="head-socials">
-                                    <a href="https://www.instagram.com/ajinkyasurange?igsh=MW80am1ycXF4bGE4dg==" target="_blank" rel="noopener noreferrer" className="social-btn">
-                                        <FaInstagram />
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" className="social-btn">
-                                        <FaLinkedin />
-                                    </a>
+                                {/* Head 2: Prarthana */}
+                                <div className="head-details">
+                                    <h3 className="head-name">Prarthana Kale</h3>
+                                    <div className="head-contact-item">
+                                        <FaPhone className="contact-icon" />
+                                        <span>+91 9307409249</span>
+                                    </div>
+                                    <div className="head-contact-item">
+                                        <FaEnvelope className="contact-icon" />
+                                        <span>pdkale003@gmail.com</span>
+                                    </div>
+                                    <div className="head-socials">
+                                        <a href="#" target="_blank" rel="noopener noreferrer" className="social-btn">
+                                            <FaInstagram />
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer" className="social-btn">
+                                            <FaLinkedin />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

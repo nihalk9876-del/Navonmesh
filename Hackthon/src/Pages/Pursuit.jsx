@@ -6,6 +6,7 @@ import registerBtnImg from "../assets/register-btn.png";
 
 // Assets
 import pursuitLogo from "../assets/events/pursuit.png";
+import pursuitPoster from "../assets/PURSUIT POSTER.jpeg";
 
 // Speaker Images
 import yogeshImg from "../assets/yogesh.jpg";
@@ -152,7 +153,7 @@ const Pursuit = () => {
                 <div className="hero-poster">
                     <div className="poster-frame">
                         <img
-                            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop"
+                            src={pursuitPoster}
                             alt="Pursuit Poster"
                             className="poster-img"
                         />
@@ -165,19 +166,33 @@ const Pursuit = () => {
 
                 <div className="pursuit-intel">
                     <div className="intel-header">
-                        <span className="mission-status pulse">MISSION STATUS: ENERGIZED</span>
+                        <div className="mission-status-container">
+                            <span className="mission-status pulse">● MISSION STATUS: ENERGIZED</span>
+                            <span className="mission-status-tech">CORE_DRIVE STATUS: ONLINE</span>
+                        </div>
                         <h1 className="pursuit-main-title">PURSUIT</h1>
                         <div className="pursuit-intel-subtitle">NATIONAL LEVEL TECHNICAL SYMPOSIUM</div>
                     </div>
 
-                    <p className="pursuit-header-desc">
-                        PURSUIT is a theme-based national level technical symposium. It is a grand stage where innovation meets competition, bridging the gap between theoretical knowledge and real-world engineering excellence.
-                    </p>
+                    <div className="intel-description-box">
+                        <span className="box-label">MISSION_DESCRIPTION</span>
+                        <p className="pursuit-header-desc">
+                            PURSUIT is a theme-based national level technical symposium. It is a grand stage where innovation meets competition, bridging the gap between theoretical knowledge and real-world engineering excellence.
+                        </p>
+                        <div className="intel-accents">
+                            <div className="accent-bar"></div>
+                            <div className="accent-dots"></div>
+                        </div>
+                    </div>
 
                     <div className="header-actions">
-                        <Link to="/register?event=pursuit" className="ankur-register-btn" style={{ textDecoration: 'none' }}>
-                            INITIALIZE ENROLLMENT
-                        </Link>
+                        <a href="https://www.pursuitssgmce.com" target="_blank" rel="noopener noreferrer" className="register-rocket-btn animate-float">
+                            <span className="reg-text">VISIT PURSUIT WEBSITE</span>
+                            <div className="reg-icon-circle">
+                                <FaArrowRight />
+                            </div>
+                            <div className="rocket-exhaust"></div>
+                        </a>
                     </div>
                 </div>
             </div>

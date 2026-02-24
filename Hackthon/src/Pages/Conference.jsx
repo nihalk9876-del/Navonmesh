@@ -2,8 +2,14 @@ import React from "react";
 import "../Styles/projectExpo.css";
 import { FaPaperclip } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import udbhavPoster from "../assets/STUDENT CONFERENCE.png";
 
 const Conference = () => {
+    const [mobileSection, setMobileSection] = React.useState(null);
+
+    const toggleMobileSection = (section) => {
+        setMobileSection(prev => prev === section ? null : section);
+    };
 
     const scheduleItems = [
         {
@@ -36,6 +42,9 @@ const Conference = () => {
         }
     ];
 
+    const [showAll, setShowAll] = React.useState(false);
+    const displayedItems = showAll ? scheduleItems : scheduleItems.slice(0, 5);
+
     return (
         <div className="projectexpo-page ankur-voyager-theme">
             {/* Background elements for depth */}
@@ -47,7 +56,7 @@ const Conference = () => {
                 <div className="hero-poster">
                     <div className="poster-frame">
                         <img
-                            src="https://images.unsplash.com/photo-1540575861501-7ad0582373f2?q=80&w=2070&auto=format&fit=crop"
+                            src={udbhavPoster}
                             alt="Udbhav Poster"
                             className="poster-img"
                         />
@@ -60,18 +69,38 @@ const Conference = () => {
 
                 <div className="ankur-intel">
                     <div className="intel-header">
-                        <span className="mission-status pulse">SESSION STATUS: READY</span>
-                        <h1 className="ankur-main-title">उद्‌भव (STUDENT CONFERENCE)</h1>
+                        <div className="mission-status-container">
+                            <span className="mission-status pulse">● MISSION STATUS: ANALYZING</span>
+                            <span className="mission-status-tech">INTEL_NODE STATUS: ACTIVE</span>
+                        </div>
+                        <h1 className="ankur-main-title">
+                            <span className="hindi-title">उद्‌भव</span>
+                            <span className="english-title">(STUDENT CONFERENCE)</span>
+                        </h1>
                         <div className="ankur-intel-subtitle">NATIONAL STUDENT CONFERENCE</div>
                     </div>
 
-                    <p className="ankur-header-desc">
-                        UDBHAV 2026 is a National Student Conference designed to cultivate research aptitude and academic excellence. A formal platform for presenting research papers and innovative concepts.
-                    </p>
+                    <div className="intel-description-box">
+                        <span className="box-label">MISSION_DESCRIPTION</span>
+                        <p className="ankur-header-desc">
+                            UDBHAV 2026 is a National Student Conference designed to cultivate research aptitude and academic excellence. A formal platform for presenting research papers and innovative concepts.
+                        </p>
+                        <div className="intel-accents">
+                            <div className="accent-bar"></div>
+                            <div className="accent-dots"></div>
+                        </div>
+                    </div>
 
                     <div className="header-actions">
-                        <Link to="/register?event=udbhav" className="ankur-register-btn">
-                            REGISTER NOW FOR STUDENT CONFERENCE
+                        <Link to="/register?event=udbhav" className="register-rocket-btn animate-float">
+                            <span className="reg-text">REGISTER FOR UDBHAV</span>
+                            <div className="reg-icon-circle">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                    <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                </svg>
+                            </div>
+                            <div className="rocket-exhaust"></div>
                         </Link>
                     </div>
                 </div>
@@ -95,46 +124,73 @@ const Conference = () => {
                     <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
                 </div>
                 <div className="ankur-spec-item">
-                    <div className="hud-label">AWARDS</div>
-                    <div className="hud-value">BEST PAPER</div>
+                    <div className="hud-label">RECOGNITION</div>
+                    <div className="hud-value">BEST PAPER AWARD</div>
                     <div className="hud-bar"><div className="fill" style={{ width: '95%' }}></div></div>
                 </div>
             </div>
 
+            {/* Mobile Toggle Buttons */}
+            <div className="mobile-section-toggles">
+                <button
+                    className={`mobile-toggle-btn ${mobileSection === 'schedule' ? 'active' : ''}`}
+                    onClick={() => toggleMobileSection('schedule')}
+                >
+                    📡 SCHEDULE
+                </button>
+                <button
+                    className={`mobile-toggle-btn ${mobileSection === 'rules' ? 'active' : ''}`}
+                    onClick={() => toggleMobileSection('rules')}
+                >
+                    📋 RULES & REGULATIONS
+                </button>
+            </div>
+
             <div className="ankur-grid">
-                {/* Left Column: Details */}
-                <div className="ankur-card schedule-card">
+                {/* Left Column: Schedule */}
+                <div className={`ankur-card schedule-card mobile-collapsible ${mobileSection === 'schedule' ? 'mobile-open' : ''}`}>
                     <div className="card-header">
-                        <h2>CONFERENCE INTEL</h2>
+                        <h2>MISSION SCHEDULE</h2>
+                        <span className="header-tag">FLIGHT_LOG.EXE</span>
                     </div>
 
                     <div className="timeline-container">
-                        <div className="conference-info">
-                            <div className="info-section">
-                                <h3 style={{ color: "#00e5ff", marginBottom: "20px", fontSize: "1.2rem", fontFamily: 'Orbitron' }}>CONFERENCE TRACKS</h3>
-                                <ul className="rules-list">
-                                    <li data-index="AI">Artificial Intelligence & Data Science</li>
-                                    <li data-index="EV">Renewable Energy & E-Mobility</li>
-                                    <li data-index="ID">Smart Systems & Industry 4.0</li>
-                                    <li data-index="IT">IoT & Emerging Technologies</li>
-                                </ul>
-                            </div>
-
-                            <div className="info-section" style={{ marginTop: "40px" }}>
-                                <h3 style={{ color: "#00e5ff", marginBottom: "20px", fontSize: "1.2rem", fontFamily: 'Orbitron' }}>KEY HIGHLIGHTS</h3>
-                                <ul className="rules-list">
-                                    <li data-index=">>">Best Paper Awards Recognition</li>
-                                    <li data-index=">>">Formal Research Presentations</li>
-                                    <li data-index=">>">Journal Publication Opportunities</li>
-                                    <li data-index=">>">Expert Research Networking</li>
-                                </ul>
-                            </div>
+                        <div className="timeline">
+                            {displayedItems.map((item, index) => (
+                                <div className="timeline-item" key={index}>
+                                    <div className="timeline-dot"></div>
+                                    <div className="timeline-content">
+                                        <div className="timeline-top">
+                                            <h3>{item.title}</h3>
+                                            <span className="time">{item.time}</span>
+                                        </div>
+                                        <div className="timeline-desc">
+                                            {item.desc}
+                                            <span className="tag">{item.tag}</span>
+                                        </div>
+                                        <div className="timeline-link">
+                                            <FaPaperclip /> {item.location}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
+
+                    {scheduleItems.length > 5 && (
+                        <div className="show-more-container">
+                            <button
+                                className="show-more-btn"
+                                onClick={() => setShowAll(!showAll)}
+                            >
+                                {showAll ? "SHOW LESS" : "SHOW MORE"}
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 {/* Right Column: Rules */}
-                <div className="right-column">
+                <div className={`right-column mobile-collapsible ${mobileSection === 'rules' ? 'mobile-open' : ''}`}>
                     <div className="ankur-card rules-card">
                         <div className="card-header">
                             <h2>RULES AND REGULATIONS</h2>
