@@ -20,6 +20,7 @@ import CulturalRegister from "./Pages/CulturalRegister";
 import Cultural from "./Pages/Cultural";
 import Cosmos from "./Pages/Cosmos";
 import Pursuit from "./Pages/Pursuit";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -35,6 +36,7 @@ function App() {
       {loading && <Preloader onLoaded={handleLoaded} />}
       {showPopup && !loading && <PopupPoster onClose={() => setShowPopup(false)} />}
       <HashRouter>
+        <ScrollToTop />
         <div style={{ display: loading ? 'none' : 'block' }}> {/* Hide app content while loading to prevent flash */}
           <Routes>
             {/* Pages WITH Navbar, Sidebar, Footer */}
