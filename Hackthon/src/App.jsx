@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"; // Added hook imports
 
 import MainLayout from "./Layout/MainLayout";
 import Preloader from "./Components/Preloader"; // Import Preloader
+import PopupPoster from "./Components/PopupPoster"; // Import PopupPoster
 
 import Home from "./Pages/Home";
 import Hackathon from "./Pages/Hackathon";
@@ -22,14 +23,17 @@ import Pursuit from "./Pages/Pursuit";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleLoaded = () => {
     setLoading(false);
+    setShowPopup(true);
   };
 
   return (
     <>
       {loading && <Preloader onLoaded={handleLoaded} />}
+      {showPopup && !loading && <PopupPoster onClose={() => setShowPopup(false)} />}
       <HashRouter>
         <div style={{ display: loading ? 'none' : 'block' }}> {/* Hide app content while loading to prevent flash */}
           <Routes>

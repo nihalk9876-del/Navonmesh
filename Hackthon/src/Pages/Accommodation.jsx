@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../Styles/projectExpo.css";
+import "../Styles/accommodation.css";
 import "../Styles/accommodationHead.css"; // Add new CSS import
 import { FaPhone, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
 import girlsHostel1 from "../assets/girls_hostel_1.png";
@@ -82,7 +82,9 @@ const Accommodation = () => {
     };
 
     return (
-        <div style={{ paddingTop: "100px", minHeight: "100vh", paddingBottom: "50px" }} id="accommodation">
+        <div className="accommodation-page" id="accommodation">
+            <div className="voyager-grid-overlay"></div>
+            <div className="voyager-vignette"></div>
             <h1 style={{
                 textAlign: "center",
                 fontFamily: "'Orbitron', sans-serif",

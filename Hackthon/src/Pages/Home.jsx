@@ -80,26 +80,6 @@ const Home = () => {
 
       {/* ------------------- STACKED SECTIONS ------------------- */}
 
-      {/* Srijan / Hackathon */}
-      <section id="hackathon" style={{ position: "relative" }}>
-        <Hackathon />
-      </section>
-
-      {/* Problem Statements */}
-      <section id="problem-statements">
-        <ProblemStatements />
-      </section>
-
-      {/* Project Expo */}
-      <section id="projectexpo" style={{ position: "relative" }}>
-        <ProjectExpo />
-      </section>
-
-      {/* Conference */}
-      <section id="conference">
-        <Conference />
-      </section>
-
       {/* Campus Map */}
       <section id="campus-map">
         <CampusMap />

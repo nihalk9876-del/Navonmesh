@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import "../Styles/pursuit.css";
 import { FaMicrochip, FaUsers, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import registerBtnImg from "../assets/register-btn.png";
 
 // Assets
 import pursuitLogo from "../assets/events/pursuit.png";
-import placeholderImg from "../assets/team_placeholder.png";
-import bgVideo from "../assets/bg.mp4";
 
 // Speaker Images
 import yogeshImg from "../assets/yogesh.jpg";
@@ -29,63 +29,63 @@ const Pursuit = () => {
             subtitle: "Master Cloud and Linux",
             desc: "Hands-on workshop on Infrastructure & Deployment",
             fee: "₹49",
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" // Cosmic Data/Cloud
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "Mastering LaTeX",
             subtitle: "Type Smart, Not Hard",
             desc: "Focus on the content, let LaTeX handle the beauty",
             fee: "Free",
-            image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=800" // Clean code/document
+            image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "AIML Bootcamp",
             subtitle: "Building the Future with ML",
             desc: "Turn raw data into predictive power",
             fee: "₹100",
-            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" // AI/ML Neural
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "Introduction to VLSI",
             subtitle: "Designing the Silicon Future",
             desc: "The journey from logic gates to transistors",
             fee: "₹100",
-            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" // Hardware/Silicon
+            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "Agentic AI",
             subtitle: "Mastering Agentic Workflows",
             desc: "The future of software isn’t tools, it’s agents",
             fee: "₹100",
-            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" // Cyber Agentic
+            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "EV Workshop",
             subtitle: "Innovate & Drive",
             desc: "Master the future of mobility",
             fee: "₹150",
-            image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800" // EV Charging
+            image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800"
         },
         {
-            title: "Cybersecurity Workshop",
-            subtitle: "Exploits, Encryption & Defense",
+            title: "Cybersecurity",
+            subtitle: "Exploits & Defense",
             desc: "Think like a hacker to build like an expert",
             fee: "₹50",
-            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" // Security/Firewall
+            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "Web Development",
-            subtitle: "Turn Ideas into Live Websites",
+            subtitle: "Idea to Live Website",
             desc: "Innovate the future of digital experiences",
             fee: "₹100",
-            image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800" // Web Matrix
+            image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800"
         },
         {
             title: "Autodesk Revit",
             subtitle: "Model. Design. Visualize.",
             desc: "Master Building Modeling for Smart Design",
             fee: "₹100",
-            image: "https://images.unsplash.com/photo-1503387762-592dea58ef23?auto=format&fit=crop&q=80&w=800" // Architecture
+            image: "https://images.unsplash.com/photo-1503387762-592dea58ef23?auto=format&fit=crop&q=80&w=800"
         }
     ];
 
@@ -93,7 +93,6 @@ const Pursuit = () => {
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
-        // Optional: specific scroll logic if needed
     };
 
     const speakers = [
@@ -130,7 +129,7 @@ const Pursuit = () => {
         {
             name: "Mr. Chetan Tajane",
             role: "Founder",
-            org: "CRITS (Centre of Innovation and Advance Technical Skills)",
+            org: "CRITS Innovation",
             image: chetanImg
         },
         {
@@ -143,14 +142,67 @@ const Pursuit = () => {
 
 
     return (
-        <div className="pursuit-page">
-            <div className="pursuit-hero">
-                <img src={pursuitLogo} alt="Pursuit Logo" style={{ width: "120px", marginBottom: "20px" }} />
-                <h1 className="pursuit-title">PURSUIT</h1>
-                <p className="pursuit-subtitle">Thermal-Based Technical Symposium</p>
+        <div className="pursuit-page pursuit-voyager-theme">
+            {/* Background elements for depth */}
+            <div className="voyager-grid-overlay"></div>
+            <div className="voyager-vignette"></div>
 
-                <div className="pursuit-info-box">
-                    PURSUIT is the theme-based national level technical symposium. It is a grand stage where innovation meets competition.
+            {/* Cinematic Hero Section */}
+            <div className="pursuit-hero-section">
+                <div className="hero-poster">
+                    <div className="poster-frame">
+                        <img
+                            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop"
+                            alt="Pursuit Poster"
+                            className="poster-img"
+                        />
+                        <div className="poster-tech-stats">
+                            <div className="stat-line">MOD_LOAD: [9/9]</div>
+                            <div className="stat-line">INTEL_NODE: PURSUIT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="pursuit-intel">
+                    <div className="intel-header">
+                        <span className="mission-status pulse">MISSION STATUS: ENERGIZED</span>
+                        <h1 className="pursuit-main-title">PURSUIT</h1>
+                        <div className="pursuit-intel-subtitle">NATIONAL LEVEL TECHNICAL SYMPOSIUM</div>
+                    </div>
+
+                    <p className="pursuit-header-desc">
+                        PURSUIT is a theme-based national level technical symposium. It is a grand stage where innovation meets competition, bridging the gap between theoretical knowledge and real-world engineering excellence.
+                    </p>
+
+                    <div className="header-actions">
+                        <Link to="/register?event=pursuit" className="ankur-register-btn" style={{ textDecoration: 'none' }}>
+                            INITIALIZE ENROLLMENT
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mission Specifications (HUD STYLE) */}
+            <div className="pursuit-hud-specs">
+                <div className="pursuit-spec-item">
+                    <div className="hud-label">ENTRY_FEE</div>
+                    <div className="hud-value">₹49 - ₹150</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
+                </div>
+                <div className="pursuit-spec-item">
+                    <div className="hud-label">TEAM_SIZE</div>
+                    <div className="hud-value">1 - 4 UNIT</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '75%' }}></div></div>
+                </div>
+                <div className="pursuit-spec-item">
+                    <div className="hud-label">ELIGIBILITY</div>
+                    <div className="hud-value">ALL UG & PG</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
+                </div>
+                <div className="pursuit-spec-item">
+                    <div className="hud-label">SESSIONS</div>
+                    <div className="hud-value">9 MODULES</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '90%' }}></div></div>
                 </div>
             </div>
 
@@ -160,21 +212,21 @@ const Pursuit = () => {
                     className={`pursuit-tab-btn ${activeTab === 'workshops' ? 'active' : ''}`}
                     onClick={() => handleTabChange('workshops')}
                 >
-                    <FaMicrochip /> Workshops
+                    <FaMicrochip /> MISSION MODULES
                 </button>
                 <button
                     className={`pursuit-tab-btn ${activeTab === 'speakers' ? 'active' : ''}`}
                     onClick={() => handleTabChange('speakers')}
                 >
-                    <FaUsers /> Speakers
+                    <FaUsers /> COMMANDERS
                 </button>
             </div>
 
-            {/* 🛠️ Specialized Workshops (Conditionally Visible) */}
+            {/* 🛠️ Specialized Workshops */}
             {activeTab === 'workshops' && (
                 <div className="pursuit-section fade-in">
                     <h2 className="section-heading">
-                        <FaMicrochip /> Mission Modules: Workshops
+                        <FaMicrochip /> WORKSHOP STREAM
                     </h2>
                     <div className="workshops-container">
                         {workshops.map((ws, i) => (
@@ -186,17 +238,12 @@ const Pursuit = () => {
                                 <div className="workshop-img-box">
                                     <img src={ws.image} alt={ws.title} className="workshop-card-img" />
                                     <div className="workshop-fee-badge">{ws.fee}</div>
-                                    <div className="img-overlay-glow"></div>
                                 </div>
 
                                 <div className="workshop-details-content">
                                     <h3 className="workshop-title">{ws.title}</h3>
                                     <h4 className="workshop-subtitle">{ws.subtitle}</h4>
                                     <p className="workshop-desc">{ws.desc}</p>
-                                    <div className="workshop-cta-footer">
-                                        <span>Initialize Program</span>
-                                        <FaArrowRight size={12} />
-                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -204,18 +251,12 @@ const Pursuit = () => {
                 </div>
             )}
 
-            {/* 🎙️ Mission Command: Speakers (Conditionally Visible) */}
+            {/* 🎙️ Speakers */}
             {activeTab === 'speakers' && (
                 <div className="pursuit-section fade-in">
-                    <div className="speakers-header-container">
-                        <div className="speakers-title-badge">
-                            Speakers
-                        </div>
-                    </div>
-                    <p className="speakers-intro">
-                        Meet the minds inspiring Pursuit 2026 – innovators, builders, and leaders shaping the future.
-                    </p>
-
+                    <h2 className="section-heading">
+                        <FaUsers /> GUEST COMMANDERS
+                    </h2>
                     <div className="speakers-grid">
                         {speakers.map((speaker, idx) => (
                             <div key={idx} className="speaker-card">
@@ -231,26 +272,21 @@ const Pursuit = () => {
                 </div>
             )}
 
-            {/* 📞 Mission Support / Queries Section */}
+            {/* 📞 Mission Support Section */}
             <div className="pursuit-section">
-                <div className="support-container">
-                    <div className="support-card">
-                        <div className="support-header">
-                            <h2 className="support-title">Mission Support</h2>
-                            <p className="support-subtitle">For any queries regarding the symposium</p>
+                <div className="support-card">
+                    <h2 className="support-title">MISSION SUPPORT</h2>
+                    <p className="support-subtitle">Strategic assistance for symposium deployment</p>
+                    <div className="support-contacts">
+                        <div className="contact-item">
+                            <span className="contact-label">Pursuit Head</span>
+                            <span className="contact-name">Vedant Darokar</span>
+                            <a href="tel:9307736340" className="contact-phone">9307736340</a>
                         </div>
-                        <div className="support-contacts">
-                            <div className="contact-item">
-                                <span className="contact-label">Pursuit Head</span>
-                                <span className="contact-name">Vedant Darokar</span>
-                                <a href="tel:9307736340" className="contact-phone">9307736340</a>
-                            </div>
-                            <div className="contact-divider"></div>
-                            <div className="contact-item">
-                                <span className="contact-label">Technical Coordinator</span>
-                                <span className="contact-name">Nihal Kankal</span>
-                                <a href="tel:7499696317" className="contact-phone">7499696317</a>
-                            </div>
+                        <div className="contact-item">
+                            <span className="contact-label">Technical Coordinator</span>
+                            <span className="contact-name">Nihal Kankal</span>
+                            <a href="tel:7499696317" className="contact-phone">7499696317</a>
                         </div>
                     </div>
                 </div>
@@ -262,7 +298,7 @@ const Pursuit = () => {
                     className="pursuit-visit-btn"
                     onClick={() => window.open("https://www.pursuitssgmce.com", "_blank")}
                 >
-                    Visit Pursuit Website for Registration <FaArrowRight style={{ marginLeft: "10px" }} />
+                    ACCESS PURSUIT MAINFRAME <FaArrowRight style={{ marginLeft: "10px" }} />
                 </button>
             </div>
         </div>

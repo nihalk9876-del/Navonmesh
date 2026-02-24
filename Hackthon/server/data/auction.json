@@ -1,0 +1,118 @@
+{
+  "teams": [
+    {
+      "id": "team1",
+      "name": "Chennai Gaints",
+      "password": "team123",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team2",
+      "name": "Mumbai Indians",
+      "password": "team234",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team3",
+      "name": "Royal Challengers",
+      "password": "team345",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team4",
+      "name": "Kolkata Knight Riders",
+      "password": "team456",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team5",
+      "name": "Delhi Capitals",
+      "password": "team567",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team6",
+      "name": "Punjab Kings",
+      "password": "team678",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team7",
+      "name": "Rajasthan Royals",
+      "password": "team789",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team8",
+      "name": "Sunrisers Hyderabad",
+      "password": "team890",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team9",
+      "name": "Gujarat Titans",
+      "password": "team901",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team10",
+      "name": "Lucknow Super Giants",
+      "password": "team012",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team11",
+      "name": "Rising Stars",
+      "password": "team111",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team12",
+      "name": "Thunderbolts",
+      "password": "team222",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team13",
+      "name": "Elite Warriors",
+      "password": "team333",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team14",
+      "name": "Cosmic Blazers",
+      "password": "team444",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team15",
+      "name": "Astra Legends",
+      "password": "team555",
+      "balance": 500000000,
+      "players": []
+    },
+    {
+      "id": "team16",
+      "name": "Nova Challengers",
+      "password": "team666",
+      "balance": 500000000,
+      "players": []
+    }
+  ],
+  "currentPlayerIndex": 0,
+  "history": []
+}

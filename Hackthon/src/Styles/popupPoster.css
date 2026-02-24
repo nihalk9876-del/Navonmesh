@@ -1,0 +1,156 @@
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 3, 8, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: popupFadeIn 0.4s ease-out;
+}
+
+.popup-container {
+    position: relative;
+    max-width: 800px;
+    max-height: 90vh;
+    width: 100%;
+    background: #05060f;
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.8), 0 0 30px rgba(45, 212, 191, 0.1);
+    display: flex;
+    flex-direction: column;
+    animation: popupSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popupSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+.popup-close-btn:hover {
+    background: #ff4444;
+    border-color: #ff4444;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.popup-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.poster-image {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    display: block;
+    object-fit: contain;
+}
+
+.poster-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(2, 3, 8, 0.95), transparent);
+    padding: 40px;
+    text-align: center;
+}
+
+.tech-scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #2dd4bf;
+    box-shadow: 0 0 15px #2dd4bf;
+    opacity: 0.5;
+    animation: scanAnimation 3s linear infinite;
+}
+
+@keyframes scanAnimation {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+.poster-intel {
+    position: relative;
+    z-index: 2;
+}
+
+.intel-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: #2dd4bf;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+.intel-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 5px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .popup-container {
+        max-width: 95%;
+    }
+
+    .intel-title {
+        font-size: 1.3rem;
+    }
+
+    .poster-overlay {
+        padding: 25px;
+    }
+}
