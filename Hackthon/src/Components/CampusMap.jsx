@@ -63,8 +63,8 @@ const CampusMap = () => {
         setRotate({ x: 0, y: 0 });
     };
 
-    const baseRotateX = isMobile ? 12 : 35; // Reduced for mobile
-    const baseRotateZ = isMobile ? -3 : -10;
+    const baseRotateX = 0;
+    const baseRotateZ = 0;
 
     return (
         <section className="campus-map-section">

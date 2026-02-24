@@ -218,26 +218,66 @@
 }
 
 .hostel-category {
-    background: rgba(10, 15, 30, 0.5);
-    border: 1px solid rgba(0, 243, 255, 0.1);
-    border-radius: 16px;
-    padding: 25px;
-    flex: 1.2;
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.65) !important;
+    /* Slightly blackish but shows starry bg */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 80, 200, 0.4) !important;
+    /* Dark blue thin border */
+    border-radius: 12px;
+    padding: 0;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 320px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.boys-section,
+.girls-section {
+    border: 1px solid rgba(0, 80, 200, 0.4) !important;
+    /* Unified dark blue */
+}
+
+/* Unified Scanline Overlay */
+.hostel-category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 5;
 }
 
 .hostel-category h3 {
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+    margin: 0 0 15px 0;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-    text-transform: uppercase;
+    font-size: 0.8rem !important;
+    font-weight: 800;
     letter-spacing: 2px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid currentColor;
-    width: fit-content;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+}
+
+.boys-section h3 {
+    background: rgba(0, 100, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 80, 200, 0.3);
+}
+
+.girls-section h3 {
+    background: rgba(0, 100, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(0, 80, 200, 0.3);
 }
 
 .hostel-grid {
@@ -248,37 +288,60 @@
 }
 
 .hostel-card {
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid #001eff;
-    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     padding: 0;
     overflow: hidden;
-    transition: 0.3s;
+    transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
 }
 
+.boys-card {
+    border: 1px solid rgba(68, 136, 255, 0.3) !important;
+}
+
+.girls-card {
+    border: 1px solid rgba(255, 0, 170, 0.3) !important;
+}
+
 .hostel-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 30, 255, 0.4);
+}
+
+.boys-card:hover {
+    border-color: #4488ff !important;
+    box-shadow: 0 0 20px rgba(68, 136, 255, 0.3);
+}
+
+.girls-card:hover {
+    border-color: #ff00aa !important;
+    box-shadow: 0 0 20px rgba(255, 0, 170, 0.3);
 }
 
 .hostel-card img {
     width: 100%;
-    height: 100px;
+    height: 60px;
+    /* Even smaller for pro look */
     object-fit: cover;
     display: block;
+    filter: brightness(0.9);
 }
 
 .hostel-card p {
-    font-size: 0.65rem;
+    font-size: 0.5rem;
+    /* Micro labels as per reference */
     color: #fff;
-    padding: 8px 5px;
+    padding: 6px 4px;
     text-align: center;
     margin: 0;
-    line-height: 1.2;
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.8);
+    line-height: 1.1;
+    font-weight: 800;
+    background: rgba(10, 20, 40, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Specific styling for the Logistics Head Column */
@@ -286,29 +349,313 @@
     flex: 0.8;
 }
 
-.cosmos-box {
+/* 🚀 REFERENCED TECH-POLYGON BUTTONS */
+/* 🚀 PREMIUM TRANSPARENT POWER-PILLS */
+.accommodation-hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
+}
+
+.acc-action-btn {
+    width: 380px;
+    height: 70px;
+    padding: 0 5px 0 35px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.register-acc {
+    border-color: rgba(0, 243, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+.journey-acc {
+    border-color: rgba(189, 0, 255, 0.4);
+    box-shadow: 0 0 20px rgba(189, 0, 255, 0.1);
+}
+
+.btn-text {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 5;
+    transition: 0.3s;
+}
+
+.btn-icon-circle {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: white;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.register-acc .btn-icon-circle {
+    background: linear-gradient(135deg, #00f3ff, #0072ff);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.journey-acc .btn-icon-circle {
+    background: linear-gradient(135deg, #bd00ff, #7c3aed);
+    box-shadow: 0 0 15px rgba(189, 0, 255, 0.5);
+}
+
+/* Shimmer Light Sweep */
+.acc-action-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
     height: 100%;
-    min-height: 400px;
-    background: rgba(15, 23, 42, 0.6) !important;
-    border: 1px solid rgba(0, 243, 255, 0.2) !important;
-    max-width: unset !important;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: skewX(-20deg);
+    transition: 0.8s;
+}
+
+/* Hover States */
+.acc-action-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.register-acc:hover {
+    border-color: #00f3ff;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+}
+
+.journey-acc:hover {
+    border-color: #bd00ff;
+    box-shadow: 0 0 30px rgba(189, 0, 255, 0.3);
+}
+
+.acc-action-btn:hover::after {
+    left: 100%;
+}
+
+.acc-action-btn:hover .btn-icon-circle {
+    transform: rotate(360deg) scale(1.05);
+}
+
+.register-acc:hover .btn-icon-circle {
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.8);
+}
+
+.journey-acc:hover .btn-icon-circle {
+    box-shadow: 0 0 25px rgba(189, 0, 255, 0.8);
+}
+
+.acc-action-btn:hover .btn-text {
+    letter-spacing: 2.5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.cosmos-box {
+    height: 320px;
+    background: rgba(0, 0, 0, 0.65) !important;
+    border: 1px solid rgba(0, 80, 200, 0.4) !important;
+    max-width: 310px !important;
+    margin: 0;
+    border-radius: 12px !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-details-scroll {
+    flex: 1;
+    overflow: hidden;
+    /* Non-scrollable */
+    padding: 5px 0;
+}
+
+.head-details-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.head-details {
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.head-separator {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.4), transparent);
+    margin: 10px auto;
+}
+
+.cosmos-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 10;
 }
 
 @media (max-width: 1200px) {
     .hostels-showcase {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
 
     .hostel-category,
     .accommodation-head-container {
         width: 100%;
-        max-width: 600px;
+        max-width: 800px;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .hostels-showcase {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 10px !important;
+    }
+
+    .hostel-category {
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+        padding-bottom: 10px !important;
+    }
+
+    .accommodation-head-container {
+        grid-column: span 2 !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin-top: 10px !important;
+        flex: none !important;
+    }
+
+    .cosmos-box {
+        height: auto !important;
+        min-height: unset !important;
+        padding-bottom: 15px !important;
+        max-width: none !important;
+        width: 100% !important;
+    }
+
+    .cosmos-title {
+        font-size: 0.9rem !important;
+        padding: 12px 0 !important;
+        margin-bottom: 0 !important;
+        letter-spacing: 2px !important;
+    }
+
+    .head-details {
+        padding: 5px !important;
+        gap: 2px !important;
+    }
+
+    .head-name {
+        font-size: 0.7rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    .head-contact-item {
+        font-size: 0.55rem !important;
+        margin-bottom: 1px !important;
+    }
+
+    .contact-icon {
+        font-size: 0.6rem !important;
+    }
+
+    .head-socials {
+        gap: 10px !important;
+        margin-top: 5px !important;
+    }
+
+    .social-btn {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.7rem !important;
+    }
+
     .hostel-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+    }
+
+    .hostel-card img {
+        height: 40px !important;
+    }
+
+    .hostel-card p {
+        font-size: 0.35rem !important;
+        padding: 3px 2px !important;
+    }
+
+    .hostel-category h3 {
+        padding: 10px 0 !important;
+        font-size: 0.6rem !important;
+    }
+
+    .head-separator {
+        margin: 5px auto !important;
+    }
+
+    .accommodation-hero-actions {
+        flex-direction: column !important;
+        gap: 15px !important;
+        margin-bottom: 40px !important;
+        padding: 0 15px !important;
+    }
+
+    .acc-action-btn {
+        width: 100% !important;
+        max-width: 320px !important;
+        height: 55px !important;
+        padding: 0 5px 0 20px !important;
+        margin: 0 auto !important;
+    }
+
+    .btn-text {
+        font-size: 0.75rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    .btn-icon-circle {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.1rem !important;
     }
 }

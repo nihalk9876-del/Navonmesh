@@ -33,20 +33,26 @@
 .poster-frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: auto;
+    max-height: 600px;
     background: #000;
     border: 1px solid rgba(0, 229, 255, 0.4);
     box-shadow: 0 0 80px rgba(0, 229, 255, 0.1);
     border-radius: 4px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .poster-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.85;
-    filter: brightness(1.1) contrast(1.1);
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    /* ensures full poster is visible */
+    opacity: 1;
+    filter: brightness(1.05) contrast(1.05);
 }
 
 .poster-tech-stats {
@@ -69,22 +75,38 @@
     text-align: left;
 }
 
+.mission-status-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 25px;
+}
+
 .mission-status {
     font-family: 'Orbitron', sans-serif;
     color: #00e5ff;
-    font-size: 0.9rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     text-transform: uppercase;
+    font-weight: 800;
+}
+
+.mission-status-tech {
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(0, 229, 255, 0.6);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding-left: 22px;
 }
 
 .pulse::before {
     content: '';
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     background: #00e5ff;
     border-radius: 50%;
     animation: ankur-pulse 2s infinite;
@@ -104,21 +126,46 @@
     }
 }
 
+/* 🌌 HIGH-LEVEL CINEMATIC TITLES - ANKUR */
 .ankur-main-title {
-    font-size: 6.5rem !important;
-    font-weight: 700;
-    margin: 0;
+    font-size: 5rem !important;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 40px 0;
+    line-height: 1.1;
+    padding-bottom: 25px;
+    white-space: nowrap;
+    position: relative;
+}
+
+.ankur-main-title .hindi-title {
     font-family: 'Khand', sans-serif;
-    background: linear-gradient(135deg, #fff 40%, #00e5ff 100%);
+    font-weight: 700;
+    font-size: 7.5rem;
+    background: linear-gradient(180deg, #fff 30%, #00e5ff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent !important;
-    filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.4));
-    line-height: 1.2;
-    padding-bottom: 15px;
-    white-space: nowrap;
-    text-transform: uppercase;
+    letter-spacing: -2px;
 }
+
+.ankur-main-title .english-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    color: #00e5ff;
+    letter-spacing: 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+    opacity: 0.9;
+    padding-top: 25px;
+    background: linear-gradient(to right, #00e5ff, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 🛸 HUD Status Indicator above Title - REMOVED redundant labels causing overlap */
 
 .ankur-intel-subtitle {
     font-family: 'Orbitron', sans-serif;
@@ -131,43 +178,39 @@
 }
 
 .ankur-header-desc {
-    color: #cbd5e1;
-    font-size: 1.15rem;
+    color: #e2e8f0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.05rem;
     line-height: 1.8;
-    background: rgba(15, 23, 42, 0.6);
-    padding: 35px;
-    border-left: 5px solid #00e5ff;
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.15);
+    /* Faint black background - low transparency */
+    padding: 40px 45px 35px;
+    backdrop-filter: blur(12px);
+    /* Website background + faint black glass effect */
+    text-align: left;
     margin-top: 40px;
-    max-width: 650px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    max-width: 750px;
+    position: relative;
+    letter-spacing: 0.8px;
+    border: 1px solid rgba(0, 229, 255, 0.15);
+    /* Subtle neon border */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
 }
+
+.ankur-header-desc:hover {
+    background: rgba(0, 0, 0, 0.35);
+    border-color: rgba(0, 229, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 229, 255, 0.05);
+}
+
+
 
 .header-actions {
     margin-top: 50px;
 }
 
-.ankur-register-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 20px 60px;
-    background: rgba(0, 229, 255, 0.05);
-    border: 1px solid #00e5ff;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    font-size: 1.1rem;
-    letter-spacing: 5px;
-    text-decoration: none;
-    transition: 0.4s;
-}
-
-.ankur-register-btn:hover {
-    background: #00e5ff;
-    color: #000;
-    box-shadow: 0 0 50px rgba(0, 229, 255, 0.4);
-    transform: translateY(-3px);
-}
 
 /* 📊 MISSION HUD SPECS */
 .ankur-hud-specs {
@@ -221,6 +264,62 @@
     box-shadow: 0 0 10px #00e5ff;
 }
 
+/* 🛸 ANKUR PRIZE SECTION - ULTRA COMPACT */
+.single-card-grid {
+    display: flex !important;
+    justify-content: center;
+    grid-template-columns: none !important;
+    margin-top: -20px;
+}
+
+.ankur-prize-card {
+    max-width: 360px;
+    /* Drastically reduced */
+    width: 100%;
+}
+
+.ankur-prize-card .reward-card-header {
+    padding: 20px 25px;
+    /* Tighter padding */
+}
+
+.ankur-prize-card .reward-card-header .title {
+    font-size: 1.4rem !important;
+    /* Smaller title */
+}
+
+.ankur-prize-card .reward-tier {
+    padding: 15px 20px;
+    /* Tighter tier padding */
+    gap: 15px;
+}
+
+.ankur-prize-card .rank-icon {
+    font-size: 1.8rem !important;
+    /* Smaller icons */
+}
+
+.ankur-prize-card .rank-value {
+    font-size: 1.5rem !important;
+    /* Smaller prize text */
+}
+
+.ankur-voyager-theme .rewards-header {
+    margin-bottom: 40px;
+    /* Reduced gap */
+}
+
+.ankur-voyager-theme .rewards-header h2 {
+    font-size: 2.2rem !important;
+    /* Smaller section header */
+    letter-spacing: 6px !important;
+}
+
+.ankur-voyager-theme .prizes-container {
+    padding: 20px;
+    margin-bottom: 100px;
+}
+
 /* 📑 MISSION GRID (SCHEDULE & RULES) */
 .ankur-grid {
     display: grid;
@@ -263,7 +362,22 @@
 .timeline {
     position: relative;
     padding-left: 35px;
-    border-left: 2px solid rgba(0, 229, 255, 0.2);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 229, 255, 0.4) 10%,
+            rgba(0, 229, 255, 0.8) 50%,
+            rgba(0, 229, 255, 0.4) 90%,
+            transparent 100%);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
 }
 
 .timeline-item {
@@ -273,14 +387,15 @@
 
 .timeline-dot {
     position: absolute;
-    left: -44.5px;
+    left: -36px;
     top: 6px;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     background: #020308;
     border: 2px solid #00e5ff;
     border-radius: 50%;
     box-shadow: 0 0 10px #00e5ff;
+    z-index: 2;
 }
 
 .timeline-content {
@@ -373,33 +488,445 @@
     box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
 }
 
-@media (max-width: 1200px) {
+/* Mobile toggle buttons - hidden on desktop */
+.mobile-section-toggles {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .ankur-voyager-theme {
+        padding-top: 60px !important;
+    }
+
+    /* === HERO: Poster full-width on top, then title + info side by side === */
     .ankur-hero {
-        grid-template-columns: 1fr;
-        text-align: center;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        width: 100% !important;
+        margin: 20px auto 30px !important;
+        text-align: left !important;
+        align-items: stretch !important;
+    }
+
+    .hero-poster {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        margin-bottom: 15px !important;
+    }
+
+    .poster-frame {
+        aspect-ratio: auto !important;
+        width: 85% !important;
+        max-width: 320px !important;
+        background: rgba(0, 0, 0, 0.3) !important;
+        border: 1px solid rgba(0, 229, 255, 0.6) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 0 25px rgba(0, 229, 255, 0.2);
+        display: flex !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+
+    .poster-tech-stats {
+        display: none;
     }
 
     .ankur-intel {
-        align-items: center;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 15px 12px !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .intel-header {
+        width: 100%;
+        text-align: center !important;
+    }
+
+    .intel-description-box {
+        display: none !important;
+    }
+
+    .header-actions {
+        margin-top: 10px !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    .mission-status-container {
+        margin-bottom: 4px !important;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .mission-status {
+        font-size: 0.45rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    .mission-status-tech {
+        font-size: 0.35rem !important;
+        padding-left: 0 !important;
+        opacity: 0.7;
     }
 
     .ankur-main-title {
-        font-size: 3.5rem !important;
-        white-space: normal;
-        line-height: 1.1;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0 !important;
+        margin: 2px 0 !important;
+        white-space: nowrap !important;
+        padding-bottom: 0px !important;
+    }
+
+    .ankur-main-title .hindi-title {
+        font-size: 2rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .ankur-main-title .english-title {
+        font-size: 0.5rem !important;
+        letter-spacing: 1px !important;
+        padding-top: 0px !important;
+    }
+
+    .ankur-intel-subtitle {
+        font-size: 0.4rem !important;
+        letter-spacing: 1px !important;
+        margin-top: 2px !important;
     }
 
     .ankur-header-desc {
-        border-left: 0;
-        border-top: 5px solid #00e5ff;
-        text-align: center;
+        padding: 8px 10px !important;
+        font-size: 0.5rem !important;
+        line-height: 1.4 !important;
+        border-left: 1px solid rgba(0, 229, 255, 0.3) !important;
+        border-top: 0 !important;
+        text-align: left !important;
+        margin-top: 0 !important;
     }
 
+    .box-label {
+        font-size: 0.4rem !important;
+        margin-bottom: 2px !important;
+        text-align: left !important;
+        opacity: 0.6;
+    }
+
+    .register-rocket-btn {
+        width: auto !important;
+        max-width: 250px !important;
+        height: 42px !important;
+        margin: 8px auto !important;
+        border-radius: 40px !important;
+        padding: 4px 4px 4px 20px !important;
+        clip-path: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        background: rgba(0, 198, 255, 0.1) !important;
+    }
+
+    .register-rocket-btn .reg-text {
+        font-size: 0.65rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    .reg-icon-circle {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+    }
+
+    .reg-icon-circle svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* === HUD SPECS: 4 in a row, no scroll === */
     .ankur-hud-specs {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 4px !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        padding: 0 8px !important;
+    }
+
+    .ankur-spec-item {
+        padding: 6px !important;
+        gap: 3px !important;
+    }
+
+    .hud-label {
+        font-size: 0.35rem !important;
+        letter-spacing: 0.3px !important;
+    }
+
+    .hud-value {
+        font-size: 0.6rem !important;
+    }
+
+    .hud-bar {
+        height: 1.5px !important;
+    }
+
+    /* === PRIZES: Compact, no scroll === */
+    .ankur-voyager-theme .prizes-container {
+        padding: 15px 8px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .prizes-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+
+    .single-card-grid {
+        margin-top: 0 !important;
+    }
+
+    .ankur-prize-card {
+        max-width: 100% !important;
+    }
+
+    .ankur-voyager-theme .rewards-header {
+        margin-bottom: 15px !important;
+    }
+
+    .ankur-voyager-theme .rewards-header h2 {
+        font-size: 1.2rem !important;
+        letter-spacing: 3px !important;
+    }
+
+    .reward-card {
+        padding: 0 !important;
+    }
+
+    .reward-card-header {
+        padding: 8px 12px !important;
+    }
+
+    .reward-card-body {
+        padding: 4px 12px !important;
+    }
+
+    .reward-tier {
+        padding: 4px 0 !important;
+        gap: 6px !important;
+    }
+
+    .rank-icon {
+        font-size: 1rem !important;
+    }
+
+    .rank-value {
+        font-size: 0.7rem !important;
+    }
+
+    .reward-card-footer {
+        padding: 6px 12px !important;
+    }
+
+    .mission-update-bar {
+        margin-top: 10px !important;
+        padding: 10px !important;
+        gap: 8px !important;
+    }
+
+    .update-text {
+        font-size: 0.55rem !important;
+    }
+
+    /* === SCHEDULE & RULES: Collapsible on mobile === */
+    .mobile-section-toggles {
+        display: flex !important;
+        gap: 8px;
+        padding: 0 8px;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .mobile-toggle-btn {
+        flex: 1;
+        padding: 14px 8px;
+        background: rgba(0, 229, 255, 0.03);
+        border: 1px solid rgba(0, 229, 255, 0.15);
+        border-radius: 8px;
+        color: #94a3b8;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.6rem;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .mobile-toggle-btn.active {
+        background: rgba(0, 229, 255, 0.12);
+        border-color: #00e5ff;
+        color: #fff;
+        box-shadow:
+            0 0 20px rgba(0, 229, 255, 0.2),
+            inset 0 0 10px rgba(0, 229, 255, 0.1);
+        text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
     }
 
     .ankur-grid {
-        grid-template-columns: 1fr;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+        width: 100% !important;
+        padding: 0 8px !important;
+        margin-bottom: 30px !important;
     }
+
+    .mobile-collapsible {
+        display: none !important;
+    }
+
+    .mobile-collapsible.mobile-open {
+        display: flex !important;
+    }
+
+    .ankur-card {
+        width: 100% !important;
+    }
+
+    .card-header {
+        padding: 12px 15px !important;
+    }
+
+    .card-header h2 {
+        font-size: 0.7rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .header-tag {
+        font-size: 0.4rem !important;
+    }
+
+    .timeline-container,
+    .rules-container {
+        padding: 15px !important;
+    }
+
+    .timeline {
+        padding-left: 25px !important;
+    }
+
+    .timeline-dot {
+        left: -26px !important;
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .timeline-item {
+        margin-bottom: 20px !important;
+    }
+
+    .timeline-content {
+        padding: 10px 12px !important;
+    }
+
+    .timeline-top h3 {
+        font-size: 0.6rem !important;
+    }
+
+    .time {
+        font-size: 0.45rem !important;
+    }
+
+    .timeline-desc {
+        font-size: 0.5rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .tag {
+        font-size: 0.35rem !important;
+        padding: 2px 6px !important;
+    }
+
+    .timeline-link {
+        font-size: 0.45rem !important;
+    }
+
+    .rules-list li {
+        padding: 10px 10px 10px 35px !important;
+        font-size: 0.55rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .rules-list li::before {
+        font-size: 0.45rem !important;
+        left: 8px !important;
+    }
+
+    .ankur-download-btn {
+        padding: 10px !important;
+        font-size: 0.5rem !important;
+        letter-spacing: 2px !important;
+    }
+
+    .show-more-btn {
+        padding: 8px 20px !important;
+        font-size: 0.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .ankur-main-title .hindi-title {
+        font-size: 1.4rem !important;
+    }
+}
+
+
+/* 🔘 BUTTON STYLING */
+.show-more-container {
+    padding: 20px 40px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.show-more-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    color: #00e5ff;
+    font-family: 'Orbitron', sans-serif;
+    padding: 12px 40px;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.show-more-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #00e5ff;
+    transform: translateX(-101%);
+    transition: 0.3s;
+    z-index: -1;
+}
+
+.show-more-btn:hover {
+    color: #000;
+}
+
+.show-more-btn:hover::after {
+    transform: translateX(0);
 }

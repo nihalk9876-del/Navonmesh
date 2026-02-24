@@ -123,7 +123,16 @@ const EventShowcase = () => {
               <img src={ev.image} alt={ev.title} />
             </div>
             <div className="event-title-group">
-              <h3 className="event-title-hindi">{ev.title}</h3>
+              <h3 className="event-main-title">
+                {ev.title.includes('(') ? (
+                  <>
+                    <span className="hindi-title">{ev.title.split('(')[0]}</span>
+                    <span className="english-title">({ev.title.split('(')[1]}</span>
+                  </>
+                ) : (
+                  <span className="hindi-title">{ev.title}</span>
+                )}
+              </h3>
 
               {/* Rocket Register Button */}
               <div

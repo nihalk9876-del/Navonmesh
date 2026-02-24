@@ -17,7 +17,7 @@ const Preloader = ({ onLoaded }) => {
         }, 2500);
 
         return () => clearTimeout(timer);
-    }, [onLoaded]);
+    }, []);
 
     if (fadeOut && !onLoaded) return null;
 

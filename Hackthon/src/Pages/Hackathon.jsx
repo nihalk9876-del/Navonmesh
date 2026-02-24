@@ -4,9 +4,15 @@ import { FaPaperclip } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import registerBtnImg from "../assets/register-btn.png";
 import ProblemStatements from "../Components/ProblemStatements";
+import srijanPoster from "../assets/HACKATHON.png";
 
 const Hackathon = () => {
     const [showAll, setShowAll] = useState(false);
+    const [mobileSection, setMobileSection] = useState(null);
+
+    const toggleMobileSection = (section) => {
+        setMobileSection(prev => prev === section ? null : section);
+    };
 
     const scheduleItems = [
         {
@@ -122,7 +128,7 @@ const Hackathon = () => {
                 <div className="hero-poster">
                     <div className="poster-frame">
                         <img
-                            src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=2072&auto=format&fit=crop"
+                            src={srijanPoster}
                             alt="Srijan Poster"
                             className="poster-img"
                         />
@@ -135,12 +141,19 @@ const Hackathon = () => {
 
                 <div className="hero-intel">
                     <div className="intel-header">
-                        <span className="mission-status pulse">MISSION STATUS: ACTIVE</span>
-                        <h1 className="hackathon-main-title">सृजन (HACKATHON)</h1>
+                        <div className="mission-status-container">
+                            <span className="mission-status pulse">● MISSION STATUS: ACTIVE</span>
+                            <span className="mission-status-tech">SEED_LOG STATUS: EVOLVING</span>
+                        </div>
+                        <h1 className="hackathon-main-title">
+                            <span className="hindi-title">सृजन</span>
+                            <span className="english-title">(HACKATHON)</span>
+                        </h1>
                         <div className="hackathon-intel-subtitle">NATIONAL LEVEL 24 HR HACKATHON</div>
                     </div>
 
                     <div className="intel-description-box">
+                        <span className="box-label">MISSION_DESCRIPTION</span>
                         <p className="hackathon-header-desc">
                             SRIJAN 2026 is a National Level Hackathon aimed at fostering creative problem-solving, innovation, and rapid prototyping. Join the mission to develop technology-driven solutions for real-world challenges.
                         </p>
@@ -151,8 +164,15 @@ const Hackathon = () => {
                     </div>
 
                     <div className="header-actions">
-                        <Link to="/register?event=srijan" className="hero-register-btn">
-                            <span className="btn-glitch">REGISTER FOR HACKATHON</span>
+                        <Link to="/register?event=srijan" className="register-rocket-btn animate-float">
+                            <span className="reg-text">REGISTER FOR SRIJAN</span>
+                            <div className="reg-icon-circle">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                    <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                </svg>
+                            </div>
+                            <div className="rocket-exhaust"></div>
                         </Link>
                     </div>
                 </div>
@@ -182,63 +202,49 @@ const Hackathon = () => {
                 </div>
             </div>
 
-            {/* Prize Pool Section */}
+            {/* Premium Prize Pool Section */}
             <div className="prizes-container">
-                <h2 style={{ textAlign: 'center', marginBottom: '10px', color: '#ffd700', fontSize: '2.5rem', fontFamily: 'Orbitron' }}>MISSION REWARDS</h2>
-                <p style={{ textAlign: 'center', color: '#94a3b8', marginBottom: '40px', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.9rem' }}>
-                    Prizes allocated for each of the 3 Problem Statements
-                </p>
-
-                <div className="prizes-grid">
-                    {/* Problem 1 */}
-                    <div className="prize-card" style={{ textAlign: 'left', padding: '30px' }}>
-                        <div className="prize-label" style={{ fontSize: '1.1rem', color: '#2dd4bf', borderBottom: '1px solid rgba(45, 212, 191, 0.2)', paddingBottom: '10px', marginBottom: '20px' }}>PROBLEM STATEMENT 01</div>
-                        <div className="track-prize-tier">
-                            <span className="prize-icon" style={{ fontSize: '1.5rem', margin: 0 }}>🏆</span>
-                            <span className="tier-rank">1st Prize</span>
-                            <span className="tier-value">₹15,000</span>
-                        </div>
-                        <div className="track-prize-tier">
-                            <span className="prize-icon" style={{ fontSize: '1.5rem', margin: 0 }}>🥈</span>
-                            <span className="tier-rank">2nd Prize</span>
-                            <span className="tier-value">₹11,000</span>
-                        </div>
-                    </div>
-
-                    {/* Problem 2 */}
-                    <div className="prize-card" style={{ textAlign: 'left', padding: '30px' }}>
-                        <div className="prize-label" style={{ fontSize: '1.1rem', color: '#2dd4bf', borderBottom: '1px solid rgba(45, 212, 191, 0.2)', paddingBottom: '10px', marginBottom: '20px' }}>PROBLEM STATEMENT 02</div>
-                        <div className="track-prize-tier">
-                            <span className="prize-icon" style={{ fontSize: '1.5rem', margin: 0 }}>🏆</span>
-                            <span className="tier-rank">1st Prize</span>
-                            <span className="tier-value">₹15,000</span>
-                        </div>
-                        <div className="track-prize-tier">
-                            <span className="prize-icon" style={{ fontSize: '1.5rem', margin: 0 }}>🥈</span>
-                            <span className="tier-rank">2nd Prize</span>
-                            <span className="tier-value">₹11,000</span>
-                        </div>
-                    </div>
-
-                    {/* Problem 3 */}
-                    <div className="prize-card" style={{ textAlign: 'left', padding: '30px' }}>
-                        <div className="prize-label" style={{ fontSize: '1.1rem', color: '#2dd4bf', borderBottom: '1px solid rgba(45, 212, 191, 0.2)', paddingBottom: '10px', marginBottom: '20px' }}>PROBLEM STATEMENT 03</div>
-                        <div className="track-prize-tier">
-                            <span className="prize-icon" style={{ fontSize: '1.5rem', margin: 0 }}>🏆</span>
-                            <span className="tier-rank">1st Prize</span>
-                            <span className="tier-value">₹15,000</span>
-                        </div>
-                        <div className="track-prize-tier">
-                            <span className="prize-icon" style={{ fontSize: '1.5rem', margin: 0 }}>🥈</span>
-                            <span className="tier-rank">2nd Prize</span>
-                            <span className="tier-value">₹11,000</span>
-                        </div>
-                    </div>
+                <div className="rewards-header">
+                    <h2>MISSION REWARDS</h2>
+                    <p className="subtitle">CREDITS ALLOCATED FOR TOP TIER OPERATIVES</p>
                 </div>
 
-                <div style={{ marginTop: '40px', padding: '20px', background: 'rgba(45, 212, 191, 0.05)', borderRadius: '15px', border: '1px solid rgba(45, 212, 191, 0.2)', textAlign: 'center' }}>
-                    <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.9rem' }}>
-                        🚀 <strong>Mission Update:</strong> Detailed technical briefs for each problem statement will be deployed soon.
+                <div className="prizes-grid">
+                    {[1, 2, 3].map((num) => (
+                        <div className="reward-card" key={num}>
+                            <div className="reward-card-header">
+                                <span className="label">TARGET_SPEC: 0{num}</span>
+                                <h3 className="title">PROBLEM STATEMENT 0{num}</h3>
+                            </div>
+                            <div className="reward-card-body">
+                                <div className="reward-tier">
+                                    <span className="rank-icon">🏆</span>
+                                    <div className="rank-text">
+                                        <span className="rank-label">Primary Objective</span>
+                                        <span className="rank-value">₹15,000</span>
+                                    </div>
+                                </div>
+                                <div className="reward-tier">
+                                    <span className="rank-icon">🥈</span>
+                                    <div className="rank-text">
+                                        <span className="rank-label">Secondary Objective</span>
+                                        <span className="rank-value">₹11,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="reward-card-footer">
+                                <div className="status-indicator">ALLOCATION: SUCCESS</div>
+                                <div className="card-tech-dots">...</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mission-update-bar">
+                    <span className="update-icon">🚀</span>
+                    <p className="update-text">
+                        <strong>MISSION UPDATE:</strong> Detailed technical briefs for each problem statement are being decrypted.
+                        Deployment scheduled soon.
                     </p>
                 </div>
             </div>
@@ -246,9 +252,25 @@ const Hackathon = () => {
             {/* Problem Statements / Domains */}
             <ProblemStatements />
 
+            {/* Mobile Toggle Buttons */}
+            <div className="mobile-section-toggles">
+                <button
+                    className={`mobile-toggle-btn ${mobileSection === 'schedule' ? 'active' : ''}`}
+                    onClick={() => toggleMobileSection('schedule')}
+                >
+                    📡 SCHEDULE
+                </button>
+                <button
+                    className={`mobile-toggle-btn ${mobileSection === 'rules' ? 'active' : ''}`}
+                    onClick={() => toggleMobileSection('rules')}
+                >
+                    📋 RULES & REGULATIONS
+                </button>
+            </div>
+
             <div className="hackathon-grid">
                 {/* Left Column: Schedule */}
-                <div className="hackathon-card schedule-card">
+                <div className={`hackathon-card schedule-card mobile-collapsible ${mobileSection === 'schedule' ? 'mobile-open' : ''}`}>
                     <div className="card-header">
                         <h2>MISSION SCHEDULE</h2>
                         <span className="header-tag">FLIGHT_LOG.EXE</span>
@@ -282,13 +304,13 @@ const Hackathon = () => {
                             className="show-more-btn"
                             onClick={() => setShowAll(!showAll)}
                         >
-                            {showAll ? "STOP_DATA_STREAM" : "INITIALIZE_DATA_STREAM"}
+                            {showAll ? "SHOW LESS" : "SHOW MORE"}
                         </button>
                     </div>
                 </div>
 
                 {/* Right Column: Rules */}
-                <div className="right-column">
+                <div className={`right-column mobile-collapsible ${mobileSection === 'rules' ? 'mobile-open' : ''}`}>
                     <div className="hackathon-card rules-card">
                         <div className="card-header">
                             <h2>RULES AND REGULATIONS</h2>

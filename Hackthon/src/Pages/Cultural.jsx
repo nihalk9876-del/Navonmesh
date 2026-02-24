@@ -85,7 +85,7 @@ const Cultural = () => {
                     </div>
 
                     <div className="register-overlay">
-                        <h1 className="cultural-main-title">उत्कर्ष '26</h1>
+                        <h1 className="cultural-main-title">कलास्पंदन '26</h1>
                         <p className="cosmic-tagline">Exploring the Galaxy of Art & Creativity</p>
                         <button
                             className="register-cultural-btn"

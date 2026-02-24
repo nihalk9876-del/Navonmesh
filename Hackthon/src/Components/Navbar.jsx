@@ -49,11 +49,6 @@ const Navbar = ({ onRegisterClick }) => {
         <img src={namonveshfont} alt="Navonmesh Logo" />
       </div>
 
-      {/* Hamburger Icon */}
-      <div className="menu-icon" onClick={toggleMenu}>
-        {isMenuOpen ? <FaTimes /> : <FaBars />}
-      </div>
-
       <ul className={isMenuOpen ? "nav-links active" : "nav-links"}>
         <li>
           <span onClick={() => scrollToSection("home")}>Home</span>
@@ -105,6 +100,28 @@ const Navbar = ({ onRegisterClick }) => {
           </NavLink>
         </li>
       </ul>
+
+      {/* 🚀 FAR RIGHT: ACTION HUBS */}
+      <div className="nav-actions">
+        <a
+          href="https://drive.google.com/file/d/1Xy_Jz-NlAByWw2A-z3rW4e8BvQ_rU7yJ/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="navbar-brochure-btn"
+        >
+          <span>Brochure</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+
+      {/* Hamburger Icon */}
+      <div className="menu-icon" onClick={toggleMenu}>
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </div>
     </nav>
   );
 };
