@@ -25,7 +25,7 @@
 }
 
 .map-sidebar h3 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-family: 'Orbitron', sans-serif;
     color: #00f3ff;
     margin-bottom: 10px;
@@ -45,10 +45,10 @@
 .map-btn {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 18px 25px;
+    padding: 14px 20px;
     text-align: left;
     color: #e0e0e0;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);

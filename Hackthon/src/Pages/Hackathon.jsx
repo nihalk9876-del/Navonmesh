@@ -224,11 +224,19 @@ const Hackathon = () => {
                 </div>
 
                 <div className="prizes-grid">
-                    {[1, 2, 3].map((num) => (
-                        <div className="reward-card" key={num}>
+                    {[
+                        { title: "PROBLEM STATEMENT: COMING SOON" },
+                        { title: "PROBLEM STATEMENT: COMING SOON" },
+                        {
+                            title: "PROBLEM STATEMENT: STUDENT INNOVATION",
+                            subtitle: "In this option, bring your own problem statements related to the domains shown below."
+                        }
+                    ].map((item, index) => (
+                        <div className="reward-card" key={index}>
                             <div className="reward-card-header">
-                                <span className="label">TARGET_SPEC: 0{num}</span>
-                                <h3 className="title">PROBLEM STATEMENT 0{num}</h3>
+                                <span className="label">TARGET_SPEC: 0{index + 1}</span>
+                                <h3 className="title">{item.title}</h3>
+                                {item.subtitle && <div className="card-instruction">{item.subtitle}</div>}
                             </div>
                             <div className="reward-card-body">
                                 <div className="reward-tier">
@@ -257,8 +265,8 @@ const Hackathon = () => {
                 <div className="mission-update-bar">
                     <span className="update-icon">🚀</span>
                     <p className="update-text">
-                        <strong>MISSION UPDATE:</strong> Detailed technical briefs for each problem statement are being decrypted.
-                        Deployment scheduled soon.
+                        <strong>MISSION UPDATE:</strong> Choose your problem statement, but it must be related to the domains shown below.
+                        The prizes for all problem statements are identical.
                     </p>
                 </div>
             </div>

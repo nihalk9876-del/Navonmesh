@@ -53,7 +53,7 @@
     position: relative;
     width: 95%;
     max-width: 1300px;
-    height: 500px;
+    height: 420px;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(0, 243, 255, 0.2);
@@ -101,9 +101,9 @@
 }
 
 .cultural-main-title {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     font-weight: 900;
-    letter-spacing: 15px;
+    letter-spacing: 12px;
     margin: 0;
     background: linear-gradient(to bottom, #fff 30%, #00f3ff 100%);
     -webkit-background-clip: text;
@@ -165,7 +165,7 @@
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-top: 1px solid rgba(0, 243, 255, 0.2);
-    padding: 40px;
+    padding: 30px;
     border-radius: 4px;
     position: relative;
 }
