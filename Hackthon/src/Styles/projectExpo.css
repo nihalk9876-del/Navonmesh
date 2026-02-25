@@ -488,6 +488,135 @@
     box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
 }
 
+/* 🚀 CONFERENCE TRACKS SECTION */
+.conference-tracks-section {
+    max-width: 1300px;
+    width: 90%;
+    margin: 0 auto 100px;
+    position: relative;
+    z-index: 5;
+}
+
+.tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.track-card {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    padding: 35px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.track-card:hover {
+    background: rgba(0, 229, 255, 0.05);
+    border-color: rgba(0, 229, 255, 0.4);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.track-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(0, 229, 255, 0.05);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+    transition: 0.4s;
+}
+
+.track-card:hover .track-number {
+    color: rgba(0, 229, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.track-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 2px;
+    line-height: 1.4;
+    position: relative;
+    z-index: 2;
+}
+
+.track-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    color: #00e5ff;
+    letter-spacing: 2px;
+    margin-top: 15px;
+    opacity: 0.7;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    background: #00e5ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00e5ff;
+    animation: track-pulse 2s infinite;
+}
+
+@keyframes track-pulse {
+    0% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
+}
+
+.track-accents .corner-tl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid #00e5ff;
+    border-left: 2px solid #00e5ff;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.track-accents .corner-br {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid #00e5ff;
+    border-right: 2px solid #00e5ff;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.track-card:hover .corner-tl,
+.track-card:hover .corner-br {
+    opacity: 1;
+    width: 30px;
+    height: 30px;
+}
+
 /* Mobile toggle buttons - hidden on desktop */
 .mobile-section-toggles {
     display: none;
@@ -881,6 +1010,41 @@
     .show-more-btn {
         padding: 8px 20px !important;
         font-size: 0.5rem !important;
+    }
+
+    .conference-tracks-section {
+        margin-bottom: 40px !important;
+        width: 100% !important;
+        padding: 0 8px !important;
+    }
+
+    .tracks-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-top: 20px !important;
+    }
+
+    .track-card {
+        padding: 15px 20px !important;
+        gap: 10px !important;
+    }
+
+    .track-number {
+        font-size: 1.5rem !important;
+        top: 5px !important;
+        right: 10px !important;
+    }
+
+    .track-content h3 {
+        font-size: 0.8rem !important;
+        letter-spacing: 1px !important;
+        line-height: 1.2 !important;
+        width: 80%;
+    }
+
+    .track-status {
+        margin-top: 5px !important;
+        font-size: 0.45rem !important;
     }
 }
 

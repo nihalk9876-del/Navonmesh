@@ -74,7 +74,19 @@ const Home = () => {
       <StatsStrip />
 
       {/* Events Showcase (Intro to Events) */}
-      <div style={{ paddingTop: "100px", paddingBottom: "50px" }} id="events-showcase">
+      <div style={{ paddingTop: "60px", paddingBottom: "50px" }} id="events-showcase">
+        <div className="section-header-container">
+          <div className="section-header-line left-line"></div>
+          <h2 className="section-main-title">
+            <span className="title-letter">E</span>
+            <span className="title-letter">V</span>
+            <span className="title-letter">E</span>
+            <span className="title-letter">N</span>
+            <span className="title-letter">T</span>
+            <span className="title-letter">S</span>
+          </h2>
+          <div className="section-header-line right-line"></div>
+        </div>
         <EventShowcase />
       </div>
 

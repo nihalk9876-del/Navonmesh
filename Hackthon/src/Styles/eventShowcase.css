@@ -591,3 +591,143 @@
 }
 
 /* Cleaned up styles */
+
+/* 🌌 SECTION HEADER - CLEAN PROFESSIONAL STYLE */
+.section-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 10;
+}
+
+.section-header-line {
+  flex: 1;
+  max-width: 150px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  /* Subtle line */
+}
+
+.section-main-title {
+  font-family: 'Orbitron', sans-serif;
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  /* Slightly reduced for a 'smarter' look */
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.title-letter {
+  display: inline-block;
+}
+
+/* 📥 Mobile Responsiveness for Section Header */
+@media (max-width: 768px) {
+  .section-header-container {
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  .section-header-line {
+    max-width: 40px;
+  }
+
+  .section-main-title {
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+  }
+}
+
+/* 🖱️ SCROLL TO NEXT EVENT INDICATOR - Repositioned below info */
+.scroll-next-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  /* Spacing below the glass card */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-left: 50px;
+  /* Aligned with the card's left padding/spacing */
+  opacity: 0.5;
+}
+
+/* On right-side timeline items, the text col is on the left, so we adjust alignment */
+.timeline-item.right .scroll-next-indicator {
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+/* Desktop hover */
+.scroll-next-indicator:hover {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
+.scroll-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.scroll-arrow-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-arrow {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(0, 243, 255, 0.5);
+  border-bottom: 2px solid rgba(0, 243, 255, 0.5);
+  transform: rotate(45deg);
+  animation: arrow-bounce 2s infinite ease-in-out;
+}
+
+.arrow-1 {
+  animation-delay: 0s;
+}
+
+.arrow-2 {
+  animation-delay: 0.2s;
+  margin-top: -5px;
+}
+
+@keyframes arrow-bounce {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: rotate(45deg) translate(0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-next-indicator {
+    margin: 20px auto 30px;
+    opacity: 0.8;
+  }
+
+  .scroll-text {
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+  }
+}

@@ -99,16 +99,30 @@ const Accommodation = () => {
 
             <div className="accommodation-content" style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center", color: "#ccc", padding: "0 20px" }}>
 
-                {/* Intro Section */}
-                <div style={{ marginBottom: "40px", background: "rgba(255,255,255,0.05)", padding: "20px", borderRadius: "10px" }}>
+                {/* Intro Section - Highlighted Perks */}
+                <div className="perks-highlight-banner" style={{ marginBottom: "40px" }}>
+                    <div className="perks-container" style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                        <div className="perk-badge free-accommodation">
+                            <div className="perk-info">
+                                <span className="perk-title">ACCOMMODATION</span>
+                                <span className="perk-tag">COMPLETELY FREE</span>
+                            </div>
+                        </div>
+                        <div className="perk-badge free-food">
+                            <div className="perk-info">
+                                <span className="perk-title">FOOD & SNACKS</span>
+                                <span className="perk-tag">COMPLETELY FREE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ marginBottom: "40px", background: "rgba(255,255,255,0.05)", padding: "30px", borderRadius: "15px", border: "1px solid rgba(0, 243, 255, 0.2)" }}>
                     <h2 style={{ color: "#00f3ff", marginBottom: "15px", fontFamily: "'Inter', sans-serif" }}>About SSGMCE Campus</h2>
-                    <p style={{ fontSize: "1.1rem", lineHeight: "1.6", marginBottom: "15px" }}>
+                    <p style={{ fontSize: "1.1rem", lineHeight: "1.6", marginBottom: "0" }}>
                         Shri Sant Gajanan Maharaj College of Engineering, Shegaon, offers a lush green,
                         sprawling campus equipped with state-of-the-art facilities.
                         It provides a serene environment perfect for learning and innovation.
-                    </p>
-                    <p style={{ fontSize: "1.3rem", fontWeight: "bold", color: "#44ff88" }}>
-                        ✨ Accommodation is Completely FREE for all participants! ✨
                     </p>
                 </div>
 
@@ -121,6 +135,11 @@ const Accommodation = () => {
                 </p>
 
                 {/* Cinematic Header Actions */}
+                <div className="space-universe-hint">
+                    <span className="hint-line"></span>
+                    <span className="hint-text">CLICK BELOW</span>
+                    <span className="hint-line"></span>
+                </div>
                 <div className="accommodation-hero-actions">
                     <button className="acc-action-btn register-acc" onClick={toggleModal}>
                         <span className="btn-text">REGISTER FOR ACCOMMODATION</span>
