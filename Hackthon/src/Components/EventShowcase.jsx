@@ -164,6 +164,20 @@ const EventShowcase = () => {
             <div className="event-glass-card">
               <p className="event-desc">{ev.text}</p>
             </div>
+
+            {/* Scroll Indicator for next item - now inside text col */}
+            {i < events.length - 1 && (
+              <div className="scroll-next-indicator" onClick={() => {
+                const nextItem = itemRefs.current[i + 1];
+                if (nextItem) nextItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }}>
+                <span className="scroll-text">Scroll to next event</span>
+                <div className="scroll-arrow-group">
+                  <div className="scroll-arrow arrow-1"></div>
+                  <div className="scroll-arrow arrow-2"></div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ))}

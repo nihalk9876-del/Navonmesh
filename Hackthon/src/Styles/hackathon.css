@@ -801,6 +801,122 @@
     color: #fff;
 }
 
+/* 🚀 MISSION PERKS HIGHLIGHT (HUD STYLE) */
+.mission-perks-highlight {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1300px;
+    width: 90%;
+    margin: 0 auto 50px;
+    z-index: 5;
+    position: relative;
+}
+
+.perk-box {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(45, 212, 191, 0.2);
+    padding: 25px 35px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.food-highlight {
+    border-color: rgba(255, 170, 0, 0.3);
+}
+
+.lodging-highlight {
+    border-color: rgba(68, 255, 136, 0.3);
+}
+
+.perk-box:hover {
+    transform: translateY(-8px);
+    background: rgba(45, 212, 191, 0.05);
+}
+
+.food-highlight:hover {
+    border-color: #ffaa00;
+    box-shadow: 0 0 30px rgba(255, 170, 0, 0.2);
+}
+
+.lodging-highlight:hover {
+    border-color: #44ff88;
+    box-shadow: 0 0 30px rgba(68, 255, 136, 0.2);
+}
+
+.perk-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+}
+
+.perk-title {
+    font-family: 'Khand', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.food-highlight .perk-title {
+    color: #ffaa00;
+}
+
+.lodging-highlight .perk-title {
+    color: #44ff88;
+}
+
+.perk-glow {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.1;
+    transition: 0.4s;
+}
+
+.food-highlight .perk-glow {
+    background: #ffaa00;
+}
+
+.lodging-highlight .perk-glow {
+    background: #44ff88;
+}
+
+.perk-box:hover .perk-glow {
+    opacity: 0.3;
+    transform: scale(1.5);
+}
+
+@media (max-width: 1024px) {
+    .mission-perks-highlight {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .perk-box {
+        padding: 15px 25px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .perk-title {
+        font-size: 1.4rem;
+    }
+}
+
 /* 🔘 BUTTON STYLING */
 .show-more-container {
     padding: 20px 40px 40px;

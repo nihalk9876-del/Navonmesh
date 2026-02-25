@@ -178,6 +178,20 @@ const Hackathon = () => {
                 </div>
             </div>
 
+            {/* Mission Perks (Free Food & Accom) */}
+            <div className="mission-perks-highlight">
+                <div className="perk-box food-highlight">
+                    <span className="perk-label">MISSION_RATION</span>
+                    <span className="perk-title">COMPLIMENTARY FOOD</span>
+                    <div className="perk-glow"></div>
+                </div>
+                <div className="perk-box lodging-highlight">
+                    <span className="perk-label">STATION_SLEEP</span>
+                    <span className="perk-title">FREE ACCOMMODATION</span>
+                    <div className="perk-glow"></div>
+                </div>
+            </div>
+
             {/* Mission Specifications (HUD STYLE) */}
             <div className="mission-hud-specs">
                 <div className="hud-spec-item">

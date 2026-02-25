@@ -106,6 +106,20 @@ const Conference = () => {
                 </div>
             </div>
 
+            {/* Mission Perks (Free Food & Accom) */}
+            <div className="mission-perks-highlight conference-specs">
+                <div className="perk-box food-highlight">
+                    <span className="perk-label">MISSION_RATION</span>
+                    <span className="perk-title">COMPLIMENTARY FOOD</span>
+                    <div className="perk-glow"></div>
+                </div>
+                <div className="perk-box lodging-highlight">
+                    <span className="perk-label">STATION_SLEEP</span>
+                    <span className="perk-title">FREE ACCOMMODATION</span>
+                    <div className="perk-glow"></div>
+                </div>
+            </div>
+
             {/* Mission Specifications (HUD STYLE) */}
             <div className="ankur-hud-specs">
                 <div className="ankur-spec-item">
@@ -144,6 +158,39 @@ const Conference = () => {
                 >
                     📋 RULES & REGULATIONS
                 </button>
+            </div>
+
+            {/* Conference Tracks Section */}
+            <div className="conference-tracks-section">
+                <div className="rewards-header">
+                    <span className="mission-status pulse">● AREA OF FOCUS</span>
+                    <h2>CONFERENCE TRACKS</h2>
+                    <div className="header-line"></div>
+                </div>
+
+                <div className="tracks-grid">
+                    {[
+                        "AI ML & DATA SCIENCE",
+                        "RENEWABLE ENERGY AND EV",
+                        "INDUSTRY 4.0 AND SMART SYSTEM",
+                        "IOT AND COMMUNICATION TECH"
+                    ].map((track, index) => (
+                        <div key={index} className="track-card">
+                            <div className="track-number">{String(index + 1).padStart(2, '0')}</div>
+                            <div className="track-content">
+                                <h3>{track}</h3>
+                                <div className="track-status">
+                                    <span className="status-dot"></span>
+                                    ACTIVE NODE
+                                </div>
+                            </div>
+                            <div className="track-accents">
+                                <div className="corner-tl"></div>
+                                <div className="corner-br"></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className="ankur-grid">

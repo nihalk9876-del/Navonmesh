@@ -66,11 +66,10 @@ const AnimatedCounter = ({ end, duration = 2000, suffix = "", decimals = 0 }) =>
 const StatsStrip = () => {
   return (
     <section className="stats-strip">
-      <div className="stat-item">
-        {/* Special case for currency since it needs prefix */}
+      <div className="stat-item prize-highlight">
         <span className="stat-value-wrapper">
           <span className="currency-symbol">₹</span>
-          <AnimatedCounter end={1} suffix=" Lakh+" decimals={0} />
+          <AnimatedCounter end={1} suffix=" Lakh+" />
         </span>
         <span className="stat-label">Prize Pool</span>
       </div>
@@ -85,9 +84,22 @@ const StatsStrip = () => {
         <span className="stat-label">Hours</span>
       </div>
 
-      <div className="stat-item">
-        <AnimatedCounter end={500} suffix="+" />
-        <span className="stat-label">Participants</span>
+      <div className="stat-item prize-highlight">
+        <span className="stat-value-wrapper">
+          <span className="currency-symbol">₹</span>
+          <AnimatedCounter end={300} />
+        </span>
+        <span className="stat-label">Entry Fee (Per Event)</span>
+      </div>
+
+      <div className="stat-item prize-highlight">
+        <span className="stat-value">FREE</span>
+        <span className="stat-label">Food & Snacks</span>
+      </div>
+
+      <div className="stat-item prize-highlight">
+        <span className="stat-value">FREE</span>
+        <span className="stat-label">Accommodation</span>
       </div>
     </section>
   );

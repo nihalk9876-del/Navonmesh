@@ -349,6 +349,50 @@
     flex: 0.8;
 }
 
+/* 🌌 SPACE UNIVERSE HINT */
+.space-universe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.hint-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+.hint-text {
+    font-family: 'Orbitron', sans-serif;
+    color: #00f3ff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.98);
+        text-shadow: 0 0 5px rgba(0, 243, 255, 0.4);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+        text-shadow: 0 0 15px rgba(0, 243, 255, 1);
+    }
+}
+
 /* 🚀 REFERENCED TECH-POLYGON BUTTONS */
 /* 🚀 PREMIUM TRANSPARENT POWER-PILLS */
 .accommodation-hero-actions {
@@ -657,5 +701,120 @@
         width: 44px !important;
         height: 44px !important;
         font-size: 1.1rem !important;
+    }
+}
+
+/* 🚀 INTERSTELLAR HUD PERKS */
+.perks-highlight-banner {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.perks-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.perk-badge {
+    background: rgba(5, 10, 20, 0.4) !important;
+    border: 1px solid rgba(0, 243, 255, 0.3) !important;
+    padding: 25px 50px;
+    border-radius: 4px;
+    /* Industrial sharp corners */
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 320px;
+}
+
+/* HUD Scanline Overlay */
+.perk-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 243, 255, 0.05) 0px, transparent 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.perk-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+    transition: 0.6s;
+}
+
+.perk-badge:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #00f3ff !important;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+}
+
+.perk-badge:hover::after {
+    left: 100%;
+}
+
+.perk-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+}
+
+.perk-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: #ffffff;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+.perk-tag {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    line-height: 1;
+    letter-spacing: 2px !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: 0.3s;
+}
+
+.perk-badge:hover .perk-tag {
+    color: #00f3ff !important;
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+}
+
+.perk-badge:hover .perk-title {
+    opacity: 1;
+    color: #00f3ff;
+}
+
+@media (max-width: 768px) {
+    .perk-badge {
+        padding: 20px 30px !important;
+        min-width: 100% !important;
+        max-width: none !important;
+    }
+
+    .perk-tag {
+        font-size: 1.4rem !important;
+    }
+
+    .perk-title {
+        font-size: 0.7rem !important;
+        letter-spacing: 2px !important;
     }
 }

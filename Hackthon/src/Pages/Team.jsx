@@ -189,6 +189,16 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/rutuja-deshmukh-3aa0a03aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: rutujaImg,
     },
+    {
+        id: 15,
+        name: "Vedant Darokar",
+        role: "Core Team Member",
+        subRole: "Overall Head",
+        subRole2: "HEAD(PURSUIT)",
+        phone: "+91 98765 43210",
+        email: "vedant@example.com",
+        image: vedantImg,
+    },
 
     {
         id: 26,
@@ -210,34 +220,16 @@ const teamMembers = [
         email: "krushnakokate829@gmail.com",
         instagram: "https://www.instagram.com/krushna_kokate25?igsh=MTNwbGtpeml0aGJlNA==",
         linkedin: "https://www.linkedin.com/in/krushna-kokate-591009329?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        image: tanmayImg,
+        image: krushnaImg,
     },
     {
         id: 5,
-        name: "Vikas More",
+        name: "Tanmay Kurhekar",
         role: "Core Team Member",
-        subRole: "HEAD (उद्भव)",
+        subRole: "HEAD (उद्‌भव)",
         phone: "+91 98765 43210",
-        email: "vikas@example.com",
-        image: vikasMoreImg,
-    },
-    {
-        id: 15,
-        name: "Vedant Darokar",
-        role: "Core Team Member",
-        subRole: "HEAD(PURSUIT)",
-        phone: "+91 98765 43210",
-        email: "vedant@example.com",
-        image: vedantImg,
-    },
-    {
-        id: 34,
-        name: "Dhanashri Borde",
-        role: "Core Team Member",
-        subRole: "Event Head",
-        phone: "+91 7387546722",
-        email: "dhanashriborde206@gmail.com",
-        image: dhanashriImg,
+        email: "tanmay@example.com",
+        image: tanmayImg,
     },
     {
         id: 14,
@@ -305,15 +297,6 @@ const teamMembers = [
     },
 
     {
-        id: 28,
-        name: "Sakshi Kamble",
-        role: "Core Team Member",
-        subRole: "Report Writing Co-head",
-        phone: "+91 98765 43210",
-        email: "sakshi@example.com",
-        image: sakshiImg,
-    },
-    {
         id: 29,
         name: "Hanzala Khan",
         role: "Core Team Member",
@@ -335,15 +318,6 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
         image: ajinkyaImg,
     },
-    {
-        id: 17,
-        name: "Tanmay Kurekar",
-        role: "Core Team Member",
-        subRole: "Registration Team Head",
-        phone: "+91 98765 43210",
-        email: "tanmay@example.com",
-        image: krushnaImg,
-    },
 
 
 
@@ -356,87 +330,9 @@ const teamMembers = [
         subRole: "Cultural Head",
         phone: "+91 8767872382",
         email: "sushant.akhare@gmail.com",
-        instagram: "https://www.instagram.com/sushant.akhare?igsh=MWV5dGwyNjF5Y3gwZA==",
+        instagram: "https://www.instagram.com/sushant.akhare?igsh=MWV5dGwyNjF5dGcwZA==",
         linkedin: "https://www.linkedin.com/in/sushant-akhare-0505ba31b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: sushantAkhareImg,
-    },
-    {
-        id: 24,
-        name: "Manjiri Thakare",
-        role: "Core Team Member",
-        subRole: "Cultural Co-head",
-        phone: "+91 98765 43210",
-        email: "manjiri@example.com",
-        image: manjiriImg,
-    },
-    {
-        id: 30,
-        name: "Shruti Mankar",
-        role: "Core Team Member",
-        subRole: "Decoration Co-head",
-        phone: "+91 98765 43210",
-        email: "shruti@example.com",
-        image: shrutiMankarImg,
-    },
-    {
-        id: 25,
-        name: "Siddhi Kulkarni",
-        role: "Core Team Member",
-        subRole: "Registration co-head",
-        phone: "+91 98765 43210",
-        email: "siddhi@example.com",
-        image: siddhiImg,
-    },
-
-    {
-        id: 8,
-        name: "Atharva Sonone",
-        role: "Core Team Member",
-        subRole: "Volunteer Head ",
-        phone: "+91 9834428773",
-        email: "atharvsonone98@gmail.com",
-        instagram: "https://www.instagram.com/atharv_sonone_?igsh=MnRnM2JxZGoxejly",
-        linkedin: "https://www.linkedin.com/in/atharv-sonone-43a707335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        image: atharvaSononeImg,
-    },
-    {
-        id: 31,
-        name: "Satyajeet Patil",
-        role: "Core Team Member",
-        subRole: "Volunteer Head",
-        phone: "+91 98765 43210",
-        email: "satyajeet@example.com",
-        image: satyajeetImg,
-    },
-    {
-        id: 27,
-        name: "Dolly Bhutada",
-        role: "Core Team Member",
-        subRole: "Volunteer Co-head",
-        phone: "+91 8459701982",
-        email: "dollybhutada05@gmail.com",
-        instagram: "https://www.instagram.com/dolly_bhutada?igsh=YTljcjdwd3J0NWZq",
-        linkedin: "https://www.linkedin.com/in/dolly-bhutada-45937a350?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        image: dollyImg,
-    },
-    {
-        id: 35,
-        name: "Om Tale",
-        role: "Core Team Member",
-        subRole: "Volunteer Co-head",
-        phone: "+91 9834428773",
-        email: "mahadevtale81@gmail.com",
-        instagram: "https://www.instagram.com/omuuu__143?utm_source=qr&igsh=bnRraXVzMnI5MG1k",
-        image: omTaleImg,
-    },
-    {
-        id: 36,
-        name: "Pranita Warade",
-        role: "Core Team Member",
-        subRole: "Technical co-head",
-        phone: "+91 93561 15794",
-        email: "pranitawarade03@gmail.com",
-        image: imgPranita,
     },
 ];
 
@@ -508,9 +404,9 @@ const Team = () => {
                 The dedicated minds behind Navonvesh 2026.
             </p>
 
-            {/* Core Team Grid - Top 6 Fixed Sequence */}
+            {/* Core Team Grid - Top 7 Fixed Sequence */}
             <div className="team-grid core-team-top-grid" style={{ marginBottom: "40px" }}>
-                {teamMembers.slice(0, 6).map((member) => (
+                {teamMembers.slice(0, 7).map((member) => (
                     <div key={member.id} className="team-card overall-head-card">
                         <div className="member-img">
                             <img src={member.image} alt={member.name} />
@@ -572,7 +468,7 @@ const Team = () => {
 
             {showAllCoreTeam && (
                 <div className="team-grid heads-grid">
-                    {teamMembers.slice(6).map((member) => (
+                    {teamMembers.slice(7).map((member) => (
                         <div key={member.id} className="team-card">
                             <div className="member-img">
                                 <img src={member.image} alt={member.name} />
