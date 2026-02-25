@@ -162,8 +162,8 @@ h2 {
 .prize-card {
   background: rgba(5, 6, 15, 0.6);
   border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 24px;
-  padding: 40px;
+  border-radius: 20px;
+  padding: 30px;
   text-align: center;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(20px);
@@ -199,13 +199,13 @@ h2 {
 }
 
 .prize-icon {
-  font-size: 4rem;
-  margin-bottom: 25px;
+  font-size: 3rem;
+  margin-bottom: 20px;
   filter: drop-shadow(0 0 15px currentColor);
 }
 
 .prize-amount {
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 900;
   margin: 20px 0;
   font-family: 'Orbitron', sans-serif;
@@ -217,7 +217,7 @@ h2 {
 }
 
 .prize-label {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #ffd700;
   text-transform: uppercase;
   letter-spacing: 4px;

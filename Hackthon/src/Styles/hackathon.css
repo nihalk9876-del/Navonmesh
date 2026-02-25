@@ -41,13 +41,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 10px 20px;
     background: rgba(45, 212, 191, 0.05);
     border: 1px solid rgba(45, 212, 191, 0.2);
     border-radius: 4px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
     color: #2dd4bf;
     z-index: 10;
     backdrop-filter: blur(10px);
@@ -61,11 +61,11 @@
 /* 🏔️ VOYAGER-CLASS HERO CONSOLE */
 .hackathon-hero {
     display: grid;
-    grid-template-columns: 480px 1fr;
-    gap: 80px;
-    max-width: 1300px;
+    grid-template-columns: 400px 1fr;
+    gap: 60px;
+    max-width: 1200px;
     width: 90%;
-    margin: 60px auto 100px;
+    margin: 40px auto 80px;
     align-items: center;
     position: relative;
     z-index: 5;
@@ -174,14 +174,14 @@
 
 /* 🌌 HIGH-LEVEL CINEMATIC TITLES */
 .hackathon-main-title {
-    font-size: 5rem !important;
+    font-size: 4rem !important;
     display: flex;
     align-items: center;
-    gap: 30px;
-    margin: 40px 0;
+    gap: 25px;
+    margin: 30px 0;
     /* Added spacing to resolve overlap */
     line-height: 1.1;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
     white-space: nowrap;
     position: relative;
 }
@@ -189,7 +189,7 @@
 .hackathon-main-title .hindi-title {
     font-family: 'Khand', sans-serif;
     font-weight: 700;
-    font-size: 7.5rem;
+    font-size: 6rem;
     /* Increased for high-level feel */
     background: linear-gradient(180deg, #fff 30%, #2dd4bf 100%);
     -webkit-background-clip: text;
@@ -201,13 +201,13 @@
 
 .hackathon-main-title .english-title {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #2dd4bf;
-    letter-spacing: 8px;
+    letter-spacing: 6px;
     font-weight: 900;
     text-transform: uppercase;
     opacity: 0.9;
-    padding-top: 25px;
+    padding-top: 20px;
     background: linear-gradient(to right, #2dd4bf, #fff);
     -webkit-background-clip: text;
     background-clip: text;
@@ -236,11 +236,11 @@
 .hackathon-header-desc {
     color: #e2e8f0;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     line-height: 1.8;
     background: rgba(0, 0, 0, 0.15);
     /* Faint black background - low transparency */
-    padding: 40px 45px 35px;
+    padding: 30px 35px 25px;
     backdrop-filter: blur(12px);
     text-align: left;
     margin: 0;
@@ -337,7 +337,7 @@
 
 .hud-value {
     font-family: 'Khand', sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #fff;
     font-weight: 700;
 }
@@ -373,7 +373,7 @@
 }
 
 .rewards-header h2 {
-    font-size: 3.5rem !important;
+    font-size: 2.8rem !important;
     text-shadow: 0 0 30px rgba(45, 212, 191, 0.4);
     letter-spacing: 12px !important;
     margin-bottom: 10px !important;
@@ -454,6 +454,19 @@
     letter-spacing: 1px;
 }
 
+.card-instruction {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(45, 212, 191, 0.9);
+    margin-top: 15px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    padding: 10px;
+    background: rgba(45, 212, 191, 0.05);
+    border-left: 2px solid #2dd4bf;
+    text-transform: uppercase;
+}
+
 .reward-card-body {
     padding: 40px 30px;
     flex: 1;
@@ -496,7 +509,7 @@
 
 .reward-tier .rank-value {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #fff;
     font-weight: 900;
     background: linear-gradient(to bottom, #fff, #2dd4bf);

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
+
 .event-showcase {
   position: relative;
   padding: 80px 10%;
@@ -54,7 +56,7 @@
   -webkit-backdrop-filter: blur(15px) saturate(200%);
   border: 1px solid rgba(0, 229, 255, 0.15);
   border-radius: 24px;
-  padding: 40px;
+  padding: 30px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 229, 255, 0.05);
   transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
   transition-delay: 0.6s;
@@ -113,7 +115,7 @@
 .event-showcase .event-desc {
   font-family: 'Times New Roman', serif;
   font-style: italic;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   color: #f0f0ff;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -136,8 +138,6 @@
   transform: translateY(20px);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
-
 .event-main-title {
   display: flex;
   align-items: center;
@@ -150,7 +150,7 @@
 
 .hindi-title {
   font-family: 'Khand', sans-serif;
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   font-weight: 700;
   color: #fff;
   text-transform: uppercase;
@@ -160,7 +160,7 @@
 
 .english-title {
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #00e5ff;
   letter-spacing: 3px;
   font-weight: 800;
@@ -195,6 +195,7 @@
   height: 64px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  margin-bottom: 20px !important;
 }
 
 .event-showcase .reg-text {
@@ -361,9 +362,9 @@
 
 /* Image Container - Allow Glow Outside */
 .event-showcase .img-glow-container {
-  width: 300px;
+  width: 250px;
   /* Standardize desktop size slightly smaller to fit better */
-  height: 300px;
+  height: 250px;
   margin: 0 auto;
   border-radius: 50%;
   /* Perfect circle */
@@ -477,8 +478,6 @@
   justify-content: flex-end;
 }
 
-/* Circle image definition merged to bottom */
-
 /* Content box */
 .timeline-content {
   max-width: 400px;
@@ -496,14 +495,14 @@
 .timeline-content h3 {
   font-size: 22px;
   color: #8f8bff;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 }
 
 .event-desc {
   font-family: 'Times New Roman', serif;
   font-style: italic;
-  font-size: 1.5rem;
-  /* Increased for cinematic feel */
+  font-size: 1.25rem;
+  /* Reduced for cinematic feel */
   line-height: 1.6;
   color: #e0e0ff;
   /* Soft Blue-White */
@@ -520,7 +519,6 @@
 }
 
 /* Mobile Responsiveness */
-/* Mobile Responsiveness Scoped */
 @media (max-width: 768px) {
   .event-showcase .timeline-item {
     flex-direction: column !important;
@@ -590,8 +588,6 @@
   }
 }
 
-/* Cleaned up styles */
-
 /* 🌌 SECTION HEADER - CLEAN PROFESSIONAL STYLE */
 .section-header-container {
   display: flex;
@@ -614,7 +610,7 @@
 .section-main-title {
   font-family: 'Orbitron', sans-serif;
   color: #ffffff;
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   font-weight: 700;
   letter-spacing: 8px;
   /* Slightly reduced for a 'smarter' look */

@@ -111,8 +111,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 }
 
 .pursuit-name {
-  max-width: 550px;
-  /* Decreased from 700px */
+  max-width: 450px;
+  /* Decreased from 550px */
   width: 80%;
   transform: translateY(-20px);
   /* Move upward */
@@ -120,7 +120,7 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 .marathi-tagline {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #00e5ff;
   margin-top: -15px;
   margin-bottom: 20px;
@@ -132,7 +132,7 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 .hero-tagline {
   margin-top: -10px;
   /* Pull closer to the logo */
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 1px;
   font-family: 'Poppins', sans-serif;
   max-width: 550px;
@@ -324,9 +324,9 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   position: relative;
   z-index: 10;
   pointer-events: none;
@@ -334,8 +334,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 .countdown-planet {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -344,8 +344,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 /* Orbit Ring Animation */
 .orbit-ring {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 90px;
+  height: 90px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   animation: orbit-spin 10s linear infinite;
@@ -375,8 +375,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 /* Planet Body */
 .planet-body {
-  width: 70px;
-  height: 70px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -437,7 +437,7 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 
 .count {
   font-family: 'Orbitron', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   z-index: 2;
 }
@@ -460,8 +460,8 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
 .particle-text {
   font-family: 'Times New Roman', Times, serif;
   /* font-size: 3rem; */
-  font-size: 2.2rem;
-  /* Reduced from 3rem */
+  font-size: 1.8rem;
+  /* Reduced from 2.2rem */
 
   font-weight: 700;
   font-style: normal;
