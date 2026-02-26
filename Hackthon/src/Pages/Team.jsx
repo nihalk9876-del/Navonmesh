@@ -413,9 +413,56 @@ const Team = () => {
                 The dedicated minds behind Navonvesh 2026.
             </p>
 
-            {/* Core Team Grid - Top 7 Fixed Sequence */}
+            {/* Core Team Grid - Top 3 Fixed Sequence */}
+            <div className="team-grid core-team-top-grid" style={{ marginBottom: "20px" }}>
+                {teamMembers.slice(0, 3).map((member) => (
+                    <div key={member.id} className="team-card overall-head-card">
+                        <div className="member-img">
+                            <img src={member.image} alt={member.name} />
+                        </div>
+                        <div className="member-info">
+                            <h3>{member.name}</h3>
+
+                            {member.subRole && (
+                                <p className="head-role">
+                                    {member.subRole}
+                                </p>
+                            )}
+
+                            {member.subRole2 && (
+                                <p className="head-role secondary">
+                                    {member.subRole2}
+                                </p>
+                            )}
+
+                            <div className="contact-details">
+                                <p>
+                                    <FaPhone className="icon" /> {member.phone}
+                                </p>
+                                <p>
+                                    <FaEnvelope className="icon" /> {member.email}
+                                </p>
+                            </div>
+
+                            <div className="social-links">
+                                <a href={member.instagram || "#"} target="_blank" rel="noopener noreferrer" className="social-icon">
+                                    <FaInstagram />
+                                </a>
+                                <a href={member.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="social-icon">
+                                    <FaLinkedin />
+                                </a>
+                                <a href="#" className="social-icon">
+                                    <FaXTwitter />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Core Team Grid - Next 4 Fixed Sequence */}
             <div className="team-grid core-team-top-grid" style={{ marginBottom: "40px" }}>
-                {teamMembers.slice(0, 7).map((member) => (
+                {teamMembers.slice(3, 7).map((member) => (
                     <div key={member.id} className="team-card overall-head-card">
                         <div className="member-img">
                             <img src={member.image} alt={member.name} />
