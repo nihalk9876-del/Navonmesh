@@ -134,7 +134,7 @@ const ProjectExpo = () => {
                 </div>
                 <div className="ankur-spec-item">
                     <div className="hud-label">ELIGIBILITY</div>
-                    <div className="hud-value">UG & PG STUDENTS</div>
+                    <div className="hud-value">DEGREE & DIPLOMA</div>
                     <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
                 </div>
             </div>
@@ -146,25 +146,52 @@ const ProjectExpo = () => {
                     <p className="subtitle">CREDITS ALLOCATED FOR TOP TIER OPERATIVES</p>
                 </div>
 
-                <div className="prizes-grid single-card-grid">
+                <div className="prizes-grid ankur-prizes-grid">
                     <div className="reward-card ankur-prize-card">
                         <div className="reward-card-header">
-                            <span className="label">TARGET_SPEC: OVERALL_EXCELLENCE</span>
-                            <h3 className="title">BEST PROJECT RECOGNITION</h3>
+                            <span className="label">TARGET_SPEC: DEGREE_SECTION</span>
+                            <h3 className="title">DEGREE STUDENTS</h3>
                         </div>
                         <div className="reward-card-body">
                             <div className="reward-tier">
                                 <span className="rank-icon">🏆</span>
                                 <div className="rank-text">
                                     <span className="rank-label">Primary Objective (1st Prize)</span>
-                                    <span className="rank-value">₹11,000</span>
+                                    <span className="rank-value">₹10,000</span>
                                 </div>
                             </div>
                             <div className="reward-tier">
                                 <span className="rank-icon">🥈</span>
                                 <div className="rank-text">
                                     <span className="rank-label">Secondary Objective (2nd Prize)</span>
-                                    <span className="rank-value">₹7,000</span>
+                                    <span className="rank-value">₹5,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="reward-card-footer">
+                            <div className="status-indicator">ALLOCATION: SUCCESS</div>
+                            <div className="card-tech-dots">...</div>
+                        </div>
+                    </div>
+
+                    <div className="reward-card ankur-prize-card">
+                        <div className="reward-card-header">
+                            <span className="label">TARGET_SPEC: DIPLOMA_SECTION</span>
+                            <h3 className="title">DIPLOMA STUDENTS</h3>
+                        </div>
+                        <div className="reward-card-body">
+                            <div className="reward-tier">
+                                <span className="rank-icon">🏆</span>
+                                <div className="rank-text">
+                                    <span className="rank-label">Primary Objective (1st Prize)</span>
+                                    <span className="rank-value">₹5,000</span>
+                                </div>
+                            </div>
+                            <div className="reward-tier">
+                                <span className="rank-icon">🥈</span>
+                                <div className="rank-text">
+                                    <span className="rank-label">Secondary Objective (2nd Prize)</span>
+                                    <span className="rank-value">₹3,000</span>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +280,7 @@ const ProjectExpo = () => {
                                 <li data-index="01">Participant must treat all other team members, competitors, judges, coaches, volunteers with respect.</li>
                                 <li data-index="02">Members should have a valid Student ID card of the school/college, Aadhar card.</li>
                                 <li data-index="03">Maximum 2 to 3 students per project will be allowed.</li>
-                                <li data-index="04">Participation is open to students from designated categories: Seniors (UG/PG).</li>
+                                <li data-index="04">Participation is open to students from designated categories: Degree (UG/PG) & Diploma.</li>
                                 <li data-index="05">Students need to specify the stream of their project before the Expo.</li>
                                 <li data-index="06">The model should be in good working condition.</li>
                                 <li data-index="07">Participants have to bring their power extension and other necessary equipment.</li>

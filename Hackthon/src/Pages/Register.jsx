@@ -32,6 +32,7 @@ const Register = () => {
 
         teamName: '',
         teamSize: '',
+        studentCategory: '',
 
         // Members 2-4
         member2Name: '', member2Email: '', member2Phone: '',
@@ -53,7 +54,7 @@ const Register = () => {
         member2Name, member2Email, member2Phone,
         member3Name, member3Email, member3Phone,
         member4Name, member4Email, member4Phone,
-        utrNumber
+        utrNumber, studentCategory
     } = formData;
 
     const onChange = e => {
@@ -88,27 +89,30 @@ const Register = () => {
             bundleMembers: false
         },
         'Ankur (Project Expo)': {
-            url: "https://docs.google.com/forms/d/e/1FAIpQLSej9oZlDfPMX7eQ0JJvcSIrmdqKZuHkDUS0E0L42kxhEfTpyw/formResponse",
+            url: "https://docs.google.com/forms/d/e/1FAIpQLScW6ESj4WlOoLnV_cKjIrgnezjpDcX6ocNAu3swKZRG8ru-mg/formResponse",
             ids: {
-                teamName: "entry.40216783",
-                leaderName: "entry.2112252009",
-                leaderEmail: "entry.376939330",
-                leaderPhone: "entry.1651475776",
-                member2Name: "entry.1886708863",
-                member2Email: "entry.303258852",
-                member2Phone: "entry.1376236348",
-                member3Name: "entry.337717641",
-                member3Email: "entry.1923504292",
-                member3Phone: "entry.2044577159",
-                member4Name: "entry.1150982003",
-                member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700",
-                utrNumber: ""
+                teamName: "entry.2005620554",
+                studentCategory: "entry.634972688",
+                leaderName: "entry.1045781291",
+                leaderEmail: "entry.1065046570",
+                leaderPhone: "entry.1166974658",
+                member2Name: "entry.1446904082",
+                member2Email: "entry.282203664",
+                member2Phone: "entry.1059585569",
+                member3Name: "entry.1158408763",
+                member3Email: "entry.194510035",
+                member3Phone: "entry.1200228325",
+                member4Name: "entry.1253856068",
+                member4Email: "entry.441804291",
+                member4Phone: "entry.825625028",
+                college: "entry.323039862",
+                utrNumber: "entry.624710763"
             },
-            hasCollege: false,
+            hasCollege: true,
             hasMemberPhone: true,
             hasAccommodation: false,
-            bundleMembers: false
+            bundleMembers: false,
+            hasStudentCategory: true
         },
         'Udbhav (Conference)': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLScNe95Djx06LVuzumpMYxO2uM7jpHvfkSA3XcIAIDoKdMySSQ/formResponse",
@@ -174,6 +178,7 @@ const Register = () => {
 
         // --- COMMON FIELDS ---
         if (config.ids.teamName) formBody.append(config.ids.teamName, formData.teamName);
+        if (config.ids.studentCategory && config.hasStudentCategory) formBody.append(config.ids.studentCategory, formData.studentCategory);
         if (config.ids.leaderName) formBody.append(config.ids.leaderName, formData.fullName);
         if (config.ids.leaderEmail) formBody.append(config.ids.leaderEmail, formData.email);
         if (config.ids.leaderPhone) formBody.append(config.ids.leaderPhone, formData.phone);
@@ -232,7 +237,7 @@ const Register = () => {
             // Reset fields
             setFormData(prev => ({
                 ...prev,
-                teamName: '', teamSize: '',
+                teamName: '', teamSize: '', studentCategory: '',
                 member2Name: '', member2Email: '', member2Phone: '',
                 member3Name: '', member3Email: '', member3Phone: '',
                 member4Name: '', member4Email: '', member4Phone: '',
@@ -405,6 +410,17 @@ const Register = () => {
                         <div className="form-section-title">Team Info</div>
                         <label>TEAM NAME</label>
                         <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
+
+                        {event === 'Ankur (Project Expo)' && (
+                            <>
+                                <label>STUDENT CATEGORY</label>
+                                <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
+                                    <option value="" disabled>Select Category</option>
+                                    <option value="Degree Students">Degree Students</option>
+                                    <option value="Diploma Students">Diploma Students</option>
+                                </select>
+                            </>
+                        )}
 
                         <label>TEAM SIZE (2-4)</label>
                         <input
