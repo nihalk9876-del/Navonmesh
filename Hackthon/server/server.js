@@ -16,20 +16,19 @@ app.use((req, res, next) => {
 });
 
 // Connect to MongoDB
-// Connect to MongoDB
-// const PORT = process.env.PORT || 5000;
-// const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGO_URI;
 
-// mongoose.connect(MONGO_URI)
-//     .then(() => console.log('MongoDB Connected'))
-//     .catch(err => console.log(err));
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err));
 
-console.log("Running in File-System Mode (No MongoDB required)");
 const PORT = process.env.PORT || 5000;
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contact', require('./routes/contact'));
+app.use('/api/register', require('./routes/register'));
+app.use('/api/admin', require('./routes/admin'));
 
 app.get('/', (req, res) => {
     res.send('Navonmesh Hackathon API is running');
