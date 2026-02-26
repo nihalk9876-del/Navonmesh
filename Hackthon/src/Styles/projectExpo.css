@@ -265,11 +265,13 @@
 }
 
 /* 🛸 ANKUR PRIZE SECTION - ULTRA COMPACT */
-.single-card-grid {
-    display: flex !important;
-    justify-content: center;
-    grid-template-columns: none !important;
-    margin-top: -20px;
+.ankur-prizes-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 40px;
+    max-width: 900px;
+    margin: -20px auto 0;
+    width: 90%;
 }
 
 .ankur-prize-card {
@@ -815,7 +817,9 @@
         gap: 8px !important;
     }
 
-    .single-card-grid {
+    .ankur-prizes-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
         margin-top: 0 !important;
     }
 
