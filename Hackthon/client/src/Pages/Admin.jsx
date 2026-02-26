@@ -28,7 +28,8 @@ const Admin = () => {
         setError('');
 
         try {
-            const res = await fetch('http://localhost:5000/api/admin/login', {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/admin/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(loginData)
@@ -57,7 +58,8 @@ const Admin = () => {
     const fetchData = async (token) => {
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:5000/api/admin/data', {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/admin/data`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const data = await res.json();
