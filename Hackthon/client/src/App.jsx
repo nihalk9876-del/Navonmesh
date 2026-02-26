@@ -20,6 +20,7 @@ import CulturalRegister from "./Pages/CulturalRegister";
 import Cultural from "./Pages/Cultural";
 import Cosmos from "./Pages/Cosmos";
 import Pursuit from "./Pages/Pursuit";
+import Parishkriti from "./Pages/Parishkriti";
 import ScrollToTop from "./Components/ScrollToTop";
 import Admin from "./Pages/Admin";
 
@@ -49,6 +50,7 @@ function App() {
               <Route path="/projectexpo" element={<ProjectExpo />} />
               <Route path="/conference" element={<Conference />} />
               <Route path="/pursuit" element={<Pursuit />} />
+              <Route path="/parishkriti" element={<Parishkriti />} />
               <Route path="/accommodation" element={<Accommodation />} />
               <Route path="/team" element={<Team />} />
               <Route path="/event-journey" element={<EventJourney />} />

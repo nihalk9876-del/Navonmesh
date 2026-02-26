@@ -5,6 +5,7 @@ import e1 from "../assets/events/e1.png";
 import e2 from "../assets/events/e2.png";
 import e3 from "../assets/events/e3.png";
 import e4 from "../assets/events/pursuit.png";
+import e5 from "../assets/events/parishkriti.png";
 
 const events = [
   {
@@ -39,6 +40,14 @@ const events = [
     id: "pursuit",
     registerParam: "pursuit"
   },
+  {
+    title: "परिष्कृती (PARISHKRITI)",
+    text: "Parishkriti is an exclusive National Level Agricultural Tech Event. Dive into the intersection of modern tech and farming through 9 specialized events and propel the future of agriculture.",
+    image: e5,
+    side: "left",
+    id: "parishkriti",
+    registerParam: "parishkriti"
+  }
 ];
 
 const EventShowcase = () => {
@@ -55,6 +64,8 @@ const EventShowcase = () => {
       targetPath = "/projectexpo";
     } else if (param === "udbhav") {
       targetPath = "/conference";
+    } else if (param === "parishkriti") {
+      targetPath = "/parishkriti";
     }
 
     if (targetPath) {
@@ -102,6 +113,7 @@ const EventShowcase = () => {
     if (param === "srijan") return "/hackathon";
     if (param === "ankur") return "/projectexpo";
     if (param === "udbhav") return "/conference";
+    if (param === "parishkriti") return "/parishkriti";
     return `/register?event=${param}`;
   };
 

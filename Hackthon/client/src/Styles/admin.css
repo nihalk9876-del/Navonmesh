@@ -4,16 +4,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #050510; /* deep space black */
-    color: #fff;
-    font-family: 'Space Grotesk', sans-serif;
+    position: relative;
+    overflow: hidden;
 }
 
 .admin-login-form {
-    background: rgba(20, 20, 40, 0.4);
+    background: rgba(20, 20, 40, 0.6);
+    backdrop-filter: blur(15px);
     padding: 3rem;
     border-radius: 12px;
-    border: 1px solid rgba(80, 255, 255, 0.1);
+    border: 1px solid rgba(80, 255, 255, 0.2);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(80, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
@@ -21,6 +21,7 @@
     width: 100%;
     max-width: 400px;
     text-align: center;
+    z-index: 10;
 }
 
 .admin-login-form h2 {
@@ -68,9 +69,10 @@
 
 .admin-login-form button.ghost-btn {
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #aaa;
 }
+
 .admin-login-form button.ghost-btn:hover {
     border-color: #fff;
     color: #fff;
@@ -80,38 +82,105 @@
 /* Dashboard Core */
 .admin-dashboard {
     min-height: 100vh;
-    background: #050510;
     color: #fff;
-    font-family: 'Space Grotesk', sans-serif;
+    position: relative;
+    z-index: 1;
 }
 
 .admin-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 1.5rem 3rem;
-    background: rgba(20, 20, 40, 0.6);
-    border-bottom: 1px solid rgba(80, 255, 255, 0.1);
+    text-align: center;
+    padding: 3rem 2rem;
+    background: radial-gradient(circle at center, rgba(20, 20, 50, 0.6) 0%, rgba(10, 10, 25, 0.4) 100%);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.admin-header h2 {
-    color: #00eaff;
+.admin-header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, transparent, #00eaff, transparent);
+    box-shadow: 0 0 10px #00eaff;
+}
+
+.admin-profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.admin-profile-info h2 {
+    color: #fff;
     margin: 0;
+    font-size: 2.2rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+}
+
+.sub-role-badge {
+    color: #00eaff;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    background: rgba(0, 234, 255, 0.1);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 234, 255, 0.3);
+}
+
+.admin-desc-text {
+    color: #a0a0c0;
+    font-size: 0.95rem;
+    margin-top: 10px;
 }
 
 .logout-btn {
     background: transparent;
     color: #ff3366;
     border: 1px solid #ff3366;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 2rem;
     cursor: pointer;
-    border-radius: 4px;
-    transition: 0.3s;
+    border-radius: 30px;
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.logout-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ff3366;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s ease;
 }
 
 .logout-btn:hover {
-    background: #ff3366;
     color: #fff;
+    box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+    border-color: transparent;
+}
+
+.logout-btn:hover::before {
+    transform: scaleX(1);
 }
 
 /* Matrix Layout */
@@ -129,40 +198,62 @@
 
 .stat-card {
     flex: 1;
-    background: rgba(25, 25, 45, 0.5);
-    border: 1px solid rgba(80, 255, 255, 0.1);
-    padding: 2rem;
+    background: linear-gradient(135deg, rgba(20, 20, 45, 0.8), rgba(10, 10, 25, 0.9));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 234, 255, 0.3);
+    padding: 2.5rem 2rem;
     text-align: center;
-    border-radius: 12px;
+    border-radius: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 234, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00eaff, transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    border-color: #00eaff;
-    box-shadow: 0 10px 25px rgba(0, 234, 255, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0, 234, 255, 0.8);
+    box-shadow: 0 15px 40px rgba(0, 234, 255, 0.2), inset 0 0 30px rgba(0, 234, 255, 0.1);
+}
+
+.stat-card:hover::before {
+    transform: translateX(100%);
 }
 
 .stat-card.active {
-    background: rgba(0, 234, 255, 0.05);
+    background: linear-gradient(135deg, rgba(0, 234, 255, 0.1), rgba(10, 10, 25, 0.9));
     border-color: #00eaff;
-    box-shadow: inset 0 0 20px rgba(0, 234, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.4), inset 0 0 30px rgba(0, 234, 255, 0.2);
 }
 
 .stat-card h3 {
     margin: 0 0 1rem;
-    color: #aaa;
+    color: #00eaff;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-weight: 900;
 }
 
 .stat-card .stat-number {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color: #fff;
-    font-family: monospace;
+    font-family: 'Orbitron', monospace;
+    text-shadow: 0 0 15px rgba(0, 234, 255, 0.5);
 }
 
 .stat-card p {
@@ -170,18 +261,44 @@
     margin: 0.5rem 0 0;
 }
 
-/* Detail Panel */
+.click-details {
+    color: #00eaff;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.stat-card:hover .click-details {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+}
+
 .detail-panel {
-    background: rgba(20, 20, 30, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(20, 20, 30, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(80, 255, 255, 0.2);
     border-radius: 12px;
     overflow: hidden;
     animation: fadeIn 0.4s ease;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .detail-panel h3 {
@@ -202,28 +319,42 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 1.5rem;
+    background: rgba(10, 10, 20, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.data-table th, .data-table td {
-    padding: 1rem;
+.data-table th,
+.data-table td {
+    padding: 1.2rem 1rem;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 234, 255, 0.1);
 }
 
 .data-table th {
-    color: #888;
+    color: #00eaff;
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .data-table td {
-    color: #ccc;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.data-table tr {
+    transition: background 0.3s ease;
+}
+
+.data-table tr:hover {
+    background: rgba(0, 234, 255, 0.1);
 }
 
 .data-table tr:hover td {
-    background: rgba(255, 255, 255, 0.02);
     color: #fff;
+    text-shadow: 0 0 5px rgba(0, 234, 255, 0.5);
 }
 
 .mono {
@@ -239,9 +370,17 @@
 }
 
 @keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
 }
 
 /* Media Queries */
@@ -250,6 +389,7 @@
         flex-direction: column;
         gap: 1rem;
     }
+
     .admin-content {
         padding: 1.5rem;
     }

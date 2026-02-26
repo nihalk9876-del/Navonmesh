@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/admin.css';
+import bgVideo from '../assets/bg.mp4';
 
 const Admin = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -10,10 +11,16 @@ const Admin = () => {
     const [summary, setSummary] = useState(null);
     const [activeEvent, setActiveEvent] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [authLoading, setAuthLoading] = useState(false);
+    const [adminInfo, setAdminInfo] = useState({ name: '', subRole: '' });
 
     useEffect(() => {
         const token = sessionStorage.getItem('adminToken');
         if (token) {
+            setAdminInfo({
+                name: sessionStorage.getItem('adminName'),
+                subRole: sessionStorage.getItem('adminSubRole')
+            });
             setLoggedIn(true);
             fetchData(token);
         }
@@ -26,6 +33,7 @@ const Admin = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
+        setAuthLoading(true);
 
         try {
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
@@ -36,8 +44,14 @@ const Admin = () => {
             });
             const data = await res.json();
 
+            // Simulate hyperspace jump delay for the theme
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
             if (res.ok && data.success) {
                 sessionStorage.setItem('adminToken', data.token);
+                sessionStorage.setItem('adminName', data.adminInfo.name);
+                sessionStorage.setItem('adminSubRole', data.adminInfo.subRole);
+                setAdminInfo(data.adminInfo);
                 setLoggedIn(true);
                 fetchData(data.token);
             } else {
@@ -45,14 +59,19 @@ const Admin = () => {
             }
         } catch (err) {
             setError('Server error');
+        } finally {
+            setAuthLoading(false);
         }
     };
 
     const handleLogout = () => {
         sessionStorage.removeItem('adminToken');
+        sessionStorage.removeItem('adminName');
+        sessionStorage.removeItem('adminSubRole');
         setLoggedIn(false);
         setSummary(null);
         setActiveEvent(null);
+        setAdminInfo({ name: '', subRole: '' });
     };
 
     const fetchData = async (token) => {
@@ -78,9 +97,19 @@ const Admin = () => {
 
     if (!loggedIn) {
         return (
-            <div className="admin-login-container">
+            <div className="admin-login-container app-layout">
+                {/* 🌌 GLOBAL BACKGROUND VIDEO */}
+                <video
+                    className="global-bg-video"
+                    src={bgVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                />
+
                 <form className="admin-login-form" onSubmit={handleLogin}>
-                    <h2>Admin Direct Access</h2>
+                    <h2>Command Center Access</h2>
                     {error && <p className="admin-error">{error}</p>}
                     <input
                         type="text"
@@ -98,7 +127,9 @@ const Admin = () => {
                         onChange={handleLoginChange}
                         required
                     />
-                    <button type="submit">Unlock System</button>
+                    <button type="submit" disabled={authLoading}>
+                        {authLoading ? 'ESTABLISHING UPLINK...' : 'INITIATE HYPER-DRIVE'}
+                    </button>
                     <button type="button" className="ghost-btn" onClick={() => window.location.href = '#/'}>Return Home</button>
                 </form>
             </div>
@@ -106,10 +137,24 @@ const Admin = () => {
     }
 
     return (
-        <div className="admin-dashboard">
+        <div className="admin-dashboard app-layout">
+            {/* 🌌 GLOBAL BACKGROUND VIDEO */}
+            <video
+                className="global-bg-video"
+                src={bgVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+            />
+
             <header className="admin-header">
-                <h2>Navonmesh Data Matrix</h2>
-                <button className="logout-btn" onClick={handleLogout}>Terminate Session</button>
+                <div className="admin-profile-info">
+                    <h2>Welcome, {adminInfo.name}</h2>
+                    <h4 className="sub-role-badge">{adminInfo.subRole}</h4>
+                    <p className="admin-desc-text">Analyzing latest cosmic registration telemetry arrays.</p>
+                </div>
+                <button className="logout-btn" onClick={handleLogout}>Abort Mission</button>
             </header>
 
             {loading ? (
@@ -121,16 +166,19 @@ const Admin = () => {
                             <h3>Srijan</h3>
                             <div className="stat-number">{summary.srijan.count}</div>
                             <p>Entries</p>
+                            <div className="click-details">CLICK FOR DETAILS</div>
                         </div>
                         <div className={`stat-card ${activeEvent === 'ankur' ? 'active' : ''}`} onClick={() => setActiveEvent('ankur')}>
                             <h3>Ankur</h3>
                             <div className="stat-number">{summary.ankur.count}</div>
                             <p>Entries</p>
+                            <div className="click-details">CLICK FOR DETAILS</div>
                         </div>
                         <div className={`stat-card ${activeEvent === 'udbhav' ? 'active' : ''}`} onClick={() => setActiveEvent('udbhav')}>
                             <h3>Udbhav</h3>
                             <div className="stat-number">{summary.udbhav.count}</div>
                             <p>Entries</p>
+                            <div className="click-details">CLICK FOR DETAILS</div>
                         </div>
                     </div>
 

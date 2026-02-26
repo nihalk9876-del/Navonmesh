@@ -1,0 +1,510 @@
+/* BASE LAYER */
+.parishkriti-container {
+    min-height: 100vh;
+    position: relative;
+    z-index: 10;
+    padding: 100px 30px 60px;
+    color: #e0f2e9;
+    font-family: 'Space Grotesk', 'Orbitron', sans-serif;
+    overflow: hidden;
+}
+
+/* THEME BACKGROUND: Video */
+.agri-bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: #020502;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.parishkriti-video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.video-tint {
+    position: absolute;
+    inset: 0;
+    /* Adjust this gradient and opacity to get the exact level of transparency you want */
+    background: linear-gradient(rgba(10, 30, 15, 0.75), rgba(2, 5, 2, 0.9));
+    z-index: 2;
+}
+
+/* HEADER & INTRO */
+.p-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.p-logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(46, 184, 92, 0.3));
+    animation: floatLeaf 4s ease-in-out infinite;
+}
+
+.p-main-title {
+    font-size: 3rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #2eb85c, #5bc97e, #2eb85c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(46, 184, 92, 0.2);
+}
+
+.p-intro {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #a3ccaf;
+    border-top: 1px solid rgba(46, 184, 92, 0.2);
+    border-bottom: 1px solid rgba(46, 184, 92, 0.2);
+    padding: 20px;
+    background: rgba(10, 30, 15, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+/* THE 9 EVENTS GRID */
+.p-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    /* Reduced gap */
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    /* Added bottom margin to space out gallery */
+}
+
+.p-grid-card {
+    background: linear-gradient(145deg, rgba(20, 45, 25, 0.7), rgba(5, 15, 5, 0.85));
+    border: 1px solid rgba(46, 184, 92, 0.3);
+    border-radius: 16px;
+    padding: 16px 20px;
+    /* Even Smaller padding */
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(46, 184, 92, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.p-grid-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #2eb85c, transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.p-grid-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(80, 255, 120, 0.6);
+    box-shadow: 0 15px 35px rgba(20, 100, 40, 0.3), inset 0 0 20px rgba(80, 255, 120, 0.15);
+    background: linear-gradient(145deg, rgba(30, 60, 35, 0.85), rgba(10, 25, 15, 0.95));
+}
+
+.p-grid-card:hover::before {
+    transform: translateX(100%);
+}
+
+.p-card-icon {
+    font-size: 1.4rem;
+    color: #50ff78;
+    background: rgba(46, 184, 92, 0.15);
+    padding: 12px;
+    border-radius: 50%;
+    width: max-content;
+    margin-bottom: 15px;
+    border: 1px solid rgba(46, 184, 92, 0.4);
+    box-shadow: 0 0 15px rgba(46, 184, 92, 0.2);
+    transition: all 0.3s ease;
+}
+
+.p-grid-card:hover .p-card-icon {
+    transform: scale(1.1);
+    background: rgba(80, 255, 120, 0.25);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(80, 255, 120, 0.6);
+    border-color: rgba(80, 255, 120, 0.8);
+}
+
+.p-card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.p-card-desc {
+    font-size: 0.8rem;
+    color: #c9e6d3;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.p-card-footer {
+    margin-top: 15px;
+    font-size: 0.75rem;
+    color: #50ff78;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.p-grid-card:hover .p-card-footer {
+    opacity: 1;
+}
+
+/* ============================
+   PARISHKRITI EXCLUSIVE GALLERY
+   ============================ */
+.p-gallery-section {
+    max-width: 1100px;
+    margin: 60px auto 20px;
+    padding-top: 40px;
+    border-top: 1px dashed rgba(80, 255, 120, 0.2);
+}
+
+.p-gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.p-gallery-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #2eb85c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-shadow: 0 0 10px rgba(46, 184, 92, 0.2);
+}
+
+.p-gallery-header p {
+    color: #a3ccaf;
+    font-size: 1rem;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.gallery-header-icon {
+    animation: floatLeaf 3s infinite ease-in-out;
+}
+
+.p-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.p-gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 220px;
+    border: 1px solid rgba(80, 255, 120, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.p-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0.8;
+}
+
+.p-gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 30, 15, 0.9), transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.p-gallery-icon {
+    font-size: 2.5rem;
+    color: #2eb85c;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 0 5px rgba(46, 184, 92, 0.4));
+}
+
+.p-gallery-item:hover {
+    border-color: #2eb85c;
+    box-shadow: 0 10px 25px rgba(46, 184, 92, 0.15);
+    transform: translateY(-5px);
+}
+
+.p-gallery-item:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.p-gallery-item:hover .p-gallery-overlay {
+    opacity: 1;
+}
+
+.p-gallery-item:hover .p-gallery-icon {
+    transform: translateY(0);
+}
+
+/* ============================
+   DETAIL / MODAL MODE
+   ============================ */
+.detail-mode {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+.p-detail-content {
+    width: 100%;
+    max-width: 750px;
+    animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.p-back-btn {
+    background: transparent;
+    border: 1px solid rgba(46, 184, 92, 0.3);
+    color: #2eb85c;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    transition: 0.3s;
+}
+
+.p-back-btn:hover {
+    background: rgba(46, 184, 92, 0.1);
+    box-shadow: 0 0 10px rgba(46, 184, 92, 0.1);
+    transform: translateX(-5px);
+}
+
+.p-detail-card {
+    background: rgba(10, 25, 15, 0.85);
+    border: 1px solid rgba(46, 184, 92, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(40, 150, 60, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+.p-detail-icon {
+    font-size: 5rem;
+    color: #2eb85c;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(46, 184, 92, 0.3));
+    animation: pulseLight 3s infinite;
+}
+
+.p-detail-title {
+    font-size: 2.5rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.p-detail-body {
+    text-align: left;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    margin-bottom: 40px;
+}
+
+.section-head {
+    color: #2eb85c;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.p-desc,
+.p-details {
+    color: #c9e6d3;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* ACTION SECTION */
+.p-action-section {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.p-register-btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, #106f2d, #1ca846);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(28, 168, 70, 0.2);
+    transition: 0.3s;
+    border: 1px solid #2eb85c;
+}
+
+.p-register-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.p-register-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(28, 168, 70, 0.4);
+    color: #fff;
+}
+
+.p-register-btn:hover::after {
+    left: 100%;
+}
+
+/* ============================
+   ANIMATIONS & RESPONSIVE
+   ============================ */
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatLeaf {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseLight {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 10px rgba(46, 184, 92, 0.2));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(46, 184, 92, 0.4));
+    }
+}
+
+@media (max-width: 900px) {
+    .p-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .p-main-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .p-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .p-detail-title {
+        font-size: 1.8rem;
+    }
+
+    .p-detail-icon {
+        font-size: 4rem;
+    }
+
+    .p-register-btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+
+    .parishkriti-container {
+        padding: 80px 15px 40px;
+    }
+}

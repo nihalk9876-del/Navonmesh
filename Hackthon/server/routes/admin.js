@@ -5,13 +5,27 @@ const Registration = require('../models/Registration');
 // Simple Admin Login
 router.post('/login', (req, res) => {
     const { id, password } = req.body;
+    const admins = [
+        { id: 'nihal1512', password: 'rutuja1512', name: 'Nihal', subRole: 'Overall Head' },
+        { id: 'vedu1510', password: 'Vedant@15', name: 'Vedant', subRole: 'Overall Head' },
+        { id: 'chakradhar@khamgaon', password: 'khamgaonking', name: 'Chakradhar', subRole: 'Treasurer' },
+        { id: 'faculty01', password: 'faculty@01', name: 'Dr. S.S.Jadhao', subRole: 'Convener' }
+    ];
 
-    // In production, these should be safely stored in .env or a separate DB collection
-    const adminId = process.env.ADMIN_ID || 'admin';
-    const adminPass = process.env.ADMIN_PASS || 'navonmesh2026';
+    const cleanId = (id || '').trim();
+    const cleanPassword = (password || '').trim();
 
-    if (id === adminId && password === adminPass) {
-        return res.json({ success: true, token: 'admin_secret_token_navonmesh' });
+    const adminUser = admins.find(a => a.id === cleanId && a.password === cleanPassword);
+
+    if (adminUser) {
+        return res.json({
+            success: true,
+            token: 'admin_secret_token_navonmesh',
+            adminInfo: {
+                name: adminUser.name,
+                subRole: adminUser.subRole
+            }
+        });
     } else {
         return res.status(401).json({ success: false, message: 'Invalid Admin Credentials' });
     }
