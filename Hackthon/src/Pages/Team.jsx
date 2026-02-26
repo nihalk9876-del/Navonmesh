@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../Styles/team.css";
 import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import ashishImg from "../assets/ashishIngle.png";
 import teamPlaceholder from "../assets/team_placeholder.png";
 import nihalImg from "../assets/nihal_latest.png";
 import divineImg from "../assets/divine_blessings.png";
@@ -195,8 +196,10 @@ const teamMembers = [
         role: "Core Team Member",
         subRole: "Overall Head",
         subRole2: "HEAD(PURSUIT)",
-        phone: "+91 98765 43210",
-        email: "vedant@example.com",
+        phone: "+91 8208772402",
+        email: "vedantdarokar7@gmail.com",
+        instagram: "https://www.instagram.com/vedant_darokar_15/",
+        linkedin: "https://www.linkedin.com/in/vedant-darokar-3241a3286/",
         image: vedantImg,
     },
 
@@ -263,6 +266,17 @@ const teamMembers = [
         image: abhishekImg,
     },
     {
+        id: 40,
+        name: "Ashish Ingle",
+        role: "Core Team Member",
+        subRole: "Technical Head",
+        phone: "+91 7218522510",
+        email: "ashishingle369@gmail.com",
+        instagram: "https://www.instagram.com/ashishingle369?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+        linkedin: "https://www.linkedin.com/in/ashish-ingle-1aba5437b/",
+        image: ashishImg,
+    },
+    {
         id: 33,
         name: "Pratik Mapari",
         role: "Core Team Member",
@@ -295,7 +309,6 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/shrinit-chavan-106224295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: shrinitImg,
     },
-
     {
         id: 29,
         name: "Hanzala Khan",
@@ -318,10 +331,6 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
         image: ajinkyaImg,
     },
-
-
-
-
 
     {
         id: 23,
