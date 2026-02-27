@@ -68,15 +68,15 @@ const Footer = () => {
               <li>
                 <FaPhoneAlt className="c-icon" />
                 <div className="contact-person">
-                  <span>Shripad Ingle: </span>
-                  <a href="tel:+919876543210">+91 98765 43210</a>
+                  <span>Nihal Kankal: </span>
+                  <a href="tel:+918766417815">+91 8766417815</a>
                 </div>
               </li>
               <li>
                 <FaPhoneAlt className="c-icon" />
                 <div className="contact-person">
-                  <span>Nihal Kankal: </span>
-                  <a href="tel:+918766417815">+91 87664 17815</a>
+                  <span>Vedant Darokar: </span>
+                  <a href="tel:+918208772402">+91 8208772402</a>
                 </div>
               </li>
             </ul>
