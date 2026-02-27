@@ -18,6 +18,7 @@ const Accommodation = () => {
     const [formData, setFormData] = useState({
         event: "",
         teamName: "",
+        college: "",
         lName: "", lPhone: "", lEmail: "", lGender: "",
         m2Name: "", m2Phone: "", m2Email: "", m2Gender: "",
         m3Name: "", m3Phone: "", m3Email: "", m3Gender: "",
@@ -38,42 +39,57 @@ const Accommodation = () => {
         e.preventDefault();
         setStatus("submitting");
 
-        const formBody = new FormData();
-        // Event
-        formBody.append("entry.437555754", formData.event);
-        // Team Name
-        formBody.append("entry.628190576", formData.teamName);
+        // Calculate girls and boys count
+        let girls = 0;
+        let boys = 0;
+        let size = 0;
 
-        // Leader
-        formBody.append("entry.1785895541", formData.lName);
-        formBody.append("entry.267325415", formData.lPhone);
-        formBody.append("entry.212550817", formData.lEmail);
-        formBody.append("entry.1875083212", formData.lGender);
+        const people = [
+            { name: formData.lName, gender: formData.lGender },
+            { name: formData.m2Name, gender: formData.m2Gender },
+            { name: formData.m3Name, gender: formData.m3Gender },
+            { name: formData.m4Name, gender: formData.m4Gender }
+        ];
 
-        // Mem 2
-        formBody.append("entry.1488013474", formData.m2Name);
-        formBody.append("entry.47243977", formData.m2Phone);
-        formBody.append("entry.1688814770", formData.m2Email);
-        formBody.append("entry.133775330", formData.m2Gender);
+        people.forEach(p => {
+            if (p.name && p.name.trim() !== "") {
+                size++;
+                if (p.gender === "Female") girls++;
+                if (p.gender === "Male") boys++;
+            }
+        });
 
-        // Mem 3
-        formBody.append("entry.390616939", formData.m3Name);
-        formBody.append("entry.672976952", formData.m3Phone);
-        formBody.append("entry.585274052", formData.m3Email);
-        formBody.append("entry.159855008", formData.m3Gender);
-
-        // Mem 4 (No Email in pre-fill)
-        formBody.append("entry.1946311722", formData.m4Name);
-        formBody.append("entry.1857373829", formData.m4Phone);
-        formBody.append("entry.1783657060", formData.m4Gender);
+        const payload = {
+            event: formData.event,
+            teamName: formData.teamName,
+            college: formData.college,
+            teamSize: size,
+            girlsCount: girls,
+            boysCount: boys,
+            leaderName: formData.lName,
+            leaderPhone: formData.lPhone,
+            leaderEmail: formData.lEmail,
+            leaderGender: formData.lGender,
+            members: [
+                { name: formData.m2Name, phone: formData.m2Phone, email: formData.m2Email, gender: formData.m2Gender },
+                { name: formData.m3Name, phone: formData.m3Phone, email: formData.m3Email, gender: formData.m3Gender },
+                { name: formData.m4Name, phone: formData.m4Phone, gender: formData.m4Gender }
+            ].filter(m => m.name && m.name.trim() !== "")
+        };
 
         try {
-            await fetch("https://docs.google.com/forms/d/e/1FAIpQLSe7iMwg7gvgYuJMsMMlrpPyvfMsVoK1-KKw_Iiq3xoO2pMkWQ/formResponse", {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/accommodation`, {
                 method: "POST",
-                mode: "no-cors",
-                body: formBody
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
             });
-            setStatus("success");
+
+            if (res.ok) {
+                setStatus("success");
+            } else {
+                throw new Error("Failed to submit");
+            }
         } catch (err) {
             console.error(err);
             alert("Submission failed. Please try again.");
@@ -337,6 +353,12 @@ const Accommodation = () => {
                                 <div>
                                     <label style={labelStyle}>Team Name <span style={{ color: 'red' }}>*</span></label>
                                     <input type="text" name="teamName" value={formData.teamName} onChange={handleChange} required style={inputStyle} placeholder="Enter Team Name" />
+                                </div>
+
+                                {/* College Name */}
+                                <div>
+                                    <label style={labelStyle}>College Name <span style={{ color: 'red' }}>*</span></label>
+                                    <input type="text" name="college" value={formData.college} onChange={handleChange} required style={inputStyle} placeholder="Enter College Name" />
                                 </div>
 
                                 {/* Team Leader */}

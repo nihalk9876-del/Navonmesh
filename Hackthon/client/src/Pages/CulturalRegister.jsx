@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/culturalRegister.css';
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaUpload, FaChevronDown, FaCheckCircle, FaTimes, FaWhatsapp } from 'react-icons/fa';
+import { FaArrowLeft, FaChevronDown, FaTimes, FaWhatsapp } from 'react-icons/fa';
 
 const CulturalRegister = () => {
     const navigate = useNavigate();
@@ -10,13 +10,27 @@ const CulturalRegister = () => {
 
     const [formData, setFormData] = useState({
         participantName: '',
-        groupName: '',
-        activity: 'solo dance',
+        college: 'Shri Sant Gajanan Maharaj College of Engineering Shegaon',
+        className: '',
+        activity: 'solo singing',
         contact: '',
         email: '',
-        file: null,
+        member2Name: '',
+        member2Class: '',
+        groupSize: '',
         agreed: false
     });
+
+    const classes = [
+        "1S", "1R", "1M", "1U1", "1U2", "1N",
+        "2S", "2N", "2R", "2U1", "2U2", "2M",
+        "3U1", "3U2", "3S", "3N", "3R"
+    ];
+
+    const activities = [
+        "solo singing", "duo singing", "solo dance", "duo dance",
+        "group dance", "anchoring", "guitar", "flute", "tabla", "other"
+    ];
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -26,55 +40,38 @@ const CulturalRegister = () => {
         }));
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file && file.size > 10 * 1024 * 1024) {
-            alert("File size exceeds 10MB limit.");
-            return;
-        }
-        setFormData(prev => ({ ...prev, file: file }));
-    };
+    const isDuo = formData.activity.toLowerCase().includes('duo');
+    const isGroup = formData.activity.toLowerCase().includes('group');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSekbdIAKF789NOhg6LrcJMlJ58Uc0mlMiFceQ2pzrrMrO5L9Q/formResponse";
-
-        // Use FormData instead of URLSearchParams for better compatibility with Google Forms multipart expectations
-        const formBody = new FormData();
-
-        // Exact mappings from your pre-fill link
-        formBody.append("entry.2005620554", formData.participantName);
-        formBody.append("entry.1166974658", formData.groupName);
-        formBody.append("entry.1045781291", formData.activity); // Matches exactly like "Solo dance"
-        formBody.append("entry.1065046570", formData.contact);
-        formBody.append("entry.239076559", formData.email);
-        formBody.append("entry.839337160", "N/A"); // Adding the extra field from your pre-fill link to ensure submission success
-
         try {
-            await fetch(GOOGLE_FORM_URL, {
+            const response = await fetch('http://localhost:5000/api/cultural', {
                 method: 'POST',
-                mode: 'no-cors',
-                body: formBody
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
             });
 
-            // Artificial delay to make it feel real before showing modal
-            setTimeout(() => {
+            if (response.ok) {
                 setSubmitted(true);
-                setLoading(false);
-            }, 1000);
-
+            } else {
+                const data = await response.json();
+                alert(data.error || "Submission failed");
+            }
         } catch (error) {
             console.error("Submission failed", error);
             alert("Submission encountered an error. Please check your connection and try again.");
+        } finally {
             setLoading(false);
         }
     };
 
     return (
         <div className="cultural-container">
-            {/* SUCCESS MODAL EXACTLY LIKE REGISTER.JSX */}
             {submitted && (
                 <div className="modal-overlay">
                     <div className="modal-content-wrapper">
@@ -94,7 +91,7 @@ const CulturalRegister = () => {
                             </p>
 
                             <div className="file-reminder" style={{ marginBottom: '20px', color: '#94a3b8', fontSize: '0.85rem' }}>
-                                <p>Note: If you have a performance file to upload, please ensure you complete the process on the official form if not already done.</p>
+                                <p>Note: We will collect performance files later via WhatsApp group.</p>
                             </div>
 
                             <a
@@ -117,7 +114,7 @@ const CulturalRegister = () => {
 
                 <div className="header-section">
                     <h1 className="cultural-title">कलास्पंदन '26 <span>CULTURAL</span></h1>
-                    <p className="cultural-subtitle">Register your performance for the grand night.</p>
+                    <p className="cultural-subtitle">Register your performance for the Auditions.</p>
                 </div>
 
                 <form className="cultural-form" onSubmit={handleSubmit}>
@@ -134,33 +131,118 @@ const CulturalRegister = () => {
                     </div>
 
                     <div className="input-group">
-                        <label>Name of Group (if any)</label>
+                        <label>College Name</label>
                         <input
                             type="text"
-                            name="groupName"
-                            placeholder="Group Name or Solo"
-                            value={formData.groupName}
+                            name="college"
+                            className="college-input"
+                            value={formData.college}
                             onChange={handleChange}
+                            required
                         />
                     </div>
 
-                    <div className="input-group">
-                        <label>Activity Selection</label>
-                        <div className="select-wrapper">
-                            <select
-                                name="activity"
-                                value={formData.activity}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="Solo dance">Solo Dance</option>
-                                <option value="Duo dance">Duo Dance</option>
-                                <option value="Group dance">Group Dance</option>
-                                <option value="Singing">Singing</option>
-                            </select>
-                            <FaChevronDown className="select-arrow" />
+                    <div className="form-row">
+                        <div className="input-group">
+                            <label>Class</label>
+                            <div className="select-wrapper">
+                                <select
+                                    name="className"
+                                    value={formData.className}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="" disabled>Select Class</option>
+                                    {classes.map(c => (
+                                        <option key={c} value={c}>{c}</option>
+                                    ))}
+                                </select>
+                                <FaChevronDown className="select-arrow" />
+                            </div>
+                        </div>
+
+                        <div className="input-group">
+                            <label>Activity Selection</label>
+                            <div className="select-wrapper">
+                                <select
+                                    name="activity"
+                                    value={formData.activity}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    {activities.map(a => (
+                                        <option key={a} value={a}>{a.charAt(0).toUpperCase() + a.slice(1)}</option>
+                                    ))}
+                                </select>
+                                <FaChevronDown className="select-arrow" />
+                            </div>
                         </div>
                     </div>
+
+                    {isDuo && (
+                        <div className="duo-section animate-fade-in" style={{
+                            background: 'rgba(139, 92, 246, 0.1)',
+                            padding: '20px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(139, 92, 246, 0.2)',
+                            marginBottom: '10px'
+                        }}>
+                            <h3 style={{ fontSize: '0.9rem', color: '#c084fc', marginBottom: '15px', textTransform: 'uppercase' }}>Group Member 2 Details</h3>
+                            <div className="input-group" style={{ marginBottom: '15px' }}>
+                                <label>Member 2 Name</label>
+                                <input
+                                    type="text"
+                                    name="member2Name"
+                                    placeholder="Enter full name"
+                                    value={formData.member2Name}
+                                    onChange={handleChange}
+                                    required={isDuo}
+                                />
+                            </div>
+                            <div className="input-group">
+                                <label>Member 2 Class</label>
+                                <div className="select-wrapper">
+                                    <select
+                                        name="member2Class"
+                                        value={formData.member2Class}
+                                        onChange={handleChange}
+                                        required={isDuo}
+                                    >
+                                        <option value="" disabled>Select Class</option>
+                                        {classes.map(c => (
+                                            <option key={c} value={c}>{c}</option>
+                                        ))}
+                                    </select>
+                                    <FaChevronDown className="select-arrow" />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {isGroup && (
+                        <div className="group-section animate-fade-in" style={{
+                            background: 'rgba(139, 92, 246, 0.1)',
+                            padding: '20px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(139, 92, 246, 0.2)',
+                            marginBottom: '10px'
+                        }}>
+                            <h3 style={{ fontSize: '0.9rem', color: '#c084fc', marginBottom: '15px', textTransform: 'uppercase' }}>Group Details</h3>
+                            <div className="input-group">
+                                <label>Team Size (Number of members)</label>
+                                <input
+                                    type="number"
+                                    name="groupSize"
+                                    min="3"
+                                    max="20"
+                                    placeholder="e.g. 8"
+                                    value={formData.groupSize}
+                                    onChange={handleChange}
+                                    required={isGroup}
+                                />
+                            </div>
+                        </div>
+                    )}
 
                     <div className="form-row">
                         <div className="input-group">
@@ -187,23 +269,6 @@ const CulturalRegister = () => {
                         </div>
                     </div>
 
-                    <div className="upload-section">
-                        <label>Upload Performance Track (Max 10MB)</label>
-                        <div className="file-drop-zone">
-                            <input
-                                type="file"
-                                id="file-upload"
-                                onChange={handleFileChange}
-                                accept="audio/*,video/*"
-                            />
-                            <label htmlFor="file-upload" className="file-label">
-                                <FaUpload />
-                                {formData.file ? formData.file.name : "Choose File or Drag & Drop"}
-                            </label>
-                        </div>
-                        <p className="file-help">Accepted formats: MP3, MP4, WAV. Max size: 10MB.</p>
-                    </div>
-
                     <div className="terms-container">
                         <input
                             type="checkbox"
@@ -218,13 +283,12 @@ const CulturalRegister = () => {
                         </label>
                     </div>
 
-
                     <button type="submit" className="submit-interstellar-btn" disabled={loading || !formData.agreed}>
                         {loading ? "Transmitting..." : "Initialize Registration"}
                     </button>
 
                     <p className="form-footer-note">
-                        Registration data will be synced with Mission Control database.
+                        Note: Performance files will be collected via WhatsApp group.
                     </p>
                 </form>
             </div>
