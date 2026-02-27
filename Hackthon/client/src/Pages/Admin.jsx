@@ -180,9 +180,14 @@ const Admin = () => {
 
             <header className="admin-header">
                 <div className="admin-profile-info">
-                    <h2>Welcome, {adminInfo.name}</h2>
-                    <h4 className="sub-role-badge">{adminInfo.subRole}</h4>
-                    <p className="admin-desc-text">Analyzing latest cosmic registration telemetry arrays.</p>
+                    <div className="admin-welcome-line">
+                        <span className="welcome-tag">SYSTEM ACCESS GRANTED</span>
+                        <h2 className="admin-name-display">{adminInfo.name}</h2>
+                    </div>
+                    <div className="admin-meta-info">
+                        <span className="sub-role-badge">{adminInfo.subRole}</span>
+                        <p className="admin-desc-text">NAVONMESH COMMAND CENTRAL v2.6</p>
+                    </div>
                 </div>
                 <div className="admin-actions">
                     <button className="refresh-btn" onClick={() => fetchData(sessionStorage.getItem('adminToken'))} title="Refresh Data">
