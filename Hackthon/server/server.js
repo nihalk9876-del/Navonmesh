@@ -11,7 +11,10 @@ app.use(express.json());
 
 // Request Logger
 app.use((req, res, next) => {
-    console.log(`${req.method} request to ${req.url}`);
+    // Only log if it's NOT a polling request to /api/issues
+    if (!(req.method === 'GET' && req.url === '/api/issues')) {
+        console.log(`${req.method} request to ${req.url}`);
+    }
     next();
 });
 
@@ -28,7 +31,10 @@ const PORT = process.env.PORT || 5000;
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contact', require('./routes/contact'));
 app.use('/api/register', require('./routes/register'));
+app.use('/api/accommodation', require('./routes/accommodation'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/issues', require('./routes/issues'));
+app.use('/api/cultural', require('./routes/cultural'));
 
 app.get('/', (req, res) => {
     res.send('Navonmesh Hackathon API is running');

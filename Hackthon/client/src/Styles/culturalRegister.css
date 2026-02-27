@@ -95,23 +95,54 @@
 }
 
 .input-group input,
-.cultural-form select {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.select-wrapper select {
+    background: rgba(10, 10, 15, 0.6) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
     border-radius: 12px;
     padding: 14px 16px;
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: 0.3s;
     outline: none;
     width: 100%;
+    appearance: none;
+    /* remove default arrow to use custom one */
 }
 
 .input-group input:focus,
-.cultural-form select:focus {
+.select-wrapper select:focus {
     border-color: #a78bfa;
-    background: rgba(139, 92, 246, 0.05);
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    background: rgba(139, 92, 246, 0.1) !important;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.college-input {
+    font-size: 0.85rem !important;
+    /* Smaller text for long college names */
+    letter-spacing: 0.5px;
+    color: #cbd5e1 !important;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a78bfa;
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+/* Option styling is browser dependent, but this helps on some */
+.select-wrapper select option {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px;
 }
 
 .form-row {

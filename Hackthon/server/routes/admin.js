@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Registration = require('../models/Registration');
+const Accommodation = require('../models/Accommodation');
+const Cultural = require('../models/Cultural');
 
-// Simple Admin Login
 router.post('/login', (req, res) => {
     const { id, password } = req.body;
     const admins = [
@@ -43,6 +44,16 @@ router.get('/data', async (req, res) => {
         const srijan = await Registration.find({ event: 'Srijan (Hackathon)' });
         const ankur = await Registration.find({ event: 'Ankur (Project Expo)' });
         const udbhav = await Registration.find({ event: 'Udbhav (Conference)' });
+        const cultural = await Cultural.find();
+        const accommodation = await Accommodation.find();
+
+        let totalGirls = 0;
+        let totalBoys = 0;
+
+        accommodation.forEach(a => {
+            totalGirls += a.girlsCount || 0;
+            totalBoys += a.boysCount || 0;
+        });
 
         res.json({
             srijan: {
@@ -56,6 +67,25 @@ router.get('/data', async (req, res) => {
             udbhav: {
                 count: udbhav.length,
                 entries: udbhav.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, utrNumber: r.utrNumber, _id: r._id }))
+            },
+            cultural: {
+                count: cultural.length,
+                entries: cultural
+            },
+            accommodation: {
+                count: accommodation.length,
+                totalGirls,
+                totalBoys,
+                entries: accommodation.map(r => ({
+                    event: r.event,
+                    teamName: r.teamName,
+                    college: r.college,
+                    teamSize: r.teamSize,
+                    girls: r.girlsCount,
+                    boys: r.boysCount,
+                    leaderName: r.leaderName,
+                    _id: r._id
+                }))
             }
         });
     } catch (err) {

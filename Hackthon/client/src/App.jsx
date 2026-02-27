@@ -23,6 +23,8 @@ import Pursuit from "./Pages/Pursuit";
 import Parishkriti from "./Pages/Parishkriti";
 import ScrollToTop from "./Components/ScrollToTop";
 import Admin from "./Pages/Admin";
+import SupportQR from "./Pages/SupportQR";
+import AdminMaintenance from "./Pages/AdminMaintenance";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -62,6 +64,8 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/cultural-register" element={<CulturalRegister />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/support" element={<SupportQR />} />
+            <Route path="/admin/maintenance" element={<AdminMaintenance />} />
           </Routes>
         </div>
       </HashRouter>

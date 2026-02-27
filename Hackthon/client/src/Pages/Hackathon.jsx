@@ -225,12 +225,12 @@ const Hackathon = () => {
 
                 <div className="prizes-grid">
                     {[
-                        { title: "PROBLEM STATEMENT: COMING SOON" },
-                        { title: "PROBLEM STATEMENT: COMING SOON" },
                         {
                             title: "PROBLEM STATEMENT: STUDENT INNOVATION",
-                            subtitle: "In this option, bring your own problem statements related to the domains shown below."
-                        }
+                            subtitle: "When you are registering in Student Innovation (means your own problem statement) then the problem should be related to the following domains."
+                        },
+                        { title: "PROBLEM STATEMENT: COMING SOON" },
+                        { title: "PROBLEM STATEMENT: COMING SOON" }
                     ].map((item, index) => (
                         <div className="reward-card" key={index}>
                             <div className="reward-card-header">
