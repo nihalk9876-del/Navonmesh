@@ -108,13 +108,15 @@ router.post('/', async (req, res) => {
             });
         }
 
-        await sendEmail({
+        // Send response immediately so the user doesn't wait
+        res.status(201).json({ message: 'Registration successful', data: newRegistration });
+
+        // Fire and forget email sending in the background
+        sendEmail({
             to: recipientList.join(', '), // Nodemailer works best with comma separated strings
             subject: `Registration Confirmation - Navonmesh 2026 (${event})`,
             htmlContent: emailContent
-        });
-
-        res.status(201).json({ message: 'Registration successful', data: newRegistration });
+        }).catch(err => console.error('Async Email Error:', err));
     } catch (error) {
         console.error('Registration Error:', error);
 

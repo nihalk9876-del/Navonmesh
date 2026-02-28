@@ -70,13 +70,15 @@ router.post('/', async (req, res) => {
             </div>
         `;
 
-        await sendEmail({
+        // Send response immediately so the user doesn't wait
+        res.status(201).json({ message: 'Registration successful', data: newRegistration });
+
+        // Fire and forget email sending in the background
+        sendEmail({
             to: email,
             subject: `Cultural Registration Confirmation - Navonmesh 2026 (${activity})`,
             htmlContent: emailContent
-        });
-
-        res.status(201).json({ message: 'Registration successful', data: newRegistration });
+        }).catch(err => console.error('Async Email Error:', err));
     } catch (error) {
         console.error('Cultural Registration Error:', error);
         res.status(500).json({ error: 'Server error during registration' });
