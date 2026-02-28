@@ -77,15 +77,15 @@ router.post('/', async (req, res) => {
         const recipientList = [leaderEmail];
         if (members && Array.isArray(members)) {
             members.forEach(m => {
-                if (m.email) recipientList.push(m.email);
+                if (m.email && m.email.trim() !== "") recipientList.push(m.email.trim());
             });
         }
 
-        sendEmail({
-            to: recipientList,
+        await sendEmail({
+            to: recipientList.join(', '),
             subject: `Accommodation Request Received - Navonmesh 2026`,
             htmlContent: emailContent
-        }).catch(err => console.error('Silent email error (Accommodation):', err));
+        });
 
         res.status(201).json({ message: 'Accommodation request submitted successfully', data: newAccommodation });
     } catch (error) {

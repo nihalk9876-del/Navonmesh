@@ -104,15 +104,15 @@ router.post('/', async (req, res) => {
         const recipientList = [leaderEmail];
         if (members && Array.isArray(members)) {
             members.forEach(m => {
-                if (m.email) recipientList.push(m.email);
+                if (m.email && m.email.trim() !== "") recipientList.push(m.email.trim());
             });
         }
 
-        sendEmail({
-            to: recipientList, // Nodemailer allows an array of emails
+        await sendEmail({
+            to: recipientList.join(', '), // Nodemailer works best with comma separated strings
             subject: `Registration Confirmation - Navonmesh 2026 (${event})`,
             htmlContent: emailContent
-        }).catch(err => console.error('Silent email error:', err));
+        });
 
         res.status(201).json({ message: 'Registration successful', data: newRegistration });
     } catch (error) {

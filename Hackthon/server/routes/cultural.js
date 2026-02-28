@@ -70,11 +70,11 @@ router.post('/', async (req, res) => {
             </div>
         `;
 
-        sendEmail({
+        await sendEmail({
             to: email,
             subject: `Cultural Registration Confirmation - Navonmesh 2026 (${activity})`,
             htmlContent: emailContent
-        }).catch(err => console.error('Silent email error (Cultural):', err));
+        });
 
         res.status(201).json({ message: 'Registration successful', data: newRegistration });
     } catch (error) {
