@@ -1,13 +1,19 @@
 const nodemailer = require('nodemailer');
 
-// Initialize transporter ONLY ONCE per server instance
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+let transporter;
+
+const getTransporter = () => {
+    if (!transporter) {
+        transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
+            }
+        });
     }
-});
+    return transporter;
+};
 
 const sendEmail = async (options) => {
     try {
@@ -19,7 +25,7 @@ const sendEmail = async (options) => {
             html: options.htmlContent
         };
 
-        const info = await transporter.sendMail(mailOptions);
+        const info = await getTransporter().sendMail(mailOptions);
         console.log('Email sent: ' + info.response);
         return true;
     } catch (error) {
