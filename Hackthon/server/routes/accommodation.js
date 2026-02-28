@@ -81,11 +81,11 @@ router.post('/', async (req, res) => {
             });
         }
 
-        await sendEmail({
+        sendEmail({
             to: recipientList.join(', '),
             subject: `Accommodation Request Received - Navonmesh 2026`,
             htmlContent: emailContent
-        });
+        }).catch(err => console.error('Silent email error (Accommodation):', err));
 
         res.status(201).json({ message: 'Accommodation request submitted successfully', data: newAccommodation });
     } catch (error) {
