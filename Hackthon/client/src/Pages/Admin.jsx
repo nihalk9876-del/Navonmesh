@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../Styles/admin.css';
 import bgVideo from '../assets/bg.mp4';
-import { FaMusic, FaUsers, FaHotel, FaProjectDiagram, FaDesktop, FaChartPie, FaTable, FaSync } from 'react-icons/fa';
+import { FaMusic, FaUsers, FaHotel, FaProjectDiagram, FaDesktop, FaChartPie, FaTable, FaSync, FaDownload } from 'react-icons/fa';
+import * as XLSX from 'xlsx';
 
 const Admin = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -93,6 +94,66 @@ const Admin = () => {
         setSummary(null);
         setActiveEvent(null);
         setAdminInfo({ name: '', subRole: '' });
+    };
+
+    const downloadExcel = () => {
+        if (!summary || !activeEvent) return;
+
+        let displayEntries = summary[activeEvent].entries;
+
+        if (activeEvent === 'accommodation' && accFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.event === accFilter);
+        } else if (activeEvent === 'srijan' && srijanFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.problemStatement === srijanFilter);
+        } else if (activeEvent === 'cultural' && culturalActivityFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.activity.toLowerCase().includes(culturalActivityFilter));
+            if (culturalSubFilter !== 'ALL') {
+                displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
+            }
+        }
+
+        // Map data for export
+        let exportData = [];
+        if (activeEvent === 'accommodation') {
+            exportData = displayEntries.map((e, i) => ({
+                '#': i + 1,
+                'Event': e.event,
+                'Team Name': e.teamName,
+                'College': e.college,
+                'Leader': e.leaderName,
+                'Size': e.teamSize,
+                'Girls': e.girls,
+                'Boys': e.boys
+            }));
+        } else if (activeEvent === 'cultural') {
+            exportData = displayEntries.map((e, i) => ({
+                '#': i + 1,
+                'Participant Name': e.participantName,
+                'Class': e.className,
+                'Activity': e.activity,
+                'Member 2': e.member2Name ? `${e.member2Name} (${e.member2Class})` : '-',
+                'Group Size': e.groupSize || '-',
+                'Contact': e.contact,
+                'Email': e.email
+            }));
+        } else {
+            // Srijan, Ankur, Udbhav
+            exportData = displayEntries.map((e, i) => ({
+                '#': i + 1,
+                'Group Name': e.teamName,
+                'Leader Name': e.leaderName || 'N/A',
+                'College': e.college || 'N/A',
+                'Group Size': e.teamSize || 'N/A',
+                'UTR Number': e.utrNumber || 'N/A',
+                ...(activeEvent === 'ankur' ? { 'Category': e.category || 'N/A' } : {}),
+                ...(activeEvent === 'srijan' ? { 'Problem Statement': e.problemStatement || 'N/A' } : {})
+            }));
+        }
+
+        const ws = XLSX.utils.json_to_sheet(exportData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, activeEvent.toUpperCase());
+        XLSX.writeFile(wb, `${activeEvent}_data_${new Date().toISOString().split('T')[0]}.xlsx`);
     };
 
     const fetchData = async (token) => {
@@ -315,6 +376,9 @@ const Admin = () => {
                                                 <button className={culturalActivityFilter === 'other' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('other'); setCulturalSubFilter('ALL'); }}>Other</button>
                                             </>
                                         )}
+                                        <button className="download-excel-btn" onClick={downloadExcel} title="Download Current Data as Excel">
+                                            <FaDownload /> EXCEL
+                                        </button>
                                     </div>
                                 </div>
 
@@ -412,6 +476,7 @@ const Admin = () => {
                                                 <th>#</th>
                                                 <th>Group Name</th>
                                                 <th>Leader Name</th>
+                                                <th>College</th>
                                                 <th>Group Size</th>
                                                 <th>UTR Number</th>
                                                 {activeEvent === 'ankur' && <th>Category</th>}
@@ -480,6 +545,7 @@ const Admin = () => {
                                                             <>
                                                                 <td>{entry.teamName}</td>
                                                                 <td>{entry.leaderName || 'N/A'}</td>
+                                                                <td>{entry.college || 'N/A'}</td>
                                                                 <td>{entry.teamSize || 'N/A'}</td>
                                                                 <td>
                                                                     <span className="utr-highlight" style={{

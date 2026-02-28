@@ -15,6 +15,38 @@ const Register = () => {
     const queryParams = new URLSearchParams(location.search);
     const urlEvent = queryParams.get('event');
 
+    const [formData, setFormData] = useState({
+        fullName: '', email: '', phone: '', college: '',
+        event: urlEvent === 'srijan' ? 'Srijan (Hackathon)' :
+            urlEvent === 'ankur' ? 'Ankur (Project Expo)' :
+                urlEvent === 'udbhav' ? 'Udbhav (Conference)' :
+                    urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
+        teamName: '',
+        teamSize: '',
+        studentCategory: '',
+        problemStatement: '',
+        member2Name: '', member2Email: '', member2Phone: '',
+        member3Name: '', member3Email: '', member3Phone: '',
+        member4Name: '', member4Email: '', member4Phone: '',
+        utrNumber: '',
+        agreed: false
+    });
+
+    const {
+        fullName, email, phone, college, event,
+        teamName, teamSize,
+        member2Name, member2Email, member2Phone,
+        member3Name, member3Email, member3Phone,
+        member4Name, member4Email, member4Phone,
+        utrNumber, studentCategory, problemStatement
+    } = formData;
+
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showUTRHelp, setShowUTRHelp] = useState(false);
+    const [zoomedImage, setZoomedImage] = useState(null);
+
     useEffect(() => {
         if (urlEvent === 'udbhav') {
             setFormData(prev => ({ ...prev, teamSize: '1', teamName: 'Individual' }));
@@ -33,45 +65,6 @@ const Register = () => {
             }));
         }
     }, [event]);
-
-
-    const [formData, setFormData] = useState({
-        // Team Leader (Member 1)
-        fullName: '', email: '', phone: '', college: '',
-
-        event: urlEvent === 'srijan' ? 'Srijan (Hackathon)' :
-            urlEvent === 'ankur' ? 'Ankur (Project Expo)' :
-                urlEvent === 'udbhav' ? 'Udbhav (Conference)' :
-                    urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
-
-        teamName: '',
-        teamSize: '',
-        studentCategory: '',
-        problemStatement: '',
-
-        // Members 2-4
-        member2Name: '', member2Email: '', member2Phone: '',
-        member3Name: '', member3Email: '', member3Phone: '',
-        member4Name: '', member4Email: '', member4Phone: '',
-        utrNumber: '',
-        agreed: false
-    });
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
-
-    // Success Modal State
-    const [showSuccessModal, setShowSuccessModal] = useState(false);
-    const [showUTRHelp, setShowUTRHelp] = useState(false);
-    const [zoomedImage, setZoomedImage] = useState(null);
-
-    const {
-        fullName, email, phone, college, event,
-        teamName, teamSize,
-        member2Name, member2Email, member2Phone,
-        member3Name, member3Email, member3Phone,
-        member4Name, member4Email, member4Phone,
-        utrNumber, studentCategory, problemStatement
-    } = formData;
 
     const onChange = e => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;

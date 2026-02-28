@@ -11,6 +11,40 @@ import boysHostel2 from "../assets/boys_hostel_2.png";
 import boysHostel3 from "../assets/boys_hostel_3.png";
 import boysHostel4 from "../assets/boys_hostel_4.png";
 
+// Reusable Styles
+const inputStyle = {
+    width: "100%",
+    padding: "10px",
+    borderRadius: "5px",
+    border: "1px solid #333",
+    background: "rgba(0, 0, 0, 0.5)",
+    color: "white",
+    outline: "none",
+    fontSize: "0.9rem",
+    marginBottom: "8px"
+};
+
+const labelStyle = {
+    display: "block",
+    marginBottom: "5px",
+    color: "#aaa",
+    fontSize: "0.9rem"
+};
+
+const sectionStyle = {
+    padding: "10px",
+    background: "rgba(255, 255, 255, 0.05)",
+    borderRadius: "8px"
+};
+
+const subHeaderStyle = {
+    color: "#4488ff",
+    fontSize: "1rem",
+    marginBottom: "10px",
+    borderBottom: "1px solid rgba(68, 136, 255, 0.3)",
+    paddingBottom: "5px"
+};
+
 const Accommodation = () => {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
@@ -424,40 +458,6 @@ const Accommodation = () => {
             )}
         </div>
     );
-};
-
-// Reusable Styles
-const inputStyle = {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #333",
-    background: "rgba(0, 0, 0, 0.5)",
-    color: "white",
-    outline: "none",
-    fontSize: "0.9rem",
-    marginBottom: "8px"
-};
-
-const labelStyle = {
-    display: "block",
-    marginBottom: "5px",
-    color: "#aaa",
-    fontSize: "0.9rem"
-};
-
-const sectionStyle = {
-    padding: "10px",
-    background: "rgba(255, 255, 255, 0.05)",
-    borderRadius: "8px"
-};
-
-const subHeaderStyle = {
-    color: "#4488ff",
-    fontSize: "1rem",
-    marginBottom: "10px",
-    borderBottom: "1px solid rgba(68, 136, 255, 0.3)",
-    paddingBottom: "5px"
 };
 
 export default Accommodation;
