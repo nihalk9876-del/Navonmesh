@@ -81,13 +81,15 @@ router.post('/', async (req, res) => {
             });
         }
 
-        await sendEmail({
+        // Send response immediately so the user doesn't wait
+        res.status(201).json({ message: 'Accommodation request submitted successfully', data: newAccommodation });
+
+        // Fire and forget email sending in the background
+        sendEmail({
             to: recipientList.join(', '),
             subject: `Accommodation Request Received - Navonmesh 2026`,
             htmlContent: emailContent
-        });
-
-        res.status(201).json({ message: 'Accommodation request submitted successfully', data: newAccommodation });
+        }).catch(err => console.error('Async Email Error:', err));
     } catch (error) {
         console.error('Accommodation Error:', error);
         res.status(500).json({ error: 'Server error during accommodation registration' });
