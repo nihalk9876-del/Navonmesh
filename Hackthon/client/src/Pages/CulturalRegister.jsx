@@ -96,7 +96,7 @@ const CulturalRegister = () => {
                             </div>
 
                             <a
-                                href="https://whatsapp.com/channel/0029VbCVzgbBlHpY1prIRI1m"
+                                href="https://chat.whatsapp.com/Jcn9gVixZ9C4FA5cKEajfR?mode=gi_t"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="whatsapp-btn"

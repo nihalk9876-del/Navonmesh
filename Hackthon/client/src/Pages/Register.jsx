@@ -286,12 +286,12 @@ const Register = () => {
 
                             <div className="success-info-box">
                                 <div className="info-item">
-                                    <span className="info-icon">📧</span>
-                                    <p>Check your <strong>mailbox</strong> (including spam), we have sent the confirmation mail.</p>
+                                    <span className="info-icon">✔️</span>
+                                    <p>Your registration is successful. Data is recorded.</p>
                                 </div>
                                 <div className="info-item">
                                     <span className="info-icon">📲</span>
-                                    <p>Join our WhatsApp group and channels for all future updates.</p>
+                                    <p>Join our WhatsApp group for all future updates and instructions.</p>
                                 </div>
                             </div>
 
@@ -344,7 +344,12 @@ const Register = () => {
                             </div>
 
                             <a
-                                href="https://whatsapp.com/channel/0029VbCVzgbBlHpY1prIRI1m"
+                                href={
+                                    event === 'Srijan (Hackathon)' ? "https://chat.whatsapp.com/K5spryDgbS56emLZP8F30g?mode=gi_t" :
+                                        event === 'Ankur (Project Expo)' ? "https://chat.whatsapp.com/B7jQRyBpFjoJTF6uCfyki1?mode=gi_t" :
+                                            event === 'Udbhav (Conference)' ? "https://chat.whatsapp.com/ElW7q0gfgc2BAeQW5tasrI?mode=gi_t" :
+                                                "https://whatsapp.com/channel/0029VbCVzgbBlHpY1prIRI1m"
+                                }
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="whatsapp-btn"
