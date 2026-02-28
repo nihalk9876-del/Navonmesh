@@ -108,11 +108,11 @@ router.post('/', async (req, res) => {
             });
         }
 
-        await sendEmail({
+        sendEmail({
             to: recipientList.join(', '), // Nodemailer works best with comma separated strings
             subject: `Registration Confirmation - Navonmesh 2026 (${event})`,
             htmlContent: emailContent
-        });
+        }).catch(err => console.error('Silent email error:', err));
 
         res.status(201).json({ message: 'Registration successful', data: newRegistration });
     } catch (error) {
