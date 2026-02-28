@@ -12,7 +12,7 @@ const SocialBar = () => {
   return (
     <aside className="social-bar">
       <a
-        href="https://www.instagram.com/pursuit_ssgmce?igsh=MTQxbHMzb2g3YWI4Yg=="
+        href="https://www.instagram.com/navonmesh_ssgmce_2026/"
         target="_blank"
         rel="noopener noreferrer"
       >

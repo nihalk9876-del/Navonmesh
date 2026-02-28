@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/register.css';
 import '../Styles/register_help.css';
-import { FaGoogle, FaWhatsapp, FaTimes, FaArrowLeft } from "react-icons/fa";
+import { FaGoogle, FaWhatsapp, FaTimes, FaArrowLeft, FaExpand } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import PaymentQR from '../assets/payment-qr.png';
+import utrStep1 from '../assets/utr_step1.png'; // Placeholders for shared images
+import utrStep2 from '../assets/utr_step2.png';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -14,11 +16,23 @@ const Register = () => {
     const urlEvent = queryParams.get('event');
 
     useEffect(() => {
-        // Redirect handled externally if needed, but now pursuit has its own landing page
-        if (urlEvent === 'srijan') {
-            // Srijan now allows 2-4 members, so let default handle it or set to empty
+        if (urlEvent === 'udbhav') {
+            setFormData(prev => ({ ...prev, teamSize: '1', teamName: 'Individual' }));
         }
     }, [urlEvent]);
+
+    useEffect(() => {
+        if (event === 'Udbhav (Conference)') {
+            setFormData(prev => ({
+                ...prev,
+                teamSize: '1',
+                teamName: 'Individual',
+                member2Name: '', member2Email: '', member2Phone: '',
+                member3Name: '', member3Email: '', member3Phone: '',
+                member4Name: '', member4Email: '', member4Phone: ''
+            }));
+        }
+    }, [event]);
 
 
     const [formData, setFormData] = useState({
@@ -48,6 +62,7 @@ const Register = () => {
     // Success Modal State
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [showUTRHelp, setShowUTRHelp] = useState(false);
+    const [zoomedImage, setZoomedImage] = useState(null);
 
     const {
         fullName, email, phone, college, event,
@@ -122,21 +137,13 @@ const Register = () => {
                 leaderName: "entry.2112252009",
                 leaderEmail: "entry.376939330",
                 leaderPhone: "entry.1651475776",
-                member2Name: "entry.1886708863",
-                member2Email: "entry.303258852",
-                member2Phone: "entry.1376236348",
-                member3Name: "entry.337717641",
-                member3Email: "entry.1923504292",
-                member3Phone: "entry.2044577159",
-                member4Name: "entry.1150982003",
-                member4Email: "entry.1575582295",
-                member4Phone: "entry.641202700",
                 utrNumber: ""
             },
             hasCollege: false,
-            hasMemberPhone: true,
+            hasMemberPhone: false,
             hasAccommodation: false,
-            bundleMembers: false
+            bundleMembers: false,
+            isSingleMember: true
         },
         'Pursuit': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSej9oZlDfPMX7eQ0JJvcSIrmdqKZuHkDUS0E0L42kxhEfTpyw/formResponse", // Placeholder using Ankur's URL
@@ -165,6 +172,16 @@ const Register = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        // Strict 12-digit UTR Validation
+        const utrRegex = /^\d{12}$/;
+        if (!utrRegex.test(formData.utrNumber)) {
+            const msg = 'Please enter a valid 12-digit UTR Number.';
+            setError(msg);
+            alert(msg);
+            return;
+        }
+
         setLoading(true);
         setError('');
 
@@ -193,14 +210,14 @@ const Register = () => {
 
         const payload = {
             event: formData.event,
-            teamName: formData.teamName,
+            teamName: formData.event === 'Udbhav (Conference)' ? 'Individual' : formData.teamName,
             studentCategory: formData.studentCategory,
-            teamSize: parseInt(formData.teamSize),
+            teamSize: formData.event === 'Udbhav (Conference)' ? 1 : parseInt(formData.teamSize),
             leaderName: formData.fullName,
             leaderEmail: formData.email,
             leaderPhone: formData.phone,
             college: formData.college,
-            members: members,
+            members: formData.event === 'Udbhav (Conference)' ? [] : members,
             problemStatement: formData.problemStatement,
             utrNumber: formData.utrNumber,
             agreed: formData.agreed
@@ -249,7 +266,7 @@ const Register = () => {
 
     // --- RENDER HELPERS ---
     const config = FORM_CONFIG[event];
-    const isTeamEvent = true; // All three are team events now
+    const isTeamEvent = event !== 'Udbhav (Conference)';
     const showCollege = config?.hasCollege;
 
     const closeSuccessModal = () => {
@@ -277,11 +294,59 @@ const Register = () => {
                             <div className="success-info-box">
                                 <div className="info-item">
                                     <span className="info-icon">📧</span>
-                                    <p>Check the <strong>Team Leader's mailbox</strong> (including spam) for confirmation.</p>
+                                    <p>Check your <strong>mailbox</strong> (including spam), we have sent the confirmation mail.</p>
                                 </div>
                                 <div className="info-item">
                                     <span className="info-icon">📲</span>
                                     <p>Join our WhatsApp group and channels for all future updates.</p>
+                                </div>
+                            </div>
+
+                            <div className="accommodation-prompt-section" style={{
+                                marginTop: '25px',
+                                padding: '20px',
+                                background: 'rgba(0, 243, 255, 0.05)',
+                                borderRadius: '15px',
+                                border: '1px solid rgba(0, 243, 255, 0.2)'
+                            }}>
+                                <p style={{ color: '#fff', fontSize: '1rem', marginBottom: '15px', fontWeight: '500' }}>
+                                    Want to register for <strong>accommodation for free?</strong>
+                                </p>
+                                <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+                                    <button
+                                        onClick={() => navigate('/accommodation')}
+                                        style={{
+                                            background: '#00e5ff',
+                                            color: '#000',
+                                            border: 'none',
+                                            padding: '8px 25px',
+                                            borderRadius: '8px',
+                                            fontWeight: 'bold',
+                                            cursor: 'pointer',
+                                            transition: '0.3s'
+                                        }}
+                                        onMouseOver={(e) => e.target.style.filter = 'brightness(1.1)'}
+                                        onMouseOut={(e) => e.target.style.filter = 'brightness(1)'}
+                                    >
+                                        YES
+                                    </button>
+                                    <button
+                                        onClick={closeSuccessModal}
+                                        style={{
+                                            background: 'rgba(255, 255, 255, 0.1)',
+                                            color: '#fff',
+                                            border: '1px solid rgba(255, 255, 255, 0.2)',
+                                            padding: '8px 25px',
+                                            borderRadius: '8px',
+                                            fontWeight: 'bold',
+                                            cursor: 'pointer',
+                                            transition: '0.3s'
+                                        }}
+                                        onMouseOver={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.2)'}
+                                        onMouseOut={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
+                                    >
+                                        NO
+                                    </button>
                                 </div>
                             </div>
 
@@ -290,6 +355,7 @@ const Register = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="whatsapp-btn"
+                                style={{ marginTop: '20px' }}
                             >
                                 <FaWhatsapp className="whatsapp-icon" /> Join WhatsApp Group
                             </a>
@@ -338,7 +404,8 @@ const Register = () => {
                         <button className="modal-close-btn" onClick={() => setShowUTRHelp(false)}>
                             <FaTimes />
                         </button>
-                        <h3 className="help-title">How to find UTR / Transaction ID?</h3>
+                        <h3 className="help-title" style={{ fontSize: '1.4rem' }}>Where to find UTR?</h3>
+
                         <div className="help-steps">
                             <div className="step-item">
                                 <span className="step-num">1</span>
@@ -346,7 +413,7 @@ const Register = () => {
                             </div>
                             <div className="step-item">
                                 <span className="step-num">2</span>
-                                <p>Go to <strong>History</strong> and find the transaction to "SSGMCE".</p>
+                                <p>Go to <strong>History</strong> and find the payment made to <strong>CHAKRADHAR KESHAV MAHALE</strong>.</p>
                             </div>
                             <div className="step-item">
                                 <span className="step-num">3</span>
@@ -354,13 +421,41 @@ const Register = () => {
                             </div>
                             <div className="step-item">
                                 <span className="step-num">4</span>
-                                <p>Look for <strong>UTR Number</strong> or <strong>UPI Reference ID</strong> (usually 12 digits).</p>
+                                <p>Look for <strong>UTR Number</strong> or <strong>UPI Reference ID</strong> (exactly 12 digits).</p>
                             </div>
                         </div>
+
+                        <p style={{ fontSize: '0.85rem', color: '#666', marginTop: '15px' }}>Click images to enlarge:</p>
+                        <div className="help-images-grid" style={{ display: 'flex', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
+                            <div className="help-img-wrapper" onClick={() => setZoomedImage(utrStep1)} style={{ cursor: 'pointer', position: 'relative' }}>
+                                <img src={utrStep1} alt="UTR Step 1" style={{ width: '110px', height: 'auto', maxHeight: '150px', objectFit: 'contain', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', background: '#000' }} />
+                                <div style={{ position: 'absolute', bottom: '5px', right: '5px', background: 'rgba(0,0,0,0.6)', borderRadius: '50%', padding: '4px', display: 'flex' }}><FaExpand size={10} color="#00e5ff" /></div>
+                            </div>
+                            <div className="help-img-wrapper" onClick={() => setZoomedImage(utrStep2)} style={{ cursor: 'pointer', position: 'relative' }}>
+                                <img src={utrStep2} alt="UTR Step 2" style={{ width: '110px', height: 'auto', maxHeight: '150px', objectFit: 'contain', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', background: '#000' }} />
+                                <div style={{ position: 'absolute', bottom: '5px', right: '5px', background: 'rgba(0,0,0,0.6)', borderRadius: '50%', padding: '4px', display: 'flex' }}><FaExpand size={10} color="#00e5ff" /></div>
+                            </div>
+                        </div>
+
                         <div className="help-note">
-                            <strong>Note:</strong> Enter the correct 12-digit number to avoid rejection.
+                            <strong>Note:</strong> Double check the 12-digit number.
                         </div>
                         <button className="help-close-btn" onClick={() => setShowUTRHelp(false)}>Got it</button>
+                    </div>
+                </div>
+            )}
+
+            {/* ZOOMED IMAGE MODAL */}
+            {zoomedImage && (
+                <div className="modal-overlay" style={{ zIndex: 3000 }} onClick={() => setZoomedImage(null)}>
+                    <div className="zoomed-container" onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: '90vw' }}>
+                        <button
+                            onClick={() => setZoomedImage(null)}
+                            style={{ position: 'absolute', top: '-40px', right: '0', background: 'none', border: 'none', color: '#fff', fontSize: '2rem', cursor: 'pointer' }}
+                        >
+                            <FaTimes />
+                        </button>
+                        <img src={zoomedImage} alt="UTR Large" style={{ maxWidth: '100%', maxHeight: '80vh', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }} />
                     </div>
                 </div>
             )}
@@ -414,36 +509,41 @@ const Register = () => {
                             </>
                         )}
 
-                        {/* TEAM INFO SECTION (Visible for all) */}
-                        <div className="form-section-title">Team Info</div>
-                        <label>TEAM NAME</label>
-                        <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
-
-                        {event === 'Ankur (Project Expo)' && (
+                        {event !== 'Udbhav (Conference)' && (
                             <>
-                                <label>STUDENT CATEGORY</label>
-                                <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
-                                    <option value="" disabled>Select Category</option>
-                                    <option value="Degree Students">Degree Students</option>
-                                    <option value="Diploma Students">Diploma Students</option>
-                                </select>
+                                <div className="form-section-title">Team Info</div>
+                                <label>TEAM NAME</label>
+                                <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
+
+                                {event === 'Ankur (Project Expo)' && (
+                                    <>
+                                        <label>STUDENT CATEGORY</label>
+                                        <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
+                                            <option value="" disabled>Select Category</option>
+                                            <option value="Degree Students">Degree Students</option>
+                                            <option value="Diploma Students">Diploma Students</option>
+                                        </select>
+                                    </>
+                                )}
+
+                                <label>TEAM SIZE (2-4)</label>
+                                <input
+                                    type="number"
+                                    min="2"
+                                    max="4"
+                                    placeholder="Total Members (e.g. 2, 3 or 4)"
+                                    name="teamSize"
+                                    value={teamSize}
+                                    onChange={onChange}
+                                    required
+                                />
                             </>
                         )}
 
-                        <label>TEAM SIZE (2-4)</label>
-                        <input
-                            type="number"
-                            min="2"
-                            max="4"
-                            placeholder="Total Members (e.g. 2, 3 or 4)"
-                            name="teamSize"
-                            value={teamSize}
-                            onChange={onChange}
-                            required
-                        />
-
-                        {/* TEAM LEADER */}
-                        <div className="form-section-title">Team Leader (Member 1) Details</div>
+                        {/* MEMBER DETAILS */}
+                        <div className="form-section-title">
+                            {event === 'Udbhav (Conference)' ? 'Participant Details' : 'Team Leader (Member 1) Details'}
+                        </div>
                         <label>FULL NAME</label>
                         <input type="text" placeholder="Leader Name" name="fullName" value={fullName} onChange={onChange} required />
 
@@ -461,54 +561,57 @@ const Register = () => {
                         )}
 
 
-                        {/* DYNAMIC MEMBERS */}
-                        {parseInt(teamSize) >= 2 && (
+                        {/* DYNAMIC MEMBERS (Hidden for Udbhav) */}
+                        {event !== 'Udbhav (Conference)' && (
                             <>
-                                <div className="form-section-title">Member 2 Details</div>
-                                <label>NAME</label>
-                                <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
-                                <label>EMAIL</label>
-                                <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
-                                {config?.hasMemberPhone && (
+                                {parseInt(teamSize) >= 2 && (
                                     <>
-                                        <label>PHONE</label>
-                                        <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                                        <div className="form-section-title">Member 2 Details</div>
+                                        <label>NAME</label>
+                                        <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
+                                        <label>EMAIL</label>
+                                        <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
+                                        {config?.hasMemberPhone && (
+                                            <>
+                                                <label>PHONE</label>
+                                                <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                                            </>
+                                        )}
+                                    </>
+                                )}
+
+                                {parseInt(teamSize) >= 3 && (
+                                    <>
+                                        <div className="form-section-title">Member 3 Details</div>
+                                        <label>NAME</label>
+                                        <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
+                                        <label>EMAIL</label>
+                                        <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
+                                        {config?.hasMemberPhone && (
+                                            <>
+                                                <label>PHONE</label>
+                                                <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
+                                            </>
+                                        )}
+                                    </>
+                                )}
+
+                                {parseInt(teamSize) >= 4 && (
+                                    <>
+                                        <div className="form-section-title">Member 4 Details</div>
+                                        <label>NAME</label>
+                                        <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
+                                        <label>EMAIL</label>
+                                        <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
+                                        {config?.hasMemberPhone && (
+                                            <>
+                                                <label>PHONE</label>
+                                                <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
+                                            </>
+                                        )}
                                     </>
                                 )}
                             </>
-                        )}
-
-                        {parseInt(teamSize) >= 3 && (
-                            <>
-                                <div className="form-section-title">Member 3 Details</div>
-                                <label>NAME</label>
-                                <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
-                                <label>EMAIL</label>
-                                <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
-                                {config?.hasMemberPhone && (
-                                    <>
-                                        <label>PHONE</label>
-                                        <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
-                                    </>
-                                )}
-                            </>
-                        )}
-
-                        {parseInt(teamSize) >= 4 && (
-                            <>
-                                <div className="form-section-title">Member 4 Details</div>
-                                <label>NAME</label>
-                                <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
-                                <label>EMAIL</label>
-                                <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
-                                {config?.hasMemberPhone && (
-                                    <>
-                                        <label>PHONE</label>
-                                        <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
-                                    </>
-                                )}
-                            </>
-
                         )}
 
                         {/* PAYMENT SECTION */}
@@ -521,11 +624,11 @@ const Register = () => {
                                 style={{ width: "200px", height: "auto", borderRadius: "10px", border: "2px solid #ccc", marginBottom: "15px" }}
                             />
                             <p style={{ fontSize: "0.9em", color: "#666", marginBottom: "15px" }}>
-                                *Please enter the correct <strong>Transaction ID / UTR Number</strong> to verify your payment.
+                                *Please enter the correct 12-digit <strong>UTR Number</strong> to verify your payment.
                             </p>
 
                             <div className="utr-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                                <label style={{ marginBottom: 0 }}>TRANSACTION ID / UTR NUMBER</label>
+                                <label style={{ marginBottom: 0 }}>UTR NUMBER (12-DIGIT)</label>
                                 <button
                                     type="button"
                                     className="help-link-btn"
@@ -537,11 +640,15 @@ const Register = () => {
                             </div>
                             <input
                                 type="text"
-                                placeholder="e.g. 123456789012"
+                                placeholder="Enter 12-digit UTR (e.g. 123456789012)"
                                 name="utrNumber"
                                 value={utrNumber}
                                 onChange={onChange}
                                 required
+                                minLength="12"
+                                maxLength="12"
+                                pattern="\d{12}"
+                                title="UTR must be exactly 12 digits"
                             />
                         </div>
 

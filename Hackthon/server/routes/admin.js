@@ -58,15 +58,15 @@ router.get('/data', async (req, res) => {
         res.json({
             srijan: {
                 count: srijan.length,
-                entries: srijan.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, problemStatement: r.problemStatement, utrNumber: r.utrNumber, _id: r._id }))
+                entries: srijan.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, college: r.college, problemStatement: r.problemStatement, utrNumber: r.utrNumber, _id: r._id }))
             },
             ankur: {
                 count: ankur.length,
-                entries: ankur.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, utrNumber: r.utrNumber, _id: r._id, category: r.studentCategory }))
+                entries: ankur.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, college: r.college, utrNumber: r.utrNumber, _id: r._id, category: r.studentCategory }))
             },
             udbhav: {
                 count: udbhav.length,
-                entries: udbhav.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, utrNumber: r.utrNumber, _id: r._id }))
+                entries: udbhav.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, college: r.college, utrNumber: r.utrNumber, _id: r._id }))
             },
             cultural: {
                 count: cultural.length,
