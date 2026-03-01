@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/team.css";
 import { FaInstagram, FaLinkedin, FaPhone, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { FaXTwitter } from "react-icons/fa6";
 import ashishImg from "../assets/ashishIngle.png";
 import teamPlaceholder from "../assets/team_placeholder.png";
@@ -201,7 +202,6 @@ const teamMembers = [
         name: "Vedant Darokar",
         role: "Core Team Member",
         subRole: "Overall Head",
-        subRole2: "HEAD(PURSUIT)",
         phone: "+91 8208772402",
         email: "vedantdarokar7@gmail.com",
         instagram: "https://www.instagram.com/vedant_darokar_15/",
@@ -237,7 +237,7 @@ const teamMembers = [
         role: "Core Team Member",
         subRole: "HEAD (उद्‌भव)",
         phone: "+91 8605359181",
-        email: "tanmay@example.com",
+        email: "tanmaykurhekar07@gmail.com",
         image: krushnaImg,
     },
     {
@@ -284,17 +284,7 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/ashish-ingle-1aba5437b/",
         image: ashishImg,
     },
-    {
-        id: 33,
-        name: "Pratik Mapari",
-        role: "Core Team Member",
-        subRole: "Discipline Co-Head",
-        phone: "+91 9764315703",
-        email: "pratikmapari61@gmail.com",
-        instagram: "https://www.instagram.com/theprxtik?igsh=MXhuZmE5M2YwcjFkZQ==",
-        linkedin: "https://www.linkedin.com/in/pratik-mapari-b259aa289?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        image: teamPlaceholder,
-    },
+
     {
         id: 18,
         name: "Om Konde",
@@ -366,7 +356,11 @@ const Team = () => {
                 <div className="divine-img-container">
                     <img src={divineImg} alt="Divine Blessing" />
                 </div>
-                <h3 className="marathi-text">श्री संत गजानन महाराज,शेगाव</h3>
+                <h3 className="marathi-text">
+                    <span className="left-symbol">॥</span>
+                    श्री संत गजानन महाराज,शेगाव
+                    <Link to="/admin" className="symbol-link">॥</Link>
+                </h3>
             </div>
 
             <h1 className="team-title" style={{ marginTop: "40px" }}>MENTORS</h1>

@@ -4,7 +4,7 @@ import { FaPaperclip } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import registerBtnImg from "../assets/register-btn.png";
 import ProblemStatements from "../Components/ProblemStatements";
-import srijanPoster from "../assets/HACKATHON.png";
+import srijanPoster from "../assets/HACKATHON.jpeg";
 
 const Hackathon = () => {
     const [showAll, setShowAll] = useState(false);
@@ -268,6 +268,30 @@ const Hackathon = () => {
                         <strong>MISSION UPDATE:</strong> Choose your problem statement, but it must be related to the domains shown below.
                         The prizes for all problem statements are identical.
                     </p>
+                </div>
+
+                {/* Srijan Heads Contacts - Desktop Only */}
+                <div className="srijan-heads-contacts desktop-only">
+                    <div className="contact-box">
+                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-name">Atharva Tayade</span>
+                        <a href="tel:8767968475" className="box-phone">8767968475</a>
+                    </div>
+                    <div className="contact-box">
+                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-name">Nihal Kankal</span>
+                        <a href="tel:8766417815" className="box-phone">8766417815</a>
+                    </div>
+                    <div className="contact-box">
+                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-name">Vedant Darokar</span>
+                        <a href="tel:8208772402" className="box-phone">8208772402</a>
+                    </div>
+                    <div className="contact-box">
+                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-name">Sanchit Dangra</span>
+                        <a href="tel:9876543210" className="box-phone">9876543210</a>
+                    </div>
                 </div>
             </div>
 

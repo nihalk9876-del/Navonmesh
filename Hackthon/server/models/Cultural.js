@@ -13,6 +13,7 @@ const CulturalSchema = new mongoose.Schema({
 
     contact: { type: String, required: true },
     email: { type: String, required: true },
+    paymentVerified: { type: Boolean, default: false }, // Track email delivery status
     registrationDate: { type: Date, default: Date.now }
 });
 

@@ -129,8 +129,8 @@ const ProjectExpo = () => {
                 </div>
                 <div className="ankur-spec-item">
                     <div className="hud-label">TEAM_SIZE</div>
-                    <div className="hud-value">2 - 3 UNIT</div>
-                    <div className="hud-bar"><div className="fill" style={{ width: '75%' }}></div></div>
+                    <div className="hud-value">1 - 4 UNIT</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
                 </div>
                 <div className="ankur-spec-item">
                     <div className="hud-label">ELIGIBILITY</div>
@@ -279,7 +279,7 @@ const ProjectExpo = () => {
                             <ul className="rules-list">
                                 <li data-index="01">Participant must treat all other team members, competitors, judges, coaches, volunteers with respect.</li>
                                 <li data-index="02">Members should have a valid Student ID card of the school/college, Aadhar card.</li>
-                                <li data-index="03">Maximum 2 to 3 students per project will be allowed.</li>
+                                <li data-index="03">Maximum 1 to 4 students per project will be allowed.</li>
                                 <li data-index="04">Participation is open to students from designated categories: Degree (UG/PG) & Diploma.</li>
                                 <li data-index="05">Students need to specify the stream of their project before the Expo.</li>
                                 <li data-index="06">The model should be in good working condition.</li>

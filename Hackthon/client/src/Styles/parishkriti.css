@@ -26,14 +26,14 @@
     top: 0;
     left: 0;
     z-index: 1;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .video-tint {
     position: absolute;
     inset: 0;
     /* Adjust this gradient and opacity to get the exact level of transparency you want */
-    background: linear-gradient(rgba(10, 30, 15, 0.75), rgba(2, 5, 2, 0.9));
+    background: linear-gradient(rgba(10, 30, 15, 0.4), rgba(2, 5, 2, 0.6));
     z-index: 2;
 }
 

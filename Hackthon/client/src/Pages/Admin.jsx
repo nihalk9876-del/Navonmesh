@@ -176,6 +176,34 @@ const Admin = () => {
         setLoading(false);
     };
 
+    const handleSendMail = async (teamId, eventType) => {
+        if (!window.confirm('Send confirmation email to this participant/team?')) return;
+
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const endpoint = eventType === 'cultural'
+                ? `${API_URL}/api/admin/cultural/send-confirmation/${teamId}`
+                : `${API_URL}/api/admin/send-confirmation/${teamId}`;
+
+            const res = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}`
+                }
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+                alert('Email sent successfully!');
+                fetchData(sessionStorage.getItem('adminToken')); // Refresh data
+            } else {
+                alert(data.error || 'Failed to send email');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error sending email');
+        }
+    };
+
     if (!loggedIn) {
         return (
             <div className="admin-login-container app-layout">
@@ -470,6 +498,7 @@ const Admin = () => {
                                                 <th>Group Size</th>
                                                 <th>Contact</th>
                                                 <th>Email</th>
+                                                <th>Action</th>
                                             </tr>
                                         ) : (
                                             <tr>
@@ -481,6 +510,7 @@ const Admin = () => {
                                                 <th>UTR Number</th>
                                                 {activeEvent === 'ankur' && <th>Category</th>}
                                                 {activeEvent === 'srijan' && <th>Problem Statement</th>}
+                                                <th>Action</th>
                                             </tr>
                                         )}
                                     </thead>
@@ -540,6 +570,27 @@ const Admin = () => {
                                                                 <td className="mono">{entry.groupSize || '-'}</td>
                                                                 <td>{entry.contact}</td>
                                                                 <td style={{ fontSize: '0.8rem', opacity: 0.8 }}>{entry.email}</td>
+                                                                <td>
+                                                                    <button
+                                                                        onClick={() => handleSendMail(entry._id, 'cultural')}
+                                                                        disabled={entry.paymentVerified}
+                                                                        style={{
+                                                                            padding: '6px 12px',
+                                                                            backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
+                                                                            color: 'white',
+                                                                            border: 'none',
+                                                                            borderRadius: '4px',
+                                                                            cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
+                                                                            fontWeight: 'bold',
+                                                                            fontSize: '0.8rem',
+                                                                            transition: 'background-color 0.2s'
+                                                                        }}
+                                                                        onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
+                                                                        onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
+                                                                    >
+                                                                        {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
+                                                                    </button>
+                                                                </td>
                                                             </>
                                                         ) : (
                                                             <>
@@ -558,6 +609,27 @@ const Admin = () => {
                                                                 </td>
                                                                 {activeEvent === 'ankur' && <td>{entry.category || 'N/A'}</td>}
                                                                 {activeEvent === 'srijan' && <td>{entry.problemStatement || 'N/A'}</td>}
+                                                                <td>
+                                                                    <button
+                                                                        onClick={() => handleSendMail(entry._id, activeEvent)}
+                                                                        disabled={entry.paymentVerified}
+                                                                        style={{
+                                                                            padding: '6px 12px',
+                                                                            backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
+                                                                            color: 'white',
+                                                                            border: 'none',
+                                                                            borderRadius: '4px',
+                                                                            cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
+                                                                            fontWeight: 'bold',
+                                                                            fontSize: '0.8rem',
+                                                                            transition: 'background-color 0.2s'
+                                                                        }}
+                                                                        onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
+                                                                        onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
+                                                                    >
+                                                                        {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
+                                                                    </button>
+                                                                </td>
                                                             </>
                                                         )}
                                                     </tr>

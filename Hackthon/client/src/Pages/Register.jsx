@@ -49,20 +49,14 @@ const Register = () => {
 
     useEffect(() => {
         if (urlEvent === 'udbhav') {
-            setFormData(prev => ({ ...prev, teamSize: '1', teamName: 'Individual' }));
+            setFormData(prev => ({ ...prev, teamSize: '1' }));
         }
     }, [urlEvent]);
 
+    // Removed forced individual check for Udbhav to allow team registrations (1-4 members)
     useEffect(() => {
         if (event === 'Udbhav (Conference)') {
-            setFormData(prev => ({
-                ...prev,
-                teamSize: '1',
-                teamName: 'Individual',
-                member2Name: '', member2Email: '', member2Phone: '',
-                member3Name: '', member3Email: '', member3Phone: '',
-                member4Name: '', member4Email: '', member4Phone: ''
-            }));
+            // Optional: You could set default team size here if needed
         }
     }, [event]);
 
@@ -130,13 +124,23 @@ const Register = () => {
                 leaderName: "entry.2112252009",
                 leaderEmail: "entry.376939330",
                 leaderPhone: "entry.1651475776",
-                utrNumber: ""
+                member2Name: "entry.1446904082", // Using Ankur's IDs as placeholders/likely mapped same in backend
+                member2Email: "entry.282203664",
+                member2Phone: "entry.1059585569",
+                member3Name: "entry.1158408763",
+                member3Email: "entry.194510035",
+                member3Phone: "entry.1200228325",
+                member4Name: "entry.1710049001",
+                member4Email: "entry.921494192",
+                member4Phone: "entry.1681717638",
+                college: "entry.323039862",
+                utrNumber: "entry.624710763"
             },
-            hasCollege: false,
-            hasMemberPhone: false,
+            hasCollege: true,
+            hasMemberPhone: true,
             hasAccommodation: false,
             bundleMembers: false,
-            isSingleMember: true
+            isSingleMember: false // Now allows 1-4
         },
         'Pursuit': {
             url: "https://docs.google.com/forms/d/e/1FAIpQLSej9oZlDfPMX7eQ0JJvcSIrmdqKZuHkDUS0E0L42kxhEfTpyw/formResponse", // Placeholder using Ankur's URL
@@ -203,14 +207,14 @@ const Register = () => {
 
         const payload = {
             event: formData.event,
-            teamName: formData.event === 'Udbhav (Conference)' ? 'Individual' : formData.teamName,
+            teamName: formData.teamName,
             studentCategory: formData.studentCategory,
-            teamSize: formData.event === 'Udbhav (Conference)' ? 1 : parseInt(formData.teamSize),
+            teamSize: parseInt(formData.teamSize),
             leaderName: formData.fullName,
             leaderEmail: formData.email,
             leaderPhone: formData.phone,
             college: formData.college,
-            members: formData.event === 'Udbhav (Conference)' ? [] : members,
+            members: members,
             problemStatement: formData.problemStatement,
             utrNumber: formData.utrNumber,
             agreed: formData.agreed
@@ -259,7 +263,7 @@ const Register = () => {
 
     // --- RENDER HELPERS ---
     const config = FORM_CONFIG[event];
-    const isTeamEvent = event !== 'Udbhav (Conference)';
+    const isTeamEvent = true; // All events now allow team registrations (1-4)
     const showCollege = config?.hasCollege;
 
     const closeSuccessModal = () => {
@@ -507,40 +511,36 @@ const Register = () => {
                             </>
                         )}
 
-                        {event !== 'Udbhav (Conference)' && (
+                        <div className="form-section-title">Team Info</div>
+                        <label>TEAM NAME</label>
+                        <input type="text" placeholder="Enter Team Name (or 'Individual' if solo)" name="teamName" value={teamName} onChange={onChange} required />
+
+                        {event === 'Ankur (Project Expo)' && (
                             <>
-                                <div className="form-section-title">Team Info</div>
-                                <label>TEAM NAME</label>
-                                <input type="text" placeholder="Enter Team Name" name="teamName" value={teamName} onChange={onChange} required />
-
-                                {event === 'Ankur (Project Expo)' && (
-                                    <>
-                                        <label>STUDENT CATEGORY</label>
-                                        <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
-                                            <option value="" disabled>Select Category</option>
-                                            <option value="Degree Students">Degree Students</option>
-                                            <option value="Diploma Students">Diploma Students</option>
-                                        </select>
-                                    </>
-                                )}
-
-                                <label>TEAM SIZE (2-4)</label>
-                                <input
-                                    type="number"
-                                    min="2"
-                                    max="4"
-                                    placeholder="Total Members (e.g. 2, 3 or 4)"
-                                    name="teamSize"
-                                    value={teamSize}
-                                    onChange={onChange}
-                                    required
-                                />
+                                <label>STUDENT CATEGORY</label>
+                                <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
+                                    <option value="" disabled>Select Category</option>
+                                    <option value="Degree Students">Degree Students</option>
+                                    <option value="Diploma Students">Diploma Students</option>
+                                </select>
                             </>
                         )}
 
+                        <label>TEAM SIZE (1-4)</label>
+                        <input
+                            type="number"
+                            min="1"
+                            max="4"
+                            placeholder="Total Members (1, 2, 3 or 4)"
+                            name="teamSize"
+                            value={teamSize}
+                            onChange={onChange}
+                            required
+                        />
+
                         {/* MEMBER DETAILS */}
                         <div className="form-section-title">
-                            {event === 'Udbhav (Conference)' ? 'Participant Details' : 'Team Leader (Member 1) Details'}
+                            Team Leader (Member 1) Details
                         </div>
                         <label>FULL NAME</label>
                         <input type="text" placeholder="Leader Name" name="fullName" value={fullName} onChange={onChange} required />
@@ -560,57 +560,55 @@ const Register = () => {
 
 
                         {/* DYNAMIC MEMBERS (Hidden for Udbhav) */}
-                        {event !== 'Udbhav (Conference)' && (
-                            <>
-                                {parseInt(teamSize) >= 2 && (
-                                    <>
-                                        <div className="form-section-title">Member 2 Details</div>
-                                        <label>NAME</label>
-                                        <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
-                                        <label>EMAIL</label>
-                                        <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
-                                        {config?.hasMemberPhone && (
-                                            <>
-                                                <label>PHONE</label>
-                                                <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
-                                            </>
-                                        )}
-                                    </>
-                                )}
+                        <>
+                            {parseInt(teamSize) >= 2 && (
+                                <>
+                                    <div className="form-section-title">Member 2 Details</div>
+                                    <label>NAME</label>
+                                    <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
+                                    <label>EMAIL</label>
+                                    <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
+                                    {config?.hasMemberPhone && (
+                                        <>
+                                            <label>PHONE</label>
+                                            <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                                        </>
+                                    )}
+                                </>
+                            )}
 
-                                {parseInt(teamSize) >= 3 && (
-                                    <>
-                                        <div className="form-section-title">Member 3 Details</div>
-                                        <label>NAME</label>
-                                        <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
-                                        <label>EMAIL</label>
-                                        <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
-                                        {config?.hasMemberPhone && (
-                                            <>
-                                                <label>PHONE</label>
-                                                <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
-                                            </>
-                                        )}
-                                    </>
-                                )}
+                            {parseInt(teamSize) >= 3 && (
+                                <>
+                                    <div className="form-section-title">Member 3 Details</div>
+                                    <label>NAME</label>
+                                    <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
+                                    <label>EMAIL</label>
+                                    <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
+                                    {config?.hasMemberPhone && (
+                                        <>
+                                            <label>PHONE</label>
+                                            <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
+                                        </>
+                                    )}
+                                </>
+                            )}
 
-                                {parseInt(teamSize) >= 4 && (
-                                    <>
-                                        <div className="form-section-title">Member 4 Details</div>
-                                        <label>NAME</label>
-                                        <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
-                                        <label>EMAIL</label>
-                                        <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
-                                        {config?.hasMemberPhone && (
-                                            <>
-                                                <label>PHONE</label>
-                                                <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
-                                            </>
-                                        )}
-                                    </>
-                                )}
-                            </>
-                        )}
+                            {parseInt(teamSize) >= 4 && (
+                                <>
+                                    <div className="form-section-title">Member 4 Details</div>
+                                    <label>NAME</label>
+                                    <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
+                                    <label>EMAIL</label>
+                                    <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
+                                    {config?.hasMemberPhone && (
+                                        <>
+                                            <label>PHONE</label>
+                                            <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
+                                        </>
+                                    )}
+                                </>
+                            )}
+                        </>
 
                         {/* PAYMENT SECTION */}
                         <div className="form-section-title">Payment Details</div>

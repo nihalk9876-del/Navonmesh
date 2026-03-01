@@ -25,6 +25,7 @@ const RegistrationSchema = new mongoose.Schema({
     // Payment Info
     utrNumber: { type: String, unique: true, sparse: true },
     agreed: { type: Boolean, required: true },
+    paymentVerified: { type: Boolean, default: false },
 
     registrationDate: { type: Date, default: Date.now }
 });
