@@ -4,17 +4,23 @@ let transporter;
 
 const getTransporter = () => {
     if (!transporter) {
+        console.log('Initializing SMTP Transporter for Gmail...');
         transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
-            port: 587,
-            secure: false, // Use STARTTLS on port 587
+            port: 465,
+            secure: true,
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
             },
             tls: {
                 rejectUnauthorized: false
-            }
+            },
+            connectionTimeout: 10000, // 10 seconds
+            greetingTimeout: 10000,
+            socketTimeout: 10000,
+            logger: true,
+            debug: true
         });
     }
     return transporter;
@@ -22,6 +28,8 @@ const getTransporter = () => {
 
 const sendEmail = async (options) => {
     try {
+        console.log(`Attempting to send email to: ${options.to}`);
+        console.log(`Using EMAIL_USER: ${process.env.EMAIL_USER ? 'SET (OK)' : 'NOT SET (ERROR)'}`);
 
         const mailOptions = {
             from: `"Navonmesh 2026" <${process.env.EMAIL_USER}>`,

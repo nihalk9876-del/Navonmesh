@@ -628,3 +628,93 @@
 .download-excel-btn:active {
     transform: translateY(0);
 }
+
+/* Communication Hub Styles */
+.nav-mode-btn {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: #94a3b8;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+}
+
+.nav-mode-btn.active {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #c084fc;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.broadcast-hub .detail-panel {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.broadcast-subtitle {
+    color: #94a3b8;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.broadcast-targets {
+    margin-bottom: 25px;
+}
+
+.broadcast-targets label {
+    display: block;
+    margin-bottom: 12px;
+    font-family: 'Orbitron', sans-serif;
+    color: #c084fc;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.target-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.target-chip {
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: #94a3b8;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.target-chip.selected {
+    background: #7c3aed;
+    color: #fff;
+    border-color: #a78bfa;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+}
+
+.template-tips code {
+    background: rgba(139, 92, 246, 0.1);
+    color: #c084fc;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.send-all-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+    filter: brightness(1.1);
+}
+
+.send-all-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
