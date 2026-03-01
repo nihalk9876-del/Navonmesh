@@ -12,6 +12,7 @@ const Admin = () => {
     // Dashboard state
     const [summary, setSummary] = useState(null);
     const [activeEvent, setActiveEvent] = useState(null);
+    const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' or 'messages'
     const [loading, setLoading] = useState(false);
     const [authLoading, setAuthLoading] = useState(false);
     const [adminInfo, setAdminInfo] = useState({ name: '', subRole: '' });
@@ -19,6 +20,15 @@ const Admin = () => {
     const [srijanFilter, setSrijanFilter] = useState('ALL');
     const [culturalActivityFilter, setCulturalActivityFilter] = useState('ALL');
     const [culturalSubFilter, setCulturalSubFilter] = useState('ALL');
+
+    // Message System state
+    const [broadcastData, setBroadcastData] = useState({
+        subject: '',
+        body: '',
+        targetEvents: ['ALL']
+    });
+    const [broadcasting, setBroadcasting] = useState(false);
+
     const detailPanelRef = useRef(null);
 
     useEffect(() => {
@@ -176,6 +186,35 @@ const Admin = () => {
         setLoading(false);
     };
 
+    const handleSendBulkEmail = async (e) => {
+        e.preventDefault();
+        if (!window.confirm('Are you sure you want to broadcast this message to ALL selected teams?')) return;
+
+        setBroadcasting(true);
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/admin/send-bulk-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}`
+                },
+                body: JSON.stringify(broadcastData)
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert(data.message);
+                setBroadcastData({ ...broadcastData, subject: '', body: '' });
+            } else {
+                alert(data.error || 'Failed to broadcast');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error during broadcast');
+        }
+        setBroadcasting(false);
+    };
+
     const handleSendMail = async (teamId, eventType) => {
         if (!window.confirm('Send confirmation email to this participant/team?')) return;
 
@@ -279,6 +318,18 @@ const Admin = () => {
                     </div>
                 </div>
                 <div className="admin-actions">
+                    <button
+                        className={`nav-mode-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('dashboard')}
+                    >
+                        DASHBOARD
+                    </button>
+                    <button
+                        className={`nav-mode-btn ${activeTab === 'messages' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('messages')}
+                    >
+                        COMMUNICATION HUB
+                    </button>
                     <button className="refresh-btn" onClick={() => fetchData(sessionStorage.getItem('adminToken'))} title="Refresh Data">
                         <FaSync className={loading ? 'spin' : ''} />
                     </button>
@@ -291,361 +342,443 @@ const Admin = () => {
             {loading ? (
                 <div className="admin-loader">Synchronizing data...</div>
             ) : summary ? (
-                <div className="admin-content">
-                    <div className="stats-grid">
-                        <div className={`stat-card ${activeEvent === 'srijan' ? 'active' : ''}`}
-                            onClick={() => setActiveEvent('srijan')}
-                            onMouseMove={handleMouseMove}>
-                            <div className="stat-card-scan"></div>
-                            <div className="stat-icon-bg"><FaDesktop /></div>
-                            <div className="stat-info">
-                                <h3>Srijan</h3>
-                                <p className="stat-sub">Hackathon</p>
+                activeTab === 'dashboard' ? (
+                    <div className="admin-content">
+                        <div className="stats-grid">
+                            <div className={`stat-card ${activeEvent === 'srijan' ? 'active' : ''}`}
+                                onClick={() => setActiveEvent('srijan')}
+                                onMouseMove={handleMouseMove}>
+                                <div className="stat-card-scan"></div>
+                                <div className="stat-icon-bg"><FaDesktop /></div>
+                                <div className="stat-info">
+                                    <h3>Srijan</h3>
+                                    <p className="stat-sub">Hackathon</p>
+                                </div>
+                                <div className="stat-main">
+                                    <div className="stat-number">{summary.srijan.count}</div>
+                                    <div className="click-details">ACCESS STREAM</div>
+                                </div>
                             </div>
-                            <div className="stat-main">
-                                <div className="stat-number">{summary.srijan.count}</div>
-                                <div className="click-details">ACCESS STREAM</div>
+                            <div className={`stat-card ${activeEvent === 'ankur' ? 'active' : ''}`}
+                                onClick={() => setActiveEvent('ankur')}
+                                onMouseMove={handleMouseMove}>
+                                <div className="stat-card-scan"></div>
+                                <div className="stat-icon-bg"><FaProjectDiagram /></div>
+                                <div className="stat-info">
+                                    <h3>Ankur</h3>
+                                    <p className="stat-sub">Project Expo</p>
+                                </div>
+                                <div className="stat-main">
+                                    <div className="stat-number">{summary.ankur.count}</div>
+                                    <div className="click-details">ACCESS STREAM</div>
+                                </div>
+                            </div>
+                            <div className={`stat-card ${activeEvent === 'udbhav' ? 'active' : ''}`}
+                                onClick={() => setActiveEvent('udbhav')}
+                                onMouseMove={handleMouseMove}>
+                                <div className="stat-card-scan"></div>
+                                <div className="stat-icon-bg"><FaUsers /></div>
+                                <div className="stat-info">
+                                    <h3>Udbhav</h3>
+                                    <p className="stat-sub">Conference</p>
+                                </div>
+                                <div className="stat-main">
+                                    <div className="stat-number">{summary.udbhav.count}</div>
+                                    <div className="click-details">ACCESS STREAM</div>
+                                </div>
+                            </div>
+                            <div className={`stat-card ${activeEvent === 'cultural' ? 'active' : ''}`}
+                                onClick={() => setActiveEvent('cultural')}
+                                onMouseMove={handleMouseMove}>
+                                <div className="stat-card-scan"></div>
+                                <div className="stat-icon-bg"><FaMusic /></div>
+                                <div className="stat-info">
+                                    <h3>Cultural</h3>
+                                    <p className="stat-sub">Kala Spandan</p>
+                                </div>
+                                <div className="stat-main">
+                                    <div className="stat-number">{summary.cultural.count}</div>
+                                    <div className="click-details">ACCESS STREAM</div>
+                                </div>
+                            </div>
+                            <div className={`stat-card ${activeEvent === 'accommodation' ? 'active' : ''}`}
+                                onClick={() => setActiveEvent('accommodation')}
+                                onMouseMove={handleMouseMove}>
+                                <div className="stat-card-scan"></div>
+                                <div className="stat-icon-bg"><FaHotel /></div>
+                                <div className="stat-info">
+                                    <h3>Stay</h3>
+                                    <p className="stat-sub">Requisitions</p>
+                                </div>
+                                <div className="stat-main">
+                                    <div className="stat-number">{summary.accommodation.count}</div>
+                                    <div className="click-details">ACCESS STREAM</div>
+                                </div>
                             </div>
                         </div>
-                        <div className={`stat-card ${activeEvent === 'ankur' ? 'active' : ''}`}
-                            onClick={() => setActiveEvent('ankur')}
-                            onMouseMove={handleMouseMove}>
-                            <div className="stat-card-scan"></div>
-                            <div className="stat-icon-bg"><FaProjectDiagram /></div>
-                            <div className="stat-info">
-                                <h3>Ankur</h3>
-                                <p className="stat-sub">Project Expo</p>
+
+                        {activeEvent && (
+                            <div className="detail-panel" ref={detailPanelRef}>
+                                <div className="panel-header-row">
+                                    <div className="panel-title-group">
+                                        <h3><FaTable style={{ marginRight: '10px' }} /> {activeEvent.toUpperCase()} DATA STREAM</h3>
+                                        <div className="acc-sub-filters">
+                                            <button className={
+                                                (activeEvent === 'accommodation' && accFilter === 'ALL') ||
+                                                    (activeEvent === 'srijan' && srijanFilter === 'ALL') ||
+                                                    (activeEvent === 'cultural' && culturalActivityFilter === 'ALL') ? 'active' : ''
+                                            } onClick={() => {
+                                                setAccFilter('ALL');
+                                                setSrijanFilter('ALL');
+                                                setCulturalActivityFilter('ALL');
+                                                setCulturalSubFilter('ALL');
+                                            }}>Total</button>
+
+                                            {activeEvent === 'accommodation' && (
+                                                <>
+                                                    <button className={accFilter === 'SRIJAN' ? 'active' : ''} onClick={() => setAccFilter('SRIJAN')}>Srijan</button>
+                                                    <button className={accFilter === 'ANKUR' ? 'active' : ''} onClick={() => setAccFilter('ANKUR')}>Ankur</button>
+                                                    <button className={accFilter === 'UDBHAV' ? 'active' : ''} onClick={() => setAccFilter('UDBHAV')}>Udbhav</button>
+                                                </>
+                                            )}
+                                            {activeEvent === 'srijan' && (
+                                                <>
+                                                    <button className={srijanFilter === 'Student Innovation' ? 'active' : ''} onClick={() => setSrijanFilter('Student Innovation')}>Innovation</button>
+                                                    <button className={srijanFilter === 'Problem Statement 1' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 1')}>PS 1</button>
+                                                    <button className={srijanFilter === 'Problem Statement 2' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 2')}>PS 2</button>
+                                                </>
+                                            )}
+                                            {activeEvent === 'cultural' && (
+                                                <>
+                                                    <button className={culturalActivityFilter === 'singing' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('singing'); setCulturalSubFilter('ALL'); }}>Singing</button>
+                                                    <button className={culturalActivityFilter === 'dance' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('dance'); setCulturalSubFilter('ALL'); }}>Dance</button>
+                                                    <button className={culturalActivityFilter === 'anchoring' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('anchoring'); setCulturalSubFilter('ALL'); }}>Anchoring</button>
+                                                    <button className={culturalActivityFilter === 'other' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('other'); setCulturalSubFilter('ALL'); }}>Other</button>
+                                                </>
+                                            )}
+                                            <button className="download-excel-btn" onClick={downloadExcel} title="Download Current Data as Excel">
+                                                <FaDownload /> EXCEL
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {activeEvent === 'cultural' && culturalActivityFilter === 'singing' && (
+                                        <div className="acc-sub-filters animate-fade-in" style={{ marginTop: '10px' }}>
+                                            <button className={culturalSubFilter === 'ALL' ? 'active' : ''} onClick={() => setCulturalSubFilter('ALL')}>All Singing</button>
+                                            <button className={culturalSubFilter === 'solo singing' ? 'active' : ''} onClick={() => setCulturalSubFilter('solo singing')}>Solo</button>
+                                            <button className={culturalSubFilter === 'duo singing' ? 'active' : ''} onClick={() => setCulturalSubFilter('duo singing')}>Duo</button>
+                                        </div>
+                                    )}
+
+                                    {activeEvent === 'cultural' && culturalActivityFilter === 'dance' && (
+                                        <div className="acc-sub-filters animate-fade-in" style={{ marginTop: '10px' }}>
+                                            <button className={culturalSubFilter === 'ALL' ? 'active' : ''} onClick={() => setCulturalSubFilter('ALL')}>All Dance</button>
+                                            <button className={culturalSubFilter === 'solo dance' ? 'active' : ''} onClick={() => setCulturalSubFilter('solo dance')}>Solo</button>
+                                            <button className={culturalSubFilter === 'duo dance' ? 'active' : ''} onClick={() => setCulturalSubFilter('duo dance')}>Duo</button>
+                                            <button className={culturalSubFilter === 'group dance' ? 'active' : ''} onClick={() => setCulturalSubFilter('group dance')}>Group</button>
+                                        </div>
+                                    )}
+
+                                    {activeEvent === 'accommodation' && (() => {
+                                        const filteredEntries = accFilter === 'ALL'
+                                            ? summary.accommodation.entries
+                                            : summary.accommodation.entries.filter(e => e.event === accFilter);
+
+                                        const girls = filteredEntries.reduce((sum, e) => sum + e.girls, 0);
+                                        const boys = filteredEntries.reduce((sum, e) => sum + e.boys, 0);
+                                        const total = girls + boys || 1;
+
+                                        return (
+                                            <div className="pie-section">
+                                                <div className="cosmic-pie" style={{
+                                                    background: `conic-gradient(#ec4899 0% ${(girls / total) * 100}%, #3b82f6 ${(girls / total) * 100}% 100%)`
+                                                }}></div>
+                                                <div className="pie-legend">
+                                                    <div className="legend-item"><span className="dot girls"></span> Girls: {girls}</div>
+                                                    <div className="legend-item"><span className="dot boys"></span> Boys: {boys}</div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })()}
+
+                                    {activeEvent === 'srijan' && (() => {
+                                        const innovations = summary.srijan.entries.filter(e => e.problemStatement === 'Student Innovation').length;
+                                        const ps1 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 1').length;
+                                        const ps2 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 2').length;
+
+                                        return (
+                                            <div className="pie-section stats-summary">
+                                                <div className="summary-pill">Innovation: <span>{innovations}</span></div>
+                                                <div className="summary-pill">PS 1: <span>{ps1}</span></div>
+                                                <div className="summary-pill">PS 2: <span>{ps2}</span></div>
+                                            </div>
+                                        );
+                                    })()}
+
+                                    {activeEvent === 'cultural' && (
+                                        <div className="cultural-summary-grid">
+                                            {Object.entries(culturalTotals).map(([activity, count]) => (
+                                                <div key={activity} className="summary-pill">
+                                                    {activity.charAt(0).toUpperCase() + activity.slice(1)}: <span>{count}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="data-table-container">
+                                    <table className="data-table">
+                                        <thead>
+                                            {activeEvent === 'accommodation' ? (
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Event</th>
+                                                    <th>Team Name</th>
+                                                    <th>College</th>
+                                                    <th>Leader</th>
+                                                    <th>Size</th>
+                                                    <th>Girls</th>
+                                                    <th>Boys</th>
+                                                </tr>
+                                            ) : activeEvent === 'cultural' ? (
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Participant Name</th>
+                                                    <th>Class</th>
+                                                    <th>Activity</th>
+                                                    <th>Member 2</th>
+                                                    <th>Group Size</th>
+                                                    <th>Contact</th>
+                                                    <th>Email</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            ) : (
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Group Name</th>
+                                                    <th>Leader Name</th>
+                                                    <th>College</th>
+                                                    <th>Group Size</th>
+                                                    <th>UTR Number</th>
+                                                    {activeEvent === 'ankur' && <th>Category</th>}
+                                                    {activeEvent === 'srijan' && <th>Problem Statement</th>}
+                                                    <th>Action</th>
+                                                </tr>
+                                            )}
+                                        </thead>
+                                        <tbody>
+                                            {(() => {
+                                                let displayEntries = summary[activeEvent].entries;
+
+                                                if (activeEvent === 'accommodation' && accFilter !== 'ALL') {
+                                                    displayEntries = displayEntries.filter(e => e.event === accFilter);
+                                                } else if (activeEvent === 'srijan' && srijanFilter !== 'ALL') {
+                                                    displayEntries = displayEntries.filter(e => e.problemStatement === srijanFilter);
+                                                } else if (activeEvent === 'cultural' && culturalActivityFilter !== 'ALL') {
+                                                    displayEntries = displayEntries.filter(e => e.activity.toLowerCase().includes(culturalActivityFilter));
+                                                    if (culturalSubFilter !== 'ALL') {
+                                                        displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
+                                                    }
+                                                }
+
+                                                return displayEntries.length > 0 ? (
+                                                    displayEntries.map((entry, idx) => (
+                                                        <tr key={entry._id}>
+                                                            <td>{idx + 1}</td>
+                                                            {activeEvent === 'accommodation' ? (
+                                                                <>
+                                                                    <td className="event-badge-cell">
+                                                                        <span className={`event-mini-badge ${entry.event.toLowerCase()}`}>
+                                                                            {entry.event}
+                                                                        </span>
+                                                                    </td>
+                                                                    <td>{entry.teamName}</td>
+                                                                    <td>{entry.college}</td>
+                                                                    <td>{entry.leaderName}</td>
+                                                                    <td className="mono">{entry.teamSize}</td>
+                                                                    <td className="girls-cell">{entry.girls}</td>
+                                                                    <td className="boys-cell">{entry.boys}</td>
+                                                                </>
+                                                            ) : activeEvent === 'cultural' ? (
+                                                                <>
+                                                                    <td>{entry.participantName}</td>
+                                                                    <td><span className="class-badge" style={{
+                                                                        background: 'rgba(192, 132, 252, 0.2)',
+                                                                        color: '#c084fc',
+                                                                        padding: '4px 8px',
+                                                                        borderRadius: '6px',
+                                                                        fontSize: '0.8rem',
+                                                                        fontWeight: 'bold'
+                                                                    }}>{entry.className}</span></td>
+                                                                    <td><span className={`activity-badge ${entry.activity.split(' ')[0]}`} style={{
+                                                                        background: 'rgba(129, 140, 248, 0.2)',
+                                                                        color: '#818cf8',
+                                                                        padding: '4px 8px',
+                                                                        borderRadius: '6px',
+                                                                        fontSize: '0.8rem',
+                                                                        fontWeight: 'bold'
+                                                                    }}>{entry.activity}</span></td>
+                                                                    <td>{entry.member2Name ? `${entry.member2Name} (${entry.member2Class})` : '-'}</td>
+                                                                    <td className="mono">{entry.groupSize || '-'}</td>
+                                                                    <td>{entry.contact}</td>
+                                                                    <td style={{ fontSize: '0.8rem', opacity: 0.8 }}>{entry.email}</td>
+                                                                    <td>
+                                                                        <button
+                                                                            onClick={() => handleSendMail(entry._id, 'cultural')}
+                                                                            disabled={entry.paymentVerified}
+                                                                            style={{
+                                                                                padding: '6px 12px',
+                                                                                backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
+                                                                                color: 'white',
+                                                                                border: 'none',
+                                                                                borderRadius: '4px',
+                                                                                cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
+                                                                                fontWeight: 'bold',
+                                                                                fontSize: '0.8rem',
+                                                                                transition: 'background-color 0.2s'
+                                                                            }}
+                                                                            onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
+                                                                            onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
+                                                                        >
+                                                                            {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
+                                                                        </button>
+                                                                    </td>
+                                                                </>
+                                                            ) : (
+                                                                <>
+                                                                    <td>{entry.teamName}</td>
+                                                                    <td>{entry.leaderName || 'N/A'}</td>
+                                                                    <td>{entry.college || 'N/A'}</td>
+                                                                    <td>{entry.teamSize || 'N/A'}</td>
+                                                                    <td>
+                                                                        <span className="utr-highlight" style={{
+                                                                            color: '#22c55e',
+                                                                            fontFamily: 'monospace',
+                                                                            fontWeight: 'bold'
+                                                                        }}>
+                                                                            {entry.utrNumber || 'N/A'}
+                                                                        </span>
+                                                                    </td>
+                                                                    {activeEvent === 'ankur' && <td>{entry.category || 'N/A'}</td>}
+                                                                    {activeEvent === 'srijan' && <td>{entry.problemStatement || 'N/A'}</td>}
+                                                                    <td>
+                                                                        <button
+                                                                            onClick={() => handleSendMail(entry._id, activeEvent)}
+                                                                            disabled={entry.paymentVerified}
+                                                                            style={{
+                                                                                padding: '6px 12px',
+                                                                                backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
+                                                                                color: 'white',
+                                                                                border: 'none',
+                                                                                borderRadius: '4px',
+                                                                                cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
+                                                                                fontWeight: 'bold',
+                                                                                fontSize: '0.8rem',
+                                                                                transition: 'background-color 0.2s'
+                                                                            }}
+                                                                            onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
+                                                                            onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
+                                                                        >
+                                                                            {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
+                                                                        </button>
+                                                                    </td>
+                                                                </>
+                                                            )}
+                                                        </tr>
+                                                    ))
+                                                ) : (
+                                                    <tr>
+                                                        <td colSpan={10} className="empty-row">No records found for this telemetry array.</td>
+                                                    </tr>
+                                                );
+                                            })()}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div className="stat-main">
-                                <div className="stat-number">{summary.ankur.count}</div>
-                                <div className="click-details">ACCESS STREAM</div>
-                            </div>
-                        </div>
-                        <div className={`stat-card ${activeEvent === 'udbhav' ? 'active' : ''}`}
-                            onClick={() => setActiveEvent('udbhav')}
-                            onMouseMove={handleMouseMove}>
-                            <div className="stat-card-scan"></div>
-                            <div className="stat-icon-bg"><FaUsers /></div>
-                            <div className="stat-info">
-                                <h3>Udbhav</h3>
-                                <p className="stat-sub">Conference</p>
-                            </div>
-                            <div className="stat-main">
-                                <div className="stat-number">{summary.udbhav.count}</div>
-                                <div className="click-details">ACCESS STREAM</div>
-                            </div>
-                        </div>
-                        <div className={`stat-card ${activeEvent === 'cultural' ? 'active' : ''}`}
-                            onClick={() => setActiveEvent('cultural')}
-                            onMouseMove={handleMouseMove}>
-                            <div className="stat-card-scan"></div>
-                            <div className="stat-icon-bg"><FaMusic /></div>
-                            <div className="stat-info">
-                                <h3>Cultural</h3>
-                                <p className="stat-sub">Kala Spandan</p>
-                            </div>
-                            <div className="stat-main">
-                                <div className="stat-number">{summary.cultural.count}</div>
-                                <div className="click-details">ACCESS STREAM</div>
-                            </div>
-                        </div>
-                        <div className={`stat-card ${activeEvent === 'accommodation' ? 'active' : ''}`}
-                            onClick={() => setActiveEvent('accommodation')}
-                            onMouseMove={handleMouseMove}>
-                            <div className="stat-card-scan"></div>
-                            <div className="stat-icon-bg"><FaHotel /></div>
-                            <div className="stat-info">
-                                <h3>Stay</h3>
-                                <p className="stat-sub">Requisitions</p>
-                            </div>
-                            <div className="stat-main">
-                                <div className="stat-number">{summary.accommodation.count}</div>
-                                <div className="click-details">ACCESS STREAM</div>
-                            </div>
-                        </div>
+                        )}
                     </div>
+                ) : (
+                    /* Message System View */
+                    <div className="admin-content broadcast-hub">
+                        <div className="detail-panel">
+                            <h3>COMMUNICATION BROADCAST CENTER</h3>
+                            <p className="broadcast-subtitle">Personalized emails will be sent to leaders of selected events.</p>
 
-                    {activeEvent && (
-                        <div className="detail-panel" ref={detailPanelRef}>
-                            <div className="panel-header-row">
-                                <div className="panel-title-group">
-                                    <h3><FaTable style={{ marginRight: '10px' }} /> {activeEvent.toUpperCase()} DATA STREAM</h3>
-                                    <div className="acc-sub-filters">
-                                        <button className={
-                                            (activeEvent === 'accommodation' && accFilter === 'ALL') ||
-                                                (activeEvent === 'srijan' && srijanFilter === 'ALL') ||
-                                                (activeEvent === 'cultural' && culturalActivityFilter === 'ALL') ? 'active' : ''
-                                        } onClick={() => {
-                                            setAccFilter('ALL');
-                                            setSrijanFilter('ALL');
-                                            setCulturalActivityFilter('ALL');
-                                            setCulturalSubFilter('ALL');
-                                        }}>Total</button>
-
-                                        {activeEvent === 'accommodation' && (
-                                            <>
-                                                <button className={accFilter === 'SRIJAN' ? 'active' : ''} onClick={() => setAccFilter('SRIJAN')}>Srijan</button>
-                                                <button className={accFilter === 'ANKUR' ? 'active' : ''} onClick={() => setAccFilter('ANKUR')}>Ankur</button>
-                                                <button className={accFilter === 'UDBHAV' ? 'active' : ''} onClick={() => setAccFilter('UDBHAV')}>Udbhav</button>
-                                            </>
-                                        )}
-                                        {activeEvent === 'srijan' && (
-                                            <>
-                                                <button className={srijanFilter === 'Student Innovation' ? 'active' : ''} onClick={() => setSrijanFilter('Student Innovation')}>Innovation</button>
-                                                <button className={srijanFilter === 'Problem Statement 1' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 1')}>PS 1</button>
-                                                <button className={srijanFilter === 'Problem Statement 2' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 2')}>PS 2</button>
-                                            </>
-                                        )}
-                                        {activeEvent === 'cultural' && (
-                                            <>
-                                                <button className={culturalActivityFilter === 'singing' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('singing'); setCulturalSubFilter('ALL'); }}>Singing</button>
-                                                <button className={culturalActivityFilter === 'dance' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('dance'); setCulturalSubFilter('ALL'); }}>Dance</button>
-                                                <button className={culturalActivityFilter === 'anchoring' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('anchoring'); setCulturalSubFilter('ALL'); }}>Anchoring</button>
-                                                <button className={culturalActivityFilter === 'other' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('other'); setCulturalSubFilter('ALL'); }}>Other</button>
-                                            </>
-                                        )}
-                                        <button className="download-excel-btn" onClick={downloadExcel} title="Download Current Data as Excel">
-                                            <FaDownload /> EXCEL
-                                        </button>
+                            <form className="broadcast-form" onSubmit={handleSendBulkEmail}>
+                                <div className="broadcast-targets">
+                                    <label>Select Target Streams:</label>
+                                    <div className="target-options">
+                                        {['ALL', 'Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)', 'Cultural', 'Accommodation'].map(ev => (
+                                            <button
+                                                key={ev}
+                                                type="button"
+                                                className={`target-chip ${broadcastData.targetEvents.includes(ev) ? 'selected' : ''}`}
+                                                onClick={() => {
+                                                    if (ev === 'ALL') {
+                                                        setBroadcastData({ ...broadcastData, targetEvents: ['ALL'] });
+                                                    } else {
+                                                        const newTargets = broadcastData.targetEvents.includes(ev)
+                                                            ? broadcastData.targetEvents.filter(t => t !== ev)
+                                                            : [...broadcastData.targetEvents.filter(t => t !== 'ALL'), ev];
+                                                        setBroadcastData({ ...broadcastData, targetEvents: newTargets.length ? newTargets : ['ALL'] });
+                                                    }
+                                                }}
+                                            >
+                                                {ev === 'ALL' ? 'Total Fleet' : ev.split(' ')[0]}
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
 
-                                {activeEvent === 'cultural' && culturalActivityFilter === 'singing' && (
-                                    <div className="acc-sub-filters animate-fade-in" style={{ marginTop: '10px' }}>
-                                        <button className={culturalSubFilter === 'ALL' ? 'active' : ''} onClick={() => setCulturalSubFilter('ALL')}>All Singing</button>
-                                        <button className={culturalSubFilter === 'solo singing' ? 'active' : ''} onClick={() => setCulturalSubFilter('solo singing')}>Solo</button>
-                                        <button className={culturalSubFilter === 'duo singing' ? 'active' : ''} onClick={() => setCulturalSubFilter('duo singing')}>Duo</button>
+                                <div className="form-group" style={{ marginBottom: '20px' }}>
+                                    <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Email Subject</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter the broadcast subject..."
+                                        value={broadcastData.subject}
+                                        onChange={(e) => setBroadcastData({ ...broadcastData, subject: e.target.value })}
+                                        style={{ width: '100%', padding: '12px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(139, 92, 246, 0.3)', color: '#fff', borderRadius: '8px' }}
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-group" style={{ marginBottom: '20px' }}>
+                                    <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Message Content</label>
+                                    <div className="template-tips" style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '10px' }}>
+                                        Use <code>{'{{teamName}}'}</code> or <code>{'{{leaderName}}'}</code> for personalization.
                                     </div>
-                                )}
+                                    <textarea
+                                        rows="12"
+                                        placeholder={`Greeting, {{leaderName}} of {{teamName}}! 
 
-                                {activeEvent === 'cultural' && culturalActivityFilter === 'dance' && (
-                                    <div className="acc-sub-filters animate-fade-in" style={{ marginTop: '10px' }}>
-                                        <button className={culturalSubFilter === 'ALL' ? 'active' : ''} onClick={() => setCulturalSubFilter('ALL')}>All Dance</button>
-                                        <button className={culturalSubFilter === 'solo dance' ? 'active' : ''} onClick={() => setCulturalSubFilter('solo dance')}>Solo</button>
-                                        <button className={culturalSubFilter === 'duo dance' ? 'active' : ''} onClick={() => setCulturalSubFilter('duo dance')}>Duo</button>
-                                        <button className={culturalSubFilter === 'group dance' ? 'active' : ''} onClick={() => setCulturalSubFilter('group dance')}>Group</button>
-                                    </div>
-                                )}
+Welcome to the command hub. Your mission details are as follows...`}
+                                        value={broadcastData.body}
+                                        onChange={(e) => setBroadcastData({ ...broadcastData, body: e.target.value })}
+                                        style={{ width: '100%', padding: '15px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(139, 92, 246, 0.3)', color: '#fff', borderRadius: '8px', fontFamily: 'Inter', lineHeight: '1.6' }}
+                                        required
+                                    />
+                                </div>
 
-                                {activeEvent === 'accommodation' && (() => {
-                                    const filteredEntries = accFilter === 'ALL'
-                                        ? summary.accommodation.entries
-                                        : summary.accommodation.entries.filter(e => e.event === accFilter);
-
-                                    const girls = filteredEntries.reduce((sum, e) => sum + e.girls, 0);
-                                    const boys = filteredEntries.reduce((sum, e) => sum + e.boys, 0);
-                                    const total = girls + boys || 1;
-
-                                    return (
-                                        <div className="pie-section">
-                                            <div className="cosmic-pie" style={{
-                                                background: `conic-gradient(#ec4899 0% ${(girls / total) * 100}%, #3b82f6 ${(girls / total) * 100}% 100%)`
-                                            }}></div>
-                                            <div className="pie-legend">
-                                                <div className="legend-item"><span className="dot girls"></span> Girls: {girls}</div>
-                                                <div className="legend-item"><span className="dot boys"></span> Boys: {boys}</div>
-                                            </div>
-                                        </div>
-                                    );
-                                })()}
-
-                                {activeEvent === 'srijan' && (() => {
-                                    const innovations = summary.srijan.entries.filter(e => e.problemStatement === 'Student Innovation').length;
-                                    const ps1 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 1').length;
-                                    const ps2 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 2').length;
-
-                                    return (
-                                        <div className="pie-section stats-summary">
-                                            <div className="summary-pill">Innovation: <span>{innovations}</span></div>
-                                            <div className="summary-pill">PS 1: <span>{ps1}</span></div>
-                                            <div className="summary-pill">PS 2: <span>{ps2}</span></div>
-                                        </div>
-                                    );
-                                })()}
-
-                                {activeEvent === 'cultural' && (
-                                    <div className="cultural-summary-grid">
-                                        {Object.entries(culturalTotals).map(([activity, count]) => (
-                                            <div key={activity} className="summary-pill">
-                                                {activity.charAt(0).toUpperCase() + activity.slice(1)}: <span>{count}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="data-table-container">
-                                <table className="data-table">
-                                    <thead>
-                                        {activeEvent === 'accommodation' ? (
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Event</th>
-                                                <th>Team Name</th>
-                                                <th>College</th>
-                                                <th>Leader</th>
-                                                <th>Size</th>
-                                                <th>Girls</th>
-                                                <th>Boys</th>
-                                            </tr>
-                                        ) : activeEvent === 'cultural' ? (
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Participant Name</th>
-                                                <th>Class</th>
-                                                <th>Activity</th>
-                                                <th>Member 2</th>
-                                                <th>Group Size</th>
-                                                <th>Contact</th>
-                                                <th>Email</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        ) : (
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Group Name</th>
-                                                <th>Leader Name</th>
-                                                <th>College</th>
-                                                <th>Group Size</th>
-                                                <th>UTR Number</th>
-                                                {activeEvent === 'ankur' && <th>Category</th>}
-                                                {activeEvent === 'srijan' && <th>Problem Statement</th>}
-                                                <th>Action</th>
-                                            </tr>
-                                        )}
-                                    </thead>
-                                    <tbody>
-                                        {(() => {
-                                            let displayEntries = summary[activeEvent].entries;
-
-                                            if (activeEvent === 'accommodation' && accFilter !== 'ALL') {
-                                                displayEntries = displayEntries.filter(e => e.event === accFilter);
-                                            } else if (activeEvent === 'srijan' && srijanFilter !== 'ALL') {
-                                                displayEntries = displayEntries.filter(e => e.problemStatement === srijanFilter);
-                                            } else if (activeEvent === 'cultural' && culturalActivityFilter !== 'ALL') {
-                                                displayEntries = displayEntries.filter(e => e.activity.toLowerCase().includes(culturalActivityFilter));
-                                                if (culturalSubFilter !== 'ALL') {
-                                                    displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
-                                                }
-                                            }
-
-                                            return displayEntries.length > 0 ? (
-                                                displayEntries.map((entry, idx) => (
-                                                    <tr key={entry._id}>
-                                                        <td>{idx + 1}</td>
-                                                        {activeEvent === 'accommodation' ? (
-                                                            <>
-                                                                <td className="event-badge-cell">
-                                                                    <span className={`event-mini-badge ${entry.event.toLowerCase()}`}>
-                                                                        {entry.event}
-                                                                    </span>
-                                                                </td>
-                                                                <td>{entry.teamName}</td>
-                                                                <td>{entry.college}</td>
-                                                                <td>{entry.leaderName}</td>
-                                                                <td className="mono">{entry.teamSize}</td>
-                                                                <td className="girls-cell">{entry.girls}</td>
-                                                                <td className="boys-cell">{entry.boys}</td>
-                                                            </>
-                                                        ) : activeEvent === 'cultural' ? (
-                                                            <>
-                                                                <td>{entry.participantName}</td>
-                                                                <td><span className="class-badge" style={{
-                                                                    background: 'rgba(192, 132, 252, 0.2)',
-                                                                    color: '#c084fc',
-                                                                    padding: '4px 8px',
-                                                                    borderRadius: '6px',
-                                                                    fontSize: '0.8rem',
-                                                                    fontWeight: 'bold'
-                                                                }}>{entry.className}</span></td>
-                                                                <td><span className={`activity-badge ${entry.activity.split(' ')[0]}`} style={{
-                                                                    background: 'rgba(129, 140, 248, 0.2)',
-                                                                    color: '#818cf8',
-                                                                    padding: '4px 8px',
-                                                                    borderRadius: '6px',
-                                                                    fontSize: '0.8rem',
-                                                                    fontWeight: 'bold'
-                                                                }}>{entry.activity}</span></td>
-                                                                <td>{entry.member2Name ? `${entry.member2Name} (${entry.member2Class})` : '-'}</td>
-                                                                <td className="mono">{entry.groupSize || '-'}</td>
-                                                                <td>{entry.contact}</td>
-                                                                <td style={{ fontSize: '0.8rem', opacity: 0.8 }}>{entry.email}</td>
-                                                                <td>
-                                                                    <button
-                                                                        onClick={() => handleSendMail(entry._id, 'cultural')}
-                                                                        disabled={entry.paymentVerified}
-                                                                        style={{
-                                                                            padding: '6px 12px',
-                                                                            backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
-                                                                            color: 'white',
-                                                                            border: 'none',
-                                                                            borderRadius: '4px',
-                                                                            cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
-                                                                            fontWeight: 'bold',
-                                                                            fontSize: '0.8rem',
-                                                                            transition: 'background-color 0.2s'
-                                                                        }}
-                                                                        onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
-                                                                        onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
-                                                                    >
-                                                                        {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
-                                                                    </button>
-                                                                </td>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <td>{entry.teamName}</td>
-                                                                <td>{entry.leaderName || 'N/A'}</td>
-                                                                <td>{entry.college || 'N/A'}</td>
-                                                                <td>{entry.teamSize || 'N/A'}</td>
-                                                                <td>
-                                                                    <span className="utr-highlight" style={{
-                                                                        color: '#22c55e',
-                                                                        fontFamily: 'monospace',
-                                                                        fontWeight: 'bold'
-                                                                    }}>
-                                                                        {entry.utrNumber || 'N/A'}
-                                                                    </span>
-                                                                </td>
-                                                                {activeEvent === 'ankur' && <td>{entry.category || 'N/A'}</td>}
-                                                                {activeEvent === 'srijan' && <td>{entry.problemStatement || 'N/A'}</td>}
-                                                                <td>
-                                                                    <button
-                                                                        onClick={() => handleSendMail(entry._id, activeEvent)}
-                                                                        disabled={entry.paymentVerified}
-                                                                        style={{
-                                                                            padding: '6px 12px',
-                                                                            backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
-                                                                            color: 'white',
-                                                                            border: 'none',
-                                                                            borderRadius: '4px',
-                                                                            cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
-                                                                            fontWeight: 'bold',
-                                                                            fontSize: '0.8rem',
-                                                                            transition: 'background-color 0.2s'
-                                                                        }}
-                                                                        onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
-                                                                        onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
-                                                                    >
-                                                                        {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
-                                                                    </button>
-                                                                </td>
-                                                            </>
-                                                        )}
-                                                    </tr>
-                                                ))
-                                            ) : (
-                                                <tr>
-                                                    <td colSpan={10} className="empty-row">No records found for this telemetry array.</td>
-                                                </tr>
-                                            );
-                                        })()}
-                                    </tbody>
-                                </table>
-                            </div>
+                                <div className="broadcast-actions" style={{ textAlign: 'right' }}>
+                                    <button type="submit" className="send-all-btn" disabled={broadcasting} style={{
+                                        background: 'linear-gradient(135deg, #7c3aed 0%, #c026d3 100%)',
+                                        color: '#fff',
+                                        padding: '12px 30px',
+                                        border: 'none',
+                                        borderRadius: '12px',
+                                        fontFamily: 'Orbitron',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        opacity: broadcasting ? 0.6 : 1
+                                    }}>
+                                        {broadcasting ? 'TRANSMITTING...' : 'INITIATE BROADCAST TO ALL TEAMS'}
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )
             ) : null}
         </div>
     );

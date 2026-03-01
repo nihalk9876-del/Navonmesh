@@ -300,4 +300,126 @@ router.post('/cultural/send-confirmation/:id', async (req, res) => {
     }
 });
 
+// Bulk Email Broadcasting Route
+router.post('/send-bulk-email', async (req, res) => {
+    // Auth Check
+    const authHeader = req.headers.authorization;
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh') {
+        return res.status(401).json({ error: 'Unauthorized Access' });
+    }
+
+    const { subject, body, targetEvents } = req.body;
+
+    if (!subject || !body) {
+        return res.status(400).json({ error: 'Subject and Body are required' });
+    }
+
+    try {
+        let allRecipients = [];
+
+        // Determine which models/queries to fetch from
+        const targets = targetEvents || ['ALL'];
+        const isAll = targets.includes('ALL');
+
+        // 1. Fetch from Main Registration (Hackathon, Expo, Conference)
+        if (isAll || targets.some(t => ['Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)'].includes(t))) {
+            let registrationQuery = {};
+            if (!isAll) {
+                const subEvents = targets.filter(t => ['Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)'].includes(t));
+                if (subEvents.length > 0) registrationQuery.event = { $in: subEvents };
+            }
+            const regs = await Registration.find(registrationQuery);
+            regs.forEach(r => allRecipients.push({
+                name: r.leaderName,
+                email: r.leaderEmail,
+                team: r.teamName
+            }));
+        }
+
+        // 2. Fetch from Cultural
+        if (isAll || targets.includes('Cultural')) {
+            const cults = await Cultural.find();
+            cults.forEach(c => allRecipients.push({
+                name: c.participantName,
+                email: c.email,
+                team: 'Cultural Team'
+            }));
+        }
+
+        // 3. Fetch from Accommodation
+        if (isAll || targets.includes('Accommodation')) {
+            const accs = await Accommodation.find();
+            accs.forEach(a => allRecipients.push({
+                name: a.leaderName,
+                email: a.leaderEmail,
+                team: a.teamName
+            }));
+        }
+
+        if (allRecipients.length === 0) {
+            return res.status(404).json({ error: 'No recipients found for selected targets' });
+        }
+
+        // Remove duplicates if any (same email in multiple collections)
+        const uniqueRecipientsMap = new Map();
+        allRecipients.forEach(r => {
+            if (!uniqueRecipientsMap.has(r.email.toLowerCase())) {
+                uniqueRecipientsMap.set(r.email.toLowerCase(), r);
+            }
+        });
+        const recipients = Array.from(uniqueRecipientsMap.values());
+
+        let successCount = 0;
+        let failCount = 0;
+
+        for (const recipient of recipients) {
+            try {
+                const personalizedBody = body.replace(/{{teamName}}/g, recipient.team || 'Team')
+                    .replace(/{{leaderName}}/g, recipient.name || 'Participant');
+
+                const htmlContent = `
+                <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;">
+                    <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 30px; text-align: center;">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 2px;">Navonmesh '26</h1>
+                        <p style="color: #94a3b8; margin: 10px 0 0 0; font-size: 16px;">General Communication Hub</p>
+                    </div>
+                    <div style="padding: 40px 30px; color: #333333;">
+                        <div style="font-size: 16px; line-height: 1.8; color: #334155; white-space: pre-wrap;">
+${personalizedBody}
+                        </div>
+                        <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 30px;">
+                            <p style="font-size: 14px; color: #64748b; margin: 0;">- Navonmesh '26 Organizing Committee</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+
+                const mailSuccess = await sendEmail({
+                    to: recipient.email,
+                    subject: subject,
+                    htmlContent
+                });
+
+                if (mailSuccess) successCount++;
+                else failCount++;
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+            } catch (err) {
+                console.error(`Failed to send email to ${recipient.email}:`, err);
+                failCount++;
+            }
+        }
+
+        res.json({
+            success: true,
+            message: `Broadcasting complete. Recipient Count: ${recipients.length}, Success: ${successCount}, Failed: ${failCount}`,
+            totals: { success: successCount, failed: failCount, total: recipients.length }
+        });
+
+    } catch (err) {
+        console.error('Bulk Email error:', err);
+        res.status(500).json({ error: 'Server error during broadcast' });
+    }
+});
+
 module.exports = router;
