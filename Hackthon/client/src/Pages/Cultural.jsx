@@ -4,14 +4,14 @@ import "../Styles/cultural.css";
 import { FaScroll, FaUserAstronaut, FaWhatsapp, FaPhoneAlt, FaStar } from "react-icons/fa";
 
 // Assets
-import e1 from "../assets/events/e1.png";
-import e2 from "../assets/events/e2.png";
-import e3 from "../assets/events/e3.png";
 import g1 from "../assets/gallery1.png";
 import g2 from "../assets/gallery2.png";
 import bgVideo from "../assets/bg.mp4";
 import sushantImg from "../assets/sushant_akhare.png";
 import dollyImg from "../assets/dolly_bhutada.png";
+import cultural01 from "../assets/cultural01.png";
+import cultural02 from "../assets/cultural02.png";
+import cultural03 from "../assets/cultural03.png";
 
 
 
@@ -19,7 +19,7 @@ const Cultural = () => {
     const navigate = useNavigate();
     const scrollRef = useRef(null);
 
-    const eventPhotos = [e1, e2, e3, g1, g2];
+    const eventPhotos = [cultural01, cultural02, cultural03];
 
     useEffect(() => {
         // Precise auto-scroll for gallery
@@ -76,23 +76,28 @@ const Cultural = () => {
 
             <div className="cultural-hero-container">
                 <div className="cultural-hero">
-                    <div className="gallery-track" ref={scrollRef}>
-                        {eventPhotos.map((img, index) => (
-                            <div key={index} className="gallery-slide">
-                                <img src={img} alt={`Gallery ${index}`} className="gallery-image" />
-                            </div>
-                        ))}
+                    <div className="hero-background-carousel">
+                        <div className="gallery-track" ref={scrollRef}>
+                            {eventPhotos.map((img, index) => (
+                                <div key={index} className="gallery-slide">
+                                    <img src={img} alt={`Gallery ${index}`} className="gallery-carousel-image" />
+                                </div>
+                            ))}
+                        </div>
+                        <div className="hero-gradient-overlay"></div>
                     </div>
 
-                    <div className="register-overlay">
-                        <h1 className="cultural-main-title">कलास्पंदन '26</h1>
-                        <p className="cosmic-tagline">Exploring the Galaxy of Art & Creativity</p>
-                        <button
-                            className="register-cultural-btn"
-                            onClick={() => navigate("/cultural-register")}
-                        >
-                            Register for Mission
-                        </button>
+                    <div className="hero-text-section">
+                        <div className="hero-text-content">
+                            <h1 className="cultural-main-title">कलास्पंदन '26</h1>
+                            <p className="cosmic-tagline">Exploring the Galaxy of Art & Creativity</p>
+                            <button
+                                className="register-cultural-btn"
+                                onClick={() => navigate("/cultural-register")}
+                            >
+                                REGISTER FOR AUDITION <span>&rarr;</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

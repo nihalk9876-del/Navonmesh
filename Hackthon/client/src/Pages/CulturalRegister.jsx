@@ -24,7 +24,8 @@ const CulturalRegister = () => {
     const classes = [
         "1S", "1R", "1M", "1U1", "1U2", "1N",
         "2S", "2N", "2R", "2U1", "2U2", "2M",
-        "3U1", "3U2", "3S", "3N", "3R"
+        "3U1", "3U2", "3S", "3N", "3R", "3M",
+        "4S", "4R", "4M", "4U1", "4U2", "4N"
     ];
 
     const activities = [

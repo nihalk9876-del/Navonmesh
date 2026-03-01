@@ -428,6 +428,16 @@
 
 .contact-item {
     text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+    transition: 0.3s;
+}
+
+.contact-item:hover {
+    border-color: rgba(0, 243, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
 }
 
 .contact-label {
@@ -443,17 +453,27 @@
     font-size: 1.4rem;
     color: #fff;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .contact-phone {
     font-size: 1.1rem;
-    color: #94a3b8;
+    color: #00f3ff;
     text-decoration: none;
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(0, 243, 255, 0.05);
+    transition: 0.3s;
+    letter-spacing: 1px;
 }
 
 .contact-phone:hover {
-    color: #00f3ff;
+    background: #00f3ff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
 }
 
 /* 🔘 TABS */
@@ -749,16 +769,25 @@
         font-size: 0.5rem !important;
     }
 
+    .contact-item {
+        padding: 15px;
+    }
+
     .contact-label {
-        font-size: 0.4rem !important;
+        font-size: 0.5rem !important;
+        margin-bottom: 8px !important;
     }
 
     .contact-name {
-        font-size: 0.6rem !important;
+        font-size: 0.85rem !important;
+        display: block !important;
+        margin-bottom: 12px !important;
     }
 
     .contact-phone {
-        font-size: 0.55rem !important;
+        font-size: 0.75rem !important;
+        padding: 6px 15px !important;
+        display: inline-block !important;
     }
 
     .pursuit-visit-btn {

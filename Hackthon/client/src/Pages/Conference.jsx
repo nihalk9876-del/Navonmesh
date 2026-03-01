@@ -1,6 +1,6 @@
 import React from "react";
 import "../Styles/projectExpo.css";
-import { FaPaperclip } from "react-icons/fa";
+import { FaPaperclip, FaBookOpen, FaGlobeAmericas } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import udbhavPoster from "../assets/STUDENT CONFERENCE.png";
 
@@ -129,8 +129,8 @@ const Conference = () => {
                 </div>
                 <div className="ankur-spec-item">
                     <div className="hud-label">TEAM_SIZE</div>
-                    <div className="hud-value">2 - 4 UNIT</div>
-                    <div className="hud-bar"><div className="fill" style={{ width: '60%' }}></div></div>
+                    <div className="hud-value">1 - 4 UNIT</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
                 </div>
                 <div className="ankur-spec-item">
                     <div className="hud-label">ELIGIBILITY</div>
@@ -190,6 +190,40 @@ const Conference = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+            </div>
+
+            {/* Publication Highlight Section */}
+            <div className="publication-highlight-container">
+                <div className="publication-card glass-panel">
+                    <div className="publication-header">
+                        <span className="mission-status pulse">● RESEARCH HUBS</span>
+                        <h2 className="publication-title">EVERY PARTICIPANT GETS PUBLICATION!</h2>
+                        <p className="publication-subtitle">Permanent Global Recognition for YOUR Paper!</p>
+                    </div>
+
+                    <div className="publication-features">
+                        <div className="feature-item">
+                            <div className="feature-icon-wrapper">
+                                <FaBookOpen className="feature-icon" />
+                            </div>
+                            <div className="feature-info">
+                                <span className="feature-label">ISSN / ISBN</span>
+                            </div>
+                        </div>
+
+                        <div className="feature-divider"></div>
+
+                        <div className="feature-item">
+                            <div className="feature-icon-wrapper">
+                                <FaGlobeAmericas className="feature-icon" />
+                            </div>
+                            <div className="feature-info">
+                                <span className="feature-label">DOI</span>
+                                <span className="feature-sublabel">(Digital Object Identifier)</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

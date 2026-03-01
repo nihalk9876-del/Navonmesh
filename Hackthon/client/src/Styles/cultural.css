@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&display=swap');
+
 /* ============================================================ */
 /* THE NEBULA STAGE: CULTURAL PAGE STYLES - ELITE EDITION */
 /* ============================================================ */
@@ -46,19 +48,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
+    padding: 0;
 }
 
 .cultural-hero {
     position: relative;
-    width: 95%;
-    max-width: 1300px;
-    height: 420px;
-    border-radius: 12px;
+    width: 100%;
+    max-width: none;
+    min-height: 600px;
+    border-radius: 0;
     overflow: hidden;
-    border: 1px solid rgba(0, 243, 255, 0.2);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    background: #000;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.hero-background-carousel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(5, 6, 15, 0.95) 0%, rgba(5, 6, 15, 0.7) 40%, transparent 100%);
+    z-index: 2;
 }
 
 .gallery-track {
@@ -68,7 +88,6 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    /* Auto scroll target */
 }
 
 .gallery-track::-webkit-scrollbar {
@@ -80,70 +99,94 @@
     height: 100%;
 }
 
-.gallery-image {
+.gallery-carousel-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.25;
-    /* Faint as requested */
-    transition: transform 1.2s ease;
+    opacity: 0.8;
 }
 
-.register-overlay {
-    position: absolute;
-    inset: 0;
+.hero-text-section {
+    position: relative;
+    z-index: 10;
+    padding: 80px 8%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    z-index: 10;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.3), transparent 70%);
+}
+
+.hero-text-content {
+    max-width: 650px;
 }
 
 .cultural-main-title {
-    font-size: 3.5rem;
-    font-weight: 900;
-    letter-spacing: 12px;
-    margin: 0;
-    background: linear-gradient(to bottom, #fff 30%, #00f3ff 100%);
+    font-size: 6rem;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    font-family: 'Khand', sans-serif;
+    /* Cultural & Balanced Devanagari Font */
+    background: linear-gradient(to bottom, #fff 30%, #2dd4bf 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(45, 212, 191, 0.3));
+    letter-spacing: -2px;
+    position: relative;
+    display: inline-block;
+}
+
+.cultural-main-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #2dd4bf, transparent);
+    border-radius: 2px;
 }
 
 .cosmic-tagline {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    letter-spacing: 6px;
-    text-transform: uppercase;
+    font-size: 1.1rem;
+    color: #e2e8f0;
+    letter-spacing: 1px;
+    text-transform: none;
     margin-bottom: 40px;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.6;
+    font-family: inherit;
 }
 
 .register-cultural-btn {
     pointer-events: auto;
-    padding: 20px 50px;
-    font-size: 1.1rem;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 800;
-    color: #fff;
-    background: transparent;
-    border: 1px solid #00f3ff;
-    border-radius: 2px;
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    background: #0088ff;
+    border: none;
+    border-radius: 30px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
-    position: relative;
-    overflow: hidden;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: max-content;
+}
+
+.register-cultural-btn span {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .register-cultural-btn:hover {
-    background: #00f3ff;
-    color: #000;
-    box-shadow: 0 0 40px rgba(0, 243, 255, 0.5);
+    background: #0077e6;
     transform: translateY(-2px);
 }
 
@@ -295,17 +338,28 @@
 
 /* 📱 MOBILE RESPONSIVE */
 @media (max-width: 900px) {
+    .cultural-hero {
+        min-height: 450px;
+    }
+
+    .hero-text-section {
+        padding: 40px 5%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-gradient-overlay {
+        background: linear-gradient(180deg, rgba(8, 12, 25, 0.95) 0%, rgba(8, 12, 25, 0.6) 50%, rgba(8, 12, 25, 0.2) 100%);
+    }
+
     .cultural-main-title {
         font-size: 2.8rem;
-        letter-spacing: 8px;
+        letter-spacing: 2px;
     }
 
     .cosmic-tagline {
-        font-size: 0.7rem;
-    }
-
-    .cultural-hero {
-        height: 380px;
+        font-size: 0.85rem;
+        margin-bottom: 30px;
     }
 
     .info-grid {
@@ -314,5 +368,6 @@
 
     .cultural-content-wrapper {
         padding: 0 20px;
+        margin: 40px auto;
     }
 }

@@ -87,7 +87,7 @@ const Footer = () => {
           <div className="divider"></div>
           <div className="bottom-wrapper">
             <p className="copyright">
-              © 2026 <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>NAVONMESH</Link>. Developed by <a href="#" className="dev-credit">Nihal Kankal</a>.
+              © 2026 NAVONMESH. Developed by <a href="#" className="dev-credit">Nihal Kankal</a>.
             </p>
             <div className="legal-links">
               <a href="#">Privacy Policy</a>

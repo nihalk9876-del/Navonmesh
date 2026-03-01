@@ -16,23 +16,23 @@ const KNOWLEDGE_BASE = [
     },
     {
         keywords: ["srijan", "24 hr hackathon", "hackathon"],
-        answer: "Srijan is our astronomical 24-hour Hackathon! It's a platform where innovators collide to build solutions for real-world problems. Expect intense competition, amazing mentors, and a chance to win from the 1 Lakh+ prize pool!"
+        answer: "Srijan is our astronomical 24-hour Hackathon! There is a ₹300 registration fee. The total prize pool for the event is ₹1 Lakh+! Minimum 2 and maximum 4 members can register. For more info, visit the Hackathon page."
     },
     {
         keywords: ["ankur", "project expo", "exhibition"],
-        answer: "Ankur is our interstellar Project Expo! Showcase your engineering marvels to industry experts and a wide audience. It's the perfect stage to bring your academic projects to life."
+        answer: "Ankur is our interstellar Project Expo! Minimum 1 and maximum 4 members can register. Showcase your engineering marvels to industry experts and a wide audience. For more info, visit the Project Expo page."
     },
     {
         keywords: ["udhbhav", "paper", "conference", "presentation"],
-        answer: "Udhbhav is a National Level Student Conference. It's an arena for research-oriented minds to publish and present papers in various engineering domains, fostering a culture of innovation and inquiry."
+        answer: "Udhbhav is a National Level Student Conference. Individual entries are required. It's an arena for research-oriented minds to publish and present papers. For more info, visit the Conference page."
     },
     {
         keywords: ["pursuit", "workshop", "learn"],
         answer: "Pursuit offers specialized technical workshops in cutting-edge technologies. These sessions are led by experts and offered at highly affordable rates to help you upgrade your skill set."
     },
     {
-        keywords: ["accommodation", "stay", "hotel", "hostel", "room"],
-        answer: "Zero Gravity Accommodation! 🏠 We provide FREE stay for outstation participants. Just ensure you've checked the 'Accommodation Needed' box in your registration form."
+        keywords: ["accommodation", "stay", "hotel", "hostel", "room", "food", "mess"],
+        answer: "Zero Gravity Accommodation! 🏠 We provide FREE stay and food for all events for outstation participants. Just ensure you've checked the 'Accommodation Needed' box in your registration form."
     },
     {
         keywords: ["prize", "money", "reward", "win", "pool", "1lakh", "lakh"],
@@ -40,7 +40,7 @@ const KNOWLEDGE_BASE = [
     },
     {
         keywords: ["registration", "apply", "form", "join", "link"],
-        answer: "Launch your journey! 🚀 Join by clicking the 'Register' button on our Navigation Bar. Select your desired event (Srijan, Ankur, etc.) and complete the Google Form."
+        answer: "Launch your journey! 🚀 Join by clicking the 'Register' button on our Navigation Bar. Select your desired event (Srijan, Ankur, etc.) and complete the registration form."
     },
     {
         keywords: ["contact", "help", "support", "organizer"],
