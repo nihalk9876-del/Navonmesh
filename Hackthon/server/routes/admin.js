@@ -59,15 +59,15 @@ router.get('/data', async (req, res) => {
         res.json({
             srijan: {
                 count: srijan.length,
-                entries: srijan.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, college: r.college, problemStatement: r.problemStatement, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id }))
+                entries: srijan.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, leaderEmail: r.leaderEmail, college: r.college, problemStatement: r.problemStatement, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id }))
             },
             ankur: {
                 count: ankur.length,
-                entries: ankur.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, college: r.college, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id, category: r.studentCategory }))
+                entries: ankur.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, leaderEmail: r.leaderEmail, college: r.college, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id, category: r.studentCategory }))
             },
             udbhav: {
                 count: udbhav.length,
-                entries: udbhav.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, college: r.college, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id }))
+                entries: udbhav.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, leaderEmail: r.leaderEmail, college: r.college, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id }))
             },
             cultural: {
                 count: cultural.length,
@@ -85,6 +85,7 @@ router.get('/data', async (req, res) => {
                     girls: r.girlsCount,
                     boys: r.boysCount,
                     leaderName: r.leaderName,
+                    leaderEmail: r.leaderEmail,
                     _id: r._id
                 }))
             }
@@ -308,66 +309,72 @@ router.post('/send-bulk-email', async (req, res) => {
         return res.status(401).json({ error: 'Unauthorized Access' });
     }
 
-    const { subject, body, targetEvents } = req.body;
+    const { subject, body, targetEvents, recipients: selectedRecipients } = req.body;
 
     if (!subject || !body) {
         return res.status(400).json({ error: 'Subject and Body are required' });
     }
 
     try {
-        let allRecipients = [];
+        let recipients = [];
 
-        // Determine which models/queries to fetch from
-        const targets = targetEvents || ['ALL'];
-        const isAll = targets.includes('ALL');
+        // If explicit recipients are provided from the frontend, use them
+        if (selectedRecipients && selectedRecipients.length > 0) {
+            recipients = selectedRecipients;
+        } else {
+            // Fallback to legacy behavior: fetch based on targetEvents
+            let allRecipients = [];
+            const targets = targetEvents || ['ALL'];
+            const isAll = targets.includes('ALL');
 
-        // 1. Fetch from Main Registration (Hackathon, Expo, Conference)
-        if (isAll || targets.some(t => ['Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)'].includes(t))) {
-            let registrationQuery = {};
-            if (!isAll) {
-                const subEvents = targets.filter(t => ['Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)'].includes(t));
-                if (subEvents.length > 0) registrationQuery.event = { $in: subEvents };
+            // 1. Fetch from Main Registration (Hackathon, Expo, Conference)
+            if (isAll || targets.some(t => ['Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)'].includes(t))) {
+                let registrationQuery = {};
+                if (!isAll) {
+                    const subEvents = targets.filter(t => ['Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)'].includes(t));
+                    if (subEvents.length > 0) registrationQuery.event = { $in: subEvents };
+                }
+                const regs = await Registration.find(registrationQuery);
+                regs.forEach(r => allRecipients.push({
+                    name: r.leaderName,
+                    email: r.leaderEmail,
+                    team: r.teamName
+                }));
             }
-            const regs = await Registration.find(registrationQuery);
-            regs.forEach(r => allRecipients.push({
-                name: r.leaderName,
-                email: r.leaderEmail,
-                team: r.teamName
-            }));
+
+            // 2. Fetch from Cultural
+            if (isAll || targets.includes('Cultural')) {
+                const cults = await Cultural.find();
+                cults.forEach(c => allRecipients.push({
+                    name: c.participantName,
+                    email: c.email,
+                    team: 'Cultural Team'
+                }));
+            }
+
+            // 3. Fetch from Accommodation
+            if (isAll || targets.includes('Accommodation')) {
+                const accs = await Accommodation.find();
+                accs.forEach(a => allRecipients.push({
+                    name: a.leaderName,
+                    email: a.leaderEmail,
+                    team: a.teamName
+                }));
+            }
+
+            // Remove duplicates if any (same email in multiple collections)
+            const uniqueRecipientsMap = new Map();
+            allRecipients.forEach(r => {
+                if (!uniqueRecipientsMap.has(r.email.toLowerCase())) {
+                    uniqueRecipientsMap.set(r.email.toLowerCase(), r);
+                }
+            });
+            recipients = Array.from(uniqueRecipientsMap.values());
         }
 
-        // 2. Fetch from Cultural
-        if (isAll || targets.includes('Cultural')) {
-            const cults = await Cultural.find();
-            cults.forEach(c => allRecipients.push({
-                name: c.participantName,
-                email: c.email,
-                team: 'Cultural Team'
-            }));
-        }
-
-        // 3. Fetch from Accommodation
-        if (isAll || targets.includes('Accommodation')) {
-            const accs = await Accommodation.find();
-            accs.forEach(a => allRecipients.push({
-                name: a.leaderName,
-                email: a.leaderEmail,
-                team: a.teamName
-            }));
-        }
-
-        if (allRecipients.length === 0) {
+        if (recipients.length === 0) {
             return res.status(404).json({ error: 'No recipients found for selected targets' });
         }
-
-        // Remove duplicates if any (same email in multiple collections)
-        const uniqueRecipientsMap = new Map();
-        allRecipients.forEach(r => {
-            if (!uniqueRecipientsMap.has(r.email.toLowerCase())) {
-                uniqueRecipientsMap.set(r.email.toLowerCase(), r);
-            }
-        });
-        const recipients = Array.from(uniqueRecipientsMap.values());
 
         let successCount = 0;
         let failCount = 0;
