@@ -21,12 +21,12 @@ const Admin = () => {
     const [culturalActivityFilter, setCulturalActivityFilter] = useState('ALL');
     const [culturalSubFilter, setCulturalSubFilter] = useState('ALL');
 
-    // Message System state
     const [broadcastData, setBroadcastData] = useState({
         subject: '',
         body: '',
         targetEvents: ['ALL']
     });
+    const [selectedRecipientIds, setSelectedRecipientIds] = useState([]); // List of IDs to send to
     const [broadcasting, setBroadcasting] = useState(false);
 
     const detailPanelRef = useRef(null);
@@ -188,31 +188,95 @@ const Admin = () => {
 
     const handleSendBulkEmail = async (e) => {
         e.preventDefault();
-        if (!window.confirm('Are you sure you want to broadcast this message to ALL selected teams?')) return;
+
+        if (selectedRecipientIds.length === 0) {
+            alert('Please select at least one recipient.');
+            return;
+        }
+
+        if (!window.confirm(`Are you sure you want to broadcast this message to ${selectedRecipientIds.length} selected recipients?`)) return;
 
         setBroadcasting(true);
         try {
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+            // Map selected IDs back to their details for the backend
+            // Or just send the IDs and let backend handle it? 
+            // Better to send specific recipient list to avoid any confusion
+            const recipientsToSend = getAllAvailableRecipients()
+                .filter(r => selectedRecipientIds.includes(r.id))
+                .map(r => ({ id: r.id, email: r.email, name: r.name, team: r.team, type: r.type }));
+
             const res = await fetch(`${API_URL}/api/admin/send-bulk-email`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}`
                 },
-                body: JSON.stringify(broadcastData)
+                body: JSON.stringify({
+                    ...broadcastData,
+                    recipients: recipientsToSend // Send explicit list
+                })
             });
             const data = await res.json();
             if (res.ok) {
                 alert(data.message);
                 setBroadcastData({ ...broadcastData, subject: '', body: '' });
+                setSelectedRecipientIds([]);
             } else {
-                alert(data.error || 'Failed to broadcast');
+                alert(data.error || 'Broadcast failed');
             }
         } catch (err) {
             console.error(err);
-            alert('Error during broadcast');
+            alert('Network error');
         }
         setBroadcasting(false);
+    };
+
+    const getAllAvailableRecipients = () => {
+        if (!summary) return [];
+        let list = [];
+
+        const targets = broadcastData.targetEvents;
+        const isAll = targets.includes('ALL');
+
+        if (isAll || targets.includes('Srijan (Hackathon)')) {
+            summary.srijan.entries.forEach(e => list.push({ id: e._id, name: e.leaderName, email: e.leaderEmail || 'N/A', team: e.teamName, type: 'Registration' }));
+        }
+        if (isAll || targets.includes('Ankur (Project Expo)')) {
+            summary.ankur.entries.forEach(e => list.push({ id: e._id, name: e.leaderName, email: e.leaderEmail || 'N/A', team: e.teamName, type: 'Registration' }));
+        }
+        if (isAll || targets.includes('Udbhav (Conference)')) {
+            summary.udbhav.entries.forEach(e => list.push({ id: e._id, name: e.leaderName, email: e.leaderEmail || 'N/A', team: e.teamName, type: 'Registration' }));
+        }
+        if (isAll || targets.includes('Cultural')) {
+            summary.cultural.entries.forEach(e => list.push({ id: e._id, name: e.participantName, email: e.email || 'N/A', team: 'Cultural Team', type: 'Cultural' }));
+        }
+        if (isAll || targets.includes('Accommodation')) {
+            summary.accommodation.entries.forEach(e => list.push({ id: e._id, name: e.leaderName, email: e.leaderEmail || 'N/A', team: e.teamName, type: 'Accommodation' }));
+        }
+
+        return list;
+    };
+
+    const toggleRecipient = (id) => {
+        setSelectedRecipientIds(prev =>
+            prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+        );
+    };
+
+    const selectAllFiltered = () => {
+        const available = getAllAvailableRecipients();
+        const availableIds = available.map(r => r.id);
+        const allSelected = availableIds.every(id => selectedRecipientIds.includes(id));
+
+        if (allSelected) {
+            // Deselect only the ones currently visible
+            setSelectedRecipientIds(prev => prev.filter(id => !availableIds.includes(id)));
+        } else {
+            // Select all currently visible
+            setSelectedRecipientIds(prev => [...new Set([...prev, ...availableIds])]);
+        }
     };
 
     const handleSendMail = async (teamId, eventType) => {
@@ -701,81 +765,127 @@ const Admin = () => {
                 ) : (
                     /* Message System View */
                     <div className="admin-content broadcast-hub">
-                        <div className="detail-panel">
-                            <h3>COMMUNICATION BROADCAST CENTER</h3>
-                            <p className="broadcast-subtitle">Personalized emails will be sent to leaders of selected events.</p>
+                        <div className="broadcast-layout">
+                            {/* Left Side: Composer */}
+                            <div className="broadcast-composer">
+                                <div className="detail-panel">
+                                    <h3>BROADCAST COMPOSER</h3>
+                                    <p className="broadcast-subtitle">Personalized emails will be sent to the selected recipients on the right.</p>
 
-                            <form className="broadcast-form" onSubmit={handleSendBulkEmail}>
-                                <div className="broadcast-targets">
-                                    <label>Select Target Streams:</label>
-                                    <div className="target-options">
-                                        {['ALL', 'Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)', 'Cultural', 'Accommodation'].map(ev => (
-                                            <button
-                                                key={ev}
-                                                type="button"
-                                                className={`target-chip ${broadcastData.targetEvents.includes(ev) ? 'selected' : ''}`}
-                                                onClick={() => {
-                                                    if (ev === 'ALL') {
-                                                        setBroadcastData({ ...broadcastData, targetEvents: ['ALL'] });
-                                                    } else {
-                                                        const newTargets = broadcastData.targetEvents.includes(ev)
-                                                            ? broadcastData.targetEvents.filter(t => t !== ev)
-                                                            : [...broadcastData.targetEvents.filter(t => t !== 'ALL'), ev];
-                                                        setBroadcastData({ ...broadcastData, targetEvents: newTargets.length ? newTargets : ['ALL'] });
-                                                    }
-                                                }}
-                                            >
-                                                {ev === 'ALL' ? 'Total Fleet' : ev.split(' ')[0]}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
+                                    <form className="broadcast-form" onSubmit={handleSendBulkEmail}>
+                                        <div className="form-group" style={{ marginBottom: '20px' }}>
+                                            <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Email Subject</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Enter the broadcast subject..."
+                                                value={broadcastData.subject}
+                                                onChange={(e) => setBroadcastData({ ...broadcastData, subject: e.target.value })}
+                                                style={{ width: '100%', padding: '12px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(139, 92, 246, 0.3)', color: '#fff', borderRadius: '8px' }}
+                                                required
+                                            />
+                                        </div>
 
-                                <div className="form-group" style={{ marginBottom: '20px' }}>
-                                    <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Email Subject</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter the broadcast subject..."
-                                        value={broadcastData.subject}
-                                        onChange={(e) => setBroadcastData({ ...broadcastData, subject: e.target.value })}
-                                        style={{ width: '100%', padding: '12px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(139, 92, 246, 0.3)', color: '#fff', borderRadius: '8px' }}
-                                        required
-                                    />
-                                </div>
-
-                                <div className="form-group" style={{ marginBottom: '20px' }}>
-                                    <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Message Content</label>
-                                    <div className="template-tips" style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '10px' }}>
-                                        Use <code>{'{{teamName}}'}</code> or <code>{'{{leaderName}}'}</code> for personalization.
-                                    </div>
-                                    <textarea
-                                        rows="12"
-                                        placeholder={`Greeting, {{leaderName}} of {{teamName}}! 
+                                        <div className="form-group" style={{ marginBottom: '20px' }}>
+                                            <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Message Content</label>
+                                            <div className="template-tips" style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '10px' }}>
+                                                Use <code>{'{{teamName}}'}</code> or <code>{'{{leaderName}}'}</code> for personalization.
+                                            </div>
+                                            <textarea
+                                                rows="8"
+                                                placeholder={`Greeting, {{leaderName}} of {{teamName}}! 
 
 Welcome to the command hub. Your mission details are as follows...`}
-                                        value={broadcastData.body}
-                                        onChange={(e) => setBroadcastData({ ...broadcastData, body: e.target.value })}
-                                        style={{ width: '100%', padding: '15px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(139, 92, 246, 0.3)', color: '#fff', borderRadius: '8px', fontFamily: 'Inter', lineHeight: '1.6' }}
-                                        required
-                                    />
-                                </div>
+                                                value={broadcastData.body}
+                                                onChange={(e) => setBroadcastData({ ...broadcastData, body: e.target.value })}
+                                                style={{ width: '100%', padding: '15px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(139, 92, 246, 0.3)', color: '#fff', borderRadius: '8px', fontFamily: 'Inter', lineHeight: '1.6' }}
+                                                required
+                                            />
+                                        </div>
 
-                                <div className="broadcast-actions" style={{ textAlign: 'right' }}>
-                                    <button type="submit" className="send-all-btn" disabled={broadcasting} style={{
-                                        background: 'linear-gradient(135deg, #7c3aed 0%, #c026d3 100%)',
-                                        color: '#fff',
-                                        padding: '12px 30px',
-                                        border: 'none',
-                                        borderRadius: '12px',
-                                        fontFamily: 'Orbitron',
-                                        fontWeight: 'bold',
-                                        cursor: 'pointer',
-                                        opacity: broadcasting ? 0.6 : 1
-                                    }}>
-                                        {broadcasting ? 'TRANSMITTING...' : 'INITIATE BROADCAST TO ALL TEAMS'}
-                                    </button>
+                                        <div className="broadcast-actions">
+                                            <div className="selection-counter" style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '15px' }}>
+                                                Selected Recipients: <span style={{ color: '#c084fc', fontWeight: 'bold' }}>{selectedRecipientIds.length}</span>
+                                            </div>
+                                            <button type="submit" className="send-all-btn" disabled={broadcasting || selectedRecipientIds.length === 0} style={{
+                                                background: 'linear-gradient(135deg, #7c3aed 0%, #c026d3 100%)',
+                                                color: '#fff',
+                                                padding: '12px 30px',
+                                                border: 'none',
+                                                borderRadius: '12px',
+                                                fontFamily: 'Orbitron',
+                                                fontWeight: 'bold',
+                                                cursor: 'pointer',
+                                                width: '100%',
+                                                opacity: (broadcasting || selectedRecipientIds.length === 0) ? 0.6 : 1
+                                            }}>
+                                                {broadcasting ? 'TRANSMITTING...' : `INITIATE BROADCAST TO ${selectedRecipientIds.length} TEAMS`}
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
+
+                            {/* Right Side: Recipient Selection */}
+                            <div className="broadcast-recipients">
+                                <div className="detail-panel">
+                                    <div className="recipient-header">
+                                        <h3>RECIPIENT FLEET</h3>
+                                        <button className="select-all-btn" onClick={selectAllFiltered}>
+                                            {(() => {
+                                                const available = getAllAvailableRecipients();
+                                                const availableIds = available.map(r => r.id);
+                                                return availableIds.every(id => selectedRecipientIds.includes(id)) ? 'DESELECT ALL' : 'SELECT ALL';
+                                            })()}
+                                        </button>
+                                    </div>
+
+                                    <div className="broadcast-targets" style={{ marginTop: '15px' }}>
+                                        <div className="target-options">
+                                            {['ALL', 'Srijan (Hackathon)', 'Ankur (Project Expo)', 'Udbhav (Conference)', 'Cultural', 'Accommodation'].map(ev => (
+                                                <button
+                                                    key={ev}
+                                                    type="button"
+                                                    className={`target-chip ${broadcastData.targetEvents.includes(ev) ? 'selected' : ''}`}
+                                                    onClick={() => {
+                                                        if (ev === 'ALL') {
+                                                            setBroadcastData({ ...broadcastData, targetEvents: ['ALL'] });
+                                                        } else {
+                                                            const newTargets = broadcastData.targetEvents.includes(ev)
+                                                                ? broadcastData.targetEvents.filter(t => t !== ev)
+                                                                : [...broadcastData.targetEvents.filter(t => t !== 'ALL'), ev];
+                                                            setBroadcastData({ ...broadcastData, targetEvents: newTargets.length ? newTargets : ['ALL'] });
+                                                        }
+                                                    }}
+                                                >
+                                                    {ev === 'ALL' ? 'Total' : ev.split(' ')[0]}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="recipient-list">
+                                        {getAllAvailableRecipients().map(recipient => (
+                                            <div
+                                                key={recipient.id}
+                                                className={`recipient-item ${selectedRecipientIds.includes(recipient.id) ? 'selected' : ''}`}
+                                                onClick={() => toggleRecipient(recipient.id)}
+                                            >
+                                                <div className="recipient-checkbox">
+                                                    {selectedRecipientIds.includes(recipient.id) && <div className="check-mark"></div>}
+                                                </div>
+                                                <div className="recipient-info">
+                                                    <div className="recipient-name">{recipient.team}</div>
+                                                    <div className="recipient-leader">{recipient.name}</div>
+                                                </div>
+                                                <div className="recipient-type-badge">{recipient.type.charAt(0)}</div>
+                                            </div>
+                                        ))}
+                                        {getAllAvailableRecipients().length === 0 && (
+                                            <div className="empty-recipients">No recipients found for selected streams.</div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
