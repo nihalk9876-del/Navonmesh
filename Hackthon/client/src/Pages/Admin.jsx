@@ -286,7 +286,9 @@ const Admin = () => {
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
             const endpoint = eventType === 'cultural'
                 ? `${API_URL}/api/admin/cultural/send-confirmation/${teamId}`
-                : `${API_URL}/api/admin/send-confirmation/${teamId}`;
+                : eventType === 'accommodation'
+                    ? `${API_URL}/api/admin/accommodation/send-confirmation/${teamId}`
+                    : `${API_URL}/api/admin/send-confirmation/${teamId}`;
 
             const res = await fetch(endpoint, {
                 method: 'POST',
@@ -603,6 +605,7 @@ const Admin = () => {
                                                     <th>Size</th>
                                                     <th>Girls</th>
                                                     <th>Boys</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             ) : activeEvent === 'cultural' ? (
                                                 <tr>
@@ -662,6 +665,15 @@ const Admin = () => {
                                                                     <td className="mono">{entry.teamSize}</td>
                                                                     <td className="girls-cell">{entry.girls}</td>
                                                                     <td className="boys-cell">{entry.boys}</td>
+                                                                    <td>
+                                                                        <button
+                                                                            onClick={() => handleSendMail(entry._id, 'accommodation')}
+                                                                            disabled={entry.paymentVerified}
+                                                                            className="verify-mail-btn"
+                                                                        >
+                                                                            {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
+                                                                        </button>
+                                                                    </td>
                                                                 </>
                                                             ) : activeEvent === 'cultural' ? (
                                                                 <>
@@ -690,21 +702,9 @@ const Admin = () => {
                                                                         <button
                                                                             onClick={() => handleSendMail(entry._id, 'cultural')}
                                                                             disabled={entry.paymentVerified}
-                                                                            style={{
-                                                                                padding: '6px 12px',
-                                                                                backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
-                                                                                color: 'white',
-                                                                                border: 'none',
-                                                                                borderRadius: '4px',
-                                                                                cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
-                                                                                fontWeight: 'bold',
-                                                                                fontSize: '0.8rem',
-                                                                                transition: 'background-color 0.2s'
-                                                                            }}
-                                                                            onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
-                                                                            onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
+                                                                            className="verify-mail-btn"
                                                                         >
-                                                                            {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
+                                                                            {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
                                                                         </button>
                                                                     </td>
                                                                 </>
@@ -729,21 +729,9 @@ const Admin = () => {
                                                                         <button
                                                                             onClick={() => handleSendMail(entry._id, activeEvent)}
                                                                             disabled={entry.paymentVerified}
-                                                                            style={{
-                                                                                padding: '6px 12px',
-                                                                                backgroundColor: entry.paymentVerified ? '#4b5563' : '#3b82f6',
-                                                                                color: 'white',
-                                                                                border: 'none',
-                                                                                borderRadius: '4px',
-                                                                                cursor: entry.paymentVerified ? 'not-allowed' : 'pointer',
-                                                                                fontWeight: 'bold',
-                                                                                fontSize: '0.8rem',
-                                                                                transition: 'background-color 0.2s'
-                                                                            }}
-                                                                            onMouseOver={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#2563eb')}
-                                                                            onMouseOut={(e) => !entry.paymentVerified && (e.target.style.backgroundColor = '#3b82f6')}
+                                                                            className="verify-mail-btn"
                                                                         >
-                                                                            {entry.paymentVerified ? 'Mail Sent' : 'Send Mail'}
+                                                                            {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
                                                                         </button>
                                                                     </td>
                                                                 </>

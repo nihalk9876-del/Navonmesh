@@ -23,6 +23,7 @@ const AccommodationSchema = new mongoose.Schema({
 
     // Other members
     members: [MemberSchema],
+    paymentVerified: { type: Boolean, default: false },
 
     registrationDate: { type: Date, default: Date.now }
 });

@@ -86,6 +86,7 @@ router.get('/data', async (req, res) => {
                     boys: r.boysCount,
                     leaderName: r.leaderName,
                     leaderEmail: r.leaderEmail,
+                    paymentVerified: r.paymentVerified,
                     _id: r._id
                 }))
             }
@@ -297,6 +298,103 @@ router.post('/cultural/send-confirmation/:id', async (req, res) => {
 
     } catch (err) {
         console.error('Email sending error:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// Send confirmation email for Accommodation
+router.post('/accommodation/send-confirmation/:id', async (req, res) => {
+    // Auth Check
+    const authHeader = req.headers.authorization;
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh') {
+        return res.status(401).json({ error: 'Unauthorized Access' });
+    }
+
+    try {
+        const accId = req.params.id;
+        const reg = await Accommodation.findById(accId);
+
+        if (!reg) return res.status(404).json({ error: 'Accommodation record not found' });
+        if (reg.paymentVerified) return res.status(400).json({ error: 'Email already sent' });
+
+        // Collect all emails
+        const emails = [reg.leaderEmail, ...reg.members.map(m => m.email)].filter(Boolean);
+
+        // Overall Heads
+        const overallHeads = 'Nihal Kankal (+91 8766417815), Vedant Darokar (+91 8208772402)';
+
+        // HTML Content
+        const htmlContent = `
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;">
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #0f172a 0%, #334155 100%); padding: 30px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 2px;">Navonmesh '26</h1>
+                <p style="color: #94a3b8; margin: 10px 0 0 0; font-size: 16px;">Accommodation Request Confirmed</p>
+            </div>
+
+            <!-- Main Content -->
+            <div style="padding: 40px 30px; color: #333333;">
+                <h2 style="color: #1a1a1a; margin-top: 0; font-size: 24px;">Stay Secured! 🏠</h2>
+                <p style="font-size: 16px; line-height: 1.6; color: #555555;">
+                    Hello <strong>${reg.leaderName}</strong>,
+                </p>
+                <p style="font-size: 16px; line-height: 1.6; color: #555555;">
+                    Your request for accommodation during <strong>Navonmesh '26</strong> has been received and confirmed. We have reserved space for your team based on your registration details.
+                </p>
+
+                <!-- Stay Details Card -->
+                <div style="background-color: #f8fafc; border-left: 4px solid #334155; padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0;">
+                    <h3 style="margin-top: 0; color: #1a1a1a; font-size: 18px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;">Stay Details</h3>
+                    <ul style="list-style-type: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 10px;"><strong style="color: #555;">Team Name:</strong> <span style="font-weight: 600;">${reg.teamName}</span></li>
+                        <li style="margin-bottom: 10px;"><strong style="color: #555;">Associated Event:</strong> ${reg.event}</li>
+                        <li style="margin-bottom: 10px;"><strong style="color: #555;">Total Occupants:</strong> ${reg.teamSize}</li>
+                        <li style="margin-bottom: 10px;"><strong style="color: #555;">Girls:</strong> ${reg.girlsCount} | <strong style="color: #555;">Boys:</strong> ${reg.boysCount}</li>
+                        ${reg.college ? `<li style="margin-bottom: 0;"><strong style="color: #555;">Institute:</strong> ${reg.college}</li>` : ''}
+                    </ul>
+                </div>
+
+                <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <p style="font-size: 14px; color: #475569; margin: 0;"><strong>Note:</strong> Please carry your College ID Cards. Accommodation facility is subject to institute rules and discipline guidelines.</p>
+                </div>
+
+                <!-- Contact Section -->
+                <h3 style="color: #1a1a1a; font-size: 18px; margin-top: 30px;">Queries Regarding Stay?</h3>
+                <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px;">
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: #333;">
+                        <li>👑 <strong>Overall Heads:</strong> Nihal Kankal (+91 8766417815), Vedant Darokar (+91 8208772402)</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 40px; text-align: center; border-top: 1px solid #eee; padding-top: 30px;">
+                    <p style="font-size: 18px; color: #334155; font-weight: bold; margin-bottom: 5px;">We wish you a comfortable stay!</p>
+                    <p style="font-size: 14px; color: #888; margin: 0;">- Navonmesh '26 Organizing Committee</p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div style="background-color: #f1f5f9; padding: 20px; text-align: center; font-size: 12px; color: #94a3b8;">
+                <p style="margin: 0;">This is an automated message regarding your stay arrangements.</p>
+            </div>
+        </div>
+        `;
+
+        const mailSuccess = await sendEmail({
+            to: emails,
+            subject: `Accommodation Confirmed - Navonmesh 2026 (${reg.teamName})`,
+            htmlContent
+        });
+
+        if (mailSuccess) {
+            reg.paymentVerified = true;
+            await reg.save();
+            return res.json({ success: true, message: 'Accommodation confirmation email sent successfully' });
+        } else {
+            return res.status(500).json({ error: 'Failed to send email' });
+        }
+
+    } catch (err) {
+        console.error('Accommodation Email error:', err);
         res.status(500).json({ error: 'Server error' });
     }
 });
