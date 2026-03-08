@@ -24,7 +24,8 @@ const Admin = () => {
     const [broadcastData, setBroadcastData] = useState({
         subject: '',
         body: '',
-        targetEvents: ['ALL']
+        targetEvents: ['ALL'],
+        recipientScope: 'LEADERS' // 'LEADERS' or 'ALL'
     });
     const [selectedRecipientIds, setSelectedRecipientIds] = useState([]); // List of IDs to send to
     const [selectedEntry, setSelectedEntry] = useState(null);
@@ -216,8 +217,11 @@ const Admin = () => {
                     'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}`
                 },
                 body: JSON.stringify({
-                    ...broadcastData,
-                    recipients: recipientsToSend // Send explicit list
+                    subject: broadcastData.subject,
+                    body: broadcastData.body,
+                    targetEvents: broadcastData.targetEvents,
+                    recipientScope: broadcastData.recipientScope,
+                    recipients: recipientsToSend // Send explicit list of leaders/groups
                 })
             });
             const data = await res.json();
@@ -801,6 +805,43 @@ const Admin = () => {
                                         </div>
 
                                         <div className="form-group" style={{ marginBottom: '20px' }}>
+                                            <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron', fontSize: '0.9rem' }}>Broadcast Scope</label>
+                                            <div style={{ display: 'flex', gap: '10px' }}>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setBroadcastData({ ...broadcastData, recipientScope: 'LEADERS' })}
+                                                    className={`scope-pill ${broadcastData.recipientScope === 'LEADERS' ? 'active' : ''}`}
+                                                    style={{
+                                                        flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid rgba(139, 92, 246, 0.3)',
+                                                        background: broadcastData.recipientScope === 'LEADERS' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(0,0,0,0.2)',
+                                                        color: broadcastData.recipientScope === 'LEADERS' ? '#fff' : '#94a3b8',
+                                                        cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.7rem'
+                                                    }}
+                                                >
+                                                    TEAM LEADERS ONLY
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setBroadcastData({ ...broadcastData, recipientScope: 'ALL' })}
+                                                    className={`scope-pill ${broadcastData.recipientScope === 'ALL' ? 'active' : ''}`}
+                                                    style={{
+                                                        flex: 1, padding: '10px', borderRadius: '8px', border: '1px solid rgba(139, 92, 246, 0.3)',
+                                                        background: broadcastData.recipientScope === 'ALL' ? 'rgba(139, 92, 246, 0.2)' : 'rgba(0,0,0,0.2)',
+                                                        color: broadcastData.recipientScope === 'ALL' ? '#fff' : '#94a3b8',
+                                                        cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.7rem'
+                                                    }}
+                                                >
+                                                    ALL PARTICIPANTS
+                                                </button>
+                                            </div>
+                                            <p style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '5px' }}>
+                                                {broadcastData.recipientScope === 'ALL'
+                                                    ? 'Mails will be sent to leaders and all registered team members.'
+                                                    : 'Mails will be sent only to primary team contacts/leaders.'}
+                                            </p>
+                                        </div>
+
+                                        <div className="form-group" style={{ marginBottom: '20px' }}>
                                             <label style={{ display: 'block', marginBottom: '8px', color: '#c084fc', fontFamily: 'Orbitron' }}>Message Content</label>
                                             <div className="template-tips" style={{ fontSize: '0.8rem', color: '#94a3b8', marginBottom: '10px' }}>
                                                 Use <code>{'{{teamName}}'}</code> or <code>{'{{leaderName}}'}</code> for personalization.
@@ -833,7 +874,7 @@ Welcome to the command hub. Your mission details are as follows...`}
                                                 width: '100%',
                                                 opacity: (broadcasting || selectedRecipientIds.length === 0) ? 0.6 : 1
                                             }}>
-                                                {broadcasting ? 'TRANSMITTING...' : `INITIATE BROADCAST TO ${selectedRecipientIds.length} TEAMS`}
+                                                {broadcasting ? 'TRANSMITTING...' : `INITIATE BROADCAST TO ${selectedRecipientIds.length} ${broadcastData.recipientScope === 'ALL' ? 'TEAMS (ALL MEMBERS)' : 'TEAM LEADERS'}`}
                                             </button>
                                         </div>
                                     </form>
