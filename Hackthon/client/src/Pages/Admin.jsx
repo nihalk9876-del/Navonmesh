@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../Styles/admin.css';
 import bgVideo from '../assets/bg.mp4';
-import { FaMusic, FaUsers, FaHotel, FaProjectDiagram, FaDesktop, FaChartPie, FaTable, FaSync, FaDownload } from 'react-icons/fa';
+import { FaMusic, FaUsers, FaHotel, FaProjectDiagram, FaDesktop, FaChartPie, FaTable, FaSync, FaDownload, FaEye, FaTimes } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 
 const Admin = () => {
@@ -27,6 +27,8 @@ const Admin = () => {
         targetEvents: ['ALL']
     });
     const [selectedRecipientIds, setSelectedRecipientIds] = useState([]); // List of IDs to send to
+    const [selectedEntry, setSelectedEntry] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const [broadcasting, setBroadcasting] = useState(false);
 
     const detailPanelRef = useRef(null);
@@ -400,7 +402,9 @@ const Admin = () => {
                         <FaSync className={loading ? 'spin' : ''} />
                     </button>
                     <button className="maintenance-btn" onClick={() => window.open('/#/admin/maintenance', '_blank')}>Maintenance</button>
+                    <button className="event-day-btn" onClick={() => window.open('/#/admin/event-day', '_blank')} style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.8rem' }}>Event Day</button>
                     <button className="logout-btn" onClick={handleLogout}>Abort Mission</button>
+
                 </div>
             </header>
 
@@ -628,8 +632,8 @@ const Admin = () => {
                                                     <th>Group Size</th>
                                                     <th>UTR Number</th>
                                                     {activeEvent === 'ankur' && <th>Category</th>}
-                                                    {activeEvent === 'srijan' && <th>Problem Statement</th>}
-                                                    <th>Action</th>
+                                                    {activeEvent === 'srijan' && <th>Problem St.</th>}
+                                                    <th className="action-header">Actions</th>
                                                 </tr>
                                             )}
                                         </thead>
@@ -666,13 +670,22 @@ const Admin = () => {
                                                                     <td className="girls-cell">{entry.girls}</td>
                                                                     <td className="boys-cell">{entry.boys}</td>
                                                                     <td>
-                                                                        <button
-                                                                            onClick={() => handleSendMail(entry._id, 'accommodation')}
-                                                                            disabled={entry.paymentVerified}
-                                                                            className="verify-mail-btn"
-                                                                        >
-                                                                            {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
-                                                                        </button>
+                                                                        <div className="action-btn-group">
+                                                                            <button
+                                                                                onClick={() => handleSendMail(entry._id, 'accommodation')}
+                                                                                disabled={entry.paymentVerified}
+                                                                                className="verify-mail-btn"
+                                                                            >
+                                                                                {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
+                                                                            </button>
+                                                                            <button
+                                                                                onClick={() => { setSelectedEntry({ ...entry, _type: 'accommodation' }); setShowModal(true); }}
+                                                                                className="view-details-btn"
+                                                                                title="View Full Details"
+                                                                            >
+                                                                                <FaEye />
+                                                                            </button>
+                                                                        </div>
                                                                     </td>
                                                                 </>
                                                             ) : activeEvent === 'cultural' ? (
@@ -699,13 +712,22 @@ const Admin = () => {
                                                                     <td>{entry.contact}</td>
                                                                     <td style={{ fontSize: '0.8rem', opacity: 0.8 }}>{entry.email}</td>
                                                                     <td>
-                                                                        <button
-                                                                            onClick={() => handleSendMail(entry._id, 'cultural')}
-                                                                            disabled={entry.paymentVerified}
-                                                                            className="verify-mail-btn"
-                                                                        >
-                                                                            {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
-                                                                        </button>
+                                                                        <div className="action-btn-group">
+                                                                            <button
+                                                                                onClick={() => handleSendMail(entry._id, 'cultural')}
+                                                                                disabled={entry.paymentVerified}
+                                                                                className="verify-mail-btn"
+                                                                            >
+                                                                                {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
+                                                                            </button>
+                                                                            <button
+                                                                                onClick={() => { setSelectedEntry({ ...entry, _type: 'cultural' }); setShowModal(true); }}
+                                                                                className="view-details-btn"
+                                                                                title="View Full Details"
+                                                                            >
+                                                                                <FaEye />
+                                                                            </button>
+                                                                        </div>
                                                                     </td>
                                                                 </>
                                                             ) : (
@@ -726,13 +748,18 @@ const Admin = () => {
                                                                     {activeEvent === 'ankur' && <td>{entry.category || 'N/A'}</td>}
                                                                     {activeEvent === 'srijan' && <td>{entry.problemStatement || 'N/A'}</td>}
                                                                     <td>
-                                                                        <button
-                                                                            onClick={() => handleSendMail(entry._id, activeEvent)}
-                                                                            disabled={entry.paymentVerified}
-                                                                            className="verify-mail-btn"
-                                                                        >
-                                                                            {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
-                                                                        </button>
+                                                                        <div className="action-btn-group">
+                                                                            <button className="view-details-btn" title="View Full Intel" onClick={() => { setSelectedEntry({ ...entry, _type: activeEvent }); setShowModal(true); }}>
+                                                                                <FaEye />
+                                                                            </button>
+                                                                            <button
+                                                                                className="verify-mail-btn"
+                                                                                onClick={() => handleSendMail(entry._id, activeEvent)}
+                                                                                disabled={entry.paymentVerified}
+                                                                            >
+                                                                                {entry.paymentVerified ? 'Verified' : 'Verify & Mail'}
+                                                                            </button>
+                                                                        </div>
                                                                     </td>
                                                                 </>
                                                             )}
@@ -747,9 +774,9 @@ const Admin = () => {
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div >
                         )}
-                    </div>
+                    </div >
                 ) : (
                     /* Message System View */
                     <div className="admin-content broadcast-hub">
@@ -878,7 +905,210 @@ Welcome to the command hub. Your mission details are as follows...`}
                     </div>
                 )
             ) : null}
-        </div>
+            {/* Details Modal */}
+            {
+                showModal && selectedEntry && (
+                    <div className="admin-modal-overlay" onClick={() => setShowModal(false)}>
+                        <div className="admin-modal-content" onClick={e => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <h3>{selectedEntry._type.toUpperCase()} - FULL INTEL</h3>
+                                <button className="close-modal" onClick={() => setShowModal(false)}><FaTimes /></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="detail-section">
+                                    <h4>Core Information</h4>
+                                    <div className="detail-grid">
+                                        <div className="detail-item">
+                                            <label>Team/Participant Name</label>
+                                            <span>{selectedEntry.teamName || selectedEntry.participantName}</span>
+                                        </div>
+                                        <div className="detail-item">
+                                            <label>Event Type</label>
+                                            <span className="badge">{selectedEntry.event || selectedEntry._type}</span>
+                                        </div>
+                                        <div className="detail-item">
+                                            <label>College</label>
+                                            <span>{selectedEntry.college}</span>
+                                        </div>
+                                        <div className="detail-item">
+                                            <label>Registration Date</label>
+                                            <span>{new Date(selectedEntry.registrationDate).toLocaleString()}</span>
+                                        </div>
+                                        {selectedEntry.utrNumber && (
+                                            <div className="detail-item">
+                                                <label>UTR Number</label>
+                                                <span className="utr-highlight">{selectedEntry.utrNumber}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Type Specific Fields */}
+                                {selectedEntry._type === 'accommodation' ? (
+                                    <div className="detail-section">
+                                        <h4>Accommodation Details</h4>
+                                        <div className="detail-grid">
+                                            <div className="detail-item"><label>Total Size</label><span>{selectedEntry.teamSize}</span></div>
+                                            <div className="detail-item"><label>Girls Count</label><span>{selectedEntry.girlsCount}</span></div>
+                                            <div className="detail-item"><label>Boys Count</label><span>{selectedEntry.boysCount}</span></div>
+                                        </div>
+                                    </div>
+                                ) : selectedEntry._type === 'cultural' ? (
+                                    <div className="detail-section">
+                                        <h4>Performance Details</h4>
+                                        <div className="detail-grid">
+                                            <div className="detail-item"><label>Activity</label><span>{selectedEntry.activity}</span></div>
+                                            <div className="detail-item"><label>Class</label><span>{selectedEntry.className}</span></div>
+                                            {selectedEntry.groupSize && <div className="detail-item"><label>Group Size</label><span>{selectedEntry.groupSize}</span></div>}
+                                        </div>
+                                        {selectedEntry.member2Name && (
+                                            <div className="detail-grid" style={{ marginTop: '10px' }}>
+                                                <div className="detail-item"><label>Member 2 Name</label><span>{selectedEntry.member2Name}</span></div>
+                                                <div className="detail-item"><label>Member 2 Class</label><span>{selectedEntry.member2Class}</span></div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <div className="detail-section">
+                                        <h4>Event Specifics</h4>
+                                        <div className="detail-grid">
+                                            {selectedEntry.problemStatement && (
+                                                <div className="detail-item"><label>Problem Statement</label><span>{selectedEntry.problemStatement}</span></div>
+                                            )}
+                                            {selectedEntry.category && (
+                                                <div className="detail-item"><label>Category</label><span>{selectedEntry.category}</span></div>
+                                            )}
+                                            <div className="detail-item"><label>Team Size</label><span>{selectedEntry.teamSize}</span></div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Leader / Primary Contact */}
+                                <div className="detail-section">
+                                    <h4>{selectedEntry.leaderName ? 'Leader Information' : 'Contact Information'}</h4>
+                                    <div className="detail-grid">
+                                        <div className="detail-item">
+                                            <label>Name</label>
+                                            <span>{selectedEntry.leaderName || selectedEntry.participantName}</span>
+                                        </div>
+                                        <div className="detail-item">
+                                            <label>Email</label>
+                                            <span>{selectedEntry.leaderEmail || selectedEntry.email}</span>
+                                        </div>
+                                        <div className="detail-item">
+                                            <label>Phone</label>
+                                            <span>{selectedEntry.leaderPhone || selectedEntry.contact}</span>
+                                        </div>
+                                        {selectedEntry.leaderGender && (
+                                            <div className="detail-item">
+                                                <label>Gender</label>
+                                                <span>{selectedEntry.leaderGender}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Unified Team Roster */}
+                                <div className="detail-section">
+                                    <h4>Full Detailed Roster</h4>
+                                    <div className="members-table-wrapper">
+                                        <table className="members-mini-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>MSR #</th>
+                                                    <th>Name / Role</th>
+                                                    <th>Email / Contact Status</th>
+                                                    <th>Extra Details</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {/* Member 1 (Leader/Participant) */}
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <strong>{selectedEntry.leaderName || selectedEntry.participantName || selectedEntry.fullName}</strong>
+                                                        <div className="badge" style={{ fontSize: '0.6rem', marginTop: '4px' }}>LEADER / LEAD</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>{selectedEntry.leaderEmail || selectedEntry.email}</div>
+                                                        <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>{selectedEntry.leaderPhone || selectedEntry.contact || selectedEntry.phone}</div>
+                                                    </td>
+                                                    <td>
+                                                        {selectedEntry.leaderGender && <div>Gender: {selectedEntry.leaderGender}</div>}
+                                                        {selectedEntry.className && <div>Class: {selectedEntry.className}</div>}
+                                                        {selectedEntry.college && <div style={{ fontSize: '0.7rem' }}>{selectedEntry.college}</div>}
+                                                    </td>
+                                                </tr>
+
+                                                {/* Other Members (Registration/Accommodation Style) */}
+                                                {selectedEntry.members && selectedEntry.members.map((m, idx) => (
+                                                    <tr key={idx}>
+                                                        <td>{idx + 2}</td>
+                                                        <td>{m.name}</td>
+                                                        <td>
+                                                            <div>{m.email}</div>
+                                                            <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>{m.phone}</div>
+                                                        </td>
+                                                        <td>
+                                                            {m.gender && <div>Gender: {m.gender}</div>}
+                                                            {selectedEntry.college && <div style={{ fontSize: '0.7rem' }}>{selectedEntry.college}</div>}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+
+                                                {/* Cultural Member 2 (Duo Style) */}
+                                                {selectedEntry._type === 'cultural' && selectedEntry.member2Name && (
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>{selectedEntry.member2Name}</td>
+                                                        <td>-</td>
+                                                        <td>
+                                                            {selectedEntry.member2Class && <div>Class: {selectedEntry.member2Class}</div>}
+                                                        </td>
+                                                    </tr>
+                                                )}
+
+                                                {/* If it's a group with no specific member names but size is given */}
+                                                {selectedEntry.groupSize > (selectedEntry.member2Name ? 2 : 1) && (
+                                                    <tr>
+                                                        <td>...</td>
+                                                        <td colSpan="3" style={{ fontStyle: 'italic', opacity: 0.6 }}>
+                                                            Additional group members: {selectedEntry.groupSize - (selectedEntry.member2Name ? 2 : 1)} more participants
+                                                        </td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* Payment Evidence */}
+                                {selectedEntry.utrNumber && (
+                                    <div className="detail-section">
+                                        <h4>Financial Uplink</h4>
+                                        <div className="detail-grid">
+                                            <div className="detail-item">
+                                                <label>UTR NUMBER</label>
+                                                <span style={{ fontSize: '1.2rem', color: '#00e5ff', letterSpacing: '2px', fontWeight: 'bold' }}>{selectedEntry.utrNumber}</span>
+                                            </div>
+                                            <div className="detail-item">
+                                                <label>PAYMENT STATUS</label>
+                                                <span className="badge" style={{ background: selectedEntry.paymentVerified ? 'rgba(34, 197, 94, 0.2)' : 'rgba(239, 68, 68, 0.2)', color: selectedEntry.paymentVerified ? '#22c55e' : '#ef4444' }}>
+                                                    {selectedEntry.paymentVerified ? 'VERIFIED' : 'PENDING VERIFICATION'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="modal-footer">
+                                <button className="close-btn" onClick={() => setShowModal(false)}>DISMISS UPLINK</button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        </div >
     );
 };
 

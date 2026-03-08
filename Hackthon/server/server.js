@@ -40,4 +40,35 @@ app.get('/', (req, res) => {
     res.send('Navonmesh Hackathon API is running');
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const http = require('http');
+const { Server } = require('socket.io');
+
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "*", // Adjust this for production
+        methods: ["GET", "POST"]
+    }
+});
+
+io.on('connection', (socket) => {
+    console.log('A user connected:', socket.id);
+
+    socket.on('seat-update', (data) => {
+        // data: { registrationId, groupNo, tableNo }
+        io.emit('seat-updated', data);
+    });
+
+    socket.on('team-detail-update', (data) => {
+        // data: { id, details }
+        io.emit('team-detail-updated', data);
+    });
+
+    socket.on('disconnect', () => {
+
+        console.log('User disconnected');
+    });
+});
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+

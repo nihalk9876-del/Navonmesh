@@ -27,7 +27,11 @@ const RegistrationSchema = new mongoose.Schema({
     agreed: { type: Boolean, required: true },
     paymentVerified: { type: Boolean, default: false },
 
-    registrationDate: { type: Date, default: Date.now }
+    registrationDate: { type: Date, default: Date.now },
+
+    // Event Day Details
+    groupNo: { type: Number },
+    tableNo: { type: Number }
 });
 
 module.exports = mongoose.model('Registration', RegistrationSchema);

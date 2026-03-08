@@ -42,7 +42,6 @@ import dharmaleImg from "../assets/dharmale.png";
 import buteImg from "../assets/bute.png";
 import gawandeImg from "../assets/gawande.png";
 import mishraImg from "../assets/mishra.png";
-import chandanImg from "../assets/chandan.png";
 import shrutiMankarImg from "../assets/shruti_mankar.png";
 import dhanashriImg from "../assets/dhanashri_borde.png"
 import omTaleImg from "../assets/om_tale.png";
@@ -51,8 +50,17 @@ import PursuitLogo from "../assets/pursuitlogo.png";
 import imgPranita from "../assets/pranita.png";
 import NavonmeshLogo from "../assets/namonvesh-logo.png";
 
+// HOD Images
+import taleImg from "../assets/anand tale .jpeg";
+import patilImg from "../assets/JMPatil.jpeg";
+import paraskarImg from "../assets/paraskar.jpeg";
+import nawgageImg from "../assets/navgage .jpeg";
+import padiyaImg from "../assets/padiya .jpeg";
+import trikalImg from "../assets/trikal.jpeg";
+import kucharImg from "../assets/pawan kuchar.jpeg";
 
-const mentors = [
+
+const topMentors = [
     {
         id: 1,
         name: "Dr. S. B. Somani",
@@ -62,11 +70,66 @@ const mentors = [
     },
     {
         id: 2,
-        name: "Dr.S.S.Jadhao",
-        role: "convener",
+        name: "Dr. S. S. Jadhao",
+        role: "Convener",
         image: jadhaoImg,
         description: "Dedicated mentor fostering technical growth and student development."
+    }
+];
+
+const hods = [
+    {
+        id: 101,
+        name: "Dr. A. S. Tale",
+        role: "Head, Dept. of Applied Sciences and Humanities",
+        image: taleImg,
+        description: "Leadership in fundamental sciences and humanities education."
     },
+    {
+        id: 102,
+        name: "Dr. J. M. Patil",
+        role: "Head, Department of Computer Science & Engineering",
+        image: patilImg,
+        description: "Leading innovation in computer science and software engineering."
+    },
+    {
+        id: 103,
+        name: "Dr. S. R. Paraskar",
+        role: "Head, Dept. of Electrical Engineering (Electronics & Power)",
+        image: paraskarImg,
+        description: "Excellence in electrical power systems and electronics."
+    },
+    {
+        id: 104,
+        name: "Dr. D. D. Nawgaje",
+        role: "Associate Professor & Head, Dept. of Electronics and Telecommunication Engineering",
+        image: nawgageImg,
+        description: "Shaping the future of communication technologies."
+    },
+    {
+        id: 105,
+        name: "Dr. S. D. Padiya",
+        role: "Head, Dept. of Information Technology",
+        image: padiyaImg,
+        description: "Driving digital transformation through information technology."
+    },
+    {
+        id: 106,
+        name: "Dr. S. P. Trikal",
+        role: "Head, Department of Mechanical Engineering",
+        image: trikalImg,
+        description: "Advancing mechanical systems and manufacturing excellence."
+    },
+    {
+        id: 107,
+        name: "Dr. P. M. Kuchar",
+        role: "Head, Dept. of Business Administration and Research (MBA)",
+        image: kucharImg,
+        description: "Nurturing the next generation of business leaders."
+    }
+];
+
+const facultyAdvisors = [
     {
         id: 3,
         name: "Mr. Ganesh Wahile",
@@ -121,13 +184,6 @@ const mentors = [
         name: "Dr. S. M. Mishra",
         role: "Faculty Advisor",
         image: mishraImg,
-        description: "Dedicated faculty member supporting the Navonmesh mission."
-    },
-    {
-        id: 11,
-        name: "Dr. K. V. Chandan",
-        role: " Pursuit Faculty Advisor",
-        image: chandanImg,
         description: "Dedicated faculty member supporting the Navonmesh mission."
     }
 ];
@@ -364,9 +420,64 @@ const Team = () => {
             </div>
 
             <h1 className="team-title" style={{ marginTop: "40px" }}>MENTORS</h1>
-            {/* Desktop Mentors Grid */}
+
+            {/* Principal & Convener */}
+            <div className="team-grid desktop-mentors" style={{ marginBottom: "40px" }}>
+                {topMentors.map((mentor) => (
+                    <div key={mentor.id} className="team-card mentor-card">
+                        <div className="member-img">
+                            <img src={mentor.image} alt={mentor.name} />
+                            <div className="mentor-overlay">
+                                <p className="mentor-description">{mentor.description}</p>
+                            </div>
+                        </div>
+                        <div className="member-info">
+                            <h3>{mentor.name}</h3>
+                            <p className="member-role">{mentor.role}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* HODs - First row of 4 */}
+            <div className="team-grid desktop-mentors" style={{ marginBottom: "40px" }}>
+                {hods.slice(0, 4).map((mentor) => (
+                    <div key={mentor.id} className="team-card mentor-card">
+                        <div className="member-img">
+                            <img src={mentor.image} alt={mentor.name} />
+                            <div className="mentor-overlay">
+                                <p className="mentor-description">{mentor.description}</p>
+                            </div>
+                        </div>
+                        <div className="member-info">
+                            <h3 style={{ fontSize: "1rem" }}>{mentor.name}</h3>
+                            <p className="member-role" style={{ fontSize: "0.75rem" }}>{mentor.role}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* HODs - Second row of 3 */}
             <div className="team-grid desktop-mentors" style={{ marginBottom: "60px" }}>
-                {mentors.map((mentor) => (
+                {hods.slice(4).map((mentor) => (
+                    <div key={mentor.id} className="team-card mentor-card">
+                        <div className="member-img">
+                            <img src={mentor.image} alt={mentor.name} />
+                            <div className="mentor-overlay">
+                                <p className="mentor-description">{mentor.description}</p>
+                            </div>
+                        </div>
+                        <div className="member-info">
+                            <h3 style={{ fontSize: "1rem" }}>{mentor.name}</h3>
+                            <p className="member-role" style={{ fontSize: "0.75rem" }}>{mentor.role}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Faculty Advisors */}
+            <div className="team-grid desktop-mentors" style={{ marginBottom: "60px" }}>
+                {facultyAdvisors.map((mentor) => (
                     <div key={mentor.id} className="team-card mentor-card">
                         <div className="member-img">
                             <img src={mentor.image} alt={mentor.name} />
@@ -386,7 +497,7 @@ const Team = () => {
             <div className="mobile-mentor-scroll">
                 <div className="mentor-track">
                     {/* Concatenate large list for seamless loop */}
-                    {[...mentors, ...mentors, ...mentors, ...mentors].map((mentor, index) => (
+                    {[...topMentors, ...hods, ...facultyAdvisors, ...topMentors, ...hods, ...facultyAdvisors].map((mentor, index) => (
                         <div key={`${mentor.id}-${index}`} className="team-card mentor-card">
                             <div className="member-img">
                                 <img src={mentor.image} alt={mentor.name} />
