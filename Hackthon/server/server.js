@@ -46,29 +46,30 @@ const { Server } = require('socket.io');
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*", // Adjust this for production
+        origin: "*",
         methods: ["GET", "POST"]
-    }
+    },
+    pingTimeout: 60000,
 });
 
 io.on('connection', (socket) => {
-    console.log('A user connected:', socket.id);
+    console.log(`[Socket] New operative connected: ${socket.id}`);
 
     socket.on('seat-update', (data) => {
-        // data: { registrationId, groupNo, tableNo }
+        console.log(`[Socket] Broadcasting seat update for ${data.registrationId}`);
+        // Broadcast to all clients including sender
         io.emit('seat-updated', data);
     });
 
     socket.on('team-detail-update', (data) => {
-        // data: { id, details }
+        console.log(`[Socket] Broadcasting detail update for ${data.id}`);
         io.emit('team-detail-updated', data);
     });
 
-    socket.on('disconnect', () => {
-
-        console.log('User disconnected');
+    socket.on('disconnect', (reason) => {
+        console.log(`[Socket] Operative disconnected: ${socket.id} (${reason})`);
     });
 });
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`🚀 Mission Control running on port ${PORT}`));
 

@@ -401,7 +401,7 @@ router.post('/send-bulk-email', async (req, res) => {
         return res.status(401).json({ error: 'Unauthorized Access' });
     }
 
-    const { subject, body, targetEvents, recipients: selectedRecipients } = req.body;
+    const { subject, body, targetEvents, recipients: selectedRecipients, recipientScope } = req.body;
 
     if (!subject || !body) {
         return res.status(400).json({ error: 'Subject and Body are required' });
@@ -412,7 +412,48 @@ router.post('/send-bulk-email', async (req, res) => {
 
         // If explicit recipients are provided from the frontend, use them
         if (selectedRecipients && selectedRecipients.length > 0) {
-            recipients = selectedRecipients;
+            if (recipientScope === 'ALL') {
+                // Fetch full documents to expand recipients to include all team members
+                const ids = selectedRecipients.map(r => r.id);
+
+                const [regs, accs, cults] = await Promise.all([
+                    Registration.find({ _id: { $in: ids } }),
+                    Accommodation.find({ _id: { $in: ids } }),
+                    Cultural.find({ _id: { $in: ids } })
+                ]);
+
+                let expandedRecipients = [];
+
+                // Expanded logic for Main Registrations
+                regs.forEach(r => {
+                    expandedRecipients.push({ name: r.leaderName, email: r.leaderEmail, team: r.teamName });
+                    if (r.members && r.members.length > 0) {
+                        r.members.forEach(m => {
+                            if (m.email) expandedRecipients.push({ name: m.name, email: m.email, team: r.teamName });
+                        });
+                    }
+                });
+
+                // Expanded logic for Accommodation
+                accs.forEach(a => {
+                    expandedRecipients.push({ name: a.leaderName, email: a.leaderEmail, team: a.teamName });
+                    if (a.members && a.members.length > 0) {
+                        a.members.forEach(m => {
+                            if (m.email) expandedRecipients.push({ name: m.name, email: m.email, team: a.teamName });
+                        });
+                    }
+                });
+
+                // Expanded logic for Cultural (Cultural usually doesn't have member emails)
+                cults.forEach(c => {
+                    expandedRecipients.push({ name: c.participantName, email: c.email, team: 'Cultural Performance' });
+                });
+
+                recipients = expandedRecipients;
+            } else {
+                // Leaders only (default)
+                recipients = selectedRecipients;
+            }
         } else {
             // Fallback to legacy behavior: fetch based on targetEvents
             let allRecipients = [];
@@ -427,11 +468,18 @@ router.post('/send-bulk-email', async (req, res) => {
                     if (subEvents.length > 0) registrationQuery.event = { $in: subEvents };
                 }
                 const regs = await Registration.find(registrationQuery);
-                regs.forEach(r => allRecipients.push({
-                    name: r.leaderName,
-                    email: r.leaderEmail,
-                    team: r.teamName
-                }));
+                regs.forEach(r => {
+                    allRecipients.push({
+                        name: r.leaderName,
+                        email: r.leaderEmail,
+                        team: r.teamName
+                    });
+                    if (recipientScope === 'ALL' && r.members && r.members.length > 0) {
+                        r.members.forEach(m => {
+                            if (m.email) allRecipients.push({ name: m.name, email: m.email, team: r.teamName });
+                        });
+                    }
+                });
             }
 
             // 2. Fetch from Cultural
@@ -447,11 +495,18 @@ router.post('/send-bulk-email', async (req, res) => {
             // 3. Fetch from Accommodation
             if (isAll || targets.includes('Accommodation')) {
                 const accs = await Accommodation.find();
-                accs.forEach(a => allRecipients.push({
-                    name: a.leaderName,
-                    email: a.leaderEmail,
-                    team: a.teamName
-                }));
+                accs.forEach(a => {
+                    allRecipients.push({
+                        name: a.leaderName,
+                        email: a.leaderEmail,
+                        team: a.teamName
+                    });
+                    if (recipientScope === 'ALL' && a.members && a.members.length > 0) {
+                        a.members.forEach(m => {
+                            if (m.email) allRecipients.push({ name: m.name, email: m.email, team: a.teamName });
+                        });
+                    }
+                });
             }
 
             // Remove duplicates if any (same email in multiple collections)
