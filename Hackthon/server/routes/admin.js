@@ -59,15 +59,15 @@ router.get('/data', async (req, res) => {
         res.json({
             srijan: {
                 count: srijan.length,
-                entries: srijan.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, leaderEmail: r.leaderEmail, college: r.college, problemStatement: r.problemStatement, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id }))
+                entries: srijan.map(r => ({ ...r._doc, paymentVerified: r.paymentVerified }))
             },
             ankur: {
                 count: ankur.length,
-                entries: ankur.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, leaderEmail: r.leaderEmail, college: r.college, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id, category: r.studentCategory }))
+                entries: ankur.map(r => ({ ...r._doc, category: r.studentCategory, paymentVerified: r.paymentVerified }))
             },
             udbhav: {
                 count: udbhav.length,
-                entries: udbhav.map(r => ({ teamName: r.teamName, teamSize: r.teamSize, leaderName: r.leaderName, leaderEmail: r.leaderEmail, college: r.college, utrNumber: r.utrNumber, paymentVerified: r.paymentVerified, _id: r._id }))
+                entries: udbhav.map(r => ({ ...r._doc, paymentVerified: r.paymentVerified }))
             },
             cultural: {
                 count: cultural.length,
@@ -78,16 +78,10 @@ router.get('/data', async (req, res) => {
                 totalGirls,
                 totalBoys,
                 entries: accommodation.map(r => ({
-                    event: r.event,
-                    teamName: r.teamName,
-                    college: r.college,
-                    teamSize: r.teamSize,
+                    ...r._doc,
                     girls: r.girlsCount,
                     boys: r.boysCount,
-                    leaderName: r.leaderName,
-                    leaderEmail: r.leaderEmail,
-                    paymentVerified: r.paymentVerified,
-                    _id: r._id
+                    paymentVerified: r.paymentVerified
                 }))
             }
         });
@@ -527,4 +521,30 @@ ${personalizedBody}
     }
 });
 
+// Update registration details for event day
+router.put('/update-registration/:id', async (req, res) => {
+    // Auth Check
+    const authHeader = req.headers.authorization;
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh') {
+        return res.status(401).json({ error: 'Unauthorized Access' });
+    }
+
+    try {
+        const { id } = req.params;
+        const updates = req.body;
+
+        const updatedReg = await Registration.findByIdAndUpdate(id, updates, { new: true });
+
+        if (!updatedReg) {
+            return res.status(404).json({ error: 'Registration not found' });
+        }
+
+        res.json({ success: true, entry: updatedReg });
+    } catch (err) {
+        console.error('Update registration error:', err);
+        res.status(500).json({ error: 'Server error updating registration' });
+    }
+});
+
 module.exports = router;
+

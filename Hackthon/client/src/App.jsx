@@ -25,8 +25,10 @@ import ScrollToTop from "./Components/ScrollToTop";
 import Admin from "./Pages/Admin";
 import SupportQR from "./Pages/SupportQR";
 import AdminMaintenance from "./Pages/AdminMaintenance";
+import EventDayAdmin from "./Pages/EventDayAdmin";
 
 function App() {
+
   const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -66,7 +68,9 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/support" element={<SupportQR />} />
             <Route path="/admin/maintenance" element={<AdminMaintenance />} />
+            <Route path="/admin/event-day" element={<EventDayAdmin />} />
           </Routes>
+
         </div>
       </HashRouter>
     </>
