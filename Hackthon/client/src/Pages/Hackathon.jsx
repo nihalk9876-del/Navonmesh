@@ -9,6 +9,7 @@ import srijanPoster from "../assets/HACKATHON.jpeg";
 const Hackathon = () => {
     const [showAll, setShowAll] = useState(false);
     const [mobileSection, setMobileSection] = useState(null);
+    const [showFilledModal, setShowFilledModal] = useState(false);
 
     const toggleMobileSection = (section) => {
         setMobileSection(prev => prev === section ? null : section);
@@ -164,7 +165,14 @@ const Hackathon = () => {
                     </div>
 
                     <div className="header-actions">
-                        <Link to="/register?event=srijan" className="register-rocket-btn animate-float">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setShowFilledModal(true);
+                            }}
+                            className="register-rocket-btn animate-float"
+                            style={{ cursor: 'pointer', border: 'none', appearance: 'none' }}
+                        >
                             <span className="reg-text">REGISTER FOR SRIJAN</span>
                             <div className="reg-icon-circle">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -173,7 +181,7 @@ const Hackathon = () => {
                                 </svg>
                             </div>
                             <div className="rocket-exhaust"></div>
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -385,6 +393,41 @@ const Hackathon = () => {
                     </div>
                 </div>
             </div>
+            {/* REGISTRATION FILLED MODAL */}
+            {showFilledModal && (
+                <div className="voyager-modal-overlay" onClick={() => setShowFilledModal(false)}>
+                    <div className="voyager-modal-content animate-pop" onClick={e => e.stopPropagation()}>
+                        <div className="modal-bracket bracket-top-left"></div>
+                        <div className="modal-bracket bracket-top-right"></div>
+                        <div className="modal-bracket bracket-bottom-left"></div>
+                        <div className="modal-bracket bracket-bottom-right"></div>
+
+                        <div className="modal-header">
+                            <span className="status-badge">MISSION_ALERT</span>
+                            <h2>REGISTRATION STATUS</h2>
+                        </div>
+
+                        <div className="modal-body">
+                            <div className="error-icon-container">
+                                <div className="error-circle">!</div>
+                            </div>
+                            <h3>REGISTRATION FILLED</h3>
+                            <p>WE ARE NO LONGER ACCEPTING UNITS FOR THE <strong>SRIJAN HACKATHON</strong> MISSION. THE REQUISITE NUMBERS HAVE BEEN REACHED.</p>
+
+                            <div className="modal-tech-stats">
+                                <div className="stat-line">SYSTEM: STABLE</div>
+                                <div className="stat-line">LIMIT: EXCEEDED</div>
+                            </div>
+                        </div>
+
+                        <div className="modal-footer">
+                            <button className="modal-dismiss-btn" onClick={() => setShowFilledModal(false)}>
+                                DISMISS PROTOCOL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
