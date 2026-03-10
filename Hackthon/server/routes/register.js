@@ -27,6 +27,11 @@ router.post('/', async (req, res) => {
             }
         }
 
+        // --- DISABLE SRIJAN REGISTRATIONS ---
+        if (event && event.toLowerCase().includes('srijan')) {
+            return res.status(403).json({ error: 'Registrations for Srijan (Hackathon) are now closed because all slots are full. Thank you for your interest!' });
+        }
+
         const newRegistration = new Registration({
             event,
             teamName,

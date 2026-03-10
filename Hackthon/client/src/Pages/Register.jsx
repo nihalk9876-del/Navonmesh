@@ -489,193 +489,241 @@ const Register = () => {
 
                     {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
 
-                    <form className="register-form" onSubmit={onSubmit}>
-
-                        <label>EVENT</label>
-                        <select name="event" value={event} onChange={onChange} className="register-select" required disabled>
-                            <option value="Srijan (Hackathon)">Srijan (Hackathon)</option>
-                            <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
-                            <option value="Udbhav (Conference)">Udbhav (Conference)</option>
-                            <option value="Pursuit">Pursuit</option>
-                        </select>
-
-                        {event === 'Srijan (Hackathon)' && (
-                            <>
-                                <label>PROBLEM STATEMENT</label>
-                                <select name="problemStatement" value={problemStatement} onChange={onChange} className="register-select" required>
-                                    <option value="" disabled>Select Problem Statement</option>
-                                    <option value="Student Innovation">Student Innovation</option>
-                                    <option value="Problem Statement 1">Problem Statement 1</option>
-                                    <option value="Problem Statement 2">Problem Statement 2</option>
-                                </select>
-                            </>
-                        )}
-
-                        <div className="form-section-title">Team Info</div>
-                        <label>TEAM NAME</label>
-                        <input type="text" placeholder="Enter Team Name (or 'Individual' if solo)" name="teamName" value={teamName} onChange={onChange} required />
-
-                        {event === 'Ankur (Project Expo)' && (
-                            <>
-                                <label>STUDENT CATEGORY</label>
-                                <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
-                                    <option value="" disabled>Select Category</option>
-                                    <option value="Degree Students">Degree Students</option>
-                                    <option value="Diploma Students">Diploma Students</option>
-                                </select>
-                            </>
-                        )}
-
-                        <label>TEAM SIZE (1-4)</label>
-                        <input
-                            type="number"
-                            min="1"
-                            max="4"
-                            placeholder="Total Members (1, 2, 3 or 4)"
-                            name="teamSize"
-                            value={teamSize}
-                            onChange={onChange}
-                            required
-                        />
-
-                        {/* MEMBER DETAILS */}
-                        <div className="form-section-title">
-                            Team Leader (Member 1) Details
-                        </div>
-                        <label>FULL NAME</label>
-                        <input type="text" placeholder="Leader Name" name="fullName" value={fullName} onChange={onChange} required />
-
-                        <label>EMAIL</label>
-                        <input type="email" placeholder="Leader Email" name="email" value={email} onChange={onChange} required />
-
-                        <label>PHONE</label>
-                        <input type="tel" placeholder="Leader Phone" name="phone" value={phone} onChange={onChange} required />
-
-                        {showCollege && (
-                            <>
-                                <label>COLLEGE</label>
-                                <input type="text" placeholder="College Name" name="college" value={college} onChange={onChange} required />
-                            </>
-                        )}
-
-
-                        {/* DYNAMIC MEMBERS (Hidden for Udbhav) */}
-                        <>
-                            {parseInt(teamSize) >= 2 && (
-                                <>
-                                    <div className="form-section-title">Member 2 Details</div>
-                                    <label>NAME</label>
-                                    <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
-                                    <label>EMAIL</label>
-                                    <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
-                                    {config?.hasMemberPhone && (
-                                        <>
-                                            <label>PHONE</label>
-                                            <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
-                                        </>
-                                    )}
-                                </>
-                            )}
-
-                            {parseInt(teamSize) >= 3 && (
-                                <>
-                                    <div className="form-section-title">Member 3 Details</div>
-                                    <label>NAME</label>
-                                    <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
-                                    <label>EMAIL</label>
-                                    <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
-                                    {config?.hasMemberPhone && (
-                                        <>
-                                            <label>PHONE</label>
-                                            <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
-                                        </>
-                                    )}
-                                </>
-                            )}
-
-                            {parseInt(teamSize) >= 4 && (
-                                <>
-                                    <div className="form-section-title">Member 4 Details</div>
-                                    <label>NAME</label>
-                                    <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
-                                    <label>EMAIL</label>
-                                    <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
-                                    {config?.hasMemberPhone && (
-                                        <>
-                                            <label>PHONE</label>
-                                            <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
-                                        </>
-                                    )}
-                                </>
-                            )}
-                        </>
-
-                        {/* PAYMENT SECTION */}
-                        <div className="form-section-title">Payment Details</div>
-                        <div className="payment-section" style={{ textAlign: "center", marginBottom: "20px" }}>
-                            <p style={{ marginBottom: "10px", fontSize: "1.1em" }}>Scan to pay <strong>₹300</strong></p>
-                            <img
-                                src={PaymentQR}
-                                alt="Payment QR Code"
-                                style={{ width: "200px", height: "auto", borderRadius: "10px", border: "2px solid #ccc", marginBottom: "15px" }}
-                            />
-                            <p style={{ fontSize: "0.9em", color: "#666", marginBottom: "15px" }}>
-                                *Please enter the correct 12-digit <strong>UTR Number</strong> to verify your payment.
+                    {event === 'Srijan (Hackathon)' ? (
+                        <div className="closed-container" style={{
+                            textAlign: 'center',
+                            padding: '60px 20px',
+                            background: 'rgba(255, 0, 0, 0.05)',
+                            border: '1px solid rgba(255, 0, 0, 0.2)',
+                            borderRadius: '20px',
+                            marginTop: '20px'
+                        }}>
+                            <h2 style={{ color: '#ff4b2b', fontSize: '2.5rem', marginBottom: '20px' }}>Registrations Closed!</h2>
+                            <p style={{ color: '#fff', fontSize: '1.2rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 30px' }}>
+                                Thank you for your overwhelming response! The slots for <strong>Srijan (Hackathon)</strong> are now full and registrations have been officially closed.
                             </p>
-
-                            <div className="utr-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
-                                <label style={{ marginBottom: 0 }}>UTR NUMBER (12-DIGIT)</label>
-                                <button
-                                    type="button"
-                                    className="help-link-btn"
-                                    onClick={() => setShowUTRHelp(true)}
-                                    style={{ background: 'none', border: 'none', color: '#007bff', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.85em' }}
+                            <div className="closed-info" style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '12px', display: 'inline-block' }}>
+                                <p style={{ color: '#ccc', marginBottom: '10px' }}>Registered teams, please stay tuned to the WhatsApp group for further updates.</p>
+                                <a
+                                    href="https://chat.whatsapp.com/K5spryDgbS56emLZP8F30g?mode=gi_t"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="whatsapp-btn"
+                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                                 >
-                                    Where to find UTR?
+                                    <FaWhatsapp /> Srijan WhatsApp Group
+                                </a>
+                            </div>
+                            <div style={{ marginTop: '40px' }}>
+                                <button
+                                    onClick={() => navigate('/')}
+                                    style={{
+                                        background: 'linear-gradient(45deg, #00e5ff, #007bff)',
+                                        color: '#fff',
+                                        border: 'none',
+                                        padding: '12px 40px',
+                                        borderRadius: '30px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        fontSize: '1rem',
+                                        transition: '0.3s'
+                                    }}
+                                    onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                                    onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+                                >
+                                    Back to Home
                                 </button>
                             </div>
-                            <input
-                                type="text"
-                                placeholder="Enter 12-digit UTR (e.g. 123456789012)"
-                                name="utrNumber"
-                                value={utrNumber}
-                                onChange={onChange}
-                                required
-                                minLength="12"
-                                maxLength="12"
-                                pattern="\d{12}"
-                                title="UTR must be exactly 12 digits"
-                            />
                         </div>
+                    ) : (
+                        <form className="register-form" onSubmit={onSubmit}>
 
-                        <div className="terms-container">
+                            <label>EVENT</label>
+                            <select name="event" value={event} onChange={onChange} className="register-select" required disabled>
+                                <option value="Srijan (Hackathon)">Srijan (Hackathon)</option>
+                                <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
+                                <option value="Udbhav (Conference)">Udbhav (Conference)</option>
+                                <option value="Pursuit">Pursuit</option>
+                            </select>
+
+                            {event === 'Srijan (Hackathon)' && (
+                                <>
+                                    <label>PROBLEM STATEMENT</label>
+                                    <select name="problemStatement" value={problemStatement} onChange={onChange} className="register-select" required>
+                                        <option value="" disabled>Select Problem Statement</option>
+                                        <option value="Student Innovation">Student Innovation</option>
+                                        <option value="Problem Statement 1">Problem Statement 1</option>
+                                        <option value="Problem Statement 2">Problem Statement 2</option>
+                                    </select>
+                                </>
+                            )}
+
+                            <div className="form-section-title">Team Info</div>
+                            <label>TEAM NAME</label>
+                            <input type="text" placeholder="Enter Team Name (or 'Individual' if solo)" name="teamName" value={teamName} onChange={onChange} required />
+
+                            {event === 'Ankur (Project Expo)' && (
+                                <>
+                                    <label>STUDENT CATEGORY</label>
+                                    <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
+                                        <option value="" disabled>Select Category</option>
+                                        <option value="Degree Students">Degree Students</option>
+                                        <option value="Diploma Students">Diploma Students</option>
+                                    </select>
+                                </>
+                            )}
+
+                            <label>TEAM SIZE (1-4)</label>
                             <input
-                                type="checkbox"
-                                name="agreed"
-                                checked={formData.agreed}
+                                type="number"
+                                min="1"
+                                max="4"
+                                placeholder="Total Members (1, 2, 3 or 4)"
+                                name="teamSize"
+                                value={teamSize}
                                 onChange={onChange}
                                 required
-                                className="terms-checkbox"
                             />
-                            <div className="terms-text-wrapper">
-                                I agree to the <span className="terms-link">Terms and Conditions</span>
+
+                            {/* MEMBER DETAILS */}
+                            <div className="form-section-title">
+                                Team Leader (Member 1) Details
                             </div>
-                        </div>
+                            <label>FULL NAME</label>
+                            <input type="text" placeholder="Leader Name" name="fullName" value={fullName} onChange={onChange} required />
+
+                            <label>EMAIL</label>
+                            <input type="email" placeholder="Leader Email" name="email" value={email} onChange={onChange} required />
+
+                            <label>PHONE</label>
+                            <input type="tel" placeholder="Leader Phone" name="phone" value={phone} onChange={onChange} required />
+
+                            {showCollege && (
+                                <>
+                                    <label>COLLEGE</label>
+                                    <input type="text" placeholder="College Name" name="college" value={college} onChange={onChange} required />
+                                </>
+                            )}
+
+
+                            {/* DYNAMIC MEMBERS (Hidden for Udbhav) */}
+                            <>
+                                {parseInt(teamSize) >= 2 && (
+                                    <>
+                                        <div className="form-section-title">Member 2 Details</div>
+                                        <label>NAME</label>
+                                        <input type="text" placeholder="Member 2 Name" name="member2Name" value={member2Name} onChange={onChange} required />
+                                        <label>EMAIL</label>
+                                        <input type="email" placeholder="Member 2 Email" name="member2Email" value={member2Email} onChange={onChange} required />
+                                        {config?.hasMemberPhone && (
+                                            <>
+                                                <label>PHONE</label>
+                                                <input type="tel" placeholder="Member 2 Phone" name="member2Phone" value={member2Phone} onChange={onChange} required />
+                                            </>
+                                        )}
+                                    </>
+                                )}
+
+                                {parseInt(teamSize) >= 3 && (
+                                    <>
+                                        <div className="form-section-title">Member 3 Details</div>
+                                        <label>NAME</label>
+                                        <input type="text" placeholder="Member 3 Name" name="member3Name" value={member3Name} onChange={onChange} required />
+                                        <label>EMAIL</label>
+                                        <input type="email" placeholder="Member 3 Email" name="member3Email" value={member3Email} onChange={onChange} required />
+                                        {config?.hasMemberPhone && (
+                                            <>
+                                                <label>PHONE</label>
+                                                <input type="tel" placeholder="Member 3 Phone" name="member3Phone" value={member3Phone} onChange={onChange} required />
+                                            </>
+                                        )}
+                                    </>
+                                )}
+
+                                {parseInt(teamSize) >= 4 && (
+                                    <>
+                                        <div className="form-section-title">Member 4 Details</div>
+                                        <label>NAME</label>
+                                        <input type="text" placeholder="Member 4 Name" name="member4Name" value={member4Name} onChange={onChange} required />
+                                        <label>EMAIL</label>
+                                        <input type="email" placeholder="Member 4 Email" name="member4Email" value={member4Email} onChange={onChange} required />
+                                        {config?.hasMemberPhone && (
+                                            <>
+                                                <label>PHONE</label>
+                                                <input type="tel" placeholder="Member 4 Phone" name="member4Phone" value={member4Phone} onChange={onChange} required />
+                                            </>
+                                        )}
+                                    </>
+                                )}
+                            </>
+
+                            {/* PAYMENT SECTION */}
+                            <div className="form-section-title">Payment Details</div>
+                            <div className="payment-section" style={{ textAlign: "center", marginBottom: "20px" }}>
+                                <p style={{ marginBottom: "10px", fontSize: "1.1em" }}>Scan to pay <strong>₹300</strong></p>
+                                <img
+                                    src={PaymentQR}
+                                    alt="Payment QR Code"
+                                    style={{ width: "200px", height: "auto", borderRadius: "10px", border: "2px solid #ccc", marginBottom: "15px" }}
+                                />
+                                <p style={{ fontSize: "0.9em", color: "#666", marginBottom: "15px" }}>
+                                    *Please enter the correct 12-digit <strong>UTR Number</strong> to verify your payment.
+                                </p>
+
+                                <div className="utr-label-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px' }}>
+                                    <label style={{ marginBottom: 0 }}>UTR NUMBER (12-DIGIT)</label>
+                                    <button
+                                        type="button"
+                                        className="help-link-btn"
+                                        onClick={() => setShowUTRHelp(true)}
+                                        style={{ background: 'none', border: 'none', color: '#007bff', textDecoration: 'underline', cursor: 'pointer', fontSize: '0.85em' }}
+                                    >
+                                        Where to find UTR?
+                                    </button>
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Enter 12-digit UTR (e.g. 123456789012)"
+                                    name="utrNumber"
+                                    value={utrNumber}
+                                    onChange={onChange}
+                                    required
+                                    minLength="12"
+                                    maxLength="12"
+                                    pattern="\d{12}"
+                                    title="UTR must be exactly 12 digits"
+                                />
+                            </div>
+
+                            <div className="terms-container">
+                                <input
+                                    type="checkbox"
+                                    name="agreed"
+                                    checked={formData.agreed}
+                                    onChange={onChange}
+                                    required
+                                    className="terms-checkbox"
+                                />
+                                <div className="terms-text-wrapper">
+                                    I agree to the <span className="terms-link">Terms and Conditions</span>
+                                </div>
+                            </div>
 
 
 
-                        <div className="accommodation-notice-box">
-                            <p className="notice-text">
-                                <span className="notice-icon">🚀</span>
-                                <strong>NOTICE:</strong> For accommodation, please fill the <Link to="/accommodation" className="notice-link">Accommodation Form</Link> separately on the website.
-                            </p>
-                        </div>
+                            <div className="accommodation-notice-box">
+                                <p className="notice-text">
+                                    <span className="notice-icon">🚀</span>
+                                    <strong>NOTICE:</strong> For accommodation, please fill the <Link to="/accommodation" className="notice-link">Accommodation Form</Link> separately on the website.
+                                </p>
+                            </div>
 
-                        <button type="submit" className="register-btn" disabled={loading || !formData.agreed}>
-                            {loading ? 'Submitting...' : 'Register Team'}
-                        </button>
+                            <button type="submit" className="register-btn" disabled={loading || !formData.agreed}>
+                                {loading ? 'Submitting...' : 'Register Team'}
+                            </button>
 
-                    </form>
+                        </form>
+                    )}
                 </div>
             </div>
         </div >
