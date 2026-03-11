@@ -17,95 +17,148 @@ const Hackathon = () => {
 
     const scheduleItems = [
         {
-            title: "Registration Process",
-            time: "March 23, 9:00 AM - 11:00 AM",
-            desc: "Participants register, providing essential team details and project ideas.",
+            title: "Registration & Check-in",
+            time: "March 23, 7:00 AM - 1:00 PM",
+            desc: "On-site registration and kit distribution (Ongoing simultaneously).",
             tag: "Mandatory",
             tagColor: "purple",
             location: "Registration Desk",
             dotColor: "pink"
         },
         {
-            title: "Inauguration Ceremony",
-            time: "March 23, 11:00 AM - 11:30 AM",
-            desc: "Kickstart the hackathon with engaging speeches and a formal opening.",
-            tag: "Mandatory",
+            title: "Inauguration & Keynotes",
+            time: "March 23, 11:30 AM - 12:15 PM",
+            desc: "Formal opening with chief guests and initial mission briefing.",
+            tag: "Key Event",
             tagColor: "purple",
             location: "Main Hall",
             dotColor: "purple"
         },
         {
-            title: "Hackathon Phase 1",
-            time: "March 23, 11:30 AM - 6:00 PM",
-            desc: "Teams brainstorm and start working on their projects.",
-            tag: "In Progress",
+            title: "Buffer & Final Setup",
+            time: "March 23, 12:15 PM - 12:30 PM",
+            desc: "Stations ready. Final technical checks and team synchronization.",
+            tag: "Protocol",
             tagColor: "blue",
             location: "All Venues",
+            dotColor: "purple"
+        },
+        {
+            title: "Hackathon Commences",
+            time: "March 23, 12:30 PM",
+            desc: "The clock starts! 24 hours of continuous innovation begins.",
+            tag: "Critical",
+            tagColor: "blue",
+            location: "Mission Control",
             dotColor: "purple"
         },
         {
             title: "Jury Round 1",
-            time: "March 23, 4:00 PM - 6:00 PM",
-            desc: "Showcase your progress and receive feedback from the judges.",
-            tag: "In Progress",
+            time: "March 23, 2:30 PM - 3:30 PM",
+            desc: "Initial feasibility check and architecture review for all squads.",
+            tag: "Jury Round",
             tagColor: "blue",
-            location: "Main Hall",
+            location: "Team Stations",
             dotColor: "purple"
         },
-
+        {
+            title: "Core Development Phase",
+            time: "March 23, 3:30 PM Onwards",
+            desc: "Intensive team work and feature implementation.",
+            tag: "In Progress",
+            tagColor: "blue",
+            location: "All Venues",
+            dotColor: "purple"
+        },
+        {
+            title: "Cultural Kalaspandhan",
+            time: "March 23, 6:00 PM - 8:00 PM",
+            desc: "A brief mental recharge with evening cultural performances.",
+            tag: "Refreshment",
+            tagColor: "blue",
+            location: "Main Stage",
+            dotColor: "purple"
+        },
+        {
+            title: "Dinner Break",
+            time: "March 23, 8:00 PM - 9:00 PM",
+            desc: "Evening rations served for all registered tactical units.",
+            tag: "Break",
+            tagColor: "blue",
+            location: "Food Court",
+            dotColor: "purple"
+        },
+        {
+            title: "Overnight Work Block",
+            time: "March 23, 9:00 PM - 9:00 AM",
+            desc: "12 hours of uninterrupted development. Fuel up, stay alert.",
+            tag: "Intensive",
+            tagColor: "purple",
+            location: "All Venues",
+            dotColor: "pink"
+        },
+        {
+            title: "Ongoing Breakfast",
+            time: "March 24, 7:00 AM - 9:00 AM",
+            desc: "Breakfast service active while the mission clock continues.",
+            tag: "Support",
+            tagColor: "blue",
+            location: "Food Court",
+            dotColor: "purple"
+        },
         {
             title: "Jury Round 2",
-            time: "March 23, 10:00 PM - 12:00 AM",
-            desc: "Showcase your progress and receive feedback from the judges.",
-            tag: "In Progress",
+            time: "March 24, 9:00 AM - 10:30 AM",
+            desc: "Mid-way implementation review and technical hurdle assessment.",
+            tag: "Jury Round",
             tagColor: "blue",
             location: "Main Hall",
             dotColor: "purple"
         },
         {
-            title: "Hackathon Phase 2",
-            time: "March 24, 12:00 AM - 6:00 AM",
-            desc: "The overnight coding marathon continues with focused energy.",
-            tag: "In Progress",
+            title: "Lunch & Rest Break",
+            time: "March 24, 11:00 AM - 12:30 PM",
+            desc: "Midday reset before the final development sprint.",
+            tag: "Break",
+            tagColor: "blue",
+            location: "Food Court",
+            dotColor: "purple"
+        },
+        {
+            title: "Final Tweak & Refine",
+            time: "March 24, 12:30 PM - 3:30 PM",
+            desc: "Last 3 hours for debugging and presentation polishing.",
+            tag: "Final Phase",
             tagColor: "blue",
             location: "All Venues",
             dotColor: "purple"
         },
         {
-            title: "Fun Games",
-            time: "March 24, 6:00 AM - 7:00 AM",
-            desc: "Relax and recharge with entertaining games.",
-            tag: "Optional",
-            tagColor: "blue",
-            location: "Recreation Hall",
-            dotColor: "purple"
-        },
-        {
-            title: "Jury Round 3",
-            time: "March 24, 8:00 AM",
-            desc: "Present Phase 2 progress and gather final inputs from judges.",
-            tag: "In Progress",
-            tagColor: "blue",
-            location: "Main Hall",
-            dotColor: "purple"
-        },
-        {
-            title: "Hackathon Phase 3",
-            time: "March 24, 8:00 AM - 12:00 PM",
-            desc: "Finalize and perfect your projects for the grand presentation.",
-            tag: "In Progress",
-            tagColor: "blue",
-            location: "All Venues",
-            dotColor: "purple"
-        },
-        {
-            title: "Jury Round 4",
-            time: "March 24, 2:00 PM",
-            desc: "Final project presentation and evaluation to decide the winners.",
+            title: "Final Jury Round (Round 3)",
+            time: "March 24, 3:30 PM - 4:30 PM",
+            desc: "Final defense of the project. Winners decided across all rounds.",
             tag: "Mandatory",
             tagColor: "purple",
             location: "Main Hall",
             dotColor: "purple"
+        },
+        {
+            title: "Hackathon Concludes",
+            time: "March 24, 4:30 PM",
+            desc: "The clock stops. All code must be pushed and finalized.",
+            tag: "Success",
+            tagColor: "purple",
+            location: "Mission Control",
+            dotColor: "pink"
+        },
+        {
+            title: "Closing & Prize Ceremony",
+            time: "March 24, 5:45 PM - 7:00 PM",
+            desc: "Mission debriefing and recognition of top tactical units.",
+            tag: "Mandatory",
+            tagColor: "purple",
+            location: "Auditorium",
+            dotColor: "pink"
         }
     ];
 

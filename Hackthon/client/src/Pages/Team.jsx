@@ -285,7 +285,7 @@ const teamMembers = [
         email: "krushnakokate829@gmail.com",
         instagram: "https://www.instagram.com/krushna_kokate25?igsh=MTNwbGtpeml0aGJlNA==",
         linkedin: "https://www.linkedin.com/in/krushna-kokate-591009329?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        image: tanmayImg,
+        image: krushnaImg,
     },
     {
         id: 5,
@@ -294,7 +294,7 @@ const teamMembers = [
         subRole: "HEAD (उद्‌भव)",
         phone: "+91 8605359181",
         email: "tanmaykurhekar07@gmail.com",
-        image: krushnaImg,
+        image: tanmayImg,
     },
     {
         id: 14,
