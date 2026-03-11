@@ -17,10 +17,10 @@ const Register = () => {
 
     const [formData, setFormData] = useState({
         fullName: '', email: '', phone: '', college: '',
-        event: urlEvent === 'srijan' ? 'Srijan (Hackathon)' :
-            urlEvent === 'ankur' ? 'Ankur (Project Expo)' :
-                urlEvent === 'udbhav' ? 'Udbhav (Conference)' :
-                    urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
+        event: urlEvent?.toLowerCase() === 'srijan' ? 'Srijan (Hackathon)' :
+            urlEvent?.toLowerCase() === 'ankur' ? 'Ankur (Project Expo)' :
+            urlEvent?.toLowerCase() === 'udbhav' ? 'Udbhav (Conference)' :
+            urlEvent?.toLowerCase() === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
         teamName: '',
         teamSize: '',
         studentCategory: '',
@@ -237,10 +237,10 @@ const Register = () => {
                 // Reset fields
                 setFormData({
                     fullName: '', email: '', phone: '', college: '',
-                    event: urlEvent === 'srijan' ? 'Srijan (Hackathon)' :
-                        urlEvent === 'ankur' ? 'Ankur (Project Expo)' :
-                            urlEvent === 'udbhav' ? 'Udbhav (Conference)' :
-                                urlEvent === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
+                    event: urlEvent?.toLowerCase() === 'srijan' ? 'Srijan (Hackathon)' :
+                        urlEvent?.toLowerCase() === 'ankur' ? 'Ankur (Project Expo)' :
+                            urlEvent?.toLowerCase() === 'udbhav' ? 'Udbhav (Conference)' :
+                                urlEvent?.toLowerCase() === 'pursuit' ? 'Pursuit' : 'Udbhav (Conference)',
                     teamName: '', teamSize: '', studentCategory: '',
                     member2Name: '', member2Email: '', member2Phone: '',
                     member3Name: '', member3Email: '', member3Phone: '',
@@ -540,7 +540,6 @@ const Register = () => {
 
                             <label>EVENT</label>
                             <select name="event" value={event} onChange={onChange} className="register-select" required disabled>
-                                <option value="Srijan (Hackathon)">Srijan (Hackathon)</option>
                                 <option value="Ankur (Project Expo)">Ankur (Project Expo)</option>
                                 <option value="Udbhav (Conference)">Udbhav (Conference)</option>
                                 <option value="Pursuit">Pursuit</option>
