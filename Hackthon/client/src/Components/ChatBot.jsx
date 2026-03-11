@@ -16,7 +16,7 @@ const KNOWLEDGE_BASE = [
     },
     {
         keywords: ["srijan", "24 hr hackathon", "hackathon"],
-        answer: "Srijan is our astronomical 24-hour Hackathon! There is a ₹300 registration fee. The total prize pool for the event is ₹1 Lakh+! Minimum 2 and maximum 4 members can register. For more info, visit the Hackathon page."
+        answer: "🚨 Mission Alert: Srijan Hackathon registrations are officially CLOSED. All slots are full! Thank you for the massive response. Registered teams should check the mission briefing on the Hackathon page."
     },
     {
         keywords: ["ankur", "project expo", "exhibition"],
@@ -40,7 +40,7 @@ const KNOWLEDGE_BASE = [
     },
     {
         keywords: ["registration", "apply", "form", "join", "link"],
-        answer: "Launch your journey! 🚀 Join by clicking the 'Register' button on our Navigation Bar. Select your desired event (Srijan, Ankur, etc.) and complete the registration form."
+        answer: "Launch your journey! 🚀 You can still register for Ankur (Project Expo), Udbhav (Conference), and other events. Visit their respective pages to find the 'Register' button. Note: Srijan registrations are closed."
     },
     {
         keywords: ["contact", "help", "support", "organizer"],
