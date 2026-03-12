@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/hackathon.css";
-import { FaPaperclip } from "react-icons/fa";
+import { FaPaperclip, FaDownload } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import registerBtnImg from "../assets/register-btn.png";
 import ProblemStatements from "../Components/ProblemStatements";
