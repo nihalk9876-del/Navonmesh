@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/hackathon.css";
-import { FaPaperclip } from "react-icons/fa";
+import { FaPaperclip, FaDownload } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import registerBtnImg from "../assets/register-btn.png";
 import ProblemStatements from "../Components/ProblemStatements";
@@ -10,6 +10,19 @@ const Hackathon = () => {
     const [showAll, setShowAll] = useState(false);
     const [mobileSection, setMobileSection] = useState(null);
     const [showFilledModal, setShowFilledModal] = useState(false);
+    const [activePS, setActivePS] = useState(null);
+
+    // Lock body scroll when modal is open
+    React.useEffect(() => {
+        if (activePS || showFilledModal) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [activePS, showFilledModal]);
 
     const toggleMobileSection = (section) => {
         setMobileSection(prev => prev === section ? null : section);
@@ -287,17 +300,117 @@ const Hackathon = () => {
                 <div className="prizes-grid">
                     {[
                         {
+                            id: 'innovation',
                             title: "PROBLEM STATEMENT: STUDENT INNOVATION",
-                            subtitle: "When you are registering in Student Innovation (means your own problem statement) then the problem should be related to the following domains."
+                            subtitle: "If you choose 'Student Innovation' (proposing your own problem statement), please ensure your project aligns with the domains listed below.",
+                            isAvailable: true
                         },
-                        { title: "PROBLEM STATEMENT: COMING SOON" },
-                        { title: "PROBLEM STATEMENT: COMING SOON" }
+                        {
+                            id: 'ps1',
+                            title: "PROBLEM STATEMENT 1",
+                            category: "AR-Powered Live Commerce",
+                            subtitle: "AR-Powered Live Commerce: Bringing the Store Experience to Your Screen",
+                            isAvailable: true,
+                            tag: "NEWLY UPDATED",
+                            fullIntel: {
+                                mainTitle: "Hackathon Problem Statement",
+                                title: "Real time Live Interactive Shopping & Exhibition Platform",
+                                background: `Now a days, buying products on E-commerce platforms has become a daily experience. E-commerce Apps offer various products and provide virtual shopping carts to facilitate the purchase. However, the traditional e-commerce Apps provide basic product information, and provide few angle images of products. These Apps cannot provide the depth of information and real time view of that product. When the goods are delivered to the consumer, then the consumer decides the suitability of the product. These goods often need to match the customers need and choice, if not suitable, they need to be returned through the troublesome return procedure. Furthermore, traditional e-commerce websites cannot provide real time Live sale assistance for helping the customers. Also, In present scenario of Ecommerce platform, the specifically the seller of apparels/ dress/ garments demonstrates either by 2D photographs or sketch & hence the buyer can only visualise , specifically the apparels / dress / garments but cannot get the idea that how dress suites to him / her . Also, majority of times the products gets returned due to improper size / fitting.`,
+                                statement: `Keeping in mind the need of real time interactivity and Live Shopping Environment to the customers, Webon Ecomm Private Limited has come up with first of its kind Real time LIVE E-ecommerce platform Webion live shopping app…! Here, we have introduced the Camera that the seller has to install in front of the products & those camera we have integrated with our App. The buyer can visit the shop / stall through his mobile / laptop / computer. Also, when the buyer has any query / wants to negotiate, with our unique feature button alerts goes to available sales person. When sales person click, we van visualized one side Sales person & another half side of screen buyer With our App., Visiting any shop and buying products sitting at your home is possible now...! You can virtually in real time go inside the shop and if you want to discuss/ negotiate, the salesperson will talk to you and show the products of your choice LIVE…! Pay online and the product will get delivered at your home...! Now, we want to have an AR feature integration with our App. by which the customer can view / feel how the product (dress / garments etc.) which has been displayed on the mannequin of the shop suits to his face / body just by clicking a button of his mobile / laptop / computer. Also, he should get the dimensions of the products displayed ( Garments / cloths ) on the mannequins through the sales person camera & buyer should get the dimensions of his clothing’s that he / she has wear on his camera. when a customer and salesperson interaction is going on so that the customer can have a real time view/feel of the product and decide its suitability.`,
+                                objectives: [
+                                    "The customer should be able to use the AR feature to decide the product suitability",
+                                    "The customer should feel & size as if he/she is wearing that product (for Apparel / garments etc.) which the shopkeeper as dressed on / decorated on mannequin / object & also we should get the dimension of the Apparels / cloths / garments etc."
+                                ],
+                                solution: [
+                                    "AR functionality integration",
+                                    "This feature should have a provision to get integrated with our existing Live commerce platform which is developed in React JS, back end logic and API in Node JS using MySQL databse in Unix environment",
+                                    "The salesperson mobile app is in Android in which we have used Agora video calling functionality"
+                                ],
+                                deliverables: [
+                                    "We expect from the team member to have AR feature to be integrated in our application with source code as mentioned above."
+                                ],
+                                downloadPath: "/Srijan_PS1.docx"
+                            }
+                        },
+                        {
+                            id: 'ps2',
+                            title: "PROBLEM STATEMENT 2: COMING SOON",
+                            isAvailable: false
+                        }
                     ].map((item, index) => (
-                        <div className="reward-card" key={index}>
-                            <div className="reward-card-header">
-                                <span className="label">TARGET_SPEC: 0{index + 1}</span>
+                        <div
+                            className={`reward-card ${item.isAvailable ? 'ps-available' : ''}`}
+                            key={index}
+                            onClick={() => item.fullIntel && setActivePS(item.fullIntel)}
+                            style={{ cursor: item.fullIntel ? 'pointer' : 'default' }}
+                        >
+                            <div className="reward-card-header" style={{ position: 'relative' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                    <span className="label">TARGET_SPEC: 0{index + 1}</span>
+                                    {item.tag && (
+                                        <span className="new-intel-badge" style={{
+                                            background: '#ef4444',
+                                            color: '#fff',
+                                            fontSize: '0.65rem',
+                                            padding: '4px 10px',
+                                            borderRadius: '4px',
+                                            fontWeight: '900',
+                                            fontFamily: 'Orbitron, sans-serif',
+                                            boxShadow: '0 0 15px rgba(239, 68, 68, 0.4)',
+                                            animation: 'tag-pulse 2s infinite'
+                                        }}>
+                                            {item.tag}
+                                        </span>
+                                    )}
+                                </div>
                                 <h3 className="title">{item.title}</h3>
-                                {item.subtitle && <div className="card-instruction">{item.subtitle}</div>}
+                                {item.category && (
+                                    <div className="ps-category-hero" style={{ 
+                                        color: '#fff', 
+                                        fontSize: '1.4rem', 
+                                        marginTop: '15px', 
+                                        fontWeight: '900',
+                                        fontFamily: 'Orbitron, sans-serif',
+                                        background: 'linear-gradient(to right, #2dd4bf, #fff)',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        letterSpacing: '2px',
+                                        textTransform: 'uppercase'
+                                    }}>
+                                        {item.category}
+                                    </div>
+                                )}
+                                {item.subtitle && <div className="card-instruction ps-summary-box" style={{ 
+                                    fontSize: '1rem', 
+                                    marginTop: '20px',
+                                    color: '#e2e8f0',
+                                    lineHeight: '1.6',
+                                    background: 'rgba(45, 212, 191, 0.1)',
+                                    border: '1px solid rgba(45, 212, 191, 0.3)',
+                                    textTransform: 'none'
+                                }}>
+                                    {item.subtitle}
+                                </div>}
+                                {item.isAvailable && item.id !== 'innovation' && (
+                                    <div className="view-details-btn-accent" style={{ 
+                                        marginTop: '25px', 
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '10px',
+                                        padding: '10px 20px',
+                                        background: 'rgba(45, 212, 191, 0.15)',
+                                        border: '1px solid #2dd4bf',
+                                        borderRadius: '4px',
+                                        color: '#fff',
+                                        fontSize: '0.8rem',
+                                        fontFamily: 'Orbitron, sans-serif',
+                                        fontWeight: 'bold',
+                                        letterSpacing: '2px',
+                                        transition: '0.3s'
+                                    }}>
+                                        📡 VIEW FULL DESCRIPTION
+                                    </div>
+                                )}
                             </div>
                             <div className="reward-card-body">
                                 <div className="reward-tier">
@@ -446,6 +559,107 @@ const Hackathon = () => {
                     </div>
                 </div>
             </div>
+            {/* PROBLEM STATEMENT INTEL MODAL */}
+            {activePS && (
+                <div className="voyager-modal-overlay ps-modal-fix" onClick={() => setActivePS(null)} style={{ zIndex: 9999999, position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}>
+                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '900px', width: '95%', padding: '50px 40px', zIndex: 10000000 }}>
+                        <div className="modal-bracket bracket-top-left"></div>
+                        <div className="modal-bracket bracket-top-right"></div>
+                        <div className="modal-bracket bracket-bottom-left"></div>
+                        <div className="modal-bracket bracket-bottom-right"></div>
+
+                        <div className="modal-header" style={{ marginBottom: '40px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                                <span className="status-badge" style={{ 
+                                    background: '#2dd4bf', 
+                                    color: '#000', 
+                                    fontWeight: '900',
+                                    fontSize: '0.8rem',
+                                    padding: '6px 15px',
+                                    borderRadius: '2px',
+                                    letterSpacing: '2px'
+                                }}>
+                                    {activePS.mainTitle || 'MISSION_INTEL'}
+                                </span>
+                            </div>
+                            <h2 style={{ 
+                                fontSize: '2.2rem', 
+                                color: '#fff', 
+                                textShadow: '0 0 20px rgba(45, 212, 191, 0.3)',
+                                lineHeight: '1.2',
+                                fontFamily: 'Orbitron, sans-serif'
+                            }}>
+                                {activePS.title}
+                            </h2>
+                        </div>
+
+                        <div className="modal-body ps-intel-body" style={{ maxHeight: '55vh', overflowY: 'auto', textAlign: 'left', paddingRight: '20px', marginBottom: '30px' }}>
+                            <div className="intel-segment">
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>1. PROBLEM BACKGROUND</h4>
+                                <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#cbd5e1', whiteSpace: 'pre-line' }}>{activePS.background}</p>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>2. PROBLEM STATEMENT</h4>
+                                <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#cbd5e1', whiteSpace: 'pre-line' }}>{activePS.statement}</p>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>3. OBJECTIVES</h4>
+                                <ul style={{ fontSize: '1rem', color: '#cbd5e1', paddingLeft: '25px' }}>
+                                    {activePS.objectives.map((obj, i) => <li key={i} style={{ marginBottom: '12px' }}>{obj}</li>)}
+                                </ul>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>4. EXPECTED SOLUTION</h4>
+                                <ul style={{ fontSize: '1rem', color: '#cbd5e1', paddingLeft: '25px' }}>
+                                    {activePS.solution.map((sol, i) => <li key={i} style={{ marginBottom: '12px' }}>{sol}</li>)}
+                                </ul>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>5. EXPECTED DELIVERABLES</h4>
+                                <ul style={{ fontSize: '1rem', color: '#cbd5e1', paddingLeft: '25px' }}>
+                                    {Array.isArray(activePS.deliverables) ? (
+                                        activePS.deliverables.map((del, i) => <li key={i} style={{ marginBottom: '12px' }}>{del}</li>)
+                                    ) : (
+                                        <li style={{ marginBottom: '12px' }}>{activePS.deliverables}</li>
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="modal-footer" style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '20px' }}>
+                            {activePS.downloadPath && (
+                                <a
+                                    href={activePS.downloadPath}
+                                    download
+                                    className="modal-dismiss-btn"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '10px',
+                                        flex: '1',
+                                        justifyContent: 'center',
+                                        border: 'none',
+                                        boxShadow: '0 4px 15px rgba(16, 185, 129, 0.3)'
+                                    }}
+                                >
+                                    <FaDownload /> DOWNLOAD DOCX
+                                </a>
+                            )}
+                            <button className="modal-dismiss-btn" onClick={() => setActivePS(null)} style={{ flex: '1', border: '1px solid rgba(45, 212, 191, 0.4)' }}>
+                                CLOSE INTEL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* REGISTRATION FILLED MODAL */}
             {showFilledModal && (
                 <div className="voyager-modal-overlay" onClick={() => setShowFilledModal(false)}>

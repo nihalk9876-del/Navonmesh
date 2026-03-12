@@ -1499,7 +1499,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 99999999 !important;
     padding: 20px;
 }
 
@@ -1677,4 +1677,39 @@
     .voyager-modal-content {
         padding: 30px 20px;
     }
+}
+
+/* 🧬 PS INTEL MODAL SCROLLBAR */
+.ps-intel-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ps-intel-body::-webkit-scrollbar-track {
+    background: rgba(45, 212, 191, 0.05);
+}
+
+.ps-intel-body::-webkit-scrollbar-thumb {
+    background: rgba(45, 212, 191, 0.3);
+    border-radius: 10px;
+}
+
+.ps-intel-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(45, 212, 191, 0.5);
+}
+
+.intel-segment h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.ps-intel-modal {
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(45, 212, 191, 0.1);
+}
+
+@keyframes tag-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(239, 68, 68, 0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); }
 }
