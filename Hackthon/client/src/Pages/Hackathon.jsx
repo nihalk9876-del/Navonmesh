@@ -311,6 +311,7 @@ const Hackathon = () => {
                             category: "AR-Powered Live Commerce",
                             subtitle: "AR-Powered Live Commerce: Bringing the Store Experience to Your Screen",
                             isAvailable: true,
+                            tag: "NEWLY UPDATED",
                             fullIntel: {
                                 mainTitle: "Hackathon Problem Statement",
                                 title: "Real time Live Interactive Shopping & Exhibition Platform",
@@ -347,8 +348,25 @@ const Hackathon = () => {
                             onClick={() => item.fullIntel && setActivePS(item.fullIntel)}
                             style={{ cursor: item.fullIntel ? 'pointer' : 'default' }}
                         >
-                            <div className="reward-card-header">
-                                <span className="label">TARGET_SPEC: 0{index + 1}</span>
+                            <div className="reward-card-header" style={{ position: 'relative' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                    <span className="label">TARGET_SPEC: 0{index + 1}</span>
+                                    {item.tag && (
+                                        <span className="new-intel-badge" style={{
+                                            background: '#ef4444',
+                                            color: '#fff',
+                                            fontSize: '0.65rem',
+                                            padding: '4px 10px',
+                                            borderRadius: '4px',
+                                            fontWeight: '900',
+                                            fontFamily: 'Orbitron, sans-serif',
+                                            boxShadow: '0 0 15px rgba(239, 68, 68, 0.4)',
+                                            animation: 'tag-pulse 2s infinite'
+                                        }}>
+                                            {item.tag}
+                                        </span>
+                                    )}
+                                </div>
                                 <h3 className="title">{item.title}</h3>
                                 {item.category && (
                                     <div className="ps-category-hero" style={{ 
