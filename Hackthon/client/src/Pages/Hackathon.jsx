@@ -12,6 +12,18 @@ const Hackathon = () => {
     const [showFilledModal, setShowFilledModal] = useState(false);
     const [activePS, setActivePS] = useState(null);
 
+    // Lock body scroll when modal is open
+    React.useEffect(() => {
+        if (activePS || showFilledModal) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [activePS, showFilledModal]);
+
     const toggleMobileSection = (section) => {
         setMobileSection(prev => prev === section ? null : section);
     };
@@ -535,8 +547,8 @@ const Hackathon = () => {
             </div>
             {/* PROBLEM STATEMENT INTEL MODAL */}
             {activePS && (
-                <div className="voyager-modal-overlay" onClick={() => setActivePS(null)} style={{ zIndex: 10000 }}>
-                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '900px', width: '95%', padding: '50px 40px' }}>
+                <div className="voyager-modal-overlay" onClick={() => setActivePS(null)} style={{ zIndex: 999999, position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
+                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '900px', width: '95%', padding: '50px 40px', zIndex: 1000000 }}>
                         <div className="modal-bracket bracket-top-left"></div>
                         <div className="modal-bracket bracket-top-right"></div>
                         <div className="modal-bracket bracket-bottom-left"></div>
