@@ -1159,3 +1159,13 @@
     color: #fff;
     box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
 }
+
+.summary-pill.highlight {
+    border-color: #facc15;
+    background: rgba(234, 179, 8, 0.1);
+}
+
+.summary-pill.highlight span {
+    color: #facc15;
+    text-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+}

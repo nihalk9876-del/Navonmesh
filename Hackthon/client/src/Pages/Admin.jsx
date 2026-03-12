@@ -586,16 +586,34 @@ const Admin = () => {
                                         );
                                     })()}
 
-                                    {activeEvent === 'srijan' && (() => {
+                                     {activeEvent === 'srijan' && (() => {
                                         const innovations = summary.srijan.entries.filter(e => e.problemStatement === 'Student Innovation').length;
                                         const ps1 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 1').length;
                                         const ps2 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 2').length;
+                                        const totalParticipants = summary.srijan.entries.reduce((acc, e) => acc + (parseInt(e.teamSize) || 0), 0);
 
                                         return (
                                             <div className="pie-section stats-summary">
+                                                <div className="summary-pill highlight">Total Participants: <span>{totalParticipants}</span></div>
+                                                <div className="summary-pill">Teams: <span>{summary.srijan.entries.length}</span></div>
                                                 <div className="summary-pill">Innovation: <span>{innovations}</span></div>
                                                 <div className="summary-pill">PS 1: <span>{ps1}</span></div>
                                                 <div className="summary-pill">PS 2: <span>{ps2}</span></div>
+                                            </div>
+                                        );
+                                    })()}
+
+                                    {activeEvent === 'ankur' && (() => {
+                                        const degreeTeams = summary.ankur.entries.filter(e => e.category === 'Degree Students').length;
+                                        const diplomaTeams = summary.ankur.entries.filter(e => e.category === 'Diploma Students').length;
+                                        const totalParticipants = summary.ankur.entries.reduce((acc, e) => acc + (parseInt(e.teamSize) || 0), 0);
+
+                                        return (
+                                            <div className="pie-section stats-summary">
+                                                <div className="summary-pill highlight">Total Participants: <span>{totalParticipants}</span></div>
+                                                <div className="summary-pill">Total Teams: <span>{summary.ankur.entries.length}</span></div>
+                                                <div className="summary-pill">Degree: <span>{degreeTeams}</span></div>
+                                                <div className="summary-pill">Diploma: <span>{diplomaTeams}</span></div>
                                             </div>
                                         );
                                     })()}
