@@ -329,7 +329,7 @@ const Hackathon = () => {
                                 deliverables: [
                                     "We expect from the team member to have AR feature to be integrated in our application with source code as mentioned above."
                                 ],
-                                downloadPath: "/WEBION SAMPLE_PROBLEM_STATEMENT 10 03 26 (2).docx"
+                                downloadPath: "/Srijan_PS1.docx"
                             }
                         },
                         {
