@@ -535,56 +535,76 @@ const Hackathon = () => {
             </div>
             {/* PROBLEM STATEMENT INTEL MODAL */}
             {activePS && (
-                <div className="voyager-modal-overlay" onClick={() => setActivePS(null)}>
-                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '800px' }}>
+                <div className="voyager-modal-overlay" onClick={() => setActivePS(null)} style={{ zIndex: 10000 }}>
+                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '900px', width: '95%', padding: '50px 40px' }}>
                         <div className="modal-bracket bracket-top-left"></div>
                         <div className="modal-bracket bracket-top-right"></div>
                         <div className="modal-bracket bracket-bottom-left"></div>
                         <div className="modal-bracket bracket-bottom-right"></div>
 
-                        <div className="modal-header">
-                            <span className="status-badge" style={{ background: '#2dd4bf', color: '#000', fontWeight: 'bold' }}>{activePS.mainTitle || 'MISSION_INTEL'}</span>
-                            <h2 style={{ fontSize: '1.8rem', marginTop: '15px', color: '#fff', textShadow: '0 0 10px rgba(45, 212, 191, 0.5)' }}>{activePS.title}</h2>
+                        <div className="modal-header" style={{ marginBottom: '40px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+                                <span className="status-badge" style={{ 
+                                    background: '#2dd4bf', 
+                                    color: '#000', 
+                                    fontWeight: '900',
+                                    fontSize: '0.8rem',
+                                    padding: '6px 15px',
+                                    borderRadius: '2px',
+                                    letterSpacing: '2px'
+                                }}>
+                                    {activePS.mainTitle || 'MISSION_INTEL'}
+                                </span>
+                            </div>
+                            <h2 style={{ 
+                                fontSize: '2.2rem', 
+                                color: '#fff', 
+                                textShadow: '0 0 20px rgba(45, 212, 191, 0.3)',
+                                lineHeight: '1.2',
+                                fontFamily: 'Orbitron, sans-serif'
+                            }}>
+                                {activePS.title}
+                            </h2>
                         </div>
 
-                        <div className="modal-body ps-intel-body" style={{ maxHeight: '60vh', overflowY: 'auto', textAlign: 'left', paddingRight: '15px' }}>
+                        <div className="modal-body ps-intel-body" style={{ maxHeight: '55vh', overflowY: 'auto', textAlign: 'left', paddingRight: '20px', marginBottom: '30px' }}>
                             <div className="intel-segment">
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>1. PROBLEM BACKGROUND</h4>
-                                <p style={{ fontSize: '0.95rem', lineHeight: '1.7', color: '#cbd5e1' }}>{activePS.background}</p>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>1. PROBLEM BACKGROUND</h4>
+                                <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#cbd5e1', whiteSpace: 'pre-line' }}>{activePS.background}</p>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '30px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>2. PROBLEM STATEMENT</h4>
-                                <p style={{ fontSize: '0.95rem', lineHeight: '1.7', color: '#cbd5e1' }}>{activePS.statement}</p>
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>2. PROBLEM STATEMENT</h4>
+                                <p style={{ fontSize: '1rem', lineHeight: '1.8', color: '#cbd5e1', whiteSpace: 'pre-line' }}>{activePS.statement}</p>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '30px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>3. OBJECTIVES</h4>
-                                <ul style={{ fontSize: '0.95rem', color: '#cbd5e1', paddingLeft: '20px' }}>
-                                    {activePS.objectives.map((obj, i) => <li key={i} style={{ marginBottom: '8px' }}>{obj}</li>)}
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>3. OBJECTIVES</h4>
+                                <ul style={{ fontSize: '1rem', color: '#cbd5e1', paddingLeft: '25px' }}>
+                                    {activePS.objectives.map((obj, i) => <li key={i} style={{ marginBottom: '12px' }}>{obj}</li>)}
                                 </ul>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '30px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>4. EXPECTED SOLUTION</h4>
-                                <ul style={{ fontSize: '0.95rem', color: '#cbd5e1', paddingLeft: '20px' }}>
-                                    {activePS.solution.map((sol, i) => <li key={i} style={{ marginBottom: '8px' }}>{sol}</li>)}
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>4. EXPECTED SOLUTION</h4>
+                                <ul style={{ fontSize: '1rem', color: '#cbd5e1', paddingLeft: '25px' }}>
+                                    {activePS.solution.map((sol, i) => <li key={i} style={{ marginBottom: '12px' }}>{sol}</li>)}
                                 </ul>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '30px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>5. EXPECTED DELIVERABLES</h4>
-                                <ul style={{ fontSize: '0.95rem', color: '#cbd5e1', paddingLeft: '20px' }}>
+                            <div className="intel-segment" style={{ marginTop: '40px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '4px solid #2dd4bf', paddingLeft: '15px', marginBottom: '15px', fontSize: '1.1rem', fontWeight: '900' }}>5. EXPECTED DELIVERABLES</h4>
+                                <ul style={{ fontSize: '1rem', color: '#cbd5e1', paddingLeft: '25px' }}>
                                     {Array.isArray(activePS.deliverables) ? (
-                                        activePS.deliverables.map((del, i) => <li key={i} style={{ marginBottom: '8px' }}>{del}</li>)
+                                        activePS.deliverables.map((del, i) => <li key={i} style={{ marginBottom: '12px' }}>{del}</li>)
                                     ) : (
-                                        <li style={{ marginBottom: '8px' }}>{activePS.deliverables}</li>
+                                        <li style={{ marginBottom: '12px' }}>{activePS.deliverables}</li>
                                     )}
                                 </ul>
                             </div>
                         </div>
 
-                        <div className="modal-footer" style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+                        <div className="modal-footer" style={{ display: 'flex', gap: '20px', justifyContent: 'center', marginTop: '20px' }}>
                             {activePS.downloadPath && (
                                 <a
                                     href={activePS.downloadPath}
@@ -596,13 +616,17 @@ const Hackathon = () => {
                                         textDecoration: 'none',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        gap: '8px'
+                                        gap: '10px',
+                                        flex: '1',
+                                        justifyContent: 'center',
+                                        border: 'none',
+                                        boxShadow: '0 4px 15px rgba(16, 185, 129, 0.3)'
                                     }}
                                 >
-                                    <FaDownload /> DOWNLOAD PS1 (PDF)
+                                    <FaDownload /> DOWNLOAD PDF
                                 </a>
                             )}
-                            <button className="modal-dismiss-btn" onClick={() => setActivePS(null)}>
+                            <button className="modal-dismiss-btn" onClick={() => setActivePS(null)} style={{ flex: '1', border: '1px solid rgba(45, 212, 191, 0.4)' }}>
                                 CLOSE INTEL
                             </button>
                         </div>
