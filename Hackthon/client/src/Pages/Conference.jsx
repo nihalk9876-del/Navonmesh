@@ -225,6 +225,16 @@ const Conference = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Udbhav Heads Contacts - Desktop Only */}
+                <div className="ankur-heads-contacts desktop-only">
+                    <div className="contact-box">
+                        <span className="box-title">UDBHAV HEAD</span>
+                        <span className="box-name">Tanmay Kurhekar</span>
+                        <a href="tel:8605359181" className="box-phone">+91 8605359181</a>
+                        <a href="mailto:tanmaykurhekar07@gmail.com" className="box-phone" style={{ fontSize: '0.7rem', textTransform: 'lowercase', marginTop: '4px' }}>tanmaykurhekar07@gmail.com</a>
+                    </div>
+                </div>
             </div>
 
             <div className="ankur-grid">

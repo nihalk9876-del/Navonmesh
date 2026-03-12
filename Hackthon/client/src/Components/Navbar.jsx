@@ -78,11 +78,6 @@ const Navbar = ({ onRegisterClick }) => {
                 Pursuit
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/parishkriti" className="nav-item-dropdown" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
-                Parishkriti
-              </NavLink>
-            </li>
           </ul>
         </li>
         <li>

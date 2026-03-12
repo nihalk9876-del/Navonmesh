@@ -206,6 +206,31 @@ const EventDayAdmin = () => {
         });
     };
 
+    const handleAddMember = () => {
+        setEditingDetails(prev => ({
+            ...prev,
+            members: [...(prev.members || []), { name: '', phone: '', college: '', email: '' }]
+        }));
+        setVerifiedSections(prev => ({
+            ...prev,
+            members: [...prev.members, false]
+        }));
+    };
+
+    const handleRemoveMember = (idx) => {
+        setEditingDetails(prev => {
+            const newMembers = [...prev.members];
+            newMembers.splice(idx, 1);
+            return { ...prev, members: newMembers };
+        });
+        setVerifiedSections(prev => {
+            const newMembersVerified = [...prev.members];
+            newMembersVerified.splice(idx, 1);
+            return { ...prev, members: newMembersVerified };
+        });
+    };
+
+
     const unassignTable = async () => {
         if (!editingEntry) return;
         const ok = await handleUpdateEntry(editingEntry._id, { tableNo: null, groupNo: null });
@@ -447,12 +472,23 @@ const EventDayAdmin = () => {
                                         <div key={idx} className="form-item span-2 section-verify-row member-row">
                                             <div className="section-label-group">
                                                 <label>OPERATIVE {idx + 2}</label>
-                                                <button type="button"
-                                                    className={`tally-btn ${verifiedSections.members[idx] ? 'verified' : ''}`}
-                                                    onClick={() => handleTally('members', idx)}
-                                                >
-                                                    {verifiedSections.members[idx] ? <><FaCheckCircle /> SECURE</> : 'VERIFY'}
-                                                </button>
+                                                <div className="section-actions">
+                                                    {editingDetails.members.length > 0 && (
+                                                        <button type="button" 
+                                                            className="tactical-btn danger sm" 
+                                                            style={{ marginRight: '10px', padding: '4px 8px' }}
+                                                            onClick={() => handleRemoveMember(idx)}
+                                                        >
+                                                            <FaTrash style={{ fontSize: '0.7rem' }} />
+                                                        </button>
+                                                    )}
+                                                    <button type="button"
+                                                        className={`tally-btn ${verifiedSections.members[idx] ? 'verified' : ''}`}
+                                                        onClick={() => handleTally('members', idx)}
+                                                    >
+                                                        {verifiedSections.members[idx] ? <><FaCheckCircle /> SECURE</> : 'VERIFY'}
+                                                    </button>
+                                                </div>
                                             </div>
                                             <div className="field-group-multi">
                                                 <input type="text" placeholder="NAME" value={member.name || ''} onChange={e => {
@@ -472,6 +508,17 @@ const EventDayAdmin = () => {
                                             </div>
                                         </div>
                                     ))}
+
+                                    <div className="form-item span-2 add-member-container" style={{ textAlign: 'center', marginBottom: '10px' }}>
+                                        <button 
+                                            type="button" 
+                                            className="tactical-btn secondary sm" 
+                                            onClick={handleAddMember}
+                                            style={{ width: '100%', padding: '12px', borderStyle: 'dashed', borderRadius: '12px', background: 'rgba(59, 130, 246, 0.05)' }}
+                                        >
+                                            <FaUsers style={{ marginRight: '8px' }} /> ADD NEW OPERATIVE (MEMBER)
+                                        </button>
+                                    </div>
 
                                     <div className="form-item span-2 section-verify-row payment-row pre-verified">
                                         <div className="section-label-group">
@@ -1162,7 +1209,7 @@ const EventDayAdmin = () => {
 
                 .tactical-btn.sm { padding: 6px 12px; font-size: 0.7rem; }
                 
-                .verification-header-actions {
+                .verification-header-actions, .section-actions {
                     display: flex;
                     gap: 10px;
                     align-items: center;

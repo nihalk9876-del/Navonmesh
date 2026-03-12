@@ -208,6 +208,16 @@ const ProjectExpo = () => {
                         <strong>MISSION UPDATE:</strong> Evaluation matrix is being finalized. Best project recognition protocols are currently active.
                     </p>
                 </div>
+
+                {/* Ankur Heads Contacts - Desktop Only */}
+                <div className="ankur-heads-contacts desktop-only">
+                    <div className="contact-box">
+                        <span className="box-title">ANKUR HEAD</span>
+                        <span className="box-name">Krushna Kokate</span>
+                        <a href="tel:8261905585" className="box-phone">+91 8261905585</a>
+                        <a href="mailto:krushnakokate829@gmail.com" className="box-phone" style={{ fontSize: '0.7rem', textTransform: 'lowercase', marginTop: '4px' }}>krushnakokate829@gmail.com</a>
+                    </div>
+                </div>
             </div>
 
             {/* Mobile Toggle Buttons */}
