@@ -43,9 +43,24 @@ const Register = () => {
 
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [counts, setCounts] = useState({ ankur: 0, srijan: 0 });
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [showUTRHelp, setShowUTRHelp] = useState(false);
     const [zoomedImage, setZoomedImage] = useState(null);
+
+    useEffect(() => {
+        const fetchCounts = async () => {
+            try {
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                const response = await fetch(`${API_URL}/api/register/count`);
+                const data = await response.json();
+                setCounts(data);
+            } catch (err) {
+                console.error('Error fetching counts:', err);
+            }
+        };
+        fetchCounts();
+    }, []);
 
     useEffect(() => {
         if (urlEvent === 'udbhav') {
@@ -535,6 +550,52 @@ const Register = () => {
                                 </button>
                             </div>
                         </div>
+                    ) : (event === 'Ankur (Project Expo)' && counts.ankur >= 60) ? (
+                        <div className="closed-container" style={{
+                            textAlign: 'center',
+                            padding: '60px 20px',
+                            background: 'rgba(255, 0, 0, 0.05)',
+                            border: '1px solid rgba(255, 0, 0, 0.2)',
+                            borderRadius: '20px',
+                            marginTop: '20px'
+                        }}>
+                            <h2 style={{ color: '#ff4b2b', fontSize: '2.5rem', marginBottom: '20px' }}>Registrations Closed!</h2>
+                            <p style={{ color: '#fff', fontSize: '1.2rem', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto 30px' }}>
+                                Thank you for your interest! The slots for <strong>Ankur (Project Expo)</strong> are now full and registrations have been officially closed.
+                            </p>
+                            <div className="closed-info" style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '12px', display: 'inline-block' }}>
+                                <p style={{ color: '#ccc', marginBottom: '10px' }}>Registered teams, please stay tuned to the official channels for further updates.</p>
+                                <a
+                                    href="https://chat.whatsapp.com/B7jQRyBpFjoJTF6uCfyki1?mode=gi_t"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="whatsapp-btn"
+                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                                >
+                                    <FaWhatsapp /> Ankur WhatsApp Group
+                                </a>
+                            </div>
+                            <div style={{ marginTop: '40px' }}>
+                                <button
+                                    onClick={() => navigate('/')}
+                                    style={{
+                                        background: 'linear-gradient(45deg, #00e5ff, #007bff)',
+                                        color: '#fff',
+                                        border: 'none',
+                                        padding: '12px 40px',
+                                        borderRadius: '30px',
+                                        fontWeight: 'bold',
+                                        cursor: 'pointer',
+                                        fontSize: '1rem',
+                                        transition: '0.3s'
+                                    }}
+                                    onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                                    onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+                                >
+                                    Back to Home
+                                </button>
+                            </div>
+                        </div>
                     ) : (
                         <form className="register-form" onSubmit={onSubmit}>
 
@@ -566,7 +627,6 @@ const Register = () => {
                                     <label>STUDENT CATEGORY</label>
                                     <select name="studentCategory" value={studentCategory} onChange={onChange} className="register-select" required>
                                         <option value="" disabled>Select Category</option>
-                                        <option value="Degree Students">Degree Students</option>
                                         <option value="Diploma Students">Diploma Students</option>
                                     </select>
                                 </>

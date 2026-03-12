@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Registration = require('../models/Registration');
 
+router.get('/count', async (req, res) => {
+    try {
+        const ankurCount = await Registration.countDocuments({ event: 'Ankur (Project Expo)' });
+        const srijanCount = await Registration.countDocuments({ event: 'Srijan (Hackathon)' });
+        res.json({ ankur: ankurCount, srijan: srijanCount });
+    } catch (err) {
+        res.status(500).json({ error: 'Error fetching counts' });
+    }
+});
+
 router.post('/', async (req, res) => {
     try {
         const {
@@ -30,6 +40,20 @@ router.post('/', async (req, res) => {
         // --- DISABLE SRIJAN REGISTRATIONS ---
         if (event && event.toLowerCase().includes('srijan')) {
             return res.status(403).json({ error: 'Registrations for Srijan (Hackathon) are now closed because all slots are full. Thank you for your interest!' });
+        }
+
+        // --- ENFORCE ANKUR RULES ---
+        if (event && event.toLowerCase().includes('ankur')) {
+            // 1. Block Degree registrations
+            if (studentCategory === 'Degree Students') {
+                return res.status(403).json({ error: 'Registrations for Degree students in Project Competition are now closed. Only Diploma registrations are open.' });
+            }
+
+            // 2. Block if total Ankur count >= 60
+            const ankurCount = await Registration.countDocuments({ event: 'Ankur (Project Expo)' });
+            if (ankurCount >= 60) {
+                return res.status(403).json({ error: 'Registrations for Ankur (Project Expo) are now closed because the maximum limit of 60 teams has been reached.' });
+            }
         }
 
         const newRegistration = new Registration({

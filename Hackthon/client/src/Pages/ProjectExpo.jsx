@@ -6,6 +6,21 @@ import ankurPoster from "../assets/PROJECT COMPETITION.png";
 
 const ProjectExpo = () => {
     const [mobileSection, setMobileSection] = React.useState(null);
+    const [counts, setCounts] = React.useState({ ankur: 0 });
+
+    React.useEffect(() => {
+        const fetchCounts = async () => {
+            try {
+                const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+                const response = await fetch(`${API_URL}/api/register/count`);
+                const data = await response.json();
+                setCounts(data);
+            } catch (err) {
+                console.error('Error fetching counts:', err);
+            }
+        };
+        fetchCounts();
+    }, []);
 
     const toggleMobileSection = (section) => {
         setMobileSection(prev => prev === section ? null : section);
@@ -91,17 +106,41 @@ const ProjectExpo = () => {
                         </div>
                     </div>
 
-                    <div className="header-actions">
-                        <Link to="/register?event=ankur" className="register-rocket-btn animate-float">
-                            <span className="reg-text">REGISTER FOR ANKUR</span>
-                            <div className="reg-icon-circle">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                                    <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
-                                </svg>
+                     <div className="header-actions">
+                        {counts.ankur >= 60 ? (
+                            <div className="closed-banner-ankur">
+                                <span className="closed-icon">🚫</span>
+                                <span className="closed-text">REGISTRATIONS CLOSED (LIMIT REACHED)</span>
                             </div>
-                            <div className="rocket-exhaust"></div>
-                        </Link>
+                        ) : (
+                            <>
+                                <Link to="/register?event=ankur" className="register-rocket-btn animate-float">
+                                    <span className="reg-text">REGISTER FOR ANKUR</span>
+                                    <div className="reg-icon-circle">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                            <path d="M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                        </svg>
+                                    </div>
+                                    <div className="rocket-exhaust"></div>
+                                </Link>
+                                <div className="ankur-notice-box animate-fade-in" style={{
+                                    marginTop: '20px',
+                                    padding: '15px',
+                                    background: 'rgba(255, 75, 43, 0.1)',
+                                    border: '1px solid rgba(255, 75, 43, 0.3)',
+                                    borderRadius: '12px',
+                                    textAlign: 'center'
+                                }}>
+                                    <p style={{ color: '#ff4b2b', fontWeight: 'bold', margin: 0, fontSize: '0.9rem' }}>
+                                        ⚠️ NOTICE: REGISTRATIONS FOR DEGREE STUDENTS ARE CLOSED.
+                                    </p>
+                                    <p style={{ color: '#fff', margin: '5px 0 0 0', fontSize: '0.8rem' }}>
+                                        Only Diploma Student registrations are currently active.
+                                    </p>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
@@ -134,8 +173,8 @@ const ProjectExpo = () => {
                 </div>
                 <div className="ankur-spec-item">
                     <div className="hud-label">ELIGIBILITY</div>
-                    <div className="hud-value">DEGREE & DIPLOMA</div>
-                    <div className="hud-bar"><div className="fill" style={{ width: '100%' }}></div></div>
+                    <div className="hud-value">DIPLOMA ONLY (DEGREE CLOSED)</div>
+                    <div className="hud-bar"><div className="fill" style={{ width: '100%', background: '#ff4b2b' }}></div></div>
                 </div>
             </div>
 

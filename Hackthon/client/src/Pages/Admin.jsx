@@ -20,6 +20,7 @@ const Admin = () => {
     const [srijanFilter, setSrijanFilter] = useState('ALL');
     const [culturalActivityFilter, setCulturalActivityFilter] = useState('ALL');
     const [culturalSubFilter, setCulturalSubFilter] = useState('ALL');
+    const [ankurFilter, setAnkurFilter] = useState('ALL');
 
     const [broadcastData, setBroadcastData] = useState({
         subject: '',
@@ -123,6 +124,8 @@ const Admin = () => {
             if (culturalSubFilter !== 'ALL') {
                 displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
             }
+        } else if (activeEvent === 'ankur' && ankurFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.category === ankurFilter);
         }
 
         // Map data for export
@@ -506,6 +509,7 @@ const Admin = () => {
                                                 setSrijanFilter('ALL');
                                                 setCulturalActivityFilter('ALL');
                                                 setCulturalSubFilter('ALL');
+                                                setAnkurFilter('ALL');
                                             }}>Total</button>
 
                                             {activeEvent === 'accommodation' && (
@@ -515,19 +519,26 @@ const Admin = () => {
                                                     <button className={accFilter === 'UDBHAV' ? 'active' : ''} onClick={() => setAccFilter('UDBHAV')}>Udbhav</button>
                                                 </>
                                             )}
-                                            {activeEvent === 'srijan' && (
+                                             {activeEvent === 'srijan' && (
                                                 <>
                                                     <button className={srijanFilter === 'Student Innovation' ? 'active' : ''} onClick={() => setSrijanFilter('Student Innovation')}>Innovation</button>
                                                     <button className={srijanFilter === 'Problem Statement 1' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 1')}>PS 1</button>
                                                     <button className={srijanFilter === 'Problem Statement 2' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 2')}>PS 2</button>
                                                 </>
                                             )}
+
                                             {activeEvent === 'cultural' && (
                                                 <>
                                                     <button className={culturalActivityFilter === 'singing' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('singing'); setCulturalSubFilter('ALL'); }}>Singing</button>
                                                     <button className={culturalActivityFilter === 'dance' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('dance'); setCulturalSubFilter('ALL'); }}>Dance</button>
                                                     <button className={culturalActivityFilter === 'anchoring' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('anchoring'); setCulturalSubFilter('ALL'); }}>Anchoring</button>
                                                     <button className={culturalActivityFilter === 'other' ? 'active' : ''} onClick={() => { setCulturalActivityFilter('other'); setCulturalSubFilter('ALL'); }}>Other</button>
+                                                </>
+                                            )}
+                                            {activeEvent === 'ankur' && (
+                                                <>
+                                                    <button className={ankurFilter === 'Degree Students' ? 'active' : ''} onClick={() => setAnkurFilter('Degree Students')}>Degree</button>
+                                                    <button className={ankurFilter === 'Diploma Students' ? 'active' : ''} onClick={() => setAnkurFilter('Diploma Students')}>Diploma</button>
                                                 </>
                                             )}
                                             <button className="download-excel-btn" onClick={downloadExcel} title="Download Current Data as Excel">
@@ -654,6 +665,8 @@ const Admin = () => {
                                                     if (culturalSubFilter !== 'ALL') {
                                                         displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
                                                     }
+                                                } else if (activeEvent === 'ankur' && ankurFilter !== 'ALL') {
+                                                    displayEntries = displayEntries.filter(e => e.category === ankurFilter);
                                                 }
 
                                                 return displayEntries.length > 0 ? (
