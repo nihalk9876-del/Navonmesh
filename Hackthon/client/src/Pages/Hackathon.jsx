@@ -300,21 +300,26 @@ const Hackathon = () => {
                             subtitle: "AR-Powered Live Commerce: Bringing the Store Experience to Your Screen",
                             isAvailable: true,
                             fullIntel: {
-                                title: "AR-Powered Live Commerce: Bringing the Store Experience to Your Screen",
-                                subtitle: "Real time Live Interactive Shopping & Exhibition Platform",
-                                background: `Nowadays, buying products on E-commerce platforms has become a daily experience. E-commerce Apps offer various products and provide virtual shopping carts to facilitate the purchase. However, traditional apps provide limited information and few angle images, failing to provide depth and real-time views. Goods often need to match customer needs precisely; if not suitable, they are returned through troublesome procedures. Traditional websites lack real-time live sale assistance. Specifically for apparels/garments, buyers can only visualize via 2D photos or sketches and cannot judge fit or style on themselves, leading to high return rates due to improper sizing.`,
-                                statement: `Webion live shopping app introduces a real-time LIVE E-commerce platform where sellers install cameras integrated with our app. Buyers can visit stalls virtually via mobile/laptop. A unique feature allows buyers to alert salespeople for queries or negotiations. A split-screen view visualizes the salesperson and the buyer. We now require an AR feature integration where customers can view/feel how products (dresses/garments) on a shop's mannequin suit their face/body just by clicking a button. It should also provide dimensions of the products on the mannequins and the buyer's own measurements via their camera during the interaction.`,
+                                mainTitle: "Hackathon Problem Statement",
+                                title: "Real time Live Interactive Shopping & Exhibition Platform",
+                                background: `Nowadays, buying products on E-commerce platforms has become a daily experience. E-commerce Apps offer various products and provide virtual shopping carts to facilitate the purchase. However, the traditional e-commerce Apps provide basic product information, and provide few angle images of products. These Apps cannot provide the depth of information and real time view of that product. When the goods are delivered to the consumer, then the consumer decides the suitability of the product. These goods often need to match the customers need and choice, if not suitable, they need to be returned through the troublesome return procedure. Furthermore, traditional e-commerce websites cannot provide real time Live sale assistance for helping the customers. Specifically for apparels/dress/garments, the seller demonstrates either by 2D photographs or sketch & hence the buyer can only visualise but cannot get the idea that how dress suites to him / her. Also, majority of times the products gets returned due to improper size / fitting.`,
+                                statement: `Keeping in mind the need of real time interactivity and Live Shopping Environment to the customers, Webon Ecomm Private Limited has come up with first of its kind Real time LIVE E-ecommerce platform Webion live shopping app…! Here, we have introduced the Camera that the seller has to install in front of the products & those camera we have integrated with our App. The buyer can visit the shop / stall through his mobile / laptop / computer. Also, when the buyer has any query / wants to negotiate, with our unique feature button alerts goes to available sales person. When sales person click, we van visualized one side Sales person & another half side of screen buyer. With our App., Visiting any shop and buying products sitting at your home is possible now...! You can virtually in real time go inside the shop and if you want to discuss/ negotiate, the salesperson will talk to you and show the products of your choice LIVE…! Pay online and the product will get delivered at your home...! Now, we want to have an AR feature integration with our App. by which the customer can view / feel how the product (dress / garments etc.) which has been displayed on the mannequin of the shop suits to his face / body just by clicking a button of his mobile / laptop / computer. Also, he should get the dimensions of the products displayed ( Garments / cloths ) on the mannequins through the sales person camera & buyer should get the dimensions of his clothing’s that he / she has wear on his camera. when a customer and salesperson interaction is going on so that the customer can have a real time view/feel of the product and decide its suitability.`,
                                 objectives: [
-                                    "Customer should use AR to decide product suitability.",
-                                    "Customer should feel and size as if wearing the product displayed on a mannequin/object.",
-                                    "Get real-time dimensions of apparels/garments from both the seller's mannequin and the buyer."
+                                    "The customer should be able to use the AR feature to decide the product suitability",
+                                    "The customer should feel & size as if he/she is wearing that product (for Apparel / garments etc.)"
                                 ],
                                 solution: [
-                                    "AR functionality integration.",
-                                    "Integration with existing React JS frontend, Node JS backend, and MySQL database (Unix environment).",
-                                    "Compatibility with Android mobile app using Agora video calling functionality."
+                                    "AR functionality integration",
+                                    "This feature should have a provision to get integrated with our existing Live commerce platform which is developed in React JS, back end logic and API in Node JS using MySQL databse in Unix environment",
+                                    "The salesperson mobile app is in Android in which we have used Agora video calling functionality"
                                 ],
-                                deliverables: "AR feature integrated into the application with full source code as per specifications.",
+                                deliverables: [
+                                    "Problem understanding and proposed architecture",
+                                    "Prototype / working model / simulation",
+                                    "Software platform or dashboard",
+                                    "Data analysis and visualization",
+                                    "Demonstration of energy optimization strategy"
+                                ],
                                 downloadPath: "/Srijan_PS1_AR_Live_Commerce.pdf"
                             }
                         },
@@ -333,11 +338,51 @@ const Hackathon = () => {
                             <div className="reward-card-header">
                                 <span className="label">TARGET_SPEC: 0{index + 1}</span>
                                 <h3 className="title">{item.title}</h3>
-                                {item.category && <div className="ps-category" style={{ color: '#2dd4bf', fontSize: '0.9rem', marginTop: '5px', fontWeight: 'bold' }}>{item.category}</div>}
-                                {item.subtitle && <div className="card-instruction">{item.subtitle}</div>}
+                                {item.category && (
+                                    <div className="ps-category-hero" style={{ 
+                                        color: '#fff', 
+                                        fontSize: '1.4rem', 
+                                        marginTop: '15px', 
+                                        fontWeight: '900',
+                                        fontFamily: 'Orbitron, sans-serif',
+                                        background: 'linear-gradient(to right, #2dd4bf, #fff)',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        letterSpacing: '2px',
+                                        textTransform: 'uppercase'
+                                    }}>
+                                        {item.category}
+                                    </div>
+                                )}
+                                {item.subtitle && <div className="card-instruction ps-summary-box" style={{ 
+                                    fontSize: '1rem', 
+                                    marginTop: '20px',
+                                    color: '#e2e8f0',
+                                    lineHeight: '1.6',
+                                    background: 'rgba(45, 212, 191, 0.1)',
+                                    border: '1px solid rgba(45, 212, 191, 0.3)',
+                                    textTransform: 'none'
+                                }}>
+                                    {item.subtitle}
+                                </div>}
                                 {item.isAvailable && item.id !== 'innovation' && (
-                                    <div className="view-details-tag" style={{ marginTop: '10px', fontSize: '0.7rem', color: '#2dd4bf', opacity: 0.7 }}>
-                                        [ CLICK TO VIEW INTEL ]
+                                    <div className="view-details-btn-accent" style={{ 
+                                        marginTop: '25px', 
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '10px',
+                                        padding: '10px 20px',
+                                        background: 'rgba(45, 212, 191, 0.15)',
+                                        border: '1px solid #2dd4bf',
+                                        borderRadius: '4px',
+                                        color: '#fff',
+                                        fontSize: '0.8rem',
+                                        fontFamily: 'Orbitron, sans-serif',
+                                        fontWeight: 'bold',
+                                        letterSpacing: '2px',
+                                        transition: '0.3s'
+                                    }}>
+                                        📡 VIEW FULL DESCRIPTION
                                     </div>
                                 )}
                             </div>
@@ -498,39 +543,44 @@ const Hackathon = () => {
                         <div className="modal-bracket bracket-bottom-right"></div>
 
                         <div className="modal-header">
-                            <span className="status-badge">MISSION_INTEL: PS_01</span>
-                            <h2 style={{ fontSize: '1.5rem', marginTop: '10px' }}>{activePS.title}</h2>
-                            <p style={{ color: '#2dd4bf', fontSize: '0.9rem', letterSpacing: '1px' }}>{activePS.subtitle}</p>
+                            <span className="status-badge" style={{ background: '#2dd4bf', color: '#000', fontWeight: 'bold' }}>{activePS.mainTitle || 'MISSION_INTEL'}</span>
+                            <h2 style={{ fontSize: '1.8rem', marginTop: '15px', color: '#fff', textShadow: '0 0 10px rgba(45, 212, 191, 0.5)' }}>{activePS.title}</h2>
                         </div>
 
                         <div className="modal-body ps-intel-body" style={{ maxHeight: '60vh', overflowY: 'auto', textAlign: 'left', paddingRight: '15px' }}>
                             <div className="intel-segment">
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>PROBLEM BACKGROUND</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cbd5e1' }}>{activePS.background}</p>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>1. PROBLEM BACKGROUND</h4>
+                                <p style={{ fontSize: '0.95rem', lineHeight: '1.7', color: '#cbd5e1' }}>{activePS.background}</p>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '20px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>PROBLEM STATEMENT</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cbd5e1' }}>{activePS.statement}</p>
+                            <div className="intel-segment" style={{ marginTop: '30px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>2. PROBLEM STATEMENT</h4>
+                                <p style={{ fontSize: '0.95rem', lineHeight: '1.7', color: '#cbd5e1' }}>{activePS.statement}</p>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '20px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>OBJECTIVES</h4>
-                                <ul style={{ fontSize: '0.9rem', color: '#cbd5e1', paddingLeft: '20px' }}>
-                                    {activePS.objectives.map((obj, i) => <li key={i} style={{ marginBottom: '5px' }}>{obj}</li>)}
+                            <div className="intel-segment" style={{ marginTop: '30px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>3. OBJECTIVES</h4>
+                                <ul style={{ fontSize: '0.95rem', color: '#cbd5e1', paddingLeft: '20px' }}>
+                                    {activePS.objectives.map((obj, i) => <li key={i} style={{ marginBottom: '8px' }}>{obj}</li>)}
                                 </ul>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '20px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>EXPECTED SOLUTION</h4>
-                                <ul style={{ fontSize: '0.9rem', color: '#cbd5e1', paddingLeft: '20px' }}>
-                                    {activePS.solution.map((sol, i) => <li key={i} style={{ marginBottom: '5px' }}>{sol}</li>)}
+                            <div className="intel-segment" style={{ marginTop: '30px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>4. EXPECTED SOLUTION</h4>
+                                <ul style={{ fontSize: '0.95rem', color: '#cbd5e1', paddingLeft: '20px' }}>
+                                    {activePS.solution.map((sol, i) => <li key={i} style={{ marginBottom: '8px' }}>{sol}</li>)}
                                 </ul>
                             </div>
 
-                            <div className="intel-segment" style={{ marginTop: '20px' }}>
-                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>DELIVERABLES</h4>
-                                <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cbd5e1' }}>{activePS.deliverables}</p>
+                            <div className="intel-segment" style={{ marginTop: '30px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px', fontSize: '1rem' }}>5. EXPECTED DELIVERABLES</h4>
+                                <ul style={{ fontSize: '0.95rem', color: '#cbd5e1', paddingLeft: '20px' }}>
+                                    {Array.isArray(activePS.deliverables) ? (
+                                        activePS.deliverables.map((del, i) => <li key={i} style={{ marginBottom: '8px' }}>{del}</li>)
+                                    ) : (
+                                        <li style={{ marginBottom: '8px' }}>{activePS.deliverables}</li>
+                                    )}
+                                </ul>
                             </div>
                         </div>
 
