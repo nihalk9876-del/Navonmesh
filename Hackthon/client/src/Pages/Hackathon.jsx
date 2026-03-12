@@ -10,6 +10,7 @@ const Hackathon = () => {
     const [showAll, setShowAll] = useState(false);
     const [mobileSection, setMobileSection] = useState(null);
     const [showFilledModal, setShowFilledModal] = useState(false);
+    const [activePS, setActivePS] = useState(null);
 
     const toggleMobileSection = (section) => {
         setMobileSection(prev => prev === section ? null : section);
@@ -287,17 +288,58 @@ const Hackathon = () => {
                 <div className="prizes-grid">
                     {[
                         {
+                            id: 'innovation',
                             title: "PROBLEM STATEMENT: STUDENT INNOVATION",
-                            subtitle: "When you are registering in Student Innovation (means your own problem statement) then the problem should be related to the following domains."
+                            subtitle: "When you are registering in Student Innovation (means your own problem statement) then the problem should be related to the following domains.",
+                            isAvailable: true
                         },
-                        { title: "PROBLEM STATEMENT: COMING SOON" },
-                        { title: "PROBLEM STATEMENT: COMING SOON" }
+                        {
+                            id: 'ps1',
+                            title: "PROBLEM STATEMENT 1",
+                            category: "AR-Powered Live Commerce",
+                            subtitle: "AR-Powered Live Commerce: Bringing the Store Experience to Your Screen",
+                            isAvailable: true,
+                            fullIntel: {
+                                title: "AR-Powered Live Commerce: Bringing the Store Experience to Your Screen",
+                                subtitle: "Real time Live Interactive Shopping & Exhibition Platform",
+                                background: `Nowadays, buying products on E-commerce platforms has become a daily experience. E-commerce Apps offer various products and provide virtual shopping carts to facilitate the purchase. However, traditional apps provide limited information and few angle images, failing to provide depth and real-time views. Goods often need to match customer needs precisely; if not suitable, they are returned through troublesome procedures. Traditional websites lack real-time live sale assistance. Specifically for apparels/garments, buyers can only visualize via 2D photos or sketches and cannot judge fit or style on themselves, leading to high return rates due to improper sizing.`,
+                                statement: `Webion live shopping app introduces a real-time LIVE E-commerce platform where sellers install cameras integrated with our app. Buyers can visit stalls virtually via mobile/laptop. A unique feature allows buyers to alert salespeople for queries or negotiations. A split-screen view visualizes the salesperson and the buyer. We now require an AR feature integration where customers can view/feel how products (dresses/garments) on a shop's mannequin suit their face/body just by clicking a button. It should also provide dimensions of the products on the mannequins and the buyer's own measurements via their camera during the interaction.`,
+                                objectives: [
+                                    "Customer should use AR to decide product suitability.",
+                                    "Customer should feel and size as if wearing the product displayed on a mannequin/object.",
+                                    "Get real-time dimensions of apparels/garments from both the seller's mannequin and the buyer."
+                                ],
+                                solution: [
+                                    "AR functionality integration.",
+                                    "Integration with existing React JS frontend, Node JS backend, and MySQL database (Unix environment).",
+                                    "Compatibility with Android mobile app using Agora video calling functionality."
+                                ],
+                                deliverables: "AR feature integrated into the application with full source code as per specifications.",
+                                downloadPath: "/Srijan_PS1_AR_Live_Commerce.pdf"
+                            }
+                        },
+                        {
+                            id: 'ps2',
+                            title: "PROBLEM STATEMENT 2: COMING SOON",
+                            isAvailable: false
+                        }
                     ].map((item, index) => (
-                        <div className="reward-card" key={index}>
+                        <div
+                            className={`reward-card ${item.isAvailable ? 'ps-available' : ''}`}
+                            key={index}
+                            onClick={() => item.fullIntel && setActivePS(item.fullIntel)}
+                            style={{ cursor: item.fullIntel ? 'pointer' : 'default' }}
+                        >
                             <div className="reward-card-header">
                                 <span className="label">TARGET_SPEC: 0{index + 1}</span>
                                 <h3 className="title">{item.title}</h3>
+                                {item.category && <div className="ps-category" style={{ color: '#2dd4bf', fontSize: '0.9rem', marginTop: '5px', fontWeight: 'bold' }}>{item.category}</div>}
                                 {item.subtitle && <div className="card-instruction">{item.subtitle}</div>}
+                                {item.isAvailable && item.id !== 'innovation' && (
+                                    <div className="view-details-tag" style={{ marginTop: '10px', fontSize: '0.7rem', color: '#2dd4bf', opacity: 0.7 }}>
+                                        [ CLICK TO VIEW INTEL ]
+                                    </div>
+                                )}
                             </div>
                             <div className="reward-card-body">
                                 <div className="reward-tier">
@@ -446,6 +488,78 @@ const Hackathon = () => {
                     </div>
                 </div>
             </div>
+            {/* PROBLEM STATEMENT INTEL MODAL */}
+            {activePS && (
+                <div className="voyager-modal-overlay" onClick={() => setActivePS(null)}>
+                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '800px' }}>
+                        <div className="modal-bracket bracket-top-left"></div>
+                        <div className="modal-bracket bracket-top-right"></div>
+                        <div className="modal-bracket bracket-bottom-left"></div>
+                        <div className="modal-bracket bracket-bottom-right"></div>
+
+                        <div className="modal-header">
+                            <span className="status-badge">MISSION_INTEL: PS_01</span>
+                            <h2 style={{ fontSize: '1.5rem', marginTop: '10px' }}>{activePS.title}</h2>
+                            <p style={{ color: '#2dd4bf', fontSize: '0.9rem', letterSpacing: '1px' }}>{activePS.subtitle}</p>
+                        </div>
+
+                        <div className="modal-body ps-intel-body" style={{ maxHeight: '60vh', overflowY: 'auto', textAlign: 'left', paddingRight: '15px' }}>
+                            <div className="intel-segment">
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>PROBLEM BACKGROUND</h4>
+                                <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cbd5e1' }}>{activePS.background}</p>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '20px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>PROBLEM STATEMENT</h4>
+                                <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cbd5e1' }}>{activePS.statement}</p>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '20px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>OBJECTIVES</h4>
+                                <ul style={{ fontSize: '0.9rem', color: '#cbd5e1', paddingLeft: '20px' }}>
+                                    {activePS.objectives.map((obj, i) => <li key={i} style={{ marginBottom: '5px' }}>{obj}</li>)}
+                                </ul>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '20px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>EXPECTED SOLUTION</h4>
+                                <ul style={{ fontSize: '0.9rem', color: '#cbd5e1', paddingLeft: '20px' }}>
+                                    {activePS.solution.map((sol, i) => <li key={i} style={{ marginBottom: '5px' }}>{sol}</li>)}
+                                </ul>
+                            </div>
+
+                            <div className="intel-segment" style={{ marginTop: '20px' }}>
+                                <h4 style={{ color: '#2dd4bf', borderLeft: '3px solid #2dd4bf', paddingLeft: '10px', marginBottom: '10px' }}>DELIVERABLES</h4>
+                                <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cbd5e1' }}>{activePS.deliverables}</p>
+                            </div>
+                        </div>
+
+                        <div className="modal-footer" style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+                            {activePS.downloadPath && (
+                                <a
+                                    href={activePS.downloadPath}
+                                    download
+                                    className="modal-dismiss-btn"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px'
+                                    }}
+                                >
+                                    <FaDownload /> DOWNLOAD PS1 (PDF)
+                                </a>
+                            )}
+                            <button className="modal-dismiss-btn" onClick={() => setActivePS(null)}>
+                                CLOSE INTEL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* REGISTRATION FILLED MODAL */}
             {showFilledModal && (
                 <div className="voyager-modal-overlay" onClick={() => setShowFilledModal(false)}>
