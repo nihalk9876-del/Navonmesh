@@ -302,7 +302,7 @@ const Hackathon = () => {
                         {
                             id: 'innovation',
                             title: "PROBLEM STATEMENT: STUDENT INNOVATION",
-                            subtitle: "When you are registering in Student Innovation (means your own problem statement) then the problem should be related to the following domains.",
+                            subtitle: "If you choose 'Student Innovation' (proposing your own problem statement), please ensure your project aligns with the domains listed below.",
                             isAvailable: true
                         },
                         {
@@ -547,8 +547,8 @@ const Hackathon = () => {
             </div>
             {/* PROBLEM STATEMENT INTEL MODAL */}
             {activePS && (
-                <div className="voyager-modal-overlay" onClick={() => setActivePS(null)} style={{ zIndex: 999999, position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}>
-                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '900px', width: '95%', padding: '50px 40px', zIndex: 1000000 }}>
+                <div className="voyager-modal-overlay ps-modal-fix" onClick={() => setActivePS(null)} style={{ zIndex: 9999999, position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}>
+                    <div className="voyager-modal-content ps-intel-modal animate-pop" onClick={e => e.stopPropagation()} style={{ maxWidth: '900px', width: '95%', padding: '50px 40px', zIndex: 10000000 }}>
                         <div className="modal-bracket bracket-top-left"></div>
                         <div className="modal-bracket bracket-top-right"></div>
                         <div className="modal-bracket bracket-bottom-left"></div>
