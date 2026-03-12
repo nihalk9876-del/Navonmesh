@@ -329,7 +329,7 @@ const Hackathon = () => {
                                 deliverables: [
                                     "We expect from the team member to have AR feature to be integrated in our application with source code as mentioned above."
                                 ],
-                                downloadPath: "/Srijan_PS1_AR_Live_Commerce.pdf"
+                                downloadPath: "/WEBION SAMPLE_PROBLEM_STATEMENT 10 03 26 (2).docx"
                             }
                         },
                         {
@@ -649,7 +649,7 @@ const Hackathon = () => {
                                         boxShadow: '0 4px 15px rgba(16, 185, 129, 0.3)'
                                     }}
                                 >
-                                    <FaDownload /> DOWNLOAD PDF
+                                    <FaDownload /> DOWNLOAD DOCX
                                 </a>
                             )}
                             <button className="modal-dismiss-btn" onClick={() => setActivePS(null)} style={{ flex: '1', border: '1px solid rgba(45, 212, 191, 0.4)' }}>
