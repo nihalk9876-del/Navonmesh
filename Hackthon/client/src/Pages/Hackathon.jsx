@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import registerBtnImg from "../assets/register-btn.png";
 import ProblemStatements from "../Components/ProblemStatements";
 import srijanPoster from "../assets/HACKATHON.jpeg";
+import webionLogo from "../assets/webion-logo.png";
+import tcsLogo from "../assets/tcs-logo.png";
+
 
 const Hackathon = () => {
     const [showAll, setShowAll] = useState(false);
@@ -330,13 +333,39 @@ const Hackathon = () => {
                                     "We expect from the team member to have AR feature to be integrated in our application with source code as mentioned above."
                                 ],
                                 downloadPath: "/Srijan_PS1.docx"
-                            }
+                            },
+                            knowledgePartner: webionLogo
                         },
+
                         {
                             id: 'ps2',
-                            title: "PROBLEM STATEMENT 2: COMING SOON",
-                            isAvailable: false
+                            title: "PROBLEM STATEMENT 2",
+                            category: "AI & MANUFACTURING",
+                            subtitle: "Generative AI Agent for Predictive Maintenance Scheduling in Manufacturing",
+                            isAvailable: true,
+                            tag: "NEWLY UPDATED",
+                            fullIntel: {
+                                mainTitle: "Hackathon Problem Statement",
+                                title: "Generative AI Agent for Predictive Maintenance Scheduling in Manufacturing",
+                                background: "Manufacturing plants struggle to efficiently schedule maintenance due to scattered equipment logs and lack of real-time insights, leading to unexpected downtimes and increased costs.",
+                                statement: "Generative AI Agent for Predictive Maintenance Scheduling in Manufacturing",
+                                objectives: [
+                                    "Collect equipment maintenance logs and operational notes.",
+                                    "Use an AI agent to analyze textual logs and identify patterns indicating potential failures.",
+                                    "Generate prioritized maintenance schedules with explanations.",
+                                    "Allow users to query maintenance history and recommendations."
+                                ],
+                                solution: [
+                                    "Refer to objectives and requirements for implementation."
+                                ],
+                                deliverables: [
+                                    "Data Requirements: Maintenance logs, equipment operational notes, and incident reports in text format from manufacturing plant databases or maintenance management systems."
+                                ],
+                                downloadPath: "/ps2.docx"
+                            },
+                            knowledgePartner: tcsLogo
                         }
+
                     ].map((item, index) => (
                         <div
                             className={`reward-card ${item.isAvailable ? 'ps-available' : ''}`}
@@ -365,10 +394,10 @@ const Hackathon = () => {
                                 </div>
                                 <h3 className="title">{item.title}</h3>
                                 {item.category && (
-                                    <div className="ps-category-hero" style={{ 
-                                        color: '#fff', 
-                                        fontSize: '1.4rem', 
-                                        marginTop: '15px', 
+                                    <div className="ps-category-hero" style={{
+                                        color: '#fff',
+                                        fontSize: '1.4rem',
+                                        marginTop: '15px',
                                         fontWeight: '900',
                                         fontFamily: 'Orbitron, sans-serif',
                                         background: 'linear-gradient(to right, #2dd4bf, #fff)',
@@ -380,8 +409,17 @@ const Hackathon = () => {
                                         {item.category}
                                     </div>
                                 )}
-                                {item.subtitle && <div className="card-instruction ps-summary-box" style={{ 
-                                    fontSize: '1rem', 
+                                
+                                {item.knowledgePartner && (
+                                    <div className="knowledge-partner-badge">
+                                        <span className="partner-label">KNOWLEDGE PARTNER:</span>
+                                        <img src={item.knowledgePartner} alt="Partner" className="partner-logo" />
+                                    </div>
+                                )}
+
+                                {item.subtitle && <div className="card-instruction ps-summary-box" style={{
+
+                                    fontSize: '1rem',
                                     marginTop: '20px',
                                     color: '#e2e8f0',
                                     lineHeight: '1.6',
@@ -392,8 +430,8 @@ const Hackathon = () => {
                                     {item.subtitle}
                                 </div>}
                                 {item.isAvailable && item.id !== 'innovation' && (
-                                    <div className="view-details-btn-accent" style={{ 
-                                        marginTop: '25px', 
+                                    <div className="view-details-btn-accent" style={{
+                                        marginTop: '25px',
                                         display: 'inline-flex',
                                         alignItems: 'center',
                                         gap: '10px',
@@ -570,9 +608,9 @@ const Hackathon = () => {
 
                         <div className="modal-header" style={{ marginBottom: '40px' }}>
                             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                                <span className="status-badge" style={{ 
-                                    background: '#2dd4bf', 
-                                    color: '#000', 
+                                <span className="status-badge" style={{
+                                    background: '#2dd4bf',
+                                    color: '#000',
                                     fontWeight: '900',
                                     fontSize: '0.8rem',
                                     padding: '6px 15px',
@@ -582,9 +620,9 @@ const Hackathon = () => {
                                     {activePS.mainTitle || 'MISSION_INTEL'}
                                 </span>
                             </div>
-                            <h2 style={{ 
-                                fontSize: '2.2rem', 
-                                color: '#fff', 
+                            <h2 style={{
+                                fontSize: '2.2rem',
+                                color: '#fff',
                                 textShadow: '0 0 20px rgba(45, 212, 191, 0.3)',
                                 lineHeight: '1.2',
                                 fontFamily: 'Orbitron, sans-serif'
