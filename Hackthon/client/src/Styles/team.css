@@ -491,6 +491,35 @@
     color: #d142f5;
 }
 
+/* Partnership and Sponsor Logo Styles */
+.logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.team-logo {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+.team-logo:hover {
+    transform: scale(1.1);
+}
+
+.partner-logo-img, .sponsor-logo-img {
+    height: 70px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+}
+
 /* Responsive */
 /* Responsive */
 @media (max-width: 1024px) {

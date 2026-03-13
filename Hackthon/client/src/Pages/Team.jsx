@@ -49,6 +49,13 @@ import bannerImg from "../assets/coordinating_team_banner.png";
 import PursuitLogo from "../assets/pursuitlogo.png";
 import imgPranita from "../assets/pranita.png";
 import NavonmeshLogo from "../assets/namonvesh-logo.png";
+import webionLogo from "../assets/webion-logo.png";
+import tcsLogo from "../assets/tcs-logo.png";
+// Placeholder imports for sponsors - User will add these files
+import sponsor1 from "../assets/sponsor1.png";
+import sponsor2 from "../assets/sponsor2.png";
+import sponsor3 from "../assets/sponsor3.png";
+
 
 // HOD Images
 import taleImg from "../assets/anand tale .jpeg";
@@ -511,8 +518,7 @@ const Team = () => {
                 </div>
             </div>
 
-            {/* Coordinating Team Section */}
-            <div className="coordinating-section" style={{ marginBottom: "60px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div className="coordinating-section" style={{ marginBottom: "80px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <h2 className="section-title">Coordinating Team</h2>
                 <div className="logo-container logos-row">
                     <img src={EcellLogo} alt="E-Cell Logo" className="team-logo ecell-logo-img" />
@@ -520,6 +526,26 @@ const Team = () => {
                     <img src={PursuitLogo} alt="Pursuit Logo" className="team-logo pursuit-logo-img" />
                 </div>
             </div>
+
+            {/* Knowledge Partner Section */}
+            <div className="partners-section" style={{ marginBottom: "80px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <h2 className="section-title" style={{ color: "#ffd700", opacity: 0.9 }}>Knowledge Partners</h2>
+                <div className="logo-container logos-row partnership-logos">
+                    <img src={webionLogo} alt="Webion Logo" className="team-logo partner-logo-img" />
+                    <img src={tcsLogo} alt="TCS Logo" className="team-logo partner-logo-img" />
+                </div>
+            </div>
+
+            {/* Event Sponsor Section */}
+            <div className="sponsors-section" style={{ marginBottom: "100px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <h2 className="section-title" style={{ color: "#ffd700", opacity: 0.9 }}>Event Sponsors</h2>
+                <div className="logo-container logos-row sponsor-logos">
+                    <img src={sponsor1} alt="Sponsor 1" className="team-logo sponsor-logo-img" />
+                    <img src={sponsor2} alt="Sponsor 2" className="team-logo sponsor-logo-img" />
+                    <img src={sponsor3} alt="Sponsor 3" className="team-logo sponsor-logo-img" />
+                </div>
+            </div>
+
 
             <h1 className="team-title">CORE TEAM</h1>
             <p className="team-subtitle">
