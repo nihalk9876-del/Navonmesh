@@ -409,7 +409,7 @@ const Hackathon = () => {
                                         {item.category}
                                     </div>
                                 )}
-                                
+
                                 {item.knowledgePartner && (
                                     <div className="knowledge-partner-badge">
                                         <span className="partner-label">KNOWLEDGE PARTNER:</span>
@@ -485,24 +485,24 @@ const Hackathon = () => {
                 {/* Srijan Heads Contacts - Desktop Only */}
                 <div className="srijan-heads-contacts desktop-only">
                     <div className="contact-box">
-                        <span className="box-title">SRIJAN HEAD</span>
-                        <span className="box-name">Atharva Tayade</span>
-                        <a href="tel:8767968475" className="box-phone">8767968475</a>
-                    </div>
-                    <div className="contact-box">
-                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-title">OVERALL HEAD</span>
                         <span className="box-name">Nihal Kankal</span>
                         <a href="tel:8766417815" className="box-phone">8766417815</a>
                     </div>
                     <div className="contact-box">
-                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-title">OVERALL HEAD</span>
                         <span className="box-name">Vedant Darokar</span>
                         <a href="tel:8208772402" className="box-phone">8208772402</a>
                     </div>
                     <div className="contact-box">
-                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-title">OVERALL HEAD</span>
                         <span className="box-name">Sanchit Dangra</span>
                         <a href="tel:9876543210" className="box-phone">9876543210</a>
+                    </div>
+                    <div className="contact-box">
+                        <span className="box-title">SRIJAN HEAD</span>
+                        <span className="box-name">Atharva Tayade</span>
+                        <a href="tel:8767968475" className="box-phone">8767968475</a>
                     </div>
                 </div>
             </div>

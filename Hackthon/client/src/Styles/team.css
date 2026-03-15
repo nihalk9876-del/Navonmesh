@@ -513,11 +513,174 @@
     transform: scale(1.1);
 }
 
-.partner-logo-img, .sponsor-logo-img {
-    height: 70px;
-    width: auto;
-    max-width: 220px;
+/* Premium Partners & Sponsors Styling */
+.premium-partners-area {
+    width: 100%;
+    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.section-glow-orb {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.section-glow-orb.secondary {
+    background: radial-gradient(circle, rgba(0, 243, 255, 0.08) 0%, transparent 70%);
+}
+
+.premium-section-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 6px;
+    margin-bottom: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.tech-bracket {
+    color: #00f3ff;
+    font-size: 2.2rem;
+    opacity: 0.6;
+}
+
+.premium-logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.premium-logo-card {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.premium-logo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.05) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.premium-logo-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(0, 243, 255, 0.5);
+    box-shadow: 
+        0 20px 40px -10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+.premium-logo-card:hover::before {
+    opacity: 1;
+}
+
+.premium-logo-card img {
+    width: 100%;
+    height: 90px;
     object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+    opacity: 0.95;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.premium-logo-card:hover img {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Base Logo exception - it's already slightly smaller/different aspect */
+.premium-logo-card .base-logo {
+    height: 75px;
+}
+
+/* The Scanner Effect */
+.card-scanner {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+    top: -100%;
+    left: 0;
+    opacity: 0;
+    z-index: 3;
+}
+
+.premium-logo-card:hover .card-scanner {
+    animation: scanAnimation 2s linear infinite;
+    opacity: 1;
+}
+
+@keyframes scanAnimation {
+    0% { top: -5%; }
+    100% { top: 105%; }
+}
+
+@media (max-width: 768px) {
+    .premium-logo-card {
+        width: 160px;
+        height: 120px;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .premium-logo-card img {
+        height: 50px;
+    }
+
+    .premium-logo-card .base-logo {
+        height: 40px;
+    }
+
+    .premium-section-title {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+    }
+
+    .tech-bracket {
+        font-size: 1.5rem;
+    }
+
+    .logo-label {
+        font-size: 0.5rem;
+        letter-spacing: 1.5px;
+    }
 }
 
 /* Responsive */
@@ -1224,5 +1387,9 @@
 
     .pursuit-logo-img {
         height: 60px;
+    }
+
+    .base-logo {
+        height: 45px; /* Proportional reduction for mobile */
     }
 }

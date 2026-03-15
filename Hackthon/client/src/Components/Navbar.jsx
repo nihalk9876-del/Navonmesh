@@ -95,6 +95,9 @@ const Navbar = ({ onRegisterClick }) => {
           <span onClick={() => scrollToSection("team")}>Team</span>
         </li>
         <li>
+          <span onClick={() => scrollToSection("sponsors")}>Sponsors</span>
+        </li>
+        <li>
           <NavLink to="/cosmos" className="nav-item" style={{ textDecoration: 'none', color: 'inherit' }} onClick={() => setIsMenuOpen(false)}>
             Cosmos 🚀
           </NavLink>
