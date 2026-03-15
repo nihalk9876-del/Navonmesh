@@ -107,20 +107,6 @@ const hods = [
         description: "Leading innovation in computer science and software engineering."
     },
     {
-        id: 101,
-        name: "Dr. A. S. Tale",
-        role: "Head, Dept. of Applied Sciences and Humanities",
-        image: taleImg,
-        description: "Leadership in fundamental sciences and humanities education."
-    },
-    {
-        id: 107,
-        name: "Dr. P. M. Kuchar",
-        role: "Head, Dept. of Business Administration and Research (MBA)",
-        image: kucharImg,
-        description: "Nurturing the next generation of business leaders."
-    },
-    {
         id: 104,
         name: "Dr. D. D. Nawgaje",
         role: "Associate Professor & Head, Dept. of Electronics and Telecommunication Engineering",
@@ -133,6 +119,20 @@ const hods = [
         role: "Head, Dept. of Information Technology",
         image: padiyaImg,
         description: "Driving digital transformation through information technology."
+    },
+    {
+        id: 107,
+        name: "Dr. P. M. Kuchar",
+        role: "Head, Dept. of Business Administration and Research (MBA)",
+        image: kucharImg,
+        description: "Nurturing the next generation of business leaders."
+    },
+    {
+        id: 101,
+        name: "Dr. A. S. Tale",
+        role: "Head, Dept. of Applied Sciences and Humanities",
+        image: taleImg,
+        description: "Leadership in fundamental sciences and humanities education."
     }
 ];
 
