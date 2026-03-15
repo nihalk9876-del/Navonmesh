@@ -86,11 +86,18 @@ const topMentors = [
 
 const hods = [
     {
-        id: 101,
-        name: "Dr. A. S. Tale",
-        role: "Head, Dept. of Applied Sciences and Humanities",
-        image: taleImg,
-        description: "Leadership in fundamental sciences and humanities education."
+        id: 103,
+        name: "Dr. S. R. Paraskar",
+        role: "Head, Dept. of Electrical Engineering (Electronics & Power)",
+        image: paraskarImg,
+        description: "Excellence in electrical power systems and electronics."
+    },
+    {
+        id: 106,
+        name: "Dr. S. P. Trikal",
+        role: "Head, Department of Mechanical Engineering",
+        image: trikalImg,
+        description: "Advancing mechanical systems and manufacturing excellence."
     },
     {
         id: 102,
@@ -100,11 +107,18 @@ const hods = [
         description: "Leading innovation in computer science and software engineering."
     },
     {
-        id: 103,
-        name: "Dr. S. R. Paraskar",
-        role: "Head, Dept. of Electrical Engineering (Electronics & Power)",
-        image: paraskarImg,
-        description: "Excellence in electrical power systems and electronics."
+        id: 101,
+        name: "Dr. A. S. Tale",
+        role: "Head, Dept. of Applied Sciences and Humanities",
+        image: taleImg,
+        description: "Leadership in fundamental sciences and humanities education."
+    },
+    {
+        id: 107,
+        name: "Dr. P. M. Kuchar",
+        role: "Head, Dept. of Business Administration and Research (MBA)",
+        image: kucharImg,
+        description: "Nurturing the next generation of business leaders."
     },
     {
         id: 104,
@@ -119,20 +133,6 @@ const hods = [
         role: "Head, Dept. of Information Technology",
         image: padiyaImg,
         description: "Driving digital transformation through information technology."
-    },
-    {
-        id: 106,
-        name: "Dr. S. P. Trikal",
-        role: "Head, Department of Mechanical Engineering",
-        image: trikalImg,
-        description: "Advancing mechanical systems and manufacturing excellence."
-    },
-    {
-        id: 107,
-        name: "Dr. P. M. Kuchar",
-        role: "Head, Dept. of Business Administration and Research (MBA)",
-        image: kucharImg,
-        description: "Nurturing the next generation of business leaders."
     }
 ];
 
@@ -528,21 +528,50 @@ const Team = () => {
             </div>
 
             {/* Knowledge Partner Section */}
-            <div className="partners-section" style={{ marginBottom: "80px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <h2 className="section-title" style={{ color: "#ffd700", opacity: 0.9 }}>Knowledge Partners</h2>
-                <div className="logo-container logos-row partnership-logos">
-                    <img src={webionLogo} alt="Webion Logo" className="team-logo partner-logo-img" />
-                    <img src={tcsLogo} alt="TCS Logo" className="team-logo partner-logo-img" />
+            <div id="sponsors" className="partners-section premium-partners-area">
+                <div className="section-glow-orb"></div>
+                <h2 className="premium-section-title">
+                    <span className="tech-bracket">[</span>
+                    KNOWLEDGE PARTNERS
+                    <span className="tech-bracket">]</span>
+                </h2>
+                <div className="premium-logo-grid partnership-logos">
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={tcsLogo} alt="TCS Logo" className="team-logo partner-logo-img" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={webionLogo} alt="Webion Logo" className="team-logo partner-logo-img" />
+                    </div>
                 </div>
             </div>
 
             {/* Event Sponsor Section */}
-            <div className="sponsors-section" style={{ marginBottom: "100px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <h2 className="section-title" style={{ color: "#ffd700", opacity: 0.9 }}>Event Sponsors</h2>
-                <div className="logo-container logos-row sponsor-logos">
-                    <img src={sponsor1} alt="Sponsor 1" className="team-logo sponsor-logo-img" />
-                    <img src={sponsor2} alt="Sponsor 2" className="team-logo sponsor-logo-img" />
-                    <img src={sponsor3} alt="Sponsor 3" className="team-logo sponsor-logo-img" />
+            <div className="sponsors-section premium-partners-area">
+                <div className="section-glow-orb secondary"></div>
+                <h2 className="premium-section-title">
+                    <span className="tech-bracket">[</span>
+                    EVENT SPONSORS
+                    <span className="tech-bracket">]</span>
+                </h2>
+                <div className="premium-logo-grid sponsor-logos">
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor1} alt="Bharat Soft Solutions" className="team-logo sponsor-logo-img" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor2} alt="Krish Products" className="team-logo sponsor-logo-img" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor3} alt="Base Logo" className="team-logo sponsor-logo-img base-logo" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={webionLogo} alt="Webion Logo" className="team-logo sponsor-logo-img" />
+                    </div>
                 </div>
             </div>
 

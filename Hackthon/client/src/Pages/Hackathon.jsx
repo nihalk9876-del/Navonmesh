@@ -409,7 +409,7 @@ const Hackathon = () => {
                                         {item.category}
                                     </div>
                                 )}
-                                
+
                                 {item.knowledgePartner && (
                                     <div className="knowledge-partner-badge">
                                         <span className="partner-label">KNOWLEDGE PARTNER:</span>
