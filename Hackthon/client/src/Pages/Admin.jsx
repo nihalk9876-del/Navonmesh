@@ -318,6 +318,71 @@ const Admin = () => {
         }
     };
 
+    const handleVerifyRemaining = async () => {
+        if (!summary || !activeEvent) return;
+
+        let displayEntries = summary[activeEvent].entries;
+
+        // Apply any active filters (same logic as table rendering)
+        if (activeEvent === 'accommodation' && accFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.event === accFilter);
+        } else if (activeEvent === 'srijan' && srijanFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.problemStatement === srijanFilter);
+        } else if (activeEvent === 'cultural' && culturalActivityFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.activity.toLowerCase().includes(culturalActivityFilter));
+            if (culturalSubFilter !== 'ALL') {
+                displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
+            }
+        } else if (activeEvent === 'ankur' && ankurFilter !== 'ALL') {
+            displayEntries = displayEntries.filter(e => e.category === ankurFilter);
+        }
+
+        const remainingEntries = displayEntries.filter(e => !e.paymentVerified);
+
+        if (remainingEntries.length === 0) {
+            alert('No remaining unverified entries in this view.');
+            return;
+        }
+
+        if (!window.confirm(`Are you sure you want to verify and send confirmation emails to ALL ${remainingEntries.length} remaining teams in this view?`)) return;
+
+        setLoading(true);
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const token = sessionStorage.getItem('adminToken');
+
+            // We'll process them one by one or in parallel
+            // Note: If there are many, a backend bulk endpoint would be better, 
+            // but here we follow the existing pattern of handleSendMail.
+            const results = await Promise.all(remainingEntries.map(async (entry) => {
+                const endpoint = activeEvent === 'cultural'
+                    ? `${API_URL}/api/admin/cultural/send-confirmation/${entry._id}`
+                    : activeEvent === 'accommodation'
+                        ? `${API_URL}/api/admin/accommodation/send-confirmation/${entry._id}`
+                        : `${API_URL}/api/admin/send-confirmation/${entry._id}`;
+
+                try {
+                    const res = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    return res.ok;
+                } catch (err) {
+                    return false;
+                }
+            }));
+
+            const successCount = results.filter(r => r).length;
+            alert(`Process complete! Successfully verified ${successCount} out of ${remainingEntries.length} teams.`);
+            fetchData(token); // Refresh the UI
+        } catch (err) {
+            console.error(err);
+            alert('Error during bulk verification.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     if (!loggedIn) {
         return (
             <div className="admin-login-container app-layout">
@@ -410,6 +475,7 @@ const Admin = () => {
                     </button>
                     <button className="maintenance-btn" onClick={() => window.open('/#/admin/maintenance', '_blank')}>Maintenance</button>
                     <button className="event-day-btn" onClick={() => window.open('/#/admin/event-day', '_blank')} style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.8rem' }}>Event Day</button>
+                    <button className="timer-btn-admin" onClick={() => window.open('/#/admin/break-timer', '_blank')} style={{ background: 'linear-gradient(135deg, #00f3ff 0%, #00d4ff 100%)', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.8rem', fontWeight: 'bold' }}>Timer</button>
                     <button className="logout-btn" onClick={handleLogout}>Abort Mission</button>
 
                 </div>
@@ -543,6 +609,20 @@ const Admin = () => {
                                             )}
                                             <button className="download-excel-btn" onClick={downloadExcel} title="Download Current Data as Excel">
                                                 <FaDownload /> EXCEL
+                                            </button>
+                                            <button className="verify-remaining-btn" onClick={handleVerifyRemaining} style={{
+                                                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                                                color: '#fff',
+                                                border: 'none',
+                                                padding: '8px 16px',
+                                                borderRadius: '8px',
+                                                cursor: 'pointer',
+                                                fontFamily: 'Orbitron',
+                                                fontSize: '0.7rem',
+                                                fontWeight: 'bold',
+                                                boxShadow: '0 0 15px rgba(16, 185, 129, 0.3)'
+                                            }}>
+                                                VERIFY REMAINING
                                             </button>
                                         </div>
                                     </div>

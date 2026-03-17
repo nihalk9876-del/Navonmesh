@@ -4,6 +4,7 @@ const Registration = require('../models/Registration');
 const Accommodation = require('../models/Accommodation');
 const Cultural = require('../models/Cultural');
 const sendEmail = require('../utils/email');
+const Timer = require('../models/Timer');
 
 router.post('/login', (req, res) => {
     const { id, password } = req.body;
@@ -598,6 +599,45 @@ router.put('/update-registration/:id', async (req, res) => {
     } catch (err) {
         console.error('Update registration error:', err);
         res.status(500).json({ error: 'Server error updating registration' });
+    }
+});
+
+// --- New Shared Timer Routes ---
+router.get('/timer', async (req, res) => {
+    try {
+        let timer = await Timer.findOne({ eventId: 'global_break_timer' });
+        if (!timer) {
+            timer = new Timer({ eventId: 'global_break_timer' });
+            await timer.save();
+        }
+        res.json(timer);
+    } catch (err) {
+        res.status(500).json({ error: 'Timer sync error' });
+    }
+});
+
+router.post('/timer/update', async (req, res) => {
+    const authHeader = req.headers.authorization;
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh') {
+        return res.status(401).json({ error: 'Unauthorized Access' });
+    }
+
+    try {
+        const { isActive, endTime, pausedAt } = req.body;
+        let timer = await Timer.findOne({ eventId: 'global_break_timer' });
+        
+        if (!timer) {
+            timer = new Timer({ eventId: 'global_break_timer' });
+        }
+
+        timer.isActive = isActive;
+        if (endTime !== undefined) timer.endTime = endTime;
+        if (pausedAt !== undefined) timer.pausedAt = pausedAt;
+
+        await timer.save();
+        res.json(timer);
+    } catch (err) {
+        res.status(500).json({ error: 'Timer update error' });
     }
 });
 

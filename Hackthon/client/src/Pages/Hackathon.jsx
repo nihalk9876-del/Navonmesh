@@ -7,6 +7,14 @@ import ProblemStatements from "../Components/ProblemStatements";
 import srijanPoster from "../assets/HACKATHON.jpeg";
 import webionLogo from "../assets/webion-logo.png";
 import tcsLogo from "../assets/tcs-logo.png";
+import sponsor1 from "../assets/sponsor1.png";
+import sponsor2 from "../assets/sponsor2.png";
+import sponsor3 from "../assets/sponsor3.png";
+import sponsor4 from "../assets/sponsor4.jpeg";
+import sponsor5 from "../assets/sponsor5.png";
+import sponsor6 from "../assets/sponsor6.jpeg";
+// import sponsor7 from "../assets/sponsor7.png";
+import mainSponsor from "../assets/mainsponsor.png";
 
 
 const Hackathon = () => {
@@ -412,7 +420,7 @@ const Hackathon = () => {
 
                                 {item.knowledgePartner && (
                                     <div className="knowledge-partner-badge">
-                                        <span className="partner-label">KNOWLEDGE PARTNER:</span>
+                                        <span className="partner-label">PROBLEM STATEMENT PARTNERS:</span>
                                         <img src={item.knowledgePartner} alt="Partner" className="partner-logo" />
                                     </div>
                                 )}
@@ -597,6 +605,85 @@ const Hackathon = () => {
                     </div>
                 </div>
             </div>
+            {/* Partners & Sponsors Section */}
+            <div id="sponsors" className="partners-section premium-partners-area">
+                <div className="section-glow-orb"></div>
+
+                {/* Main Event Sponsor */}
+                <h2 className="premium-section-title">
+                    <span className="tech-bracket">[</span>
+                    EVENT SPONSOR
+                    <span className="tech-bracket">]</span>
+                </h2>
+                <div className="premium-logo-grid partnership-logos" style={{ marginBottom: '80px' }}>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={mainSponsor} alt="Event Sponsor" className="team-logo partner-logo-img" />
+                    </div>
+                </div>
+
+                <h2 className="premium-section-title">
+                    <span className="tech-bracket">[</span>
+                    PROBLEM STATEMENT PARTNERS
+                    <span className="tech-bracket">]</span>
+                </h2>
+                <div className="premium-logo-grid partnership-logos">
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={tcsLogo} alt="TCS Logo" className="team-logo partner-logo-img" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={webionLogo} alt="Webion Logo" className="team-logo partner-logo-img" />
+                    </div>
+                </div>
+
+                <div className="sponsors-section premium-partners-area" style={{ marginTop: '80px' }}>
+                    <div className="section-glow-orb secondary"></div>
+                    <h2 className="premium-section-title">
+                        <span className="tech-bracket">[</span>
+                        INDUSTRY COLLABORATORS & SPONSORS
+                        <span className="tech-bracket">]</span>
+                    </h2>
+                    <div className="premium-logo-grid sponsor-logos">
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor1} alt="Bharat Soft Solutions" className="team-logo sponsor-logo-img" />
+                        </div>
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor2} alt="Krish Products" className="team-logo sponsor-logo-img" />
+                        </div>
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor3} alt="Base Logo" className="team-logo sponsor-logo-img base-logo" />
+                        </div>
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={webionLogo} alt="Webion Logo" className="team-logo sponsor-logo-img" />
+                        </div>
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor4} alt="Sponsor 4" className="team-logo sponsor-logo-img" />
+                        </div>
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor5} alt="Sponsor 5" className="team-logo sponsor-logo-img" />
+                        </div>
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor6} alt="Sponsor 6" className="team-logo sponsor-logo-img" />
+                        </div>
+                        {/* 
+                        <div className="premium-logo-card">
+                            <div className="card-scanner"></div>
+                            <img src={sponsor7} alt="Sponsor 7" className="team-logo sponsor-logo-img" />
+                        </div>
+                        */}
+                    </div>
+                </div>
+            </div>
+
             {/* PROBLEM STATEMENT INTEL MODAL */}
             {activePS && (
                 <div className="voyager-modal-overlay ps-modal-fix" onClick={() => setActivePS(null)} style={{ zIndex: 9999999, position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}>

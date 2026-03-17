@@ -25,6 +25,7 @@ import Admin from "./Pages/Admin";
 import SupportQR from "./Pages/SupportQR";
 import AdminMaintenance from "./Pages/AdminMaintenance";
 import EventDayAdmin from "./Pages/EventDayAdmin";
+import BreakTimer from "./Pages/BreakTimer"; // Import BreakTimer
 
 function App() {
 
@@ -67,6 +68,7 @@ function App() {
             <Route path="/support" element={<SupportQR />} />
             <Route path="/admin/maintenance" element={<AdminMaintenance />} />
             <Route path="/admin/event-day" element={<EventDayAdmin />} />
+            <Route path="/admin/break-timer" element={<BreakTimer />} />
           </Routes>
 
         </div>
