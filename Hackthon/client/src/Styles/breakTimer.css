@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&display=swap');
+
+.simple-timer-page {
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Aspect ratio 9:16 - Fits properly in mobile and desktop */
+.timer-wrapper {
+    width: 90vw; /* Default for mobile */
+    height: 160vw; /* Maintain 9:16 ratio on mobile */
+    max-width: 56.25vh; /* Ensure it doesn't exceed 9:16 on desktop (9/16 * 100vh) */
+    max-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6vh 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.1);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.timer-header {
+    text-align: center;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    border-radius: 100px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.status-badge.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.time-display-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-val {
+    font-size: 11rem;
+    line-height: 1;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.time-lab {
+    font-size: 1rem;
+    letter-spacing: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-weight: 800;
+}
+
+.time-divider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+    opacity: 0.3;
+}
+
+.timer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main-btn {
+    width: 100%;
+    padding: 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.3s;
+    border: none;
+    letter-spacing: 2px;
+}
+
+.main-btn.start {
+    background: #10b981;
+    color: #000;
+}
+
+.main-btn.pause {
+    background: #ef4444;
+    color: #000;
+}
+
+.reset-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.reset-btn:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+/* Password Modal */
+.pass-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.pass-modal {
+    width: 100%;
+    max-width: 400px;
+    background: #111;
+    border: 1px solid #00f3ff;
+    padding: 40px;
+    border-radius: 16px;
+    text-align: center;
+    color: #fff;
+}
+
+.pass-modal h3 { font-size: 1.5rem; margin-bottom: 10px; color: #00f3ff; }
+.pass-modal p { font-size: 0.9rem; color: #888; margin-bottom: 25px; }
+
+.pass-modal input {
+    width: 100%;
+    padding: 18px;
+    background: #000;
+    border: 1px solid #333;
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    outline: none;
+}
+
+.pass-modal input:focus {
+    border-color: #00f3ff;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.pass-error { color: #ef4444; font-size: 0.8rem; margin-bottom: 20px; }
+
+.pass-btns { display: flex; gap: 15px; }
+.pass-btns button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; }
+.pass-btns .confirm { background: #00f3ff; color: #000; }
+.pass-btns .cancel { background: #222; color: #fff; }
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .time-val { font-size: 9rem; }
+    .timer-wrapper { padding: 4vh 20px; }
+}
+
+@media (max-height: 800px) {
+    .time-val { font-size: 8rem; }
+    .time-display-vertical { gap: 20px; }
+}

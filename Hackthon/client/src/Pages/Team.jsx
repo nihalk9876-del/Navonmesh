@@ -55,6 +55,11 @@ import tcsLogo from "../assets/tcs-logo.png";
 import sponsor1 from "../assets/sponsor1.png";
 import sponsor2 from "../assets/sponsor2.png";
 import sponsor3 from "../assets/sponsor3.png";
+import sponsor4 from "../assets/sponsor4.jpeg";
+import sponsor5 from "../assets/sponsor5.png";
+import sponsor6 from "../assets/sponsor6.jpeg";
+// import sponsor7 from "../assets/sponsor7.png";
+import mainSponsor from "../assets/mainsponsor.png";
 
 
 // HOD Images
@@ -138,13 +143,6 @@ const hods = [
 
 const facultyAdvisors = [
     {
-        id: 3,
-        name: "Mr. Ganesh Wahile",
-        role: "E-Cell Faculty Advisor",
-        image: wahileImg,
-        description: "Expert coordinator facilitating seamless execution of technical events."
-    },
-    {
         id: 4,
         name: "Dr. V. K. Thute",
         role: "Faculty Advisor",
@@ -192,6 +190,13 @@ const facultyAdvisors = [
         role: "Faculty Advisor",
         image: mishraImg,
         description: "Dedicated faculty member supporting the Navonmesh mission."
+    },
+    {
+        id: 3,
+        name: "Mr. Ganesh Wahile",
+        role: "E-Cell Faculty Advisor",
+        image: wahileImg,
+        description: "Expert coordinator facilitating seamless execution of technical events."
     }
 ];
 
@@ -228,28 +233,6 @@ const teamMembers = [
         image: shripadImg,
     },
     {
-        id: 2,
-        name: "Nihal Kankal",
-        role: "Core Team Member",
-        subRole: "Overall Head",
-        phone: "+91 8766417815",
-        email: "nihalk9876@gmail.com",
-        instagram: "https://www.instagram.com/nihal.kankal/",
-        linkedin: "#",
-        image: nihalImg,
-    },
-    {
-        id: 3,
-        name: "Sanchit Dangra",
-        role: "Core Team Member",
-        subRole: "Overall Head",
-        phone: "+91 98765 43210",
-        email: "sanchitdangra@gmail.com",
-        instagram: "https://www.instagram.com/dangrasanchit?igsh=MmU1eGg5ajFlenNv&utm_source=qr",
-        linkedin: "https://www.linkedin.com/in/sanchit-dangra-874abb273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-        image: sanchitImg,
-    },
-    {
         id: 1,
         name: "Rutuja Deshmukh",
         role: "Core Team Member",
@@ -261,6 +244,17 @@ const teamMembers = [
         image: rutujaImg,
     },
     {
+        id: 2,
+        name: "Nihal Kankal",
+        role: "Core Team Member",
+        subRole: "Overall Head",
+        phone: "+91 8766417815",
+        email: "nihalk9876@gmail.com",
+        instagram: "https://www.instagram.com/nihal.kankal/",
+        linkedin: "#",
+        image: nihalImg,
+    },
+    {
         id: 15,
         name: "Vedant Darokar",
         role: "Core Team Member",
@@ -270,6 +264,17 @@ const teamMembers = [
         instagram: "https://www.instagram.com/vedant_darokar_15/",
         linkedin: "https://www.linkedin.com/in/vedant-darokar-3241a3286/",
         image: vedantImg,
+    },
+    {
+        id: 3,
+        name: "Sanchit Dangra",
+        role: "Core Team Member",
+        subRole: "Overall Head",
+        phone: "+91 98765 43210",
+        email: "sanchitdangra@gmail.com",
+        instagram: "https://www.instagram.com/dangrasanchit?igsh=MmU1eGg5ajFlenNv&utm_source=qr",
+        linkedin: "https://www.linkedin.com/in/sanchit-dangra-874abb273?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+        image: sanchitImg,
     },
 
     {
@@ -304,6 +309,17 @@ const teamMembers = [
         image: tanmayImg,
     },
     {
+        id: 16,
+        name: "Ajinkya Surange",
+        role: "Core Team Member",
+        subRole: "Accommodation and Logistics Head",
+        phone: "+91 9604765998",
+        email: "surangeajinkya9@gmail.com",
+        instagram: "https://www.instagram.com/ajinkyasurange?igsh=MW80am1ycXF4bGE4dg==",
+        linkedin: "https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        image: ajinkyaImg,
+    },
+    {
         id: 14,
         name: "Prarthna Kale",
         role: "Core Team Member",
@@ -324,6 +340,17 @@ const teamMembers = [
         instagram: "https://www.instagram.com/chakradharmahale01",
         linkedin: "#",
         image: chakradharImg,
+    },
+    {
+        id: 29,
+        name: "Hanzala Khan",
+        role: "Core Team Member",
+        subRole: "Graphics Head",
+        phone: "+91 7410799739",
+        email: "hanzalakhan004az@gmail.com",
+        instagram: "https://www.instagram.com/hanzala_khan_0004",
+        linkedin: "https://www.linkedin.com/in/hanzala-khan-068885294",
+        image: hanzalaImg,
     },
     {
         id: 7,
@@ -370,28 +397,8 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/shrinit-chavan-106224295?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         image: shrinitImg,
     },
-    {
-        id: 29,
-        name: "Hanzala Khan",
-        role: "Core Team Member",
-        subRole: "Graphics Head",
-        phone: "+91 7410799739",
-        email: "hanzalakhan004az@gmail.com",
-        instagram: "https://www.instagram.com/hanzala_khan_0004",
-        linkedin: "https://www.linkedin.com/in/hanzala-khan-068885294",
-        image: hanzalaImg,
-    },
-    {
-        id: 16,
-        name: "Ajinkya Surange",
-        role: "Core Team Member",
-        subRole: "Accommodation and Logistics Head",
-        phone: "+91 9604765998",
-        email: "surangeajinkya9@gmail.com",
-        instagram: "https://www.instagram.com/ajinkyasurange?igsh=MW80am1ycXF4bGE4dg==",
-        linkedin: "https://www.linkedin.com/in/ajinkya-surange-8797593ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        image: ajinkyaImg,
-    },
+
+
 
     {
         id: 23,
@@ -527,12 +534,25 @@ const Team = () => {
                 </div>
             </div>
 
-            {/* Knowledge Partner Section */}
+            {/* Event Sponsor Section */}
             <div id="sponsors" className="partners-section premium-partners-area">
                 <div className="section-glow-orb"></div>
+
                 <h2 className="premium-section-title">
                     <span className="tech-bracket">[</span>
-                    KNOWLEDGE PARTNERS
+                    EVENT SPONSOR
+                    <span className="tech-bracket">]</span>
+                </h2>
+                <div className="premium-logo-grid partnership-logos" style={{ marginBottom: '80px' }}>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={mainSponsor} alt="Event Sponsor" className="team-logo partner-logo-img" />
+                    </div>
+                </div>
+
+                <h2 className="premium-section-title">
+                    <span className="tech-bracket">[</span>
+                    PROBLEM STATEMENT PARTNERS
                     <span className="tech-bracket">]</span>
                 </h2>
                 <div className="premium-logo-grid partnership-logos">
@@ -552,7 +572,7 @@ const Team = () => {
                 <div className="section-glow-orb secondary"></div>
                 <h2 className="premium-section-title">
                     <span className="tech-bracket">[</span>
-                    EVENT SPONSORS
+                    INDUSTRY COLLABORATORS & SPONSORS
                     <span className="tech-bracket">]</span>
                 </h2>
                 <div className="premium-logo-grid sponsor-logos">
@@ -572,6 +592,24 @@ const Team = () => {
                         <div className="card-scanner"></div>
                         <img src={webionLogo} alt="Webion Logo" className="team-logo sponsor-logo-img" />
                     </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor4} alt="Sponsor 4" className="team-logo sponsor-logo-img" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor5} alt="Sponsor 5" className="team-logo sponsor-logo-img" />
+                    </div>
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor6} alt="Sponsor 6" className="team-logo sponsor-logo-img" />
+                    </div>
+                    {/* 
+                    <div className="premium-logo-card">
+                        <div className="card-scanner"></div>
+                        <img src={sponsor7} alt="Sponsor 7" className="team-logo sponsor-logo-img" />
+                    </div>
+                    */}
                 </div>
             </div>
 

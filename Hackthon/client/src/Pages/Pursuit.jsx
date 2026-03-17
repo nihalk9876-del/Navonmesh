@@ -294,12 +294,12 @@ const Pursuit = () => {
                     <p className="support-subtitle">Strategic assistance for symposium deployment</p>
                     <div className="support-contacts">
                         <div className="contact-item">
-                            <span className="contact-label">Pursuit Head</span>
+                            <span className="contact-label">Overall Head & Pursuit Head</span>
                             <span className="contact-name">Vedant Darokar</span>
                             <a href="tel:9307736340" className="contact-phone">9307736340</a>
                         </div>
                         <div className="contact-item">
-                            <span className="contact-label">Pursuit Head</span>
+                            <span className="contact-label">Overall Head & Pursuit Head</span>
                             <span className="contact-name">Nihal Kankal</span>
                             <a href="tel:8766417815" className="contact-phone">8766417815</a>
                         </div>
