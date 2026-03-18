@@ -2,7 +2,7 @@ import React from "react";
 import "../Styles/projectExpo.css";
 import { FaPaperclip, FaBookOpen, FaGlobeAmericas } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import udbhavPoster from "../assets/STUDENT CONFERENCE.png";
+import udbhavPoster from "../assets/STUDENT CONFERENCE.jpeg";
 
 const Conference = () => {
     const [mobileSection, setMobileSection] = React.useState(null);
