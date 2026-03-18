@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "../Styles/eventShowcase.css";
 import e1 from "../assets/events/e1.png";
 import e2 from "../assets/events/e2.png";
-import e3 from "../assets/events/e3.png";
+import e3 from "../assets/events/udbhav_event_updated.png";
 import e4 from "../assets/events/pursuit.png";
 
 const events = [
