@@ -5,6 +5,7 @@ const Accommodation = require('../models/Accommodation');
 const Cultural = require('../models/Cultural');
 const sendEmail = require('../utils/email');
 const Timer = require('../models/Timer');
+const CommitteeMember = require('../models/CommitteeMember');
 
 router.post('/login', (req, res) => {
     const { id, password } = req.body;
@@ -599,6 +600,50 @@ router.put('/update-registration/:id', async (req, res) => {
     } catch (err) {
         console.error('Update registration error:', err);
         res.status(500).json({ error: 'Server error updating registration' });
+    }
+});
+
+// --- Committee Management Routes ---
+router.get('/committee', async (req, res) => {
+    try {
+        const members = await CommitteeMember.find().sort({ createdAt: -1 });
+        res.json(members);
+    } catch (err) {
+        res.status(500).json({ error: 'Sync error' });
+    }
+});
+
+router.post('/committee/add', async (req, res) => {
+    const authHeader = req.headers.authorization;
+    const adminId = req.headers['x-admin-id']; // Special header to check who is performing the action
+    
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh' || adminId !== 'nihal1512') {
+        return res.status(401).json({ error: 'Unauthorized Access. Only Nihal can add members.' });
+    }
+
+    try {
+        const { name, phone, department } = req.body;
+        const newMember = new CommitteeMember({ name, phone, department, addedBy: adminId });
+        await newMember.save();
+        res.json(newMember);
+    } catch (err) {
+        res.status(500).json({ error: 'Add member error' });
+    }
+});
+
+router.delete('/committee/:id', async (req, res) => {
+    const authHeader = req.headers.authorization;
+    const adminId = req.headers['x-admin-id'];
+    
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh' || adminId !== 'nihal1512') {
+        return res.status(401).json({ error: 'Unauthorized Access. Only Nihal can remove members.' });
+    }
+
+    try {
+        await CommitteeMember.findByIdAndDelete(req.params.id);
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: 'Delete error' });
     }
 });
 

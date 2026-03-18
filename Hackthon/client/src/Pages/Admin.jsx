@@ -21,6 +21,15 @@ const Admin = () => {
     const [culturalActivityFilter, setCulturalActivityFilter] = useState('ALL');
     const [culturalSubFilter, setCulturalSubFilter] = useState('ALL');
     const [ankurFilter, setAnkurFilter] = useState('ALL');
+    const [adminId, setAdminId] = useState('');
+
+    // Management State
+    const [activeManagementTab, setActiveManagementTab] = useState('Girls Accommodation');
+    const [committeeMembers, setCommitteeMembers] = useState([]);
+    const [managementAuth, setManagementAuth] = useState({ open: false, password: '', verified: false, error: '' });
+    const [newMember, setNewMember] = useState({ name: '', phone: '' });
+
+    const departments = ['Girls Accommodation', 'Boys Accommodation', 'FOOD', 'SRIJAN TEAM', 'ANKUR TEAM', 'DISCIPLINE TEAM'];
 
     const [broadcastData, setBroadcastData] = useState({
         subject: '',
@@ -44,6 +53,7 @@ const Admin = () => {
     useEffect(() => {
         const token = sessionStorage.getItem('adminToken');
         if (token) {
+            setAdminId(sessionStorage.getItem('adminId') || '');
             setAdminInfo({
                 name: sessionStorage.getItem('adminName'),
                 subRole: sessionStorage.getItem('adminSubRole')
@@ -87,6 +97,8 @@ const Admin = () => {
                 sessionStorage.setItem('adminToken', data.token);
                 sessionStorage.setItem('adminName', data.adminInfo.name);
                 sessionStorage.setItem('adminSubRole', data.adminInfo.subRole);
+                sessionStorage.setItem('adminId', loginData.id);
+                setAdminId(loginData.id);
                 setAdminInfo(data.adminInfo);
                 setLoggedIn(true);
                 fetchData(data.token);
@@ -177,12 +189,12 @@ const Admin = () => {
         try {
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
             const res = await fetch(`${API_URL}/api/admin/data`, {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
-
             if (res.ok) {
                 setSummary(data);
+                fetchCommittee();
             } else {
                 handleLogout();
             }
@@ -190,6 +202,72 @@ const Admin = () => {
             console.error(err);
         }
         setLoading(false);
+    };
+
+    const fetchCommittee = async () => {
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const res = await fetch(`${API_URL}/api/admin/committee`);
+            const data = await res.json();
+            if (res.ok) setCommitteeMembers(data);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleAddMember = async (e) => {
+        e.preventDefault();
+        if (!newMember.name || !newMember.phone) return;
+        const token = sessionStorage.getItem('adminToken');
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        try {
+            const res = await fetch(`${API_URL}/api/admin/committee/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                    'x-admin-id': adminId
+                },
+                body: JSON.stringify({ ...newMember, department: activeManagementTab })
+            });
+            if (res.ok) {
+                setNewMember({ name: '', phone: '' });
+                fetchCommittee();
+            } else {
+                const d = await res.json();
+                alert(d.error);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleDeleteMember = async (id) => {
+        if (!window.confirm('Remove from committee?')) return;
+        const token = sessionStorage.getItem('adminToken');
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        try {
+            const res = await fetch(`${API_URL}/api/admin/committee/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'x-admin-id': adminId
+                }
+            });
+            if (res.ok) fetchCommittee();
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleManagementAuth = (e) => {
+        e.preventDefault();
+        if (managementAuth.password === 'Nihal@1512') {
+            setManagementAuth({ ...managementAuth, verified: true, error: '', open: false });
+            setActiveTab('management');
+        } else {
+            setManagementAuth({ ...managementAuth, error: 'Incorrect Access Code' });
+        }
     };
 
     const handleSendBulkEmail = async (e) => {
@@ -437,6 +515,28 @@ const Admin = () => {
 
     return (
         <div className="admin-dashboard app-layout">
+            {managementAuth.open && (
+                <div className="cosmic-modal-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.95)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(10px)' }}>
+                    <div className="cosmic-modal" style={{ background: '#111', border: '1px solid #f59e0b', padding: '40px', borderRadius: '15px', textAlign: 'center', maxWidth: '400px', width: '90%' }}>
+                        <h2 style={{ color: '#f59e0b', fontFamily: 'Orbitron', marginBottom: '20px' }}>Security Clearance</h2>
+                        <form onSubmit={handleManagementAuth}>
+                            <input
+                                type="password"
+                                placeholder="Enter Access Code"
+                                value={managementAuth.password}
+                                onChange={(e) => setManagementAuth({ ...managementAuth, password: e.target.value })}
+                                style={{ width: '100%', padding: '15px', background: '#000', border: '1px solid #333', color: '#fff', textAlign: 'center', fontSize: '1.2rem', marginBottom: '20px' }}
+                                autoFocus
+                            />
+                            {managementAuth.error && <p style={{ color: '#ef4444', fontSize: '0.8rem', marginBottom: '15px' }}>{managementAuth.error}</p>}
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                                <button type="submit" style={{ flex: 1, padding: '12px', background: '#f59e0b', color: '#000', border: 'none', borderRadius: '5px', fontWeight: 'bold', cursor: 'pointer' }}>VERIFY</button>
+                                <button type="button" onClick={() => setManagementAuth({ ...managementAuth, open: false, password: '' })} style={{ flex: 1, padding: '12px', background: '#222', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>CANCEL</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
             <video
                 className="global-bg-video"
                 src={bgVideo}
@@ -476,6 +576,7 @@ const Admin = () => {
                     <button className="maintenance-btn" onClick={() => window.open('/#/admin/maintenance', '_blank')}>Maintenance</button>
                     <button className="event-day-btn" onClick={() => window.open('/#/admin/event-day', '_blank')} style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.8rem' }}>Event Day</button>
                     <button className="timer-btn-admin" onClick={() => window.open('/#/admin/break-timer', '_blank')} style={{ background: 'linear-gradient(135deg, #00f3ff 0%, #00d4ff 100%)', color: '#000', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.8rem', fontWeight: 'bold' }}>Timer</button>
+                    <button className="management-btn-admin" onClick={() => setManagementAuth({ ...managementAuth, open: true })} style={{ background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)', color: '#fff', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'Orbitron', fontSize: '0.8rem', fontWeight: 'bold' }}>Management</button>
                     <button className="logout-btn" onClick={handleLogout}>Abort Mission</button>
 
                 </div>
@@ -487,6 +588,7 @@ const Admin = () => {
             ) : summary ? (
                 activeTab === 'dashboard' ? (
                     <div className="admin-content">
+
                         <div className="stats-grid">
                             <div className={`stat-card ${activeEvent === 'srijan' ? 'active' : ''}`}
                                 onClick={() => setActiveEvent('srijan')}
@@ -585,7 +687,7 @@ const Admin = () => {
                                                     <button className={accFilter === 'UDBHAV' ? 'active' : ''} onClick={() => setAccFilter('UDBHAV')}>Udbhav</button>
                                                 </>
                                             )}
-                                             {activeEvent === 'srijan' && (
+                                            {activeEvent === 'srijan' && (
                                                 <>
                                                     <button className={srijanFilter === 'Student Innovation' ? 'active' : ''} onClick={() => setSrijanFilter('Student Innovation')}>Innovation</button>
                                                     <button className={srijanFilter === 'Problem Statement 1' ? 'active' : ''} onClick={() => setSrijanFilter('Problem Statement 1')}>PS 1</button>
@@ -666,7 +768,7 @@ const Admin = () => {
                                         );
                                     })()}
 
-                                     {activeEvent === 'srijan' && (() => {
+                                    {activeEvent === 'srijan' && (() => {
                                         const innovations = summary.srijan.entries.filter(e => e.problemStatement === 'Student Innovation').length;
                                         const ps1 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 1').length;
                                         const ps2 = summary.srijan.entries.filter(e => e.problemStatement === 'Problem Statement 2').length;
@@ -891,7 +993,92 @@ const Admin = () => {
                                 </div>
                             </div >
                         )}
-                    </div >
+                    </div>
+                ) : activeTab === 'management' ? (
+                    <div className="management-section animate-fade-in" style={{ padding: '40px', color: '#fff' }}>
+                        <div className="management-header" style={{ marginBottom: '40px', borderBottom: '1px solid rgba(245, 158, 11, 0.3)', paddingBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div>
+                                <h1 style={{ fontFamily: 'Orbitron', color: '#f59e0b', margin: 0 }}>COMMITTEE MANAGEMENT</h1>
+                                <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.9rem' }}>Personnel Deployment Registry</p>
+                            </div>
+                            <button onClick={() => setActiveTab('dashboard')} style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer' }}>CLOSE</button>
+                        </div>
+
+                        <div className="management-tabs" style={{ display: 'flex', gap: '15px', marginBottom: '40px', flexWrap: 'wrap' }}>
+                            {departments.map(dept => (
+                                <button
+                                    key={dept}
+                                    onClick={() => setActiveManagementTab(dept)}
+                                    style={{
+                                        padding: '12px 24px',
+                                        background: activeManagementTab === dept ? '#f59e0b' : 'rgba(255,255,255,0.05)',
+                                        color: activeManagementTab === dept ? '#000' : '#fff',
+                                        border: 'none',
+                                        borderRadius: '8px',
+                                        cursor: 'pointer',
+                                        fontFamily: 'Orbitron',
+                                        fontSize: '0.8rem',
+                                        fontWeight: 'bold',
+                                        transition: '0.3s'
+                                    }}
+                                >{dept}</button>
+                            ))}
+                        </div>
+
+                        <div className="management-content-grid" style={{ display: 'grid', gridTemplateColumns: adminId === 'nihal1512' ? '1fr 1fr' : '1fr', gap: '40px' }}>
+                            {adminId === 'nihal1512' && (
+                                <div className="add-member-form" style={{ background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '30px', borderRadius: '15px' }}>
+                                    <h3 style={{ color: '#f59e0b', marginBottom: '20px', fontFamily: 'Orbitron' }}>Add to {activeManagementTab}</h3>
+                                    <form onSubmit={handleAddMember}>
+                                        <div style={{ marginBottom: '20px' }}>
+                                            <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)' }}>Member Name</label>
+                                            <input
+                                                type="text"
+                                                value={newMember.name}
+                                                onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
+                                                placeholder="Enter Full Name"
+                                                style={{ width: '100%', padding: '12px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '5px' }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: '30px' }}>
+                                            <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)' }}>Phone Number</label>
+                                            <input
+                                                type="text"
+                                                value={newMember.phone}
+                                                onChange={(e) => setNewMember({ ...newMember, phone: e.target.value })}
+                                                placeholder="+91 00000 00000"
+                                                style={{ width: '100%', padding: '12px', background: '#000', border: '1px solid #333', color: '#fff', borderRadius: '5px' }}
+                                            />
+                                        </div>
+                                        <button type="submit" style={{ width: '100%', padding: '15px', background: '#f59e0b', color: '#000', border: 'none', borderRadius: '5px', fontWeight: 'bold', cursor: 'pointer' }}>ENGAGE RECRUIT</button>
+                                    </form>
+                                </div>
+                            )}
+
+                            <div className="members-list-container">
+                                <h3 style={{ marginBottom: '20px', fontFamily: 'Orbitron' }}>Active Units: {activeManagementTab}</h3>
+                                <div className="members-list" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                                    {committeeMembers.filter(m => m.department === activeManagementTab).length === 0 ? (
+                                        <p style={{ color: 'rgba(255,255,255,0.3)', textAlign: 'center', padding: '40px' }}>No units deployed in this sector.</p>
+                                    ) : (
+                                        committeeMembers.filter(m => m.department === activeManagementTab).map(member => (
+                                            <div key={member._id} style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <div>
+                                                    <h4 style={{ margin: '0 0 5px 0' }}>{member.name}</h4>
+                                                    <p style={{ margin: 0, color: '#00f3ff', fontSize: '0.9rem' }}>{member.phone}</p>
+                                                </div>
+                                                {adminId === 'nihal1512' && (
+                                                    <button onClick={() => handleDeleteMember(member._id)} style={{ background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', border: 'none', padding: '8px', borderRadius: '5px', cursor: 'pointer' }}>
+                                                        <FaTimes />
+                                                    </button>
+                                                )}
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 ) : (
                     /* Message System View */
                     <div className="admin-content broadcast-hub">
