@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../Styles/breakTimer.css';
+import NavonmeshLogo from '../assets/namonvesh-logo.png';
 
 const BreakTimer = () => {
     const [timeLeft, setTimeLeft] = useState(86400); // 24 hours
@@ -124,8 +125,11 @@ const BreakTimer = () => {
         <div className="simple-timer-page">
             <div className="timer-wrapper">
                 <div className="timer-header">
-                    <div className={`status-badge ${isActive ? 'active' : ''}`}>
-                        {isActive ? 'BREAK RUNNING' : 'BREAK PAUSED'}
+                    <div className="timer-logo-container">
+                        <img src={NavonmeshLogo} alt="Navonmesh" className="timer-navonmesh-logo" />
+                        <div className={`status-glow-text ${isActive ? 'active' : ''}`}>
+                            {isActive ? 'BREAK RUNNING' : 'BREAK PAUSED'}
+                        </div>
                     </div>
                 </div>
 
