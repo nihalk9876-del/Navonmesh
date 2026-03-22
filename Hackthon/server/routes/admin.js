@@ -13,14 +13,7 @@ router.post('/login', (req, res) => {
         { id: 'nihal1512', password: 'rutuja1512', name: 'Nihal', subRole: 'Overall Head' },
         { id: 'vedu1510', password: 'Vedant@15', name: 'Vedant', subRole: 'Overall Head' },
         { id: 'chakradhar@khamgaon', password: 'khamgaonking', name: 'Chakradhar', subRole: 'Treasurer' },
-        { id: 'faculty01', password: 'faculty@01', name: 'Dr. S.S.Jadhao', subRole: 'Convener' },
-        // New Registration Team Admins
-        { id: 'missdolly', password: '1983', name: 'Dolly', subRole: 'Registration Team Member', redirectMaintenance: true },
-        { id: 'gargi', password: '2005', name: 'Gargi', subRole: 'Registration Team Member', redirectMaintenance: true },
-        { id: 'om', password: 'om123', name: 'Om', subRole: 'Registration Team Member', redirectMaintenance: true },
-        { id: 'sarvesh', password: 'sarvesh987', name: 'Sarvesh', subRole: 'Registration Team Member', redirectMaintenance: true },
-        { id: 'swaraj', password: 'rajgad', name: 'Swaraj', subRole: 'Registration Team Member', redirectMaintenance: true },
-        { id: 'krishna', password: 'krishna123', name: 'Krishna', subRole: 'Registration Team Member', redirectMaintenance: true }
+        { id: 'faculty01', password: 'faculty@01', name: 'Dr. S.S.Jadhao', subRole: 'Convener' }
     ];
 
     const cleanId = (id || '').trim();
@@ -34,8 +27,7 @@ router.post('/login', (req, res) => {
             token: 'admin_secret_token_navonmesh',
             adminInfo: {
                 name: adminUser.name,
-                subRole: adminUser.subRole,
-                redirectMaintenance: adminUser.redirectMaintenance || false
+                subRole: adminUser.subRole
             }
         });
     } else {
