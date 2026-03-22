@@ -222,17 +222,6 @@ const teamMembers = [
         image: omDeshmukhImg,
     },
     {
-        id: 4,
-        name: "Shripad Ingle",
-        role: "Core Team Member",
-        subRole: "Final Year Advisor",
-        phone: "+91 9876543210",
-        email: "shripadingle23@gmail.com",
-        instagram: "https://www.instagram.com/_shripadvallabh_?igsh=azV3N2wwZXFvaTQ3",
-        linkedin: "https://www.linkedin.com/in/shripad-ingle-92a138260?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        image: shripadImg,
-    },
-    {
         id: 1,
         name: "Rutuja Deshmukh",
         role: "Core Team Member",

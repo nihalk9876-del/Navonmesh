@@ -13,6 +13,7 @@ import ProjectExpo from "./Pages/ProjectExpo";
 import Register from "./Pages/Register";
 import ProblemStatement from "./Pages/ProblemStatement";
 import Team from "./Pages/Team";
+import Management from "./Pages/Management";
 import Conference from "./Pages/Conference";
 import Accommodation from "./Pages/Accommodation";
 import EventJourney from "./Pages/EventJourney";
@@ -30,17 +31,14 @@ import BreakTimer from "./Pages/BreakTimer"; // Import BreakTimer
 function App() {
 
   const [loading, setLoading] = useState(true);
-  const [showPopup, setShowPopup] = useState(false);
 
   const handleLoaded = () => {
     setLoading(false);
-    setShowPopup(true);
   };
 
   return (
     <>
       {loading && <Preloader onLoaded={handleLoaded} />}
-      {showPopup && !loading && <PopupPoster onClose={() => setShowPopup(false)} />}
       <HashRouter>
         <ScrollToTop />
         <div style={{ display: loading ? 'none' : 'block' }}> {/* Hide app content while loading to prevent flash */}
@@ -56,6 +54,7 @@ function App() {
               <Route path="/pursuit" element={<Pursuit />} />
               <Route path="/accommodation" element={<Accommodation />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/management" element={<Management />} />
               <Route path="/event-journey" element={<EventJourney />} />
               <Route path="/cultural" element={<Cultural />} />
               <Route path="/cosmos" element={<Cosmos />} />

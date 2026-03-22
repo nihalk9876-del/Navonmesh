@@ -32,7 +32,10 @@ const RegistrationSchema = new mongoose.Schema({
 
     // Event Day Details
     groupNo: { type: Number },
-    tableNo: { type: Number }
+    tableNo: { type: Number },
+
+    // Admin Edits
+    psEdited: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Registration', RegistrationSchema);

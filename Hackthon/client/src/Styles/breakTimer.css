@@ -12,9 +12,12 @@
 
 /* Aspect ratio 9:16 - Fits properly in mobile and desktop */
 .timer-wrapper {
-    width: 90vw; /* Default for mobile */
-    height: 160vw; /* Maintain 9:16 ratio on mobile */
-    max-width: 56.25vh; /* Ensure it doesn't exceed 9:16 on desktop (9/16 * 100vh) */
+    width: 90vw;
+    /* Default for mobile */
+    height: 160vw;
+    /* Maintain 9:16 ratio on mobile */
+    max-width: 56.25vh;
+    /* Ensure it doesn't exceed 9:16 on desktop (9/16 * 100vh) */
     max-height: 100vh;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
     display: flex;
@@ -104,14 +107,16 @@
 .timer-actions {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 15px;
 }
 
 .main-btn {
-    width: 100%;
-    padding: 24px;
+    width: auto;
+    min-width: 250px;
+    padding: 16px 40px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 800;
     cursor: pointer;
     border-radius: 12px;
@@ -134,11 +139,11 @@
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: rgba(255, 255, 255, 0.5);
-    padding: 12px;
+    padding: 8px 30px;
     border-radius: 8px;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
 }
 
@@ -171,8 +176,17 @@
     color: #fff;
 }
 
-.pass-modal h3 { font-size: 1.5rem; margin-bottom: 10px; color: #00f3ff; }
-.pass-modal p { font-size: 0.9rem; color: #888; margin-bottom: 25px; }
+.pass-modal h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #00f3ff;
+}
+
+.pass-modal p {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 25px;
+}
 
 .pass-modal input {
     width: 100%;
@@ -192,20 +206,53 @@
     box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
 }
 
-.pass-error { color: #ef4444; font-size: 0.8rem; margin-bottom: 20px; }
+.pass-error {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
 
-.pass-btns { display: flex; gap: 15px; }
-.pass-btns button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; }
-.pass-btns .confirm { background: #00f3ff; color: #000; }
-.pass-btns .cancel { background: #222; color: #fff; }
+.pass-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.pass-btns button {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.pass-btns .confirm {
+    background: #00f3ff;
+    color: #000;
+}
+
+.pass-btns .cancel {
+    background: #222;
+    color: #fff;
+}
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
-    .time-val { font-size: 9rem; }
-    .timer-wrapper { padding: 4vh 20px; }
+    .time-val {
+        font-size: 9rem;
+    }
+
+    .timer-wrapper {
+        padding: 4vh 20px;
+    }
 }
 
 @media (max-height: 800px) {
-    .time-val { font-size: 8rem; }
-    .time-display-vertical { gap: 20px; }
+    .time-val {
+        font-size: 8rem;
+    }
+
+    .time-display-vertical {
+        gap: 20px;
+    }
 }

@@ -24,16 +24,27 @@ const Home = () => {
   const [flyAway, setFlyAway] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
+    const targetDate = new Date("March 23, 2026 00:00:00").getTime();
+    const celebrationEndTest = Date.now() + 5000;
+    
+    const checkStatus = () => {
+      const now = new Date().getTime();
+      if (window.scrollY > 50 || now >= targetDate || now < celebrationEndTest) {
         setFlyAway(true);
       } else {
         setFlyAway(false);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", checkStatus);
+    const timer = setInterval(checkStatus, 1000); 
+
+    checkStatus(); 
+
+    return () => {
+      window.removeEventListener("scroll", checkStatus);
+      clearInterval(timer);
+    };
   }, []);
 
   return (

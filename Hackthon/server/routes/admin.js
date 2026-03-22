@@ -61,7 +61,7 @@ router.get('/data', async (req, res) => {
         res.json({
             srijan: {
                 count: srijan.length,
-                entries: srijan.map(r => ({ ...r._doc, paymentVerified: r.paymentVerified }))
+                entries: srijan.map(r => ({ ...r._doc, paymentVerified: r.paymentVerified, psEdited: r.psEdited }))
             },
             ankur: {
                 count: ankur.length,

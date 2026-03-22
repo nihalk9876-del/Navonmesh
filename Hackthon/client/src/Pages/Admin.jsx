@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../Styles/admin.css';
 import bgVideo from '../assets/bg.mp4';
-import { FaMusic, FaUsers, FaHotel, FaProjectDiagram, FaDesktop, FaChartPie, FaTable, FaSync, FaDownload, FaEye, FaTimes } from 'react-icons/fa';
+import { FaMusic, FaUsers, FaHotel, FaProjectDiagram, FaDesktop, FaChartPie, FaTable, FaSync, FaDownload, FaEye, FaTimes, FaCheckCircle } from 'react-icons/fa';
 import * as XLSX from 'xlsx';
 
 const Admin = () => {
@@ -41,6 +41,10 @@ const Admin = () => {
     const [selectedEntry, setSelectedEntry] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [broadcasting, setBroadcasting] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [revisedFilter, setRevisedFilter] = useState('ALL'); // 'ALL', 'REVISED', 'PENDING'
+    const [editingPS, setEditingPS] = useState(null); // { id: '', value: '' }
+    const [updatingPS, setUpdatingPS] = useState(false);
 
     const detailPanelRef = useRef(null);
 
@@ -415,6 +419,18 @@ const Admin = () => {
             displayEntries = displayEntries.filter(e => e.category === ankurFilter);
         }
 
+        // Apply Search Filter
+        if (searchTerm) {
+            const lowSearch = searchTerm.toLowerCase();
+            displayEntries = displayEntries.filter(e =>
+                (e.teamName && e.teamName.toLowerCase().includes(lowSearch)) ||
+                (e.leaderName && e.leaderName.toLowerCase().includes(lowSearch)) ||
+                (e.participantName && e.participantName.toLowerCase().includes(lowSearch)) ||
+                (e.utrNumber && e.utrNumber.toLowerCase().includes(lowSearch)) ||
+                (e.college && e.college.toLowerCase().includes(lowSearch))
+            );
+        }
+
         const remainingEntries = displayEntries.filter(e => !e.paymentVerified);
 
         if (remainingEntries.length === 0) {
@@ -458,6 +474,64 @@ const Admin = () => {
             alert('Error during bulk verification.');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handlePSUpdate = async (id) => {
+        if (!editingPS || !editingPS.value) return;
+        setUpdatingPS(true);
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const token = sessionStorage.getItem('adminToken');
+            const res = await fetch(`${API_URL}/api/admin/update-registration/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    problemStatement: editingPS.value,
+                    psEdited: true
+                })
+            });
+
+            if (res.ok) {
+                setEditingPS(null);
+                fetchData(token);
+            } else {
+                alert('Failed to update problem statement');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error updating problem statement');
+        } finally {
+            setUpdatingPS(false);
+        }
+    };
+
+    const handlePSStatusToggle = async (id, currentStatus) => {
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const token = sessionStorage.getItem('adminToken');
+            const res = await fetch(`${API_URL}/api/admin/update-registration/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    psEdited: !currentStatus
+                })
+            });
+
+            if (res.ok) {
+                fetchData(token);
+            } else {
+                alert('Failed to update status');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error updating status');
         }
     };
 
@@ -680,6 +754,37 @@ const Admin = () => {
                                                 setAnkurFilter('ALL');
                                             }}>Total</button>
 
+                                            <div className="search-box-admin" style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', padding: '0 10px', border: '1px solid rgba(255,255,255,0.1)', marginLeft: '10px' }}>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Search Teams/Leads/UTR..."
+                                                    value={searchTerm}
+                                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                                    style={{ background: 'transparent', border: 'none', color: '#fff', padding: '8px', fontSize: '0.8rem', outline: 'none', width: '200px' }}
+                                                />
+                                            </div>
+
+                                            <div className="revised-filters" style={{ display: 'flex', gap: '5px', marginLeft: '10px' }}>
+                                                <button
+                                                    onClick={() => setRevisedFilter('ALL')}
+                                                    style={{ background: revisedFilter === 'ALL' ? '#7c3aed' : 'rgba(255,255,255,0.05)', color: '#fff', border: 'none', borderRadius: '6px', padding: '4px 10px', fontSize: '0.7rem', cursor: 'pointer', transition: '0.3s' }}
+                                                >
+                                                    All Status
+                                                </button>
+                                                <button
+                                                    onClick={() => setRevisedFilter('REVISED')}
+                                                    style={{ background: revisedFilter === 'REVISED' ? '#22c55e' : 'rgba(255,255,255,0.05)', color: '#fff', border: 'none', borderRadius: '6px', padding: '4px 10px', fontSize: '0.7rem', cursor: 'pointer', transition: '0.3s' }}
+                                                >
+                                                    Revised Only
+                                                </button>
+                                                <button
+                                                    onClick={() => setRevisedFilter('PENDING')}
+                                                    style={{ background: revisedFilter === 'PENDING' ? '#ef4444' : 'rgba(255,255,255,0.05)', color: '#fff', border: 'none', borderRadius: '6px', padding: '4px 10px', fontSize: '0.7rem', cursor: 'pointer', transition: '0.3s' }}
+                                                >
+                                                    Pending Only
+                                                </button>
+                                            </div>
+
                                             {activeEvent === 'accommodation' && (
                                                 <>
                                                     <button className={accFilter === 'SRIJAN' ? 'active' : ''} onClick={() => setAccFilter('SRIJAN')}>Srijan</button>
@@ -847,7 +952,12 @@ const Admin = () => {
                                                     <th>Group Size</th>
                                                     <th>UTR Number</th>
                                                     {activeEvent === 'ankur' && <th>Category</th>}
-                                                    {activeEvent === 'srijan' && <th>Problem St.</th>}
+                                                    {activeEvent === 'srijan' && (
+                                                        <>
+                                                            <th>Problem St.</th>
+                                                            <th>Revised</th>
+                                                        </>
+                                                    )}
                                                     <th className="action-header">Actions</th>
                                                 </tr>
                                             )}
@@ -865,8 +975,27 @@ const Admin = () => {
                                                     if (culturalSubFilter !== 'ALL') {
                                                         displayEntries = displayEntries.filter(e => e.activity.toLowerCase() === culturalSubFilter);
                                                     }
-                                                } else if (activeEvent === 'ankur' && ankurFilter !== 'ALL') {
+                                                } else                                                if (activeEvent === 'ankur' && ankurFilter !== 'ALL') {
                                                     displayEntries = displayEntries.filter(e => e.category === ankurFilter);
+                                                }
+
+                                                // Revised Status Filter
+                                                if (revisedFilter === 'REVISED') {
+                                                    displayEntries = displayEntries.filter(e => e.psEdited);
+                                                } else if (revisedFilter === 'PENDING') {
+                                                    displayEntries = displayEntries.filter(e => !e.psEdited);
+                                                }
+
+                                                // Apply Search Filter
+                                                if (searchTerm) {
+                                                    const lowSearch = searchTerm.toLowerCase();
+                                                    displayEntries = displayEntries.filter(e =>
+                                                        (e.teamName && e.teamName.toLowerCase().includes(lowSearch)) ||
+                                                        (e.leaderName && e.leaderName.toLowerCase().includes(lowSearch)) ||
+                                                        (e.participantName && e.participantName.toLowerCase().includes(lowSearch)) ||
+                                                        (e.utrNumber && e.utrNumber.toLowerCase().includes(lowSearch)) ||
+                                                        (e.college && e.college.toLowerCase().includes(lowSearch))
+                                                    );
                                                 }
 
                                                 return displayEntries.length > 0 ? (
@@ -963,7 +1092,56 @@ const Admin = () => {
                                                                         </span>
                                                                     </td>
                                                                     {activeEvent === 'ankur' && <td>{entry.category || 'N/A'}</td>}
-                                                                    {activeEvent === 'srijan' && <td>{entry.problemStatement || 'N/A'}</td>}
+                                                                    {activeEvent === 'srijan' && (
+                                                                        <>
+                                                                            <td
+                                                                                style={{
+                                                                                    color: entry.psEdited ? '#f59e0b' : 'inherit',
+                                                                                    fontWeight: entry.psEdited ? 'bold' : 'normal',
+                                                                                    cursor: 'pointer',
+                                                                                    borderBottom: '1px dashed transparent',
+                                                                                }}
+                                                                                onClick={() => setEditingPS({ id: entry._id, value: entry.problemStatement })}
+                                                                                title="Click to edit Problem Statement"
+                                                                            >
+                                                                                {editingPS && editingPS.id === entry._id ? (
+                                                                                    <div style={{ display: 'flex', gap: '5px' }}>
+                                                                                        <select
+                                                                                            value={editingPS.value}
+                                                                                            onChange={(e) => setEditingPS({ ...editingPS, value: e.target.value })}
+                                                                                            autoFocus
+                                                                                            style={{ background: '#000', color: '#fff', border: '1px solid #f59e0b', borderRadius: '4px', padding: '2px 5px', fontSize: '0.8rem', cursor: 'pointer' }}
+                                                                                            onBlur={() => !updatingPS && setEditingPS(null)}
+                                                                                        >
+                                                                                            <option value="Problem Statement 1">Problem Statement 1</option>
+                                                                                            <option value="Problem Statement 2">Problem Statement 2</option>
+                                                                                            <option value="Student Innovation">Student Innovation</option>
+                                                                                        </select>
+                                                                                        <button
+                                                                                            onClick={(e) => { e.stopPropagation(); handlePSUpdate(entry._id); }}
+                                                                                            style={{ background: '#f59e0b', color: '#000', border: 'none', borderRadius: '4px', padding: '2px 8px', fontSize: '0.7rem', fontWeight: 'bold' }}
+                                                                                        >
+                                                                                            SET
+                                                                                        </button>
+                                                                                    </div>
+                                                                                ) : (
+                                                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                                                        {entry.problemStatement || 'N/A'}
+                                                                                        {entry.psEdited && <FaCheckCircle style={{ color: '#22c55e', fontSize: '1rem', marginLeft: 'auto', filter: 'drop-shadow(0 0 5px rgba(34, 197, 94, 0.5))' }} title="Change applied successfully" />}
+                                                                                    </div>
+                                                                                )}
+                                                                            </td>
+                                                                            <td>
+                                                                                <input
+                                                                                    type="checkbox"
+                                                                                    checked={entry.psEdited || false}
+                                                                                    onChange={() => handlePSStatusToggle(entry._id, entry.psEdited)}
+                                                                                    style={{ cursor: 'pointer', width: '20px', height: '20px', accentColor: '#22c55e' }}
+                                                                                    title="Mark as Revised/Checked"
+                                                                                />
+                                                                            </td>
+                                                                        </>
+                                                                    )}
                                                                     <td>
                                                                         <div className="action-btn-group">
                                                                             <button className="view-details-btn" title="View Full Intel" onClick={() => { setSelectedEntry({ ...entry, _type: activeEvent }); setShowModal(true); }}>

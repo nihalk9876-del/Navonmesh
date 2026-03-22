@@ -616,4 +616,98 @@ div[style*="z-index: 1000"]>a[href*="spline.design"] {
   .label {
     font-size: 8px;
   }
+
 }
+
+.celebration-banner.test-burst {
+  animation: test-intro 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes test-intro {
+  from { opacity: 0; transform: scale(0.5) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 🎉 Celebration Styles */
+
+
+.celebration-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  position: relative;
+  z-index: 100;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.2);
+  animation: float-celebration 3s ease-in-out infinite;
+}
+
+.celebration-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.8), 
+               0 0 20px rgba(0, 229, 255, 0.5), 
+               0 0 30px rgba(0, 150, 255, 0.3);
+  letter-spacing: 2px;
+  margin: 0;
+  background: linear-gradient(to right, #00e5ff, #ffffff, #00e5ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine-text 3s linear infinite;
+}
+
+.celebration-subtext {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  color: #00e5ff;
+  margin-top: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+.celebration-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes float-celebration {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shine-text {
+  to { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@media (max-width: 768px) {
+  .celebration-text {
+    font-size: 1.4rem;
+  }
+  .celebration-subtext {
+    font-size: 0.9rem;
+  }
+}
