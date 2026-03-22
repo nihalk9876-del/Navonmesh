@@ -57,11 +57,6 @@ const Admin = () => {
     useEffect(() => {
         const token = sessionStorage.getItem('adminToken');
         if (token) {
-            const redirectMaintenance = sessionStorage.getItem('redirectMaintenance') === 'true';
-            if (redirectMaintenance) {
-                window.location.hash = '/admin/maintenance';
-                return;
-            }
             setAdminId(sessionStorage.getItem('adminId') || '');
             setAdminInfo({
                 name: sessionStorage.getItem('adminName'),
@@ -103,22 +98,14 @@ const Admin = () => {
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             if (res.ok && data.success) {
-                const { name, subRole, redirectMaintenance } = data.adminInfo;
                 sessionStorage.setItem('adminToken', data.token);
-                sessionStorage.setItem('adminName', name);
-                sessionStorage.setItem('adminSubRole', subRole);
+                sessionStorage.setItem('adminName', data.adminInfo.name);
+                sessionStorage.setItem('adminSubRole', data.adminInfo.subRole);
                 sessionStorage.setItem('adminId', loginData.id);
-                sessionStorage.setItem('redirectMaintenance', redirectMaintenance ? 'true' : 'false');
-
                 setAdminId(loginData.id);
                 setAdminInfo(data.adminInfo);
-
-                if (redirectMaintenance) {
-                    window.location.hash = '/admin/maintenance';
-                } else {
-                    setLoggedIn(true);
-                    fetchData(data.token);
-                }
+                setLoggedIn(true);
+                fetchData(data.token);
             } else {
                 setError(data.message || 'Login failed');
             }
