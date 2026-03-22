@@ -1,0 +1,346 @@
+.campus-map-section {
+    padding: 80px 5%;
+    background: transparent;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.map-sidebar {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.map-sidebar h3 {
+    font-size: 1.6rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #00f3ff;
+    margin-bottom: 10px;
+}
+
+.map-sidebar p {
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.location-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.map-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 20px;
+    text-align: left;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.map-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #00f3ff;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.map-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 243, 255, 0.3);
+    padding-left: 35px;
+    /* Shift text slightly */
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}
+
+.map-btn:hover::before {
+    transform: scaleY(1);
+}
+
+.map-btn.active {
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.15), rgba(68, 136, 255, 0.15));
+    border: 1px solid #00f3ff;
+    color: #00f3ff;
+    font-weight: bold;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.25);
+    padding-left: 35px;
+}
+
+.map-btn.active::before {
+    transform: scaleY(1);
+    background: #00f3ff;
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+.map-display {
+    flex: 2;
+    min-width: 300px;
+    position: relative;
+    padding: 50px 0;
+    perspective: 2000px;
+}
+
+.map-3d-container {
+    padding: 20px;
+    width: 100%;
+}
+
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 20px;
+    overflow: visible;
+    /* Allow floating markers */
+    border: 2px solid rgba(0, 243, 255, 0.3);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(0, 243, 255, 0.1);
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+    background: #050510;
+}
+
+.map-image {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+/* Holographic Grid Overlay */
+.map-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.2), transparent);
+    animation: mapSweep 4s infinite linear;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes mapSweep {
+    0% {
+        top: -10%;
+    }
+
+    100% {
+        top: 110%;
+    }
+}
+
+/* 3D Markers */
+.map-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 10;
+    transform-style: preserve-3d;
+}
+
+.map-marker.active {
+    opacity: 1;
+}
+
+/* The vertical beam effect */
+.marker-stem {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: 15px;
+    background: linear-gradient(to top, #00f3ff, transparent);
+    transform: rotateX(0deg);
+    /* Neutralize map tilt */
+    transform-origin: bottom;
+    z-index: -1;
+}
+
+.marker-content-3d {
+    transform: rotateX(0deg) translateZ(5px);
+    /* Stand slightly above map */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5));
+}
+
+.marker-pin {
+    width: 40px;
+    height: 40px;
+    background: #00f3ff;
+    color: #050510;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+    border: 2px solid white;
+}
+
+.marker-pin svg {
+    transform: rotate(45deg);
+    font-size: 1.2rem;
+}
+
+.marker-label {
+    margin-top: 15px;
+    background: rgba(10, 10, 30, 0.9);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+    border: 1px solid #00f3ff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.map-instruction {
+    color: #00f3ff !important;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 1024px) {
+    .map-content {
+        gap: 30px;
+    }
+
+    .map-sidebar {
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 900px) {
+    .map-content {
+        flex-direction: column-reverse;
+        /* Sidebar moves to bottom */
+    }
+
+    .map-sidebar {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .location-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .map-display {
+        width: 100%;
+        min-width: unset;
+        padding: 20px 0;
+        /* Reduced padding on mobile */
+        perspective: 1500px;
+        /* Adjust perspective for mobile */
+    }
+}
+
+@media (max-width: 600px) {
+    .campus-map-section {
+        padding: 60px 5%;
+    }
+
+    .golden-title {
+        font-size: 1.8rem;
+        /* Scale down title */
+        letter-spacing: 1px;
+    }
+
+    .golden-header-container {
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .golden-line-left,
+    .golden-line-right {
+        max-width: 60px;
+        /* Shorten lines */
+    }
+
+    .map-sidebar h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .map-instruction {
+        text-align: center;
+    }
+
+    /* MINI MARKERS FOR MOBILE */
+    .marker-label {
+        font-size: 0.6rem !important;
+        padding: 4px 8px !important;
+        margin-top: 4px !important;
+        letter-spacing: 0.2px;
+    }
+
+    .marker-pin {
+        width: 22px !important;
+        height: 22px !important;
+        border-width: 1px !important;
+    }
+
+    .marker-pin svg {
+        font-size: 0.7rem !important;
+    }
+
+    .marker-stem {
+        height: 30px !important;
+    }
+
+    .marker-content-3d {
+        transform: rotateX(0deg) translateZ(5px) !important;
+    }
+}

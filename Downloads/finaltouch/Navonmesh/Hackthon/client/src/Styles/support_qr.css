@@ -1,0 +1,190 @@
+/* Support QR Page - Interstellar Distress Signal Theme */
+.support-qr-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #02050e;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.support-container {
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 234, 255, 0.3);
+    padding: 3rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    z-index: 10;
+    box-shadow: 0 0 40px rgba(0, 234, 255, 0.1), inset 0 0 20px rgba(0, 234, 255, 0.05);
+    text-align: center;
+}
+
+.support-header h2 {
+    color: #ff3366;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+.support-header p {
+    color: #00eaff;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.input-group label {
+    display: block;
+    text-align: left;
+    color: #aaa;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: 'Orbitron', monospace;
+}
+
+.input-group input:focus {
+    border-color: #00eaff;
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
+}
+
+.support-info {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 1.5rem 0;
+    line-height: 1.5;
+}
+
+.submit-alert-btn {
+    width: 100%;
+    padding: 16px;
+    background: #ff3366;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 51, 102, 0.4);
+}
+
+.submit-alert-btn:hover {
+    background: #ff1a53;
+    box-shadow: 0 8px 30px rgba(255, 51, 102, 0.6);
+    transform: translateY(-2px);
+}
+
+.submit-alert-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.support-success {
+    animation: fadeInScale 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #00eaff;
+    text-shadow: 0 0 20px rgba(0, 234, 255, 0.5);
+    margin-bottom: 1rem;
+}
+
+.support-success h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.highlight-text {
+    color: #ff3366;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.reset-btn {
+    margin-top: 1rem;
+    background: transparent;
+    border: 1px solid rgba(0, 234, 255, 0.5);
+    color: #00eaff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: rgba(0, 234, 255, 0.1);
+}
+
+.error-text {
+    color: #ff3366;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+/* Radar Animation Background */
+.radar-scanner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200vw;
+    height: 200vw;
+    background: repeating-radial-gradient(circle at center,
+            transparent 0,
+            transparent 40px,
+            rgba(0, 234, 255, 0.03) 41px,
+            transparent 42px);
+    z-index: 1;
+    pointer-events: none;
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
