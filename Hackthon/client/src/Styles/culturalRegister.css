@@ -1,0 +1,263 @@
+.cultural-container {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1a1a2e 0%, #0a0a0f 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.cultural-content {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(15, 16, 22, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.1);
+}
+
+.back-btn-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    color: #a78bfa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.back-btn-top:hover {
+    color: #fff;
+    transform: translateX(-5px);
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.cultural-title {
+    font-family: 'Rozha One', serif;
+    font-size: 3rem;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, #c084fc, #818cf8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
+}
+
+.cultural-title span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    display: block;
+    letter-spacing: 4px;
+    color: #94a3b8;
+    -webkit-text-fill-color: #94a3b8;
+}
+
+.cultural-subtitle {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.cultural-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #a78bfa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group input,
+.select-wrapper select {
+    background: rgba(10, 10, 15, 0.6) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #fff;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    outline: none;
+    width: 100%;
+    appearance: none;
+    /* remove default arrow to use custom one */
+}
+
+.input-group input:focus,
+.select-wrapper select:focus {
+    border-color: #a78bfa;
+    background: rgba(139, 92, 246, 0.1) !important;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.college-input {
+    font-size: 0.85rem !important;
+    /* Smaller text for long college names */
+    letter-spacing: 0.5px;
+    color: #cbd5e1 !important;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a78bfa;
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+/* Option styling is browser dependent, but this helps on some */
+.select-wrapper select option {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Terms Container - Reuse Logic */
+.terms-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.terms-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #c084fc;
+    flex-shrink: 0;
+}
+
+.terms-label {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.terms-link {
+    color: #c084fc;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Specific button style */
+.submit-interstellar-btn {
+    background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 18px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.submit-interstellar-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(124, 58, 237, 0.5);
+    filter: brightness(1.2);
+}
+
+.file-drop-zone {
+    border: 2px dashed rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    transition: 0.3s;
+}
+
+.file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #94a3b8;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .cultural-container {
+        padding: 40px 10px;
+    }
+
+    .cultural-content {
+        padding: 30px 15px;
+        border-radius: 16px;
+    }
+
+    .cultural-title {
+        font-size: 2.2rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .back-btn-top {
+        top: 15px;
+        left: 15px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .cultural-title {
+        font-size: 1.8rem;
+    }
+
+    .submit-interstellar-btn {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .terms-label {
+        font-size: 0.8rem;
+    }
+}

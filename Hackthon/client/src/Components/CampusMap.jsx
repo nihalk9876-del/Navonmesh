@@ -1,0 +1,138 @@
+import React, { useState, useEffect } from 'react';
+import '../Styles/campusMap.css';
+import campusMapImg from '../assets/campus_map_v3.png';
+import { FaMapMarkerAlt } from "react-icons/fa";
+
+const locations = [
+    {
+        id: 'hackathon',
+        name: 'Hackathon Venue',
+        markers: [{ top: '65%', left: '35%', label: 'Gymnasium' }]
+    },
+    {
+        id: 'projectexpo',
+        name: 'Project Expo Venue',
+        markers: [{ top: '70%', left: '25%', label: 'Swadhyay Kaksha' }]
+    },
+    {
+        id: 'conference',
+        name: 'Conference Venue',
+        markers: [{ top: '55%', left: '43%', label: 'Vidya Bhawan' }]
+    },
+    {
+        id: 'food',
+        name: 'Food Court',
+        markers: [{ top: '87%', left: '76%', label: 'Canteen' }]
+    },
+    {
+        id: 'accommodation',
+        name: 'Accommodation',
+        markers: [
+            { top: '42%', left: '70%', label: 'Girls Hostels' },
+            { top: '78%', left: '72%', label: 'Boys Hostels' }
+        ]
+    },
+];
+
+const CampusMap = () => {
+    const [activeLocation, setActiveLocation] = useState(null);
+    const [rotate, setRotate] = useState({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const handleMouseMove = (e) => {
+        if (isMobile) return;
+        const card = e.currentTarget;
+        const box = card.getBoundingClientRect();
+        const x = e.clientX - box.left;
+        const y = e.clientY - box.top;
+        const centerX = box.width / 2;
+        const centerY = box.height / 2;
+        const rotateX = (y - centerY) / 30; // Reduced intensity
+        const rotateY = (centerX - x) / 30;
+
+        setRotate({ x: rotateX, y: rotateY });
+    };
+
+    const handleMouseLeave = () => {
+        setRotate({ x: 0, y: 0 });
+    };
+
+    const baseRotateX = 0;
+    const baseRotateZ = 0;
+
+    return (
+        <section className="campus-map-section">
+            <div className="golden-header-container">
+                <div className="golden-line-left"></div>
+                <h2 className="golden-title">CAMPUS MAP</h2>
+                <div className="golden-line-right"></div>
+            </div>
+
+            <div className="map-content">
+                <div className="map-sidebar">
+                    <h3>Explore Venues</h3>
+                    <p className="map-instruction">Interstellar navigation active. Select a coordinate to track.</p>
+
+                    <div className="location-buttons">
+                        {locations.map((loc) => (
+                            <button
+                                key={loc.id}
+                                className={`map-btn ${activeLocation === loc.id ? 'active' : ''}`}
+                                onClick={() => setActiveLocation(loc.id)}
+                            >
+                                {loc.name}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="map-display">
+                    <div
+                        className="map-3d-container"
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <div
+                            className="map-wrapper"
+                            style={{
+                                transform: `perspective(1200px) rotateX(${baseRotateX + rotate.x}deg) rotateY(${rotate.y}deg) rotateZ(${baseRotateZ}deg)`
+                            }}
+                        >
+                            <img src={campusMapImg} alt="SSGMCE Campus Map" className="map-image" />
+
+                            {/* Holographic grid overlay */}
+                            <div className="map-grid-overlay"></div>
+                            <div className="scanline"></div>
+
+                            {locations.map((loc) => (
+                                loc.markers.map((marker, index) => (
+                                    <div
+                                        key={`${loc.id}-${index}`}
+                                        className={`map-marker ${activeLocation === loc.id ? 'active' : ''}`}
+                                        style={{ top: marker.top, left: marker.left }}
+                                    >
+                                        <div className="marker-stem"></div>
+                                        <div className="marker-content-3d">
+                                            <div className="marker-pin">
+                                                <FaMapMarkerAlt />
+                                            </div>
+                                            <div className="marker-label">{marker.label}</div>
+                                        </div>
+                                    </div>
+                                ))
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default CampusMap;

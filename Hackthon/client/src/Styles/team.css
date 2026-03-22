@@ -1,0 +1,1395 @@
+/* Team Page Container */
+.team-container {
+    min-height: 100vh;
+    padding: 100px 5% 40px;
+    background: transparent;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    /* Reduced from 2.2rem */
+    text-align: center;
+    margin-bottom: 10px;
+    color: #8f8bff;
+    text-shadow: 0 0 20px rgba(143, 139, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+/* Divine Blessings Section */
+.divine-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.divine-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.marathi-text {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-size: 1.3rem;
+    color: #ffd700;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.left-symbol,
+.symbol-link {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.symbol-link {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.symbol-link:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.divine-img-container {
+    width: 240px;
+    border-radius: 20px;
+    padding: 8px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
+    transition: transform 0.4s ease;
+}
+
+.divine-img-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 70px rgba(255, 215, 0, 0.25);
+}
+
+.divine-img-container img {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
+.team-subtitle {
+    text-align: center;
+    color: #b0bfdc;
+    margin-bottom: 60px;
+    max-width: 600px;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    /* User requested "simple Time roman" */
+    font-style: italic;
+    /* Usually looks better for quotes/subtitles in Serif */
+    letter-spacing: 1px;
+}
+
+/* Grid Layout for Team Cards */
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Team Card Styles */
+.team-card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 300px;
+    /* Fixed width for better flex behavior */
+    position: relative;
+}
+
+/* ... existing hover styles ... */
+
+.member-img {
+    width: 180px;
+    height: 220px;
+    border-radius: 12px !important;
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+.member-img::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 16px !important;
+    border: 2px solid transparent;
+    animation: border-pulse 2s infinite alternate;
+    filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.5));
+    transition: all 0.4s ease;
+}
+
+/* Inner Image */
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px !important;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 2;
+}
+
+.member-info {
+    position: relative;
+    /* For overlay context */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mentor Overlay - Adjusted to cover info or card */
+.mentor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transform: translateY(10px);
+    z-index: 10;
+}
+
+.team-card:hover .member-img {
+    transform: scale(1.15) translateY(-10px);
+    box-shadow: 0 0 30px rgba(143, 139, 255, 0.6), 0 0 60px rgba(143, 139, 255, 0.3);
+    border-color: #d142f5;
+}
+
+.team-card:hover .team-title,
+.team-card:hover h3 {
+    color: #d142f5;
+    text-shadow: 0 0 15px rgba(209, 66, 245, 0.5);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+/* ========================================= */
+/* PREMIUM "STANDARD" STYLE FOR HEADS        */
+/* ========================================= */
+.overall-head-card {
+    background: rgba(255, 255, 255, 0.03);
+    /* Extremely subtle glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    /* Light source top */
+    border-radius: 24px;
+    /* Softer, more modern radius */
+    padding: 30px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Soft shadow, no neon glow */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.overall-head-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Elegant Image Styling */
+.overall-head-card .member-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50% !important;
+    /* Circle looks more "Standard/Corporate" for Heads */
+    border: 4px solid rgba(255, 255, 255, 0.05);
+    /* Subtle ring */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 20px;
+    transform: none;
+    /* Reset unnecessary transforms */
+    background: transparent;
+}
+
+.overall-head-card .member-img img {
+    border-radius: 50% !important;
+    border: none;
+}
+
+/* Hover State - Professional Lift */
+.overall-head-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.overall-head-card:hover .member-img {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Title Styling - Clean & Modern */
+.overall-head-card h3 {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    /* Cleaner font preference if available */
+    font-weight: 600;
+    font-size: 1.2rem;
+    background: linear-gradient(to right, #ffffff, #e0e7ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    text-shadow: none;
+    /* Remove "glow" for standard look */
+    letter-spacing: 0.5px;
+}
+
+/* Role Badges */
+.head-role {
+    background: rgba(68, 136, 255, 0.15);
+    /* Professional Blue tint */
+    color: #a5c9ff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(68, 136, 255, 0.2);
+    display: inline-block;
+}
+
+.head-role.secondary {
+    background: rgba(168, 85, 247, 0.15);
+    /* Purple tint for secondary role */
+    color: #e9d5ff;
+    border-color: rgba(168, 85, 247, 0.2);
+    margin-top: 5px;
+}
+
+/* Hide Icons initially for cleaner look? Or keep them minimal */
+.overall-head-card .social-links {
+    margin-top: 15px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.overall-head-card:hover .social-links {
+    opacity: 1;
+}
+
+/* ========================================= */
+
+/* Inner Image */
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px !important;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    /* Inner clean border */
+    z-index: 2;
+}
+
+/* Mentor Overlay */
+.mentor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 40, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transform: translateY(10px);
+    z-index: 10;
+}
+
+.team-card:hover .mentor-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mentor-description {
+    color: #e9ecff;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Specific Helper for Mentors Grid Centering if needed */
+.team-grid {
+    justify-content: center;
+    /* Ensure this is active */
+}
+
+.member-info h3 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* ========================================= */
+/* MENTOR CARD SPECIFIC STYLES (Polaroid/Card Look) */
+/* ========================================= */
+.mentor-card {
+    border-radius: 20px;
+    padding: 20px;
+    width: 300px;
+    height: auto;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Override member-img for mentors */
+.mentor-card .member-img {
+    width: 220px;
+    height: 260px;
+    border-radius: 12px !important;
+    margin-bottom: 25px;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Remove the tech ring for mentors */
+/* .mentor-card .member-img::before eliminated to use general style */
+
+/* Image inside mentor card */
+.mentor-card .member-img img {
+    border-radius: 8px;
+    /* Slight radius for image */
+    border: none;
+}
+
+/* Mentor Text Styles */
+.mentor-card h3 {
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+}
+
+.mentor-card .member-role {
+    color: #8f8bff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.mentor-card .mentor-overlay {
+    border-radius: 8px 8px 0 0;
+    /* Match image radius */
+}
+
+/* Hover Effect for Mentor Card (Pop Up) */
+.mentor-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 243, 255, 0.2);
+}
+
+/* ========================================= */
+
+.member-role {
+    font-size: 0.9rem;
+    color: #8f8bff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.contact-details p {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.contact-details .icon {
+    color: #4488ff;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #d142f5;
+}
+
+/* Partnership and Sponsor Logo Styles */
+.logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.team-logo {
+    max-height: 80px;
+    width: auto;
+    object-fit: contain;
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+.team-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Premium Partners & Sponsors Styling */
+.premium-partners-area {
+    width: 100%;
+    margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.section-glow-orb {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.section-glow-orb.secondary {
+    background: radial-gradient(circle, rgba(0, 243, 255, 0.08) 0%, transparent 70%);
+}
+
+.premium-section-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 6px;
+    margin-bottom: 60px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+}
+
+.tech-bracket {
+    color: #00f3ff;
+    font-size: 2.2rem;
+    opacity: 0.6;
+}
+
+.premium-logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.premium-logo-card {
+    position: relative;
+    width: 260px;
+    height: 180px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.premium-logo-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 243, 255, 0.05) 0%, transparent 50%, rgba(139, 92, 246, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.premium-logo-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(0, 243, 255, 0.5);
+    box-shadow: 
+        0 20px 40px -10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+.premium-logo-card:hover::before {
+    opacity: 1;
+}
+
+.premium-logo-card img {
+    width: 100%;
+    height: 90px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+    opacity: 0.95;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.premium-logo-card:hover img {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Base Logo exception - it's already slightly smaller/different aspect */
+.premium-logo-card .base-logo {
+    height: 75px;
+}
+
+/* The Scanner Effect */
+.card-scanner {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00f3ff, transparent);
+    top: -100%;
+    left: 0;
+    opacity: 0;
+    z-index: 3;
+}
+
+.premium-logo-card:hover .card-scanner {
+    animation: scanAnimation 2s linear infinite;
+    opacity: 1;
+}
+
+@keyframes scanAnimation {
+    0% { top: -5%; }
+    100% { top: 105%; }
+}
+
+@media (max-width: 768px) {
+    .premium-logo-card {
+        width: 160px;
+        height: 120px;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .premium-logo-card img {
+        height: 50px;
+    }
+
+    .premium-logo-card .base-logo {
+        height: 40px;
+    }
+
+    .premium-section-title {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+    }
+
+    .tech-bracket {
+        font-size: 1.5rem;
+    }
+
+    .logo-label {
+        font-size: 0.5rem;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* Responsive */
+/* Responsive */
+@media (max-width: 1024px) {
+    .team-grid {
+        gap: 30px;
+    }
+}
+
+/* Hide Mobile Scroll by default on Desktop */
+.mobile-mentor-scroll {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .team-container {
+        padding: 80px 5% 40px;
+    }
+
+    .team-title {
+        font-size: 2rem;
+    }
+
+    /* Hide Desktop Grid on Mobile */
+    .desktop-mentors {
+        display: none !important;
+    }
+
+    /* Make Core Team Grids Normal Again */
+    .team-grid {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        overflow-x: visible !important;
+    }
+
+    /* Show and Style Mobile Scroll Container */
+    .mobile-mentor-scroll {
+        display: block;
+        /* Show only on mobile */
+        width: 100vw;
+        /* Full width */
+        margin-left: -5%;
+        /* Counteract container padding to go full width */
+        margin-right: -5%;
+        overflow: hidden;
+        /* Hide overflow */
+        margin-bottom: 40px;
+        position: relative;
+        mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .mentor-track {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        animation: scroll 20s linear infinite;
+        /* Continuous scroll */
+        padding-left: 20px;
+    }
+
+    /* Pause on hover for readability */
+    .mentor-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+            /* Move half if we doubled. If 4x, maybe -25%? Since we did 4x in JS, -25% might be one full cycle of original set. Let's try to estimate visually or use large safely. Actually if we have 4 sets: [A B C] [A B C] [A B C] [A B C]. One cycle is moving past 1 set [A B C]. That is 25% of the total width. */
+            transform: translateX(-25%);
+        }
+    }
+
+    /* Small Mentor Card Styles for Mobile Loop */
+    .mobile-mentor-scroll .mentor-card {
+        min-width: 180px;
+        width: 180px;
+        height: 280px;
+        /* Fixed Height for uniformity */
+        padding: 10px;
+        flex: 0 0 auto;
+        background: rgba(13, 13, 25, 0.8);
+        /* Dark Glass */
+        border: 1px solid rgba(68, 136, 255, 0.3);
+        /* Subtle Blue Border */
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 12px;
+    }
+
+    .mobile-mentor-scroll .member-img {
+        height: 180px;
+        width: 100%;
+        margin-bottom: 12px;
+        border-radius: 8px !important;
+        object-fit: cover;
+    }
+
+    .mobile-mentor-scroll h3 {
+        font-size: 0.95rem;
+        color: #fff;
+        /* White Text */
+        margin-bottom: 4px;
+        text-align: center;
+    }
+
+    .mobile-mentor-scroll .member-role {
+        font-size: 0.8rem;
+        color: #00f3ff;
+        /* Cyan Role */
+        text-align: center;
+    }
+
+    /* Core Team Cards Restore */
+    .team-card:not(.mentor-card) {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-title {
+        font-size: 1.8rem;
+    }
+
+    .team-subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+
+    .team-grid {
+        gap: 25px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /* Overall Head Card Adjustment - Matching Mentor Cards */
+    /* Overall Head Card Adjustment - Scrollable for 6 items */
+    .overall-head-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 12px !important;
+        padding: 6px !important;
+        box-sizing: border-box !important;
+    }
+
+    .divine-text {
+        font-size: 1.2rem;
+    }
+
+    .marathi-text {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .divine-img-container {
+        width: 200px;
+    }
+
+    .overall-head-card .member-img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1/1 !important;
+        margin-bottom: 8px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        background: transparent !important;
+        flex-shrink: 0 !important;
+    }
+
+    .overall-head-card .member-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 12px !important;
+    }
+
+    .overall-head-card .member-info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .overall-head-card h3 {
+        font-size: 0.75rem !important;
+        color: #fff !important;
+        margin-bottom: 2px;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.1;
+    }
+
+    .overall-head-card p {
+        font-size: 0.65rem !important;
+        text-align: center;
+        margin-bottom: 0 !important;
+        line-height: 1.1;
+    }
+
+    /* Keep details hidden for compact view */
+    .overall-head-card .contact-details,
+    .overall-head-card .social-links {
+        display: none !important;
+    }
+}
+
+/* Hide Mobile Core Scroll helper class (removed from JSX) */
+.mobile-core-scroll {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .core-team-top-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        padding: 0 6px !important;
+        margin-bottom: 30px !important;
+        align-items: stretch !important;
+        justify-items: stretch !important;
+        box-sizing: border-box !important;
+    }
+
+    .core-team-top-grid .overall-head-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 12px !important;
+        padding: 6px !important;
+        box-sizing: border-box !important;
+    }
+
+    .core-team-top-grid .overall-head-card .member-img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1/1 !important;
+        margin-bottom: 6px !important;
+        border-radius: 8px !important;
+        object-fit: cover !important;
+        flex-shrink: 0;
+    }
+
+    .core-team-top-grid>div:nth-child(4) {
+        grid-column: 2;
+    }
+}
+
+/* Specific Desktop Styles for Top 6 Core Team */
+@media (min-width: 769px) {
+    .core-team-top-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        /* Force single line */
+        justify-content: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+        max-width: 1400px;
+        margin: 0 auto 40px auto !important;
+        padding: 0 20px;
+    }
+
+    .core-team-top-grid .overall-head-card {
+        flex: 1 1 0px !important;
+        /* Distribute space equally */
+        width: auto !important;
+        min-width: 160px !important;
+        /* Minimum readable width */
+        max-width: 250px !important;
+    }
+}
+
+/* Heads Grid Mobile Optimization */
+@media (max-width: 768px) {
+    .heads-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        padding: 0 6px !important;
+        align-items: stretch !important;
+        justify-items: stretch !important;
+        box-sizing: border-box !important;
+    }
+
+    .heads-grid .team-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        padding: 6px !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 12px !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .heads-grid .member-img {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1/1 !important;
+        margin-bottom: 8px !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    .heads-grid .member-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 12px !important;
+    }
+
+    .heads-grid .member-img::before {
+        display: none !important;
+    }
+
+    .heads-grid .member-info {
+        width: 100% !important;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .heads-grid .member-info h3 {
+        font-size: 0.75rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 3px !important;
+        width: 100% !important;
+    }
+
+    .heads-grid .member-info p {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0 !important;
+        width: 100% !important;
+    }
+
+    .heads-grid .contact-details,
+    .heads-grid .social-links {
+        display: none !important;
+    }
+}
+
+/* For very small screens, ensure 3 per row doesn't break */
+@media (max-width: 380px) {
+    .heads-grid {
+        gap: 10px !important;
+    }
+
+    .heads-grid .member-info h3 {
+        font-size: 0.65rem !important;
+    }
+
+    .heads-grid .member-info p {
+        font-size: 0.55rem !important;
+    }
+}
+
+.ecell-logo {
+    width: 60px;
+    /* Reduced from default */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.ecell-logo:hover {
+    transform: scale(1.1);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* View More Button Styles - Interstellar Theme */
+.view-more-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0 60px;
+    width: 100%;
+}
+
+.interstellar-btn {
+    position: relative;
+    padding: 18px 50px;
+    background: #050510;
+    color: #fff;
+    border: 1px solid rgba(143, 139, 255, 0.5);
+    border-radius: 50px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    box-shadow: 0 0 20px rgba(143, 139, 255, 0.2), inset 0 0 15px rgba(143, 139, 255, 0.1);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.interstellar-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Shifting Nebula Background */
+.interstellar-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, #1a1a3a 0%, #050510 70%);
+    z-index: -2;
+}
+
+.interstellar-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg,
+            transparent,
+            rgba(143, 139, 255, 0.3),
+            rgba(209, 66, 245, 0.3),
+            transparent 60%);
+    animation: rotateNebula 10s linear infinite;
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(20px);
+}
+
+@keyframes rotateNebula {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.interstellar-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow:
+        0 0 30px rgba(209, 66, 245, 0.5),
+        0 0 60px rgba(143, 139, 255, 0.3),
+        inset 0 0 20px rgba(143, 139, 255, 0.4);
+    border-color: #fff;
+    color: #fff;
+    letter-spacing: 6px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Pulsing Aura Animation */
+@keyframes pulsar {
+    0% {
+        box-shadow: 0 0 15px rgba(143, 139, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(209, 66, 245, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(143, 139, 255, 0.4);
+    }
+}
+
+.interstellar-btn {
+    animation: pulsar 3s infinite ease-in-out;
+}
+
+/* Warp Speed Streaks */
+.star-particles {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(90deg, #fff 1px, transparent 1px),
+        linear-gradient(90deg, #fff 1px, transparent 1px),
+        linear-gradient(90deg, #fff 2px, transparent 1px);
+    background-size: 100px 1px, 150px 2px, 200px 1px;
+    background-repeat: repeat-x;
+    background-position: 0 20%, 0 50%, 0 80%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: screen;
+}
+
+.interstellar-btn:hover .star-particles {
+    opacity: 0.8;
+    animation: warpSpeed 0.4s linear infinite;
+}
+
+@keyframes warpSpeed {
+    0% {
+        transform: translateX(-100px);
+    }
+
+    100% {
+        transform: translateX(100px);
+    }
+}
+
+/* Gravitational Lens Glow */
+.interstellar-btn .lens-glow {
+    position: absolute;
+    width: 50px;
+    height: 100%;
+    top: 0;
+    left: -100px;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+}
+
+.interstellar-btn:hover .lens-glow {
+    left: 400px;
+}
+
+/* Slogan Styling */
+.core-team-slogan {
+    margin-top: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #b0bfdc;
+    text-align: center;
+    max-width: 80%;
+    opacity: 0.85;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(176, 191, 220, 0.3);
+    animation: fadeInUp 1s ease-out 0.3s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 0.85;
+        transform: translateY(0);
+    }
+}
+
+/* Cosmic Particle Effect (Simulated via overlay) */
+.star-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1.5px 1.5px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 50px 160px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1.5px 1.5px at 80px 10px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 130px 40px, #fff, rgba(0, 0, 0, 0)),
+        radial-gradient(1.5px 1.5px at 150px 150px, #fff, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.interstellar-btn:hover .star-particles {
+    opacity: 0.4;
+    animation: starsMove 10s linear infinite;
+}
+
+@keyframes starsMove {
+    from {
+        background-position: 0 0;
+    }
+
+
+    to {
+        background-position: 200px 200px;
+    }
+}
+
+/* Coordinating Team Banner */
+.banner-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.team-banner-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    background: transparent;
+}
+
+
+@media (max-width: 768px) {
+    .banner-container {
+        padding: 0 10px;
+    }
+}
+
+/* Coordinating Team Logos Row */
+.logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    /* Increased gap */
+    flex-wrap: wrap;
+    margin-top: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.team-logo {
+    height: 140px;
+    /* Uniform Medium Height */
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.team-logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.5));
+}
+
+/* Remove giant overrides, keep slight adjustments if needed for visual balance */
+.pursuit-logo-img {
+    height: 140px;
+}
+
+.navonmesh-logo-img {
+    height: 160px;
+    /* Navonmesh logo is wider/shorter usually, needs slight bump to look visually equal */
+}
+
+@media (max-width: 768px) {
+    .logos-row {
+        gap: 15px;
+        /* Tighter gap */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        /* Force single line */
+        justify-content: center;
+        width: 100%;
+        overflow-x: auto;
+        /* Allow scroll if screen extremely small, though sizing should prevent */
+        padding: 0 10px;
+    }
+
+    .team-logo {
+        height: 60px;
+        /* Reduced for single line fit */
+        width: auto;
+        max-width: 30%;
+        /* Prevent any logo from hogging space */
+    }
+
+    .navonmesh-logo-img {
+        height: 70px;
+    }
+
+    .pursuit-logo-img {
+        height: 60px;
+    }
+
+    .base-logo {
+        height: 45px; /* Proportional reduction for mobile */
+    }
+}

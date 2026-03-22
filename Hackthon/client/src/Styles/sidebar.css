@@ -1,0 +1,158 @@
+.social-bar {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  background: rgba(30, 30, 60, 0.6);
+  border-radius: 40px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  color: #fff;
+  z-index: 10;
+}
+
+.sidebar {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  background: rgba(30, 30, 60, 0.6);
+  border-radius: 40px;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  z-index: 10;
+}
+
+.sidebar-item span {
+  display: none;
+}
+
+/* Sidebar menu icons */
+.sidebar-item {
+  color: #ffffff;
+  font-size: 24px;
+  /* ⬅ increase size */
+  cursor: pointer;
+}
+
+/* Social media icons */
+.social-bar svg {
+  font-size: 26px;
+  transition: all 0.3s ease;
+}
+
+.social-bar a:hover svg {
+  color: #2dd4bf;
+  transform: scale(1.1);
+}
+
+/* 📥 BROCHURE DOWNLOAD STYLES */
+.brochure-download-link {
+  margin-top: 10px;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 12px;
+  padding: 10px 5px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brochure-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.brochure-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #2dd4bf;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.brochure-download-link:hover {
+  background: rgba(45, 212, 191, 0.2);
+  border-color: #2dd4bf;
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.4);
+  transform: translateY(-5px);
+}
+
+.brochure-download-link:hover .brochure-text {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+    /* Hide sidebar if unused on mobile */
+  }
+
+  .social-bar {
+    top: auto;
+    bottom: 20px;
+    /* Floating at bottom */
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    padding: 12px 25px;
+    border-radius: 50px;
+    flex-direction: row;
+    gap: 20px;
+    background: rgba(20, 20, 35, 0.95);
+    /* Solid dark capsule */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .sidebar-item {
+    font-size: 20px;
+  }
+
+  .social-bar svg {
+    font-size: 20px;
+    /* Comfortable icon size */
+    color: #ccc;
+    transition: 0.3s;
+  }
+
+  .social-bar svg:hover {
+    color: #fff;
+    transform: translateY(-3px);
+  }
+
+  /* 📥 Mobile Brochure Adaptation */
+  .brochure-download-link {
+    margin-top: 0;
+    padding: 8px 15px;
+    border-radius: 30px;
+  }
+
+  .brochure-content {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .brochure-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+}
