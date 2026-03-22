@@ -13,7 +13,7 @@ const AdminMaintenance = () => {
 
     const fetchIssues = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('adminToken');
             const response = await fetch(`${API_URL}/api/issues`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -54,7 +54,7 @@ const AdminMaintenance = () => {
     const markResolved = async (issueId) => {
         setResolving(issueId);
         try {
-            const token = localStorage.getItem('token');
+            const token = sessionStorage.getItem('adminToken');
             const response = await fetch(`${API_URL}/api/issues/resolve/${issueId}`, {
                 method: 'POST',
                 headers: {
@@ -92,6 +92,16 @@ const AdminMaintenance = () => {
                         🔄
                     </button>
                     <span className="pulse-dot"></span> CONNECTION LIVE
+                    <button 
+                        onClick={() => {
+                            sessionStorage.clear();
+                            window.location.hash = '/admin';
+                        }} 
+                        className="logout-btn"
+                        style={{ marginLeft: '15px', color: '#ef4444', background: 'none', border: 'none', cursor: 'pointer' }}
+                    >
+                        LOGOUT
+                    </button>
                 </div>
             </header>
 

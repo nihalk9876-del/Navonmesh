@@ -41,6 +41,12 @@ router.post('/raise', async (req, res) => {
 // @route   GET /api/issues
 // @desc    Get all active issues for the admin dashboard
 router.get('/', async (req, res) => {
+    // Auth Check
+    const authHeader = req.headers.authorization;
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh') {
+        return res.status(401).json({ error: 'Unauthorized Access' });
+    }
+
     try {
         const activeIssues = await Issue.find({ status: 'active' }).sort({ createdAt: -1 });
         res.status(200).json(activeIssues);
@@ -53,6 +59,12 @@ router.get('/', async (req, res) => {
 // @route   POST /api/issues/resolve/:id
 // @desc    Admin marks an issue as resolved
 router.post('/resolve/:id', async (req, res) => {
+    // Auth Check
+    const authHeader = req.headers.authorization;
+    if (authHeader !== 'Bearer admin_secret_token_navonmesh') {
+        return res.status(401).json({ error: 'Unauthorized Access' });
+    }
+
     try {
         const issue = await Issue.findById(req.params.id);
 
