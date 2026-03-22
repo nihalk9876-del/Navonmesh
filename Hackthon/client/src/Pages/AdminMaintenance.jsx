@@ -150,7 +150,7 @@ const AdminMaintenance = () => {
     const markResolved = async (issueId) => {
         setResolving(issueId);
         try {
-            const token = sessionStorage.getItem('adminToken');
+            const token = localStorage.getItem('token');
             const response = await fetch(`${API_URL}/api/issues/resolve/${issueId}`, {
                 method: 'POST',
                 headers: {
